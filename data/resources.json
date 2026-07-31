@@ -1,0 +1,20 @@
+[
+{
+"name":"Magisk",
+"type":"Root工具",
+"desc":"Android Root管理工具",
+"url":"https://github.com/topjohnwu/Magisk/releases"
+},
+{
+"name":"OrangeFox Recovery",
+"type":"Recovery",
+"desc":"第三方Recovery",
+"url":"https://orangefox.download"
+},
+{
+"name":"OPPO A11工具包",
+"type":"刷机工具",
+"desc":"高通刷机相关工具",
+"url":"#"
+}
+]
