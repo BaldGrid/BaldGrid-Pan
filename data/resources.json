@@ -12,9 +12,15 @@
 "url":"https://orangefox.download"
 },
 {
-"name":"OPPO A11工具包",
-"type":"刷机工具",
-"desc":"高通刷机相关工具",
-"url":"#"
+"name":"白叶刷机工具",
+"type":"Android Flash Tool",
+"desc":"第三方刷机工具",
+"url":"https://github.com/BaldGrid/Baiye-Flashing-Tool"
+},
+{
+"name":"米塔的袭击beta3源代码",
+"type":"AOTM",
+"desc":"煞笔游戏",
+"url":"https://github.com/BaldGrid/Open-Attack-Of-The-Mita"
 }
 ]
