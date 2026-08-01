@@ -113,3 +113,26 @@ target.classList.add("tab-content");
 }
 
 
+
+
+function showDonate(){
+
+let img=document.getElementById("wechat");
+
+
+if(img.style.display=="none" || img.style.display==""){
+
+img.style.display="block";
+
+img.classList.add("tab-content");
+
+}else{
+
+img.style.display="none";
+
+}
+
+
+}
+
+
