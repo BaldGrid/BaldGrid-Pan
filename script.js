@@ -53,3 +53,28 @@ x.type.includes(k)
 );
 
 }
+
+
+function showTab(id){
+
+document.getElementById("resource").style.display="none";
+
+document.getElementById("friend").style.display="none";
+
+document.getElementById("author").style.display="none";
+
+
+document.getElementById(id).style.display="block";
+
+}
+
+
+
+function showDonate(){
+
+let img=document.getElementById("wechat");
+
+img.style.display="block";
+
+}
+

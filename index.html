@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -7,22 +8,114 @@
 <link rel="stylesheet" href="style.css">
 </head>
 
+
 <body>
 
 <header>
+
 <h1>BaldGrid · 资源中心</h1>
-<p>Android · 刷机 · 工具 · 教程</p>
+
+<p>
+Android · 刷机 · 工具 · 教程
+</p>
+
 </header>
 
+
 <div class="notice">
-📢 公告：本站持续更新优质资源
+📢 公告 ：热烈欢迎访问本站
 </div>
+
 
 <input id="search" placeholder="搜索资源...">
 
+
+<div class="tabs">
+
+<button onclick="showTab('resource')">
+资源列表
+</button>
+
+<button onclick="showTab('friend')">
+友情链接
+</button>
+
+<button onclick="showTab('author')">
+联系作者
+</button>
+
+</div>
+
+
+
+<div id="resource">
+
 <main id="list"></main>
+
+</div>
+
+
+
+<div id="friend" class="hide">
+
+<div class="card">
+
+<h2>友情链接</h2>
+
+<p>
+🔥 萤火虫资源站
+</p>
+
+<a href="https://yhcres.top" target="_blank">
+访问网站
+</a>
+
+</div>
+
+</div>
+
+
+
+
+<div id="author" class="hide">
+
+<div class="card">
+
+<h2>联系作者</h2>
+
+
+<a href="https://www.coolapk.com/u/35803319" target="_blank">
+① 白叶の酷安链接
+</a>
+
+
+<a href="https://space.bilibili.com/1009842165" target="_blank">
+② 白叶の哔哩哔哩链接
+</a>
+
+
+<a href="https://github.com/BaldGrid" target="_blank">
+③ 白叶のGitHub链接
+</a>
+
+
+<a onclick="showDonate()">
+④ 资源赞助
+</a>
+
+
+<img id="wechat"
+src="assets/wechat.png"
+style="display:none;width:220px;margin-top:20px">
+
+
+</div>
+
+</div>
+
 
 <script src="script.js"></script>
 
 </body>
+
 </html>
