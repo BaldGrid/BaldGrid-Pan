@@ -55,26 +55,61 @@ x.type.includes(k)
 }
 
 
+
+
 function showTab(id){
 
-document.getElementById("resource").style.display="none";
+let tabs=[
+"resource",
+"friend",
+"author"
+];
 
-document.getElementById("friend").style.display="none";
 
-document.getElementById("author").style.display="none";
+tabs.forEach(function(x){
+
+let e=document.getElementById(x);
 
 
-document.getElementById(id).style.display="block";
+if(e.style.display=="block"){
+
+e.classList.add("tab-out");
+
+
+setTimeout(()=>{
+
+e.style.display="none";
+
+e.classList.remove("tab-out");
+
+},250);
+
+
+}else{
+
+e.style.display="none";
 
 }
 
+});
 
 
-function showDonate(){
 
-let img=document.getElementById("wechat");
+setTimeout(()=>{
 
-img.style.display="block";
+
+let target=document.getElementById(id);
+
+
+target.style.display="block";
+
+
+target.classList.add("tab-content");
+
+
+},260);
+
 
 }
+
 
