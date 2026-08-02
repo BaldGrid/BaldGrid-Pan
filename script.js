@@ -595,13 +595,11 @@ return res.json();
 musicList=json;
 
 
-currentMusicIndex=
-Number(
-localStorage.getItem(
-"musicIndex"
-)
-||
-0
+// 随机开始播放
+
+currentMusicIndex =
+Math.floor(
+Math.random()*musicList.length
 );
 
 
@@ -672,23 +670,36 @@ bgAudio.pause();
 bgAudio.onended=()=>{
 
 
-if(!isMusicEnabled)
+if(!isMusicEnabled || musicList.length===0)
 return;
 
 
+// 随机下一首
 
-currentMusicIndex++;
-
-
-if(currentMusicIndex>=musicList.length)
-
-currentMusicIndex=0;
+let nextIndex;
 
 
+do{
 
-playMusic(
-currentMusicIndex
+nextIndex =
+Math.floor(
+Math.random()*musicList.length
 );
+
+
+}
+while(
+nextIndex===currentMusicIndex
+&&
+musicList.length>1
+);
+
+
+
+currentMusicIndex=nextIndex;
+
+
+playMusic(currentMusicIndex);
 
 
 };
