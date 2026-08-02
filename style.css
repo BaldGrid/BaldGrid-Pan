@@ -355,3 +355,159 @@ header p {
     cursor: pointer;
     accent-color: var(--blue);
 }
+
+/* 页面动画 */
+
+.page-show{
+
+display:block;
+
+animation:pageIn .35s ease;
+
+}
+
+
+@keyframes pageIn{
+
+from{
+
+opacity:0;
+
+transform:translateY(20px);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:none;
+
+}
+
+}
+
+
+
+/* 当前按钮 */
+
+.tabs button.active{
+
+background:var(--blue);
+
+color:white;
+
+}
+
+
+
+/* 友链卡片 */
+
+#links a{
+
+display:inline-block;
+
+padding:14px 24px;
+
+background:var(--card);
+
+border:1px solid var(--border);
+
+border-radius:12px;
+
+color:var(--text);
+
+text-decoration:none;
+
+transition:.3s;
+
+}
+
+
+#links a:hover{
+
+background:var(--blue);
+
+color:white;
+
+transform:translateY(-3px);
+
+}
+
+
+
+/* 二维码动画 */
+
+#wechat.show{
+
+display:block;
+
+animation:zoom .3s ease;
+
+}
+
+
+
+@keyframes zoom{
+
+from{
+
+opacity:0;
+
+transform:scale(.8);
+
+}
+
+to{
+
+opacity:1;
+
+transform:scale(1);
+
+}
+
+}
+
+
+/* 卡片进入 */
+
+.resource-card{
+
+animation:cardIn .4s ease;
+
+}
+
+
+
+@keyframes cardIn{
+
+from{
+
+opacity:0;
+
+transform:translateY(15px);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:none;
+
+}
+
+}
+
+
+
+/* 点击反馈 */
+
+.tabs button:active,
+.card a:active{
+
+transform:scale(.95);
+
+}

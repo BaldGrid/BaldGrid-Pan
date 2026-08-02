@@ -4,329 +4,736 @@
 
 let list;
 let search;
+
 let data = [];
+
 let bgAudio = new Audio();
+
 let musicList = [];
+
 let currentMusicIndex = 0;
+
 let isMusicEnabled = false;
+
 
 // =====================
 // 页面初始化
 // =====================
 
-document.addEventListener("DOMContentLoaded", () => {
-    list = document.getElementById("list");
-    search = document.getElementById("search");
+document.addEventListener("DOMContentLoaded",()=>{
 
-    // 加载资源
+    list=document.getElementById("list");
+
+    search=document.getElementById("search");
+
+
     loadResources();
 
-    // 加载友链
     loadLinks();
 
-    // 初始化主题
     initTheme();
 
-    // 初始化音乐
     initMusic();
 
-    // 初始化搜索
     initSearch();
 
-    // 默认显示资源列表
-    showTab('resource');
+
+    showTab("resource");
+
 });
 
+
+
 // =====================
-// Tab 切换
+// 页面切换 + 动画
 // =====================
 
-function showTab(tabId) {
-    const tabs = ['resource', 'friend', 'author', 'setting'];
-    tabs.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.classList.add('hide');
+function showTab(tabId,btn){
+
+
+    const tabs=[
+        "resource",
+        "friend",
+        "author",
+        "setting"
+    ];
+
+
+    tabs.forEach(id=>{
+
+        const el=document.getElementById(id);
+
+        if(el){
+
+            el.classList.add("hide");
+
+            el.classList.remove("page-show");
+
+        }
+
     });
 
-    const target = document.getElementById(tabId);
-    if (target) target.classList.remove('hide');
-}
 
-// =====================
-// 赞助弹窗
-// =====================
 
-function showDonate() {
-    const wechatImg = document.getElementById('wechat');
-    if (wechatImg) {
-        if (wechatImg.style.display === 'block') {
-            wechatImg.style.display = 'none';
-        } else {
-            wechatImg.style.display = 'block';
-        }
+    const target=document.getElementById(tabId);
+
+
+    if(target){
+
+        target.classList.remove("hide");
+
+
+        //重新触发动画
+
+        void target.offsetWidth;
+
+
+        target.classList.add("page-show");
+
     }
+
+
+
+    //按钮状态
+
+    document
+    .querySelectorAll(".tabs button")
+    .forEach(b=>{
+
+        b.classList.remove("active");
+
+    });
+
+
+
+    if(btn){
+
+        btn.classList.add("active");
+
+    }
+
 }
 
+
+
 // =====================
-// 资源加载
+// 赞助二维码
 // =====================
 
-function loadResources() {
-    fetch("./data/resources.json")
-        .then(response => {
-            console.log("资源状态:", response.status);
-            if (!response.ok) {
-                throw new Error("resources.json 加载失败 (状态: " + response.status + ")");
-            }
-            return response.json();
-        })
-        .then(json => {
-            data = json;
-            show(data);
-        })
-        .catch(error => {
-            console.error("资源加载错误:", error);
-            list.innerHTML = `
-                <div class="card" style="grid-column:1/-1;text-align:center;">
-                    <h2>⚠️ 资源加载失败</h2>
-                    <p>${error.message}</p>
-                    <p style="font-size:13px;opacity:0.6;margin-top:8px;">
-                        请创建 ./data/resources.json 文件
-                    </p>
-                </div>
-            `;
-        });
+
+function showDonate(){
+
+    const img=document.getElementById("wechat");
+
+
+    if(img){
+
+        img.classList.toggle("show");
+
+    }
+
 }
+
+
+
+// =====================
+// 加载资源
+// =====================
+
+
+function loadResources(){
+
+
+fetch("./data/resources.json")
+
+
+.then(res=>{
+
+
+    if(!res.ok)
+        throw new Error("resources.json加载失败");
+
+
+    return res.json();
+
+
+})
+
+
+.then(json=>{
+
+
+    data=json;
+
+    show(data);
+
+
+})
+
+
+.catch(err=>{
+
+
+    console.error(err);
+
+
+    list.innerHTML=`
+
+<div class="card"
+style="text-align:center">
+
+<h2>
+⚠️ 资源加载失败
+</h2>
+
+<p>
+${err.message}
+</p>
+
+</div>
+
+`;
+
+
+});
+
+
+}
+
+
 
 // =====================
 // 显示资源
 // =====================
 
-function show(arr) {
-    list.innerHTML = "";
 
-    if (!arr || arr.length === 0) {
-        list.innerHTML = `
-            <div class="card" style="grid-column:1/-1;text-align:center;padding:60px 20px;opacity:0.6;">
-                <p>😕 没有找到匹配的资源</p>
-            </div>
-        `;
+function show(arr){
+
+
+    list.innerHTML="";
+
+
+    if(!arr.length){
+
+
+        list.innerHTML=`
+
+<div class="card"
+style="text-align:center">
+
+<p>
+😕 没有找到资源
+</p>
+
+</div>
+
+`;
+
         return;
+
     }
 
-    arr.forEach(item => {
-        const card = document.createElement("div");
-        card.className = "card";
 
-        card.innerHTML = `
-            <h2>${escapeHtml(item.name || "未命名")}</h2>
-            ${item.type ? `<span style="display:inline-block;background:var(--blue);color:#fff;font-size:12px;padding:2px 12px;border-radius:30px;margin-bottom:10px;">${escapeHtml(item.type)}</span>` : ""}
-            <p>${escapeHtml(item.desc || "暂无描述")}</p>
-            <a href="${escapeHtml(item.url || "#")}" target="_blank" rel="noopener noreferrer">
-                📎 下载 / 查看
-            </a>
-        `;
+
+    arr.forEach(item=>{
+
+
+        let card=document.createElement("div");
+
+
+        card.className="card resource-card";
+
+
+
+        card.innerHTML=`
+
+<h2>
+${escapeHtml(item.name)}
+</h2>
+
+
+<span class="tag">
+
+${escapeHtml(item.type||"资源")}
+
+</span>
+
+
+<p>
+
+${escapeHtml(item.desc||"暂无描述")}
+
+</p>
+
+
+<a href="${escapeHtml(item.url)}"
+target="_blank">
+
+📎 查看资源
+
+</a>
+
+`;
+
 
         list.appendChild(card);
+
+
     });
+
+
 }
 
+
+
+
 // =====================
-// HTML 转义
+// HTML过滤
 // =====================
 
-function escapeHtml(text) {
-    if (!text) return "";
-    const div = document.createElement("div");
-    div.textContent = text;
-    return div.innerHTML;
+
+function escapeHtml(text){
+
+
+const div=document.createElement("div");
+
+div.textContent=text||"";
+
+return div.innerHTML;
+
+
 }
 
+
+
 // =====================
-// 搜索初始化
+// 搜索
 // =====================
 
-function initSearch() {
-    if (!search) return;
 
-    let timer = null;
+function initSearch(){
 
-    search.addEventListener("input", function () {
-        clearTimeout(timer);
 
-        timer = setTimeout(() => {
-            const key = this.value.trim().toLowerCase();
+if(!search)return;
 
-            if (!key) {
-                show(data);
-                return;
-            }
 
-            const filtered = data.filter(item => {
-                const name = (item.name || "").toLowerCase();
-                const type = (item.type || "").toLowerCase();
-                const desc = (item.desc || "").toLowerCase();
-                return name.includes(key) || type.includes(key) || desc.includes(key);
-            });
+search.addEventListener("input",()=>{
 
-            show(filtered);
-        }, 300);
-    });
+
+let key=
+search.value
+.trim()
+.toLowerCase();
+
+
+
+if(!key){
+
+show(data);
+
+return;
+
 }
+
+
+
+let result=data.filter(item=>{
+
+
+return (
+
+(item.name||"")
+.toLowerCase()
+.includes(key)
+
+
+||
+
+(item.type||"")
+.toLowerCase()
+.includes(key)
+
+
+||
+
+(item.desc||"")
+.toLowerCase()
+.includes(key)
+
+);
+
+
+});
+
+
+
+show(result);
+
+
+
+});
+
+
+}
+
+
 
 // =====================
 // 友情链接
 // =====================
 
-function loadLinks() {
-    const links = document.getElementById("links");
-    if (!links) return;
 
-    fetch("./data/links.json")
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("links.json 加载失败");
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (!Array.isArray(data) || data.length === 0) {
-                links.innerHTML = '<span style="opacity:0.6;">暂无友链</span>';
-                return;
-            }
+function loadLinks(){
 
-            links.innerHTML = data
-                .map(link => {
-                    const name = escapeHtml(link.name || "未命名");
-                    const url = escapeHtml(link.url || "#");
-                    return `<a href="${url}" target="_blank" rel="noopener noreferrer">${name}</a>`;
-                })
-                .join("");
-        })
-        .catch(error => {
-            console.error("友链加载失败:", error);
-            links.innerHTML = `<span style="color:#ef4444;">⚠️ 友链加载失败</span>`;
-        });
+
+const links=document.getElementById("links");
+
+
+if(!links)return;
+
+
+
+fetch("./data/links.json")
+
+
+.then(res=>res.json())
+
+
+.then(json=>{
+
+
+links.innerHTML="";
+
+
+
+json.forEach(item=>{
+
+
+let a=document.createElement("a");
+
+
+a.href=item.url;
+
+
+a.target="_blank";
+
+
+a.innerHTML=
+escapeHtml(item.name);
+
+
+
+links.appendChild(a);
+
+
+
+});
+
+
+})
+
+
+.catch(()=>{
+
+
+links.innerHTML=
+"⚠️ 友链加载失败";
+
+
+});
+
+
 }
 
+
+
 // =====================
-// 主题切换
+// 主题
 // =====================
 
-function initTheme() {
-    const themeSelect = document.getElementById("themeSelect");
-    if (!themeSelect) return;
 
-    const savedTheme = localStorage.getItem("theme") || "system";
-    themeSelect.value = savedTheme;
-    applyTheme(savedTheme);
+function initTheme(){
 
-    themeSelect.addEventListener("change", function () {
-        const theme = this.value;
-        localStorage.setItem("theme", theme);
-        applyTheme(theme);
-    });
 
-    if (window.matchMedia) {
-        const darkModeMedia = window.matchMedia('(prefers-color-scheme: dark)');
-        darkModeMedia.addEventListener('change', () => {
-            const currentTheme = localStorage.getItem("theme") || "system";
-            if (currentTheme === "system") {
-                applyTheme("system");
-            }
-        });
-    }
+const select=
+document.getElementById("themeSelect");
+
+
+if(!select)return;
+
+
+
+let theme=
+localStorage.getItem("theme")
+||
+"system";
+
+
+
+select.value=theme;
+
+
+applyTheme(theme);
+
+
+
+select.onchange=()=>{
+
+
+localStorage.setItem(
+"theme",
+select.value
+);
+
+
+applyTheme(
+select.value
+);
+
+
+};
+
+
 }
 
-function applyTheme(theme) {
-    if (theme === "system") {
-        const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        document.documentElement.setAttribute("data-theme", isDark ? "dark" : "light");
-    } else {
-        document.documentElement.setAttribute("data-theme", theme);
-    }
+
+
+
+function applyTheme(theme){
+
+
+if(theme==="system"){
+
+
+let dark=
+window.matchMedia(
+"(prefers-color-scheme:dark)"
+)
+.matches;
+
+
+document.documentElement
+.dataset.theme=
+dark?
+"dark":
+"light";
+
+
 }
 
-// =====================
-// 音乐播放
-// =====================
+else{
 
-function initMusic() {
-    const musicSwitch = document.getElementById("musicSwitch");
-    if (!musicSwitch) return;
 
-    const savedState = localStorage.getItem("musicEnabled") === "true";
-    musicSwitch.checked = savedState;
-    isMusicEnabled = savedState;
+document.documentElement
+.dataset.theme=
+theme;
 
-    fetch("./data/music.xml")
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Music.xml 加载失败 (状态: " + response.status + ")");
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (!Array.isArray(data) || data.length === 0) {
-                console.warn("音乐列表为空");
-                musicSwitch.disabled = true;
-                musicSwitch.parentElement.innerHTML = '⚠️ 音乐列表为空';
-                return;
-            }
 
-            musicList = data;
-            currentMusicIndex = 0;
-
-            if (isMusicEnabled && musicList.length > 0) {
-                playMusic(0);
-            }
-
-            musicSwitch.addEventListener("change", function () {
-                isMusicEnabled = this.checked;
-                localStorage.setItem("musicEnabled", isMusicEnabled);
-
-                if (isMusicEnabled) {
-                    if (musicList.length > 0) {
-                        if (bgAudio.paused) {
-                            playMusic(currentMusicIndex);
-                        }
-                    } else {
-                        alert("⚠️ 音乐列表为空");
-                        this.checked = false;
-                        isMusicEnabled = false;
-                    }
-                } else {
-                    bgAudio.pause();
-                }
-            });
-        })
-        .catch(error => {
-            console.error("音乐加载失败:", error);
-            musicSwitch.disabled = true;
-            musicSwitch.parentElement.innerHTML = `⚠️ 音乐加载失败: ${error.message}`;
-        });
-
-    bgAudio.addEventListener("ended", function () {
-        if (!isMusicEnabled || musicList.length === 0) return;
-        currentMusicIndex = (currentMusicIndex + 1) % musicList.length;
-        playMusic(currentMusicIndex);
-    });
 }
 
-function playMusic(index) {
-    if (!musicList || musicList.length === 0) return;
-    if (index >= musicList.length) index = 0;
 
-    const song = musicList[index];
-    if (!song || !song.url) return;
+}
 
-    bgAudio.src = song.url;
-    bgAudio.load();
-    bgAudio.play().catch(err => {
-        console.warn("自动播放被阻止:", err);
-    });
 
-    currentMusicIndex = index;
-    localStorage.setItem("musicIndex", index);
-    console.log("🎵 正在播放:", song.name || "未命名");
+
+
+// =====================
+// 音乐系统
+// =====================
+
+
+function initMusic(){
+
+
+const sw=
+document.getElementById(
+"musicSwitch"
+);
+
+
+
+if(!sw)return;
+
+
+
+sw.checked=
+localStorage.getItem(
+"musicEnabled"
+)
+==="true";
+
+
+
+isMusicEnabled=
+sw.checked;
+
+
+
+
+fetch("./data/music.json")
+
+
+.then(res=>{
+
+
+if(!res.ok)
+
+throw new Error(
+"music.json不存在"
+);
+
+
+return res.json();
+
+
+})
+
+
+.then(json=>{
+
+
+musicList=json;
+
+
+currentMusicIndex=
+Number(
+localStorage.getItem(
+"musicIndex"
+)
+||
+0
+);
+
+
+
+if(isMusicEnabled)
+
+playMusic(
+currentMusicIndex
+);
+
+
+
+})
+
+
+
+.catch(err=>{
+
+
+console.error(err);
+
+
+sw.disabled=true;
+
+
+sw.parentElement.innerHTML=
+"⚠️ 音乐加载失败";
+
+
+});
+
+
+
+
+
+sw.onchange=()=>{
+
+
+isMusicEnabled=
+sw.checked;
+
+
+
+localStorage.setItem(
+"musicEnabled",
+isMusicEnabled
+);
+
+
+
+if(isMusicEnabled)
+
+playMusic(
+currentMusicIndex
+);
+
+
+else
+
+bgAudio.pause();
+
+
+
+};
+
+
+
+bgAudio.onended=()=>{
+
+
+if(!isMusicEnabled)
+return;
+
+
+
+currentMusicIndex++;
+
+
+if(currentMusicIndex>=musicList.length)
+
+currentMusicIndex=0;
+
+
+
+playMusic(
+currentMusicIndex
+);
+
+
+};
+
+
+
+}
+
+
+
+//播放
+
+function playMusic(index){
+
+
+if(!musicList.length)
+return;
+
+
+
+let song=
+musicList[index];
+
+
+
+bgAudio.src=
+song.url;
+
+
+bgAudio.play()
+.catch(()=>{
+
+
+console.log(
+"等待用户操作后播放"
+);
+
+
+});
+
+
+localStorage.setItem(
+"musicIndex",
+index
+);
+
+
 }
