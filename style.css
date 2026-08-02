@@ -2,669 +2,307 @@
    主题变量
 ===================== */
 
-
-:root{
-
---bg:#111;
-
---card:#1e1e1e;
-
---box:#222;
-
---text:#fff;
-
---sub:#aaa;
-
---blue:#0057ff;
-
+:root {
+    --bg: #111;
+    --card: #1e1e1e;
+    --box: #222;
+    --text: #fff;
+    --sub: #aaa;
+    --blue: #0057ff;
+    --border: #333;
 }
 
-
-
-
-/* 手动亮色 */
-
-body.light{
-
---bg:#f5f5f5;
-
---card:#ffffff;
-
---box:#e8e8e8;
-
---text:#111;
-
---sub:#555;
-
+[data-theme="light"] {
+    --bg: #f5f5f5;
+    --card: #ffffff;
+    --box: #e8e8e8;
+    --text: #111;
+    --sub: #555;
+    --border: #ddd;
 }
 
-
-
-
-
-/* 手动深色 */
-
-body.dark{
-
---bg:#111;
-
---card:#1e1e1e;
-
---box:#222;
-
---text:#fff;
-
---sub:#aaa;
-
+[data-theme="dark"] {
+    --bg: #111;
+    --card: #1e1e1e;
+    --box: #222;
+    --text: #fff;
+    --sub: #aaa;
+    --border: #333;
 }
-
-
-
-
-
-/* 跟随系统 */
-
-body.system{
-
-}
-
-
-
-@media(prefers-color-scheme:light){
-
-body.system{
-
---bg:#f5f5f5;
-
---card:#ffffff;
-
---box:#e8e8e8;
-
---text:#111;
-
---sub:#555;
-
-}
-
-}
-
-
-
-
 
 /* =====================
    基础
 ===================== */
 
-
-*{
-
-box-sizing:border-box;
-
+* {
+    box-sizing: border-box;
 }
 
-
-
-body{
-
-margin:0;
-
-font-family:
-
-"Microsoft YaHei",
-Arial,
-sans-serif;
-
-
-background:var(--bg);
-
-color:var(--text);
-
-transition:.3s;
-
-
+body {
+    margin: 0;
+    font-family: "Microsoft YaHei", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    transition: background 0.3s, color 0.3s;
+    min-height: 100vh;
 }
-
-
-
-
 
 /* =====================
    顶部
 ===================== */
 
-
-header{
-
-padding:40px 20px;
-
-text-align:center;
-
-
-background:
-
-linear-gradient(
-135deg,
-#222,
-#0057ff
-);
-
-
+header {
+    padding: 40px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #222, #0057ff);
 }
 
-
-
-header h1{
-
-font-size:32px;
-
-margin:0 0 10px;
-
+header h1 {
+    font-size: 32px;
+    margin: 0 0 10px;
+    color: #fff;
 }
 
-
-
-header p{
-
-font-size:18px;
-
-opacity:.8;
-
+header p {
+    font-size: 18px;
+    opacity: 0.8;
+    color: #fff;
 }
-
-
-
-
 
 /* =====================
-公告
+   公告
 ===================== */
 
-
-.notice{
-
-margin:20px;
-
-padding:15px;
-
-background:var(--box);
-
-border-radius:12px;
-
+.notice {
+    margin: 20px;
+    padding: 15px;
+    background: var(--box);
+    border-radius: 12px;
+    text-align: center;
 }
-
-
-
-
 
 /* =====================
-搜索
+   搜索
 ===================== */
 
-
-#search{
-
-
-display:block;
-
-width:80%;
-
-margin:20px auto;
-
-padding:15px 20px;
-
-border-radius:20px;
-
-border:0;
-
-outline:none;
-
-
-background:var(--box);
-
-color:var(--text);
-
-font-size:16px;
-
-
+#search {
+    display: block;
+    width: 80%;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 15px 20px;
+    border-radius: 20px;
+    border: 2px solid var(--border);
+    outline: none;
+    background: var(--box);
+    color: var(--text);
+    font-size: 16px;
+    transition: border-color 0.3s;
 }
 
+#search:focus {
+    border-color: var(--blue);
+}
 
-
-
+#search::placeholder {
+    color: var(--sub);
+    opacity: 0.6;
+}
 
 /* =====================
-按钮栏
+   按钮栏
 ===================== */
 
-
-.tabs{
-
-
-display:flex;
-
-margin:20px;
-
-overflow:hidden;
-
-border-radius:15px;
-
-background:var(--box);
-
-
+.tabs {
+    display: flex;
+    margin: 20px;
+    overflow: hidden;
+    border-radius: 15px;
+    background: var(--box);
 }
 
-
-
-
-
-.tabs button{
-
-
-flex:1;
-
-padding:15px;
-
-border:0;
-
-background:transparent;
-
-color:var(--text);
-
-font-size:16px;
-
-cursor:pointer;
-
-transition:.25s;
-
-
+.tabs button {
+    flex: 1;
+    padding: 15px;
+    border: 0;
+    background: transparent;
+    color: var(--text);
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.25s;
 }
 
-
-
-
-
-.tabs button:hover{
-
-
-background:#0057ff;
-
-color:white;
-
-
+.tabs button:hover {
+    background: var(--blue);
+    color: white;
 }
-
-
-
-
-
-
 
 /* =====================
-内容
+   内容区域
 ===================== */
 
-
-main{
-
-
-display:grid;
-
-
-grid-template-columns:
-
-repeat(
-auto-fit,
-minmax(260px,1fr)
-);
-
-
-gap:20px;
-
-padding:20px;
-
-
+#resource,
+#friend,
+#author,
+#setting {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
 }
-
-
-
-
-
-.title{
-
-margin:20px;
-
-}
-
-
-
-
 
 /* =====================
-卡片
+   卡片网格
 ===================== */
 
-
-.card{
-
-
-background:var(--card);
-
-padding:20px;
-
-border-radius:15px;
-
-transition:.3s;
-
-
+#list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    padding: 0;
 }
 
-
-
-
-
-.card:hover{
-
-
-transform:
-
-translateY(-5px);
-
-
+#links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 0;
 }
 
-
-
-
-
-.card h2{
-
-margin-top:0;
-
+.card {
+    background: var(--card);
+    padding: 20px;
+    border-radius: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid var(--border);
 }
 
-
-
-.card p{
-
-color:var(--sub);
-
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
+.card h2 {
+    margin-top: 0;
+    font-size: 20px;
+}
 
+.card p {
+    color: var(--sub);
+    line-height: 1.6;
+}
 
+.card a {
+    display: block;
+    margin-top: 12px;
+    padding: 12px;
+    background: var(--blue);
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: 0.25s;
+}
 
+.card a:hover {
+    background: #0080ff;
+}
+
+.card a:active {
+    transform: scale(0.95);
+}
 
 /* =====================
-链接
+   设置
 ===================== */
 
-
-.card a{
-
-
-display:block;
-
-margin-top:12px;
-
-padding:12px;
-
-
-background:#0057ff;
-
-
-color:white;
-
-text-align:center;
-
-text-decoration:none;
-
-
-border-radius:10px;
-
-
-transition:.25s;
-
-
+#setting .card label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
 }
 
-
-
-
-
-.card a:hover{
-
-
-background:#0080ff;
-
-
+#themeSelect {
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 2px solid var(--border);
+    background: var(--box);
+    color: var(--text);
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
 }
 
-
-
-
-
-.card a:active{
-
-
-transform:scale(.95);
-
-
+#themeSelect:focus {
+    border-color: var(--blue);
 }
-
-
-
-
-
-
-
 
 /* =====================
-设置
+   二维码
 ===================== */
 
-
-#themeSelect{
-
-
-padding:10px;
-
-
-border-radius:10px;
-
-
-border:0;
-
-
-background:var(--box);
-
-
-color:var(--text);
-
-
-font-size:16px;
-
-
+#wechat {
+    display: none;
+    width: 220px;
+    margin-top: 20px;
+    border-radius: 12px;
+    border: 2px solid var(--border);
 }
-
-
-
-
-
 
 /* =====================
-二维码
+   隐藏
 ===================== */
 
-
-#wechat{
-
-
-display:none;
-
-
-width:220px;
-
-
-margin-top:20px;
-
-
-border-radius:12px;
-
-
+.hide {
+    display: none !important;
 }
-
-
-
-
-
-
 
 /* =====================
-隐藏
+   滚动条
 ===================== */
 
-
-.hide{
-
-
-display:none;
-
-
+::-webkit-scrollbar {
+    width: 8px;
 }
 
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
 
+::-webkit-scrollbar-thumb {
+    background: var(--blue);
+    border-radius: 10px;
+}
 
-
-
-
+::-webkit-scrollbar-thumb:hover {
+    background: #0080ff;
+}
 
 /* =====================
-动画
+   手机适配
 ===================== */
 
-
-.tab-content{
-
-
-animation:
-
-fadeIn .35s ease;
-
-
-}
-
-
-
-@keyframes fadeIn{
-
-
-from{
-
-
-opacity:0;
-
-transform:
-
-translateY(15px);
-
-
-}
-
-
-
-to{
-
-
-opacity:1;
-
-transform:
-
-translateY(0);
-
-
-}
-
-
-}
-
-
-
-
-
-
-
-/* =====================
-滚动条
-===================== */
-
-
-::-webkit-scrollbar{
-
-
-width:8px;
-
-
-}
-
-
-
-::-webkit-scrollbar-thumb{
-
-
-background:#0057ff;
-
-border-radius:10px;
-
-
-}
-
-
-
-
-
-/* =====================
-手机
-===================== */
-
-
-@media(max-width:600px){
-
-
-header{
-
-padding:30px 10px;
-
-}
-
-
-
-header h1{
-
-font-size:26px;
-
-}
-
-
-
-.tabs button{
-
-font-size:14px;
-
-padding:12px 5px;
-
-}
-
-
-
-main{
-
-grid-template-columns:1fr;
-
-padding:10px;
-
-}
-
-
-
+@media (max-width: 600px) {
+    header {
+        padding: 30px 10px;
+    }
+
+    header h1 {
+        font-size: 26px;
+    }
+
+    .tabs button {
+        font-size: 13px;
+        padding: 12px 5px;
+    }
+
+    #list {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    #search {
+        width: 90%;
+        font-size: 14px;
+    }
 }

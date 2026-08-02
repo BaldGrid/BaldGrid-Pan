@@ -8,6 +8,7 @@ let data = [];
 let bgAudio = new Audio();
 let musicList = [];
 let currentMusicIndex = 0;
+let isMusicEnabled = false;
 
 // =====================
 // 页面初始化
@@ -31,7 +32,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 初始化搜索
     initSearch();
+
+    // 默认显示资源列表
+    showTab('resource');
 });
+
+// =====================
+// Tab 切换
+// =====================
+
+function showTab(tabId) {
+    const tabs = ['resource', 'friend', 'author', 'setting'];
+    tabs.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('hide');
+    });
+
+    const target = document.getElementById(tabId);
+    if (target) target.classList.remove('hide');
+}
+
+// =====================
+// 赞助弹窗
+// =====================
+
+function showDonate() {
+    const wechatImg = document.getElementById('wechat');
+    if (wechatImg) {
+        if (wechatImg.style.display === 'block') {
+            wechatImg.style.display = 'none';
+        } else {
+            wechatImg.style.display = 'block';
+        }
+    }
+}
 
 // =====================
 // 资源加载
@@ -42,7 +76,7 @@ function loadResources() {
         .then(response => {
             console.log("资源状态:", response.status);
             if (!response.ok) {
-                throw new Error("resources.json 加载失败");
+                throw new Error("resources.json 加载失败 (状态: " + response.status + ")");
             }
             return response.json();
         })
@@ -51,12 +85,13 @@ function loadResources() {
             show(data);
         })
         .catch(error => {
+            console.error("资源加载错误:", error);
             list.innerHTML = `
-                <div class="card">
+                <div class="card" style="grid-column:1/-1;text-align:center;">
                     <h2>⚠️ 资源加载失败</h2>
                     <p>${error.message}</p>
                     <p style="font-size:13px;opacity:0.6;margin-top:8px;">
-                        请确保 ./data/resources.json 文件存在且格式正确
+                        请创建 ./data/resources.json 文件
                     </p>
                 </div>
             `;
@@ -72,7 +107,7 @@ function show(arr) {
 
     if (!arr || arr.length === 0) {
         list.innerHTML = `
-            <div class="empty">
+            <div class="card" style="grid-column:1/-1;text-align:center;padding:60px 20px;opacity:0.6;">
                 <p>😕 没有找到匹配的资源</p>
             </div>
         `;
@@ -85,7 +120,7 @@ function show(arr) {
 
         card.innerHTML = `
             <h2>${escapeHtml(item.name || "未命名")}</h2>
-            ${item.type ? `<span class="type">${escapeHtml(item.type)}</span>` : ""}
+            ${item.type ? `<span style="display:inline-block;background:var(--blue);color:#fff;font-size:12px;padding:2px 12px;border-radius:30px;margin-bottom:10px;">${escapeHtml(item.type)}</span>` : ""}
             <p>${escapeHtml(item.desc || "暂无描述")}</p>
             <a href="${escapeHtml(item.url || "#")}" target="_blank" rel="noopener noreferrer">
                 📎 下载 / 查看
@@ -97,10 +132,11 @@ function show(arr) {
 }
 
 // =====================
-// HTML 转义（防 XSS）
+// HTML 转义
 // =====================
 
 function escapeHtml(text) {
+    if (!text) return "";
     const div = document.createElement("div");
     div.textContent = text;
     return div.innerHTML;
@@ -163,7 +199,7 @@ function loadLinks() {
                 .map(link => {
                     const name = escapeHtml(link.name || "未命名");
                     const url = escapeHtml(link.url || "#");
-                    return `<a href="${url}" target="_blank" rel="noopener noreferrer">${name}</a>`;
+                    return `<a href="${url}" target="_blank" rel="noopener noreferrer" style="margin:0 8px;color:var(--blue);text-decoration:none;">${name}</a>`;
                 })
                 .join(" · ");
         })
@@ -178,26 +214,37 @@ function loadLinks() {
 // =====================
 
 function initTheme() {
-    const themeBtn = document.getElementById("themeToggle");
-    if (!themeBtn) return;
+    const themeSelect = document.getElementById("themeSelect");
+    if (!themeSelect) return;
 
-    // 读取保存的主题
-    const savedTheme = localStorage.getItem("theme") || "light";
-    document.documentElement.setAttribute("data-theme", savedTheme);
-    updateThemeButton(themeBtn, savedTheme);
+    const savedTheme = localStorage.getItem("theme") || "system";
+    themeSelect.value = savedTheme;
+    applyTheme(savedTheme);
 
-    themeBtn.addEventListener("click", function () {
-        const current = document.documentElement.getAttribute("data-theme");
-        const next = current === "light" ? "dark" : "light";
-
-        document.documentElement.setAttribute("data-theme", next);
-        localStorage.setItem("theme", next);
-        updateThemeButton(this, next);
+    themeSelect.addEventListener("change", function () {
+        const theme = this.value;
+        localStorage.setItem("theme", theme);
+        applyTheme(theme);
     });
+
+    if (window.matchMedia) {
+        const darkModeMedia = window.matchMedia('(prefers-color-scheme: dark)');
+        darkModeMedia.addEventListener('change', () => {
+            const currentTheme = localStorage.getItem("theme") || "system";
+            if (currentTheme === "system") {
+                applyTheme("system");
+            }
+        });
+    }
 }
 
-function updateThemeButton(btn, theme) {
-    btn.textContent = theme === "light" ? "🌙 暗色" : "☀️ 亮色";
+function applyTheme(theme) {
+    if (theme === "system") {
+        const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute("data-theme", isDark ? "dark" : "light");
+    } else {
+        document.documentElement.setAttribute("data-theme", theme);
+    }
 }
 
 // =====================
@@ -205,11 +252,12 @@ function updateThemeButton(btn, theme) {
 // =====================
 
 function initMusic() {
-    const player = document.getElementById("musicPlayer");
-    if (!player) return;
+    const musicSwitch = document.getElementById("musicSwitch");
+    if (!musicSwitch) return;
 
-    // 读取保存的音乐索引
-    const savedIndex = parseInt(localStorage.getItem("musicIndex")) || 0;
+    const savedState = localStorage.getItem("musicEnabled") === "true";
+    musicSwitch.checked = savedState;
+    isMusicEnabled = savedState;
 
     fetch("./data/music.json")
         .then(response => {
@@ -225,69 +273,47 @@ function initMusic() {
             }
 
             musicList = data;
-            currentMusicIndex = Math.min(savedIndex, musicList.length - 1);
-            playMusic(currentMusicIndex);
+            currentMusicIndex = 0;
 
-            // 播放/暂停按钮
-            const toggleBtn = document.getElementById("musicToggle");
-            if (toggleBtn) {
-                toggleBtn.addEventListener("click", function () {
-                    if (bgAudio.paused) {
-                        bgAudio.play();
-                        this.textContent = "⏸️ 暂停";
+            if (isMusicEnabled && musicList.length > 0) {
+                playMusic(0);
+            }
+
+            musicSwitch.addEventListener("change", function () {
+                isMusicEnabled = this.checked;
+                localStorage.setItem("musicEnabled", isMusicEnabled);
+
+                if (isMusicEnabled) {
+                    if (musicList.length > 0) {
+                        if (bgAudio.paused) {
+                            playMusic(currentMusicIndex);
+                        }
                     } else {
-                        bgAudio.pause();
-                        this.textContent = "▶️ 播放";
+                        alert("⚠️ 音乐列表为空");
+                        this.checked = false;
+                        isMusicEnabled = false;
                     }
-                });
-            }
-
-            // 下一首
-            const nextBtn = document.getElementById("musicNext");
-            if (nextBtn) {
-                nextBtn.addEventListener("click", function () {
-                    if (musicList.length === 0) return;
-                    currentMusicIndex = (currentMusicIndex + 1) % musicList.length;
-                    playMusic(currentMusicIndex);
-                });
-            }
-
-            // 上一首
-            const prevBtn = document.getElementById("musicPrev");
-            if (prevBtn) {
-                prevBtn.addEventListener("click", function () {
-                    if (musicList.length === 0) return;
-                    currentMusicIndex = (currentMusicIndex - 1 + musicList.length) % musicList.length;
-                    playMusic(currentMusicIndex);
-                });
-            }
-
-            // 自动播放下一首
-            bgAudio.addEventListener("ended", function () {
-                if (musicList.length === 0) return;
-                currentMusicIndex = (currentMusicIndex + 1) % musicList.length;
-                playMusic(currentMusicIndex);
+                } else {
+                    bgAudio.pause();
+                }
             });
-
-            // 更新播放状态按钮
-            bgAudio.addEventListener("play", () => {
-                if (toggleBtn) toggleBtn.textContent = "⏸️ 暂停";
-            });
-            bgAudio.addEventListener("pause", () => {
-                if (toggleBtn) toggleBtn.textContent = "▶️ 播放";
-            });
-
-            // 显示当前歌曲名
-            updateMusicDisplay();
-
         })
         .catch(error => {
             console.error("音乐加载失败:", error);
+            musicSwitch.disabled = true;
+            musicSwitch.parentElement.textContent = "⚠️ 音乐加载失败";
         });
+
+    bgAudio.addEventListener("ended", function () {
+        if (!isMusicEnabled || musicList.length === 0) return;
+        currentMusicIndex = (currentMusicIndex + 1) % musicList.length;
+        playMusic(currentMusicIndex);
+    });
 }
 
 function playMusic(index) {
     if (!musicList || musicList.length === 0) return;
+    if (index >= musicList.length) index = 0;
 
     const song = musicList[index];
     if (!song || !song.url) return;
@@ -296,35 +322,9 @@ function playMusic(index) {
     bgAudio.load();
     bgAudio.play().catch(err => {
         console.warn("自动播放被阻止:", err);
-        // 用户交互后才能播放
     });
 
+    currentMusicIndex = index;
     localStorage.setItem("musicIndex", index);
-    updateMusicDisplay();
-}
-
-function updateMusicDisplay() {
-    const display = document.getElementById("musicNow");
-    if (!display) return;
-
-    if (musicList && musicList.length > 0 && musicList[currentMusicIndex]) {
-        const song = musicList[currentMusicIndex];
-        const name = song.name || "未命名";
-        const artist = song.artist ? ` - ${song.artist}` : "";
-        display.textContent = `🎵 ${name}${artist}`;
-    } else {
-        display.textContent = "🎵 无音乐";
-    }
-}
-
-// =====================
-// 工具函数 - 防抖
-// =====================
-
-function debounce(func, wait) {
-    let timeout;
-    return function (...args) {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(this, args), wait);
-    };
+    console.log("🎵 正在播放:", song.name || "未命名");
 }
