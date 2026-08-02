@@ -1,10 +1,12 @@
-let list=document.getElementById("list");
-let search=document.getElementById("search");
+let list = document.getElementById("list");
+let search = document.getElementById("search");
 
-let data=[];
+let data = [];
 
 
+// =====================
 // 加载资源
+// =====================
 
 fetch("data/resources.json")
 
@@ -16,12 +18,30 @@ data=d;
 
 show(data);
 
+})
+
+.catch(e=>{
+
+list.innerHTML=`
+
+<div class="card">
+
+<h2>资源加载失败</h2>
+
+<p>${e}</p>
+
+</div>
+
+`;
+
 });
 
 
 
 
+// =====================
 // 显示资源
+// =====================
 
 function show(arr){
 
@@ -51,6 +71,7 @@ list.innerHTML+=`
 
 `;
 
+
 });
 
 
@@ -59,7 +80,11 @@ list.innerHTML+=`
 
 
 
+// =====================
 // 搜索
+// =====================
+
+if(search){
 
 search.oninput=function(){
 
@@ -80,6 +105,7 @@ x.type.includes(k)
 ||
 
 x.desc.includes(k)
+
 )
 
 );
@@ -88,11 +114,16 @@ x.desc.includes(k)
 };
 
 
+}
 
 
 
 
+
+
+// =====================
 // 加载友情链接
+// =====================
 
 let links=document.getElementById("links");
 
@@ -112,12 +143,10 @@ d.forEach(x=>{
 
 links.innerHTML+=`
 
-
 <div class="card">
 
-
 <h2>
-${x.icon} ${x.name}
+${x.icon || ""} ${x.name}
 </h2>
 
 
@@ -132,7 +161,6 @@ ${x.desc}
 
 
 </div>
-
 
 `;
 
@@ -151,7 +179,12 @@ ${x.desc}
 
 
 
+// =====================
 // 页面切换动画
+// =====================
+
+function showTab(id){
+
 
 let tabs=[
 
@@ -173,12 +206,15 @@ tabs.forEach(function(x){
 let e=document.getElementById(x);
 
 
+if(!e)
+return;
 
-if(e.style.display=="block"){
+
+
+if(x!==id){
 
 
 e.classList.add("tab-out");
-
 
 
 setTimeout(()=>{
@@ -193,17 +229,10 @@ e.classList.remove("tab-out");
 
 
 
-}else{
-
-
-e.style.display="none";
-
-
 }
 
 
 });
-
 
 
 
@@ -213,19 +242,15 @@ setTimeout(()=>{
 let target=document.getElementById(id);
 
 
+if(!target)
+return;
+
+
 
 target.style.display="block";
 
 
 target.classList.add("tab-content");
-
-
-
-setTimeout(()=>{
-
-target.classList.add("tab-content");
-
-},10);
 
 
 
@@ -241,7 +266,9 @@ target.classList.add("tab-content");
 
 
 
+// =====================
 // 微信赞助
+// =====================
 
 function showDonate(){
 
@@ -249,12 +276,14 @@ function showDonate(){
 let img=document.getElementById("wechat");
 
 
-
-if(img.style.display=="none" || img.style.display==""){
+if(
+img.style.display=="none"
+||
+img.style.display==""
+){
 
 
 img.style.display="block";
-
 
 img.classList.add("tab-content");
 
@@ -268,8 +297,12 @@ img.style.display="none";
 }
 
 
-
 }
+
+
+
+
+
 
 // =====================
 // 背景音乐系统
@@ -288,11 +321,21 @@ fetch("data/music.json")
 
 .then(d=>{
 
+
 musicList=d;
 
 initMusic();
 
+
+})
+
+.catch(()=>{
+
+console.log("音乐列表加载失败");
+
 });
+
+
 
 
 
@@ -304,6 +347,7 @@ let sw=document.getElementById("musicSwitch");
 
 
 if(!sw)
+
 return;
 
 
@@ -314,18 +358,25 @@ let state=getCookie("music");
 
 if(state==="on"){
 
+
 sw.checked=true;
+
 
 playMusic();
 
+
 }else{
+
 
 sw.checked=false;
 
+
 }
 
 
+
 }
+
 
 
 
@@ -334,12 +385,17 @@ function playMusic(){
 
 
 if(musicList.length==0)
+
 return;
 
 
+
 let i=Math.floor(
+
 Math.random()*musicList.length
+
 );
+
 
 
 bgAudio.src=musicList[i];
@@ -349,10 +405,14 @@ bgAudio.loop=true;
 bgAudio.volume=0.3;
 
 
+
 bgAudio.play()
+
 .catch(()=>{
 
+
 console.log("等待用户操作");
+
 
 });
 
@@ -362,17 +422,20 @@ console.log("等待用户操作");
 
 
 
+
+
 document.addEventListener(
+
 "DOMContentLoaded",
+
 ()=>{
 
 
-let sw=document.getElementById(
-"musicSwitch"
-);
+let sw=document.getElementById("musicSwitch");
 
 
 if(!sw)
+
 return;
 
 
@@ -380,13 +443,18 @@ return;
 sw.onchange=function(){
 
 
+
 if(this.checked){
 
 
 setCookie(
+
 "music",
+
 "on",
+
 365
+
 );
 
 
@@ -398,27 +466,41 @@ playMusic();
 
 
 setCookie(
+
 "music",
+
 "off",
+
 365
+
 );
 
 
 bgAudio.pause();
 
 
-
-}
-
-
 }
 
 
 
-});
+};
 
 
 
+}
+
+);
+
+
+
+
+
+
+
+
+// =====================
+// Cookie
+// =====================
 
 
 function setCookie(name,value,days){
@@ -428,19 +510,27 @@ let d=new Date();
 
 
 d.setTime(
+
 d.getTime()+days*86400000
+
 );
 
 
 
 document.cookie=
+
 name+"="+value+
+
 ";expires="+
+
 d.toUTCString()+
+
 ";path=/";
 
 
 }
+
+
 
 
 
@@ -451,10 +541,12 @@ function getCookie(name){
 let arr=document.cookie.split(";");
 
 
+
 for(let i of arr){
 
 
 let p=i.trim().split("=");
+
 
 
 if(p[0]==name)
@@ -463,6 +555,7 @@ return p[1];
 
 
 }
+
 
 
 return null;
