@@ -199,9 +199,9 @@ function loadLinks() {
                 .map(link => {
                     const name = escapeHtml(link.name || "未命名");
                     const url = escapeHtml(link.url || "#");
-                    return `<a href="${url}" target="_blank" rel="noopener noreferrer" style="margin:0 8px;color:var(--blue);text-decoration:none;">${name}</a>`;
+                    return `<a href="${url}" target="_blank" rel="noopener noreferrer">${name}</a>`;
                 })
-                .join(" · ");
+                .join("");
         })
         .catch(error => {
             console.error("友链加载失败:", error);
@@ -259,16 +259,18 @@ function initMusic() {
     musicSwitch.checked = savedState;
     isMusicEnabled = savedState;
 
-    fetch("./data/music.json")
+    fetch("./data/music.xml")
         .then(response => {
             if (!response.ok) {
-                throw new Error("music.json 加载失败");
+                throw new Error("Music.xml 加载失败 (状态: " + response.status + ")");
             }
             return response.json();
         })
         .then(data => {
             if (!Array.isArray(data) || data.length === 0) {
                 console.warn("音乐列表为空");
+                musicSwitch.disabled = true;
+                musicSwitch.parentElement.innerHTML = '⚠️ 音乐列表为空';
                 return;
             }
 
@@ -301,7 +303,7 @@ function initMusic() {
         .catch(error => {
             console.error("音乐加载失败:", error);
             musicSwitch.disabled = true;
-            musicSwitch.parentElement.textContent = "⚠️ 音乐加载失败";
+            musicSwitch.parentElement.innerHTML = `⚠️ 音乐加载失败: ${error.message}`;
         });
 
     bgAudio.addEventListener("ended", function () {

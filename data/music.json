@@ -1,8 +1,8 @@
 [
-"Music/超主人公.m4a",
-"Music/处刑鼓掌.m4a",
-"Music/请批准吧灯神先生.m4a",
-"Music/人是猫.m4a",
-"Music/人是喵(本家二创).m4a"
-"Music/schoolhouse_trouble_demo_full.wav"
+    {"name": "超主人公", "url": "Music/超主人公.m4a"},
+    {"name": "处刑鼓掌", "url": "Music/处刑鼓掌.m4a"},
+    {"name": "请批准吧灯神先生", "url": "Music/请批准吧灯神先生.m4a"},
+    {"name": "人是猫", "url": "Music/人是猫.m4a"},
+    {"name": "人是喵(本家二创)", "url": "Music/人是喵(本家二创).m4a"},
+    {"name": "schoolhouse_trouble_demo_full", "url": "Music/schoolhouse_trouble_demo_full.wav"}
 ]
