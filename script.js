@@ -77,6 +77,9 @@ x.name.includes(k)
 
 x.type.includes(k)
 
+||
+
+x.desc.includes(k)
 )
 
 );
@@ -150,16 +153,15 @@ ${x.desc}
 
 // 页面切换动画
 
-function showTab(id){
-
-
 let tabs=[
 
 "resource",
 
 "friend",
 
-"author"
+"author",
+
+"setting"
 
 ];
 
@@ -215,7 +217,7 @@ let target=document.getElementById(id);
 target.style.display="block";
 
 
-target.classList.remove("tab-content");
+target.classList.add("tab-content");
 
 
 

@@ -1,101 +1,123 @@
 body{
+
 margin:0;
+
 font-family:"Microsoft YaHei",Arial;
+
 background:#111;
+
 color:white;
+
 }
+
+
+/* 顶部 */
 
 header{
+
 padding:40px;
+
 text-align:center;
+
 background:linear-gradient(135deg,#222,#0057ff);
+
 }
+
+
+/* 公告 */
 
 .notice{
+
 margin:20px;
+
 padding:15px;
+
 background:#222;
+
 border-radius:12px;
+
 }
+
+
+/* 搜索 */
 
 #search{
+
 display:block;
+
 width:80%;
+
 margin:20px auto;
+
 padding:15px;
+
 border-radius:20px;
+
 border:0;
-}
-
-main{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:20px;
-padding:20px;
-}
-
-.card{
-background:#1e1e1e;
-padding:20px;
-border-radius:15px;
-}
-
-.card a{
-display:block;
-background:#0066ff;
-padding:10px;
-text-align:center;
-border-radius:10px;
-color:white;
-text-decoration:none;
-}
-
-
-.tabs{
-
-display:flex;
-
-margin:20px;
-
-background:#222;
-
-border-radius:15px;
-
-overflow:hidden;
-
-}
-
-
-.tabs button{
-
-flex:1;
-
-padding:15px;
 
 background:#222;
 
 color:white;
 
-border:0;
+outline:none;
 
 font-size:16px;
 
 }
 
 
-.tabs button:hover{
 
-background:#0057ff;
+#search:focus{
+
+box-shadow:0 0 10px #0057ff;
+
+}
+
+
+
+/* 资源列表 */
+
+main{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+gap:20px;
+
+padding:20px;
 
 }
 
 
-.hide{
 
-display:none;
+/* 卡片 */
+
+.card{
+
+background:#1e1e1e;
+
+padding:20px;
+
+border-radius:15px;
+
+transition:.3s;
 
 }
 
+
+
+.card:hover{
+
+transform:translateY(-5px);
+
+box-shadow:0 10px 25px rgba(0,0,0,.5);
+
+}
+
+
+
+/* 链接按钮 */
 
 .card a{
 
@@ -115,18 +137,100 @@ text-align:center;
 
 text-decoration:none;
 
+transition:.25s;
+
 }
 
 
 
+.card a:hover{
 
-/* 页面切换淡出动画 */
+background:#0080ff;
+
+}
+
+
+
+.card a:active{
+
+transform:scale(.95);
+
+}
+
+
+
+/* 标签栏 */
+
+.tabs{
+
+display:flex;
+
+margin:20px;
+
+background:#222;
+
+border-radius:15px;
+
+overflow:hidden;
+
+}
+
+
+
+.tabs button{
+
+flex:1;
+
+padding:15px;
+
+background:#222;
+
+color:white;
+
+border:0;
+
+font-size:16px;
+
+transition:.25s;
+
+}
+
+
+
+.tabs button:hover{
+
+background:#0057ff;
+
+}
+
+
+
+.tabs button:active{
+
+transform:scale(.95);
+
+}
+
+
+
+/* 隐藏 */
+
+.hide{
+
+display:none;
+
+}
+
+
+
+/* 页面切换动画 */
 
 .tab-content{
 
 animation:fadeIn .35s ease forwards;
 
 }
+
 
 
 .tab-out{
@@ -181,3 +285,53 @@ transform:translateY(-15px);
 
 }
 
+
+
+/* 手机适配 */
+
+@media(max-width:600px){
+
+
+header{
+
+padding:25px;
+
+}
+
+
+header h1{
+
+font-size:24px;
+
+}
+
+
+
+main{
+
+grid-template-columns:1fr;
+
+padding:10px;
+
+}
+
+
+
+.tabs{
+
+margin:10px;
+
+}
+
+
+
+.tabs button{
+
+font-size:14px;
+
+padding:12px;
+
+}
+
+
+}
