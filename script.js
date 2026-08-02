@@ -1,26 +1,90 @@
-let list = document.getElementById("list");
-let search = document.getElementById("search");
+// =====================
+// 初始化
+// =====================
 
+let list;
+let search;
 let data = [];
 
 
-// =====================
+// 等页面加载完成
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+
+list=document.getElementById("list");
+
+search=document.getElementById("search");
+
+
 // 加载资源
+
+loadResources();
+
+
+// 加载友情链接
+
+loadLinks();
+
+
+// 初始化音乐
+
+loadMusic();
+
+
+});
+
+
+
+
+// =====================
+// 资源加载
 // =====================
 
-fetch("data/resources.json")
+function loadResources(){
 
-.then(r=>r.json())
 
-.then(d=>{
+fetch("./data/resources.json")
 
-data=d;
 
-show(data);
+.then(response=>{
+
+
+console.log(
+"resources状态:",
+response.status
+);
+
+
+if(!response.ok){
+
+throw new Error(
+"resources.json不存在"
+);
+
+}
+
+
+return response.json();
+
 
 })
 
-.catch(e=>{
+
+.then(json=>{
+
+
+data=json;
+
+
+show(data);
+
+
+})
+
+
+.catch(error=>{
+
 
 list.innerHTML=`
 
@@ -28,13 +92,18 @@ list.innerHTML=`
 
 <h2>资源加载失败</h2>
 
-<p>${e}</p>
+<p>${error}</p>
 
 </div>
 
 `;
 
+
 });
+
+
+}
+
 
 
 
@@ -44,6 +113,7 @@ list.innerHTML=`
 // =====================
 
 function show(arr){
+
 
 list.innerHTML="";
 
@@ -55,15 +125,26 @@ list.innerHTML+=`
 
 <div class="card">
 
-<h2>${x.name}</h2>
 
-<p>${x.type}</p>
+<h2>
+${x.name}
+</h2>
 
-<p>${x.desc}</p>
+
+<p>
+类型：${x.type}
+</p>
+
+
+<p>
+${x.desc}
+</p>
 
 
 <a href="${x.url}" target="_blank">
+
 下载 / 查看
+
 </a>
 
 
@@ -80,33 +161,38 @@ list.innerHTML+=`
 
 
 
+
 // =====================
 // 搜索
 // =====================
 
 if(search){
 
+
 search.oninput=function(){
 
 
-let k=this.value;
+let key=this.value.trim();
 
 
 show(
 
 data.filter(x=>
 
-x.name.includes(k)
+
+x.name.includes(key)
 
 ||
 
-x.type.includes(k)
+x.type.includes(key)
 
 ||
 
-x.desc.includes(k)
+x.desc.includes(key)
+
 
 )
+
 
 );
 
@@ -122,31 +208,41 @@ x.desc.includes(k)
 
 
 // =====================
-// 加载友情链接
+// 友情链接
 // =====================
+
+function loadLinks(){
+
 
 let links=document.getElementById("links");
 
 
-if(links){
+if(!links)
+
+return;
 
 
-fetch("data/links.json")
+
+fetch("./data/links.json")
+
 
 .then(r=>r.json())
 
-.then(d=>{
+
+.then(json=>{
 
 
-d.forEach(x=>{
+json.forEach(x=>{
 
 
 links.innerHTML+=`
 
 <div class="card">
 
+
 <h2>
-${x.icon || ""} ${x.name}
+${x.icon || ""}
+${x.name}
 </h2>
 
 
@@ -156,7 +252,9 @@ ${x.desc}
 
 
 <a href="${x.url}" target="_blank">
+
 访问网站
+
 </a>
 
 
@@ -166,6 +264,14 @@ ${x.desc}
 
 
 });
+
+
+})
+
+.catch(()=>{
+
+
+links.innerHTML="友情链接加载失败";
 
 
 });
@@ -180,13 +286,13 @@ ${x.desc}
 
 
 // =====================
-// 页面切换动画
+// 页面切换
 // =====================
 
 function showTab(id){
 
 
-let tabs=[
+let pages=[
 
 "resource",
 
@@ -200,33 +306,36 @@ let tabs=[
 
 
 
-tabs.forEach(function(x){
+pages.forEach(page=>{
 
 
-let e=document.getElementById(x);
+let el=document.getElementById(page);
 
 
-if(!e)
+if(!el)
+
 return;
 
 
 
-if(x!==id){
+if(page===id){
 
 
-e.classList.add("tab-out");
+el.style.display="block";
+
+el.classList.add(
+"tab-content"
+);
 
 
-setTimeout(()=>{
+}else{
 
 
-e.style.display="none";
+el.style.display="none";
 
-e.classList.remove("tab-out");
-
-
-},250);
-
+el.classList.remove(
+"tab-content"
+);
 
 
 }
@@ -235,30 +344,8 @@ e.classList.remove("tab-out");
 });
 
 
-
-setTimeout(()=>{
-
-
-let target=document.getElementById(id);
-
-
-if(!target)
-return;
-
-
-
-target.style.display="block";
-
-
-target.classList.add("tab-content");
-
-
-
-},260);
-
-
-
 }
+
 
 
 
@@ -276,28 +363,23 @@ function showDonate(){
 let img=document.getElementById("wechat");
 
 
-if(
-img.style.display=="none"
-||
-img.style.display==""
-){
-
-
-img.style.display="block";
-
-img.classList.add("tab-content");
-
-
-}else{
+if(img.style.display==="block"){
 
 
 img.style.display="none";
 
 
+}else{
+
+
+img.style.display="block";
+
+
 }
 
 
 }
+
 
 
 
@@ -305,9 +387,8 @@ img.style.display="none";
 
 
 // =====================
-// 背景音乐系统
+// 音乐系统
 // =====================
-
 
 let bgAudio=new Audio();
 
@@ -315,14 +396,20 @@ let musicList=[];
 
 
 
-fetch("data/music.json")
+function loadMusic(){
+
+
+fetch("./data/music.json")
+
 
 .then(r=>r.json())
 
-.then(d=>{
+
+.then(json=>{
 
 
-musicList=d;
+musicList=json;
+
 
 initMusic();
 
@@ -331,10 +418,14 @@ initMusic();
 
 .catch(()=>{
 
-console.log("音乐列表加载失败");
+console.log(
+"音乐列表不存在"
+);
 
 });
 
+
+}
 
 
 
@@ -343,7 +434,9 @@ console.log("音乐列表加载失败");
 function initMusic(){
 
 
-let sw=document.getElementById("musicSwitch");
+let sw=document.getElementById(
+"musicSwitch"
+);
 
 
 if(!sw)
@@ -352,11 +445,10 @@ return;
 
 
 
-let state=getCookie("music");
-
-
-
-if(state==="on"){
+if(
+getCookie("music")
+==="on"
+){
 
 
 sw.checked=true;
@@ -365,78 +457,7 @@ sw.checked=true;
 playMusic();
 
 
-}else{
-
-
-sw.checked=false;
-
-
 }
-
-
-
-}
-
-
-
-
-
-function playMusic(){
-
-
-if(musicList.length==0)
-
-return;
-
-
-
-let i=Math.floor(
-
-Math.random()*musicList.length
-
-);
-
-
-
-bgAudio.src=musicList[i];
-
-bgAudio.loop=true;
-
-bgAudio.volume=0.3;
-
-
-
-bgAudio.play()
-
-.catch(()=>{
-
-
-console.log("等待用户操作");
-
-
-});
-
-
-}
-
-
-
-
-
-
-document.addEventListener(
-
-"DOMContentLoaded",
-
-()=>{
-
-
-let sw=document.getElementById("musicSwitch");
-
-
-if(!sw)
-
-return;
 
 
 
@@ -448,31 +469,22 @@ if(this.checked){
 
 
 setCookie(
-
 "music",
-
 "on",
-
 365
-
 );
 
 
 playMusic();
 
 
-
 }else{
 
 
 setCookie(
-
 "music",
-
 "off",
-
 365
-
 );
 
 
@@ -489,8 +501,56 @@ bgAudio.pause();
 
 }
 
+
+
+
+
+function playMusic(){
+
+
+if(
+musicList.length===0
+)
+
+return;
+
+
+
+let i=Math.floor(
+
+Math.random()
+*
+musicList.length
+
 );
 
+
+
+bgAudio.src=
+musicList[i];
+
+
+bgAudio.loop=true;
+
+
+bgAudio.volume=0.3;
+
+
+
+bgAudio.play()
+
+.catch(()=>{
+
+
+console.log(
+"浏览器禁止自动播放"
+);
+
+
+});
+
+
+}
 
 
 
@@ -502,16 +562,21 @@ bgAudio.pause();
 // Cookie
 // =====================
 
+function setCookie(
+name,
+value,
+days
+){
 
-function setCookie(name,value,days){
+
+let date=new Date();
 
 
-let d=new Date();
+date.setTime(
 
-
-d.setTime(
-
-d.getTime()+days*86400000
+date.getTime()
++
+days*86400000
 
 );
 
@@ -522,9 +587,8 @@ document.cookie=
 name+"="+value+
 
 ";expires="+
-
-d.toUTCString()+
-
+date.toUTCString()
++
 ";path=/";
 
 
@@ -538,18 +602,19 @@ d.toUTCString()+
 function getCookie(name){
 
 
-let arr=document.cookie.split(";");
+let cookies=
+document.cookie.split(";");
 
 
 
-for(let i of arr){
+for(let c of cookies){
 
 
-let p=i.trim().split("=");
+let p=c.trim().split("=");
 
 
 
-if(p[0]==name)
+if(p[0]===name)
 
 return p[1];
 
