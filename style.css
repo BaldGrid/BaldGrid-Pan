@@ -11,7 +11,7 @@
 
 --box:#222;
 
---text:white;
+--text:#fff;
 
 --sub:#aaa;
 
@@ -22,7 +22,7 @@
 
 
 
-/* 亮色模式 */
+/* 手动亮色 */
 
 body.light{
 
@@ -30,7 +30,7 @@ body.light{
 
 --card:#ffffff;
 
---box:#e5e5e5;
+--box:#e8e8e8;
 
 --text:#111;
 
@@ -42,17 +42,43 @@ body.light{
 
 
 
+/* 手动深色 */
+
+body.dark{
+
+--bg:#111;
+
+--card:#1e1e1e;
+
+--box:#222;
+
+--text:#fff;
+
+--sub:#aaa;
+
+}
+
+
+
+
+
 /* 跟随系统 */
+
+body.system{
+
+}
+
+
 
 @media(prefers-color-scheme:light){
 
-body:not(.dark){
+body.system{
 
 --bg:#f5f5f5;
 
 --card:#ffffff;
 
---box:#e5e5e5;
+--box:#e8e8e8;
 
 --text:#111;
 
@@ -67,8 +93,16 @@ body:not(.dark){
 
 
 /* =====================
-   全局
+   基础
 ===================== */
+
+
+*{
+
+box-sizing:border-box;
+
+}
+
 
 
 body{
@@ -88,6 +122,7 @@ color:var(--text);
 
 transition:.3s;
 
+
 }
 
 
@@ -101,9 +136,10 @@ transition:.3s;
 
 header{
 
-padding:40px;
+padding:40px 20px;
 
 text-align:center;
+
 
 background:
 
@@ -113,23 +149,24 @@ linear-gradient(
 #0057ff
 );
 
+
 }
 
 
 
 header h1{
 
-margin:0;
-
 font-size:32px;
+
+margin:0 0 10px;
 
 }
 
 
 
-
-
 header p{
+
+font-size:18px;
 
 opacity:.8;
 
@@ -140,7 +177,7 @@ opacity:.8;
 
 
 /* =====================
-   公告
+公告
 ===================== */
 
 
@@ -161,11 +198,12 @@ border-radius:12px;
 
 
 /* =====================
-   搜索
+搜索
 ===================== */
 
 
 #search{
+
 
 display:block;
 
@@ -173,7 +211,7 @@ width:80%;
 
 margin:20px auto;
 
-padding:15px;
+padding:15px 20px;
 
 border-radius:20px;
 
@@ -181,23 +219,13 @@ border:0;
 
 outline:none;
 
+
 background:var(--box);
 
 color:var(--text);
 
 font-size:16px;
 
-}
-
-
-
-
-
-#search:focus{
-
-box-shadow:
-
-0 0 12px #0057ff;
 
 }
 
@@ -206,21 +234,23 @@ box-shadow:
 
 
 /* =====================
-   Tab
+按钮栏
 ===================== */
 
 
 .tabs{
 
+
 display:flex;
 
 margin:20px;
 
-background:var(--box);
+overflow:hidden;
 
 border-radius:15px;
 
-overflow:hidden;
+background:var(--box);
+
 
 }
 
@@ -230,21 +260,23 @@ overflow:hidden;
 
 .tabs button{
 
+
 flex:1;
 
 padding:15px;
 
+border:0;
+
 background:transparent;
 
 color:var(--text);
-
-border:0;
 
 font-size:16px;
 
 cursor:pointer;
 
 transition:.25s;
+
 
 }
 
@@ -254,34 +286,30 @@ transition:.25s;
 
 .tabs button:hover{
 
+
 background:#0057ff;
 
 color:white;
 
-}
-
-
-
-
-
-.tabs button:active{
-
-transform:scale(.95);
 
 }
+
+
 
 
 
 
 
 /* =====================
-   内容
+内容
 ===================== */
 
 
 main{
 
+
 display:grid;
+
 
 grid-template-columns:
 
@@ -294,6 +322,7 @@ minmax(260px,1fr)
 gap:20px;
 
 padding:20px;
+
 
 }
 
@@ -312,11 +341,12 @@ margin:20px;
 
 
 /* =====================
-   卡片
+卡片
 ===================== */
 
 
 .card{
+
 
 background:var(--card);
 
@@ -326,6 +356,7 @@ border-radius:15px;
 
 transition:.3s;
 
+
 }
 
 
@@ -334,18 +365,23 @@ transition:.3s;
 
 .card:hover{
 
+
 transform:
 
 translateY(-5px);
 
 
-box-shadow:
-
-0 10px 25px rgba(0,0,0,.4);
-
 }
 
 
+
+
+
+.card h2{
+
+margin-top:0;
+
+}
 
 
 
@@ -360,21 +396,22 @@ color:var(--sub);
 
 
 /* =====================
-   链接按钮
+链接
 ===================== */
 
 
 .card a{
 
+
 display:block;
 
 margin-top:12px;
 
-background:#0057ff;
-
 padding:12px;
 
-border-radius:10px;
+
+background:#0057ff;
+
 
 color:white;
 
@@ -382,7 +419,12 @@ text-align:center;
 
 text-decoration:none;
 
+
+border-radius:10px;
+
+
 transition:.25s;
+
 
 }
 
@@ -392,7 +434,9 @@ transition:.25s;
 
 .card a:hover{
 
+
 background:#0080ff;
+
 
 }
 
@@ -402,7 +446,9 @@ background:#0080ff;
 
 .card a:active{
 
+
 transform:scale(.95);
+
 
 }
 
@@ -410,55 +456,166 @@ transform:scale(.95);
 
 
 
+
+
+
 /* =====================
-   设置
+设置
 ===================== */
 
 
 #themeSelect{
 
+
 padding:10px;
+
 
 border-radius:10px;
 
-background:var(--box);
-
-color:var(--text);
 
 border:0;
 
+
+background:var(--box);
+
+
+color:var(--text);
+
+
 font-size:16px;
 
-}
-
-
-
-
-
-#wechat{
-
-display:none;
-
-width:220px;
-
-margin-top:20px;
-
-border-radius:10px;
 
 }
+
 
 
 
 
 
 /* =====================
-   隐藏
+二维码
+===================== */
+
+
+#wechat{
+
+
+display:none;
+
+
+width:220px;
+
+
+margin-top:20px;
+
+
+border-radius:12px;
+
+
+}
+
+
+
+
+
+
+
+/* =====================
+隐藏
 ===================== */
 
 
 .hide{
 
+
 display:none;
+
+
+}
+
+
+
+
+
+
+
+/* =====================
+动画
+===================== */
+
+
+.tab-content{
+
+
+animation:
+
+fadeIn .35s ease;
+
+
+}
+
+
+
+@keyframes fadeIn{
+
+
+from{
+
+
+opacity:0;
+
+transform:
+
+translateY(15px);
+
+
+}
+
+
+
+to{
+
+
+opacity:1;
+
+transform:
+
+translateY(0);
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+/* =====================
+滚动条
+===================== */
+
+
+::-webkit-scrollbar{
+
+
+width:8px;
+
+
+}
+
+
+
+::-webkit-scrollbar-thumb{
+
+
+background:#0057ff;
+
+border-radius:10px;
+
 
 }
 
@@ -467,8 +624,47 @@ display:none;
 
 
 /* =====================
-   页面动画
+手机
 ===================== */
 
 
-.tab-content{
+@media(max-width:600px){
+
+
+header{
+
+padding:30px 10px;
+
+}
+
+
+
+header h1{
+
+font-size:26px;
+
+}
+
+
+
+.tabs button{
+
+font-size:14px;
+
+padding:12px 5px;
+
+}
+
+
+
+main{
+
+grid-template-columns:1fr;
+
+padding:10px;
+
+}
+
+
+
+}

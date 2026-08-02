@@ -1,15 +1,15 @@
 // =====================
-// 全局
+// 全局变量
 // =====================
 
 let list;
 let search;
 
-let data=[];
+let data = [];
 
-let bgAudio=new Audio();
+let bgAudio = new Audio();
 
-let musicList=[];
+let musicList = [];
 
 
 
@@ -28,13 +28,12 @@ list=document.getElementById("list");
 search=document.getElementById("search");
 
 
-
 // 加载资源
 
 loadResources();
 
 
-// 加载友情链接
+// 加载友链
 
 loadLinks();
 
@@ -44,14 +43,14 @@ loadLinks();
 initTheme();
 
 
-// 音乐
+// 初始化音乐
 
 initMusic();
 
 
+}
 
-});
-
+);
 
 
 
@@ -59,7 +58,7 @@ initMusic();
 
 
 // =====================
-// 资源系统
+// 资源加载
 // =====================
 
 
@@ -69,24 +68,36 @@ function loadResources(){
 fetch("./data/resources.json")
 
 
-.then(r=>{
+.then(response=>{
 
 
-if(!r.ok)
+console.log(
+"资源状态:",
+response.status
+);
 
-throw Error("资源文件不存在");
 
 
-return r.json();
+if(!response.ok){
+
+throw new Error(
+"resources.json 加载失败"
+);
+
+}
+
+
+return response.json();
 
 
 })
 
 
-.then(d=>{
+.then(json=>{
 
 
-data=d;
+data=json;
+
 
 show(data);
 
@@ -94,7 +105,7 @@ show(data);
 })
 
 
-.catch(e=>{
+.catch(error=>{
 
 
 list.innerHTML=`
@@ -105,13 +116,16 @@ list.innerHTML=`
 资源加载失败
 </h2>
 
+
 <p>
-${e}
+${error.message}
 </p>
+
 
 </div>
 
 `;
+
 
 });
 
@@ -121,6 +135,13 @@ ${e}
 
 
 
+
+
+
+
+// =====================
+// 显示资源
+// =====================
 
 
 function show(arr){
@@ -144,11 +165,13 @@ ${x.name}
 </h2>
 
 
+
 <p>
 
-类型：${x.type}
+${x.type}
 
 </p>
+
 
 
 <p>
@@ -163,4 +186,100 @@ ${x.desc}
 
 下载 / 查看
 
-</
+</a>
+
+
+</div>
+
+
+`;
+
+
+});
+
+
+}
+
+
+
+
+
+
+
+
+
+// =====================
+// 搜索
+// =====================
+
+
+if(search){
+
+
+search.oninput=function(){
+
+
+let key=this.value.trim();
+
+
+
+show(
+
+data.filter(x=>
+
+
+x.name.includes(key)
+
+||
+
+x.type.includes(key)
+
+||
+
+x.desc.includes(key)
+
+
+)
+
+);
+
+
+
+};
+
+
+}
+
+
+
+
+
+
+
+
+
+// =====================
+// 友情链接
+// =====================
+
+
+function loadLinks(){
+
+
+let links=document.getElementById(
+"links"
+);
+
+
+
+if(!links)
+
+return;
+
+
+
+
+fetch("./data/links.json")
+
+
+.then(r=>r.json())
