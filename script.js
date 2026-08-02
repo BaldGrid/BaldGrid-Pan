@@ -268,3 +268,202 @@ img.style.display="none";
 
 
 }
+
+// =====================
+// 背景音乐系统
+// =====================
+
+
+let bgAudio=new Audio();
+
+let musicList=[];
+
+
+
+fetch("data/music.json")
+
+.then(r=>r.json())
+
+.then(d=>{
+
+musicList=d;
+
+initMusic();
+
+});
+
+
+
+
+function initMusic(){
+
+
+let sw=document.getElementById("musicSwitch");
+
+
+if(!sw)
+return;
+
+
+
+let state=getCookie("music");
+
+
+
+if(state==="on"){
+
+sw.checked=true;
+
+playMusic();
+
+}else{
+
+sw.checked=false;
+
+}
+
+
+}
+
+
+
+
+function playMusic(){
+
+
+if(musicList.length==0)
+return;
+
+
+let i=Math.floor(
+Math.random()*musicList.length
+);
+
+
+bgAudio.src=musicList[i];
+
+bgAudio.loop=true;
+
+bgAudio.volume=0.3;
+
+
+bgAudio.play()
+.catch(()=>{
+
+console.log("等待用户操作");
+
+});
+
+
+}
+
+
+
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+
+let sw=document.getElementById(
+"musicSwitch"
+);
+
+
+if(!sw)
+return;
+
+
+
+sw.onchange=function(){
+
+
+if(this.checked){
+
+
+setCookie(
+"music",
+"on",
+365
+);
+
+
+playMusic();
+
+
+
+}else{
+
+
+setCookie(
+"music",
+"off",
+365
+);
+
+
+bgAudio.pause();
+
+
+
+}
+
+
+}
+
+
+
+});
+
+
+
+
+
+function setCookie(name,value,days){
+
+
+let d=new Date();
+
+
+d.setTime(
+d.getTime()+days*86400000
+);
+
+
+
+document.cookie=
+name+"="+value+
+";expires="+
+d.toUTCString()+
+";path=/";
+
+
+}
+
+
+
+
+function getCookie(name){
+
+
+let arr=document.cookie.split(";");
+
+
+for(let i of arr){
+
+
+let p=i.trim().split("=");
+
+
+if(p[0]==name)
+
+return p[1];
+
+
+}
+
+
+return null;
+
+
+}
