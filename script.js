@@ -1,708 +1,134 @@
-// =====================
-// 全局变量
-// =====================
+/* =====================
+   主题变量
+===================== */
 
-let list;
-let search;
+:root {
 
-let data = [];
+    --bg:#111;
 
-let bgAudio = new Audio();
+    --card:#1e1e1e;
 
-let musicList = [];
+    --box:#222;
 
-let currentMusicIndex = 0;
+    --text:#fff;
 
-let isMusicEnabled = false;
+    --sub:#aaa;
 
+    --blue:#0057ff;
 
-// =====================
-// 页面初始化
-// =====================
-
-document.addEventListener("DOMContentLoaded",()=>{
-
-    list=document.getElementById("list");
-
-    search=document.getElementById("search");
-
-
-    loadResources();
-
-    loadLinks();
-
-    initTheme();
-
-    initMusic();
-
-    initSearch();
-
-
-    showTab("resource");
-
-});
-
-
-
-// =====================
-// 页面切换 + 动画
-// =====================
-
-function showTab(tabId,btn){
-
-
-    const tabs=[
-        "resource",
-        "friend",
-        "author",
-        "setting"
-    ];
-
-
-    tabs.forEach(id=>{
-
-        const el=document.getElementById(id);
-
-        if(el){
-
-            el.classList.add("hide");
-
-            el.classList.remove("page-show");
-
-        }
-
-    });
-
-
-
-    const target=document.getElementById(tabId);
-
-
-    if(target){
-
-        target.classList.remove("hide");
-
-
-        //重新触发动画
-
-        void target.offsetWidth;
-
-
-        target.classList.add("page-show");
-
-    }
-
-
-
-    //按钮状态
-
-    document
-    .querySelectorAll(".tabs button")
-    .forEach(b=>{
-
-        b.classList.remove("active");
-
-    });
-
-
-
-    if(btn){
-
-        btn.classList.add("active");
-
-    }
+    --border:#333;
 
 }
 
 
 
-// =====================
-// 赞助二维码
-// =====================
+[data-theme="light"]{
 
+    --bg:#f5f5f5;
 
-function showDonate(){
+    --card:#fff;
 
-    const img=document.getElementById("wechat");
+    --box:#e8e8e8;
 
+    --text:#111;
 
-    if(img){
+    --sub:#555;
 
-        img.classList.toggle("show");
-
-    }
+    --border:#ddd;
 
 }
 
 
 
-// =====================
-// 加载资源
-// =====================
+[data-theme="dark"]{
 
+    --bg:#111;
 
-function loadResources(){
+    --card:#1e1e1e;
 
+    --box:#222;
 
-fetch("./data/resources.json")
+    --text:#fff;
 
+    --sub:#aaa;
 
-.then(res=>{
-
-
-    if(!res.ok)
-        throw new Error("resources.json加载失败");
-
-
-    return res.json();
-
-
-})
-
-
-.then(json=>{
-
-
-    data=json;
-
-    show(data);
-
-
-})
-
-
-.catch(err=>{
-
-
-    console.error(err);
-
-
-    list.innerHTML=`
-
-<div class="card"
-style="text-align:center">
-
-<h2>
-⚠️ 资源加载失败
-</h2>
-
-<p>
-${err.message}
-</p>
-
-</div>
-
-`;
-
-
-});
-
+    --border:#333;
 
 }
 
 
 
-// =====================
-// 显示资源
-// =====================
+/* =====================
+   基础
+===================== */
 
 
-function show(arr){
+*{
 
-
-    list.innerHTML="";
-
-
-    if(!arr.length){
-
-
-        list.innerHTML=`
-
-<div class="card"
-style="text-align:center">
-
-<p>
-😕 没有找到资源
-</p>
-
-</div>
-
-`;
-
-        return;
-
-    }
-
-
-
-    arr.forEach(item=>{
-
-
-        let card=document.createElement("div");
-
-
-        card.className="card resource-card";
-
-
-
-        card.innerHTML=`
-
-<h2>
-${escapeHtml(item.name)}
-</h2>
-
-
-<span class="tag">
-
-${escapeHtml(item.type||"资源")}
-
-</span>
-
-
-<p>
-
-${escapeHtml(item.desc||"暂无描述")}
-
-</p>
-
-
-<a href="${escapeHtml(item.url)}"
-target="_blank">
-
-📎 查看资源
-
-</a>
-
-`;
-
-
-        list.appendChild(card);
-
-
-    });
-
+box-sizing:border-box;
 
 }
 
 
 
+body{
 
-// =====================
-// HTML过滤
-// =====================
+margin:0;
 
-
-function escapeHtml(text){
-
-
-const div=document.createElement("div");
-
-div.textContent=text||"";
-
-return div.innerHTML;
+font-family:
+"Microsoft YaHei",
+Arial,
+sans-serif;
 
 
-}
+background:
+
+var(--bg);
 
 
-
-// =====================
-// 搜索
-// =====================
+color:var(--text);
 
 
-function initSearch(){
+transition:
+
+background .3s,
+color .3s;
 
 
-if(!search)return;
-
-
-search.addEventListener("input",()=>{
-
-
-let key=
-search.value
-.trim()
-.toLowerCase();
-
-
-
-if(!key){
-
-show(data);
-
-return;
+min-height:100vh;
 
 }
 
 
 
-let result=data.filter(item=>{
+/* =====================
+   顶部
+===================== */
 
 
-return (
+header{
 
-(item.name||"")
-.toLowerCase()
-.includes(key)
 
+padding:
 
-||
+40px 20px;
 
-(item.type||"")
-.toLowerCase()
-.includes(key)
 
+text-align:center;
 
-||
 
-(item.desc||"")
-.toLowerCase()
-.includes(key)
 
-);
+background:
 
-
-});
-
-
-
-show(result);
-
-
-
-});
-
-
-}
-
-
-
-// =====================
-// 友情链接
-// =====================
-
-
-function loadLinks(){
-
-
-const links=document.getElementById("links");
-
-
-if(!links)return;
-
-
-
-fetch("./data/links.json")
-
-
-.then(res=>res.json())
-
-
-.then(json=>{
-
-
-links.innerHTML="";
-
-
-
-json.forEach(item=>{
-
-
-let a=document.createElement("a");
-
-
-a.href=item.url;
-
-
-a.target="_blank";
-
-
-a.innerHTML=
-escapeHtml(item.name);
-
-
-
-links.appendChild(a);
-
-
-
-});
-
-
-})
-
-
-.catch(()=>{
-
-
-links.innerHTML=
-"⚠️ 友链加载失败";
-
-
-});
-
-
-}
-
-
-
-// =====================
-// 主题
-// =====================
-
-
-function initTheme(){
-
-
-const select=
-document.getElementById("themeSelect");
-
-
-if(!select)return;
-
-
-
-let theme=
-localStorage.getItem("theme")
-||
-"system";
-
-
-
-select.value=theme;
-
-
-applyTheme(theme);
-
-
-
-select.onchange=()=>{
-
-
-localStorage.setItem(
-"theme",
-select.value
-);
-
-
-applyTheme(
-select.value
-);
-
-
-};
-
-
-}
-
-
-
-
-function applyTheme(theme){
-
-
-if(theme==="system"){
-
-
-let dark=
-window.matchMedia(
-"(prefers-color-scheme:dark)"
-)
-.matches;
-
-
-document.documentElement
-.dataset.theme=
-dark?
-"dark":
-"light";
-
-
-}
-
-else{
-
-
-document.documentElement
-.dataset.theme=
-theme;
-
-
-}
-
-
-}
-
-
-
-
-// =====================
-// 音乐系统
-// =====================
-
-
-function initMusic(){
-
-
-const sw=
-document.getElementById(
-"musicSwitch"
+linear-gradient(
+135deg,
+#222,
+#0057ff
 );
 
 
 
-if(!sw)return;
-
-
-
-sw.checked=
-localStorage.getItem(
-"musicEnabled"
-)
-==="true";
-
-
-
-isMusicEnabled=
-sw.checked;
-
-
-
-
-fetch("./data/music.json")
-
-
-.then(res=>{
-
-
-if(!res.ok)
-
-throw new Error(
-"music.json不存在"
-);
-
-
-return res.json();
-
-
-})
-
-
-.then(json=>{
-
-
-musicList=json;
-
-
-// 随机开始播放
-
-currentMusicIndex =
-Math.floor(
-Math.random()*musicList.length
-);
-
-
-
-if(isMusicEnabled)
-
-playMusic(
-currentMusicIndex
-);
-
-
-
-})
-
-
-
-.catch(err=>{
-
-
-console.error(err);
-
-
-sw.disabled=true;
-
-
-sw.parentElement.innerHTML=
-"⚠️ 音乐加载失败";
-
-
-});
-
-
-
-
-
-sw.onchange=()=>{
-
-
-isMusicEnabled=
-sw.checked;
-
-
-
-localStorage.setItem(
-"musicEnabled",
-isMusicEnabled
-);
-
-
-
-if(isMusicEnabled)
-
-playMusic(
-currentMusicIndex
-);
-
-
-else
-
-bgAudio.pause();
-
-
-
-};
-
-
-
-bgAudio.onended=()=>{
-
-
-if(!isMusicEnabled || musicList.length===0)
-return;
-
-
-// 随机下一首
-
-let nextIndex;
-
-
-do{
-
-nextIndex =
-Math.floor(
-Math.random()*musicList.length
-);
-
-
-}
-while(
-nextIndex===currentMusicIndex
-&&
-musicList.length>1
-);
-
-
-
-currentMusicIndex=nextIndex;
-
-
-playMusic(currentMusicIndex);
-
-
-};
+overflow:hidden;
 
 
 
@@ -710,41 +136,1020 @@ playMusic(currentMusicIndex);
 
 
 
-//播放
+header h1{
 
-function playMusic(index){
+font-size:32px;
 
+margin:0 0 10px;
 
-if(!musicList.length)
-return;
+color:white;
 
-
-
-let song=
-musicList[index];
+}
 
 
 
-bgAudio.src=
-song.url;
+header p{
+
+font-size:18px;
+
+opacity:.8;
+
+color:white;
+
+}
 
 
-bgAudio.play()
-.catch(()=>{
+
+/* =====================
+   公告
+===================== */
 
 
-console.log(
-"等待用户操作后播放"
+.notice{
+
+
+margin:20px;
+
+padding:15px;
+
+
+background:
+
+rgba(255,255,255,.08);
+
+
+
+backdrop-filter:
+
+blur(20px);
+
+
+-webkit-backdrop-filter:
+
+blur(20px);
+
+
+
+border:
+
+1px solid rgba(255,255,255,.12);
+
+
+
+border-radius:15px;
+
+
+
+box-shadow:
+
+0 10px 30px rgba(0,0,0,.25);
+
+
+text-align:center;
+
+}
+
+
+
+/* =====================
+   搜索
+===================== */
+
+
+#search{
+
+
+display:block;
+
+
+width:80%;
+
+
+max-width:500px;
+
+
+margin:20px auto;
+
+
+padding:15px 20px;
+
+
+border-radius:20px;
+
+
+border:
+
+1px solid rgba(255,255,255,.15);
+
+
+
+outline:none;
+
+
+
+background:
+
+rgba(255,255,255,.08);
+
+
+
+backdrop-filter:
+
+blur(20px);
+
+
+
+color:var(--text);
+
+
+
+font-size:16px;
+
+
+
+}
+
+
+
+#search:focus{
+
+border-color:var(--blue);
+
+}
+
+
+
+#search::placeholder{
+
+color:var(--sub);
+
+}
+
+
+
+/* =====================
+   Tab
+===================== */
+
+
+.tabs{
+
+
+display:flex;
+
+
+margin:20px;
+
+
+overflow:hidden;
+
+
+border-radius:18px;
+
+
+
+background:
+
+rgba(255,255,255,.08);
+
+
+
+backdrop-filter:
+
+blur(25px);
+
+
+
+border:
+
+1px solid rgba(255,255,255,.12);
+
+
+
+}
+
+
+
+.tabs button{
+
+
+flex:1;
+
+
+padding:15px;
+
+
+border:0;
+
+
+background:transparent;
+
+
+color:var(--text);
+
+
+font-size:16px;
+
+
+cursor:pointer;
+
+
+transition:.3s;
+
+
+}
+
+
+
+.tabs button:hover,
+.tabs button.active{
+
+
+background:
+
+linear-gradient(
+135deg,
+#0057ff,
+#00c6ff
 );
 
 
-});
+
+color:white;
 
 
-localStorage.setItem(
-"musicIndex",
-index
+}
+
+
+
+/* 点击效果 */
+
+.tabs button:active{
+
+transform:scale(.92);
+
+}
+
+
+
+/* =====================
+   页面区域
+===================== */
+
+
+#resource,
+#friend,
+#author,
+#setting{
+
+
+max-width:1200px;
+
+
+margin:auto;
+
+
+padding:
+
+0 20px 40px;
+
+
+}
+
+
+
+/* 页面动画 */
+
+
+.page-show{
+
+
+animation:
+
+pageIn .35s ease;
+
+
+}
+
+
+
+@keyframes pageIn{
+
+
+from{
+
+opacity:0;
+
+transform:
+translateY(20px);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:none;
+
+}
+
+
+}
+
+
+
+/* 隐藏 */
+
+
+.hide{
+
+display:none!important;
+
+}
+
+/* =====================
+   资源卡片
+===================== */
+
+
+#list{
+
+display:grid;
+
+
+grid-template-columns:
+
+repeat(
+auto-fit,
+minmax(260px,1fr)
 );
+
+
+gap:20px;
+
+
+}
+
+
+
+/* 卡片 */
+
+
+.card{
+
+
+background:
+
+rgba(255,255,255,.07);
+
+
+
+backdrop-filter:
+
+blur(25px);
+
+
+
+-webkit-backdrop-filter:
+
+blur(25px);
+
+
+
+border:
+
+1px solid rgba(255,255,255,.12);
+
+
+
+border-radius:18px;
+
+
+
+padding:20px;
+
+
+
+box-shadow:
+
+0 10px 35px rgba(0,0,0,.25);
+
+
+
+transition:
+
+.3s;
+
+
+}
+
+
+
+.card:hover{
+
+
+transform:
+
+translateY(-6px);
+
+
+
+background:
+
+rgba(255,255,255,.12);
+
+
+
+box-shadow:
+
+0 20px 50px rgba(0,87,255,.25);
+
+
+}
+
+
+
+.card h2{
+
+
+margin-top:0;
+
+
+font-size:20px;
+
+
+}
+
+
+
+.card p{
+
+
+color:var(--sub);
+
+
+line-height:1.6;
+
+
+}
+
+
+
+/* 标签 */
+
+.tag{
+
+
+display:inline-block;
+
+
+background:
+
+var(--blue);
+
+
+
+color:white;
+
+
+
+font-size:12px;
+
+
+
+padding:
+
+3px 12px;
+
+
+
+border-radius:20px;
+
+
+
+margin-bottom:10px;
+
+
+}
+
+
+
+
+/* 下载按钮 */
+
+
+.card a{
+
+
+display:block;
+
+
+margin-top:15px;
+
+
+padding:12px;
+
+
+
+background:
+
+var(--blue);
+
+
+
+color:white;
+
+
+
+text-align:center;
+
+
+
+border-radius:12px;
+
+
+
+text-decoration:none;
+
+
+
+transition:.25s;
+
+
+
+}
+
+
+
+.card a:hover{
+
+
+background:#0080ff;
+
+
+}
+
+
+
+.card a:active{
+
+
+transform:scale(.95);
+
+
+}
+
+
+
+/* =====================
+   友情链接
+===================== */
+
+
+#links{
+
+
+display:grid;
+
+
+grid-template-columns:
+
+repeat(
+auto-fit,
+minmax(150px,1fr)
+);
+
+
+gap:15px;
+
+
+}
+
+
+
+#links a{
+
+
+display:block;
+
+
+padding:15px;
+
+
+
+background:
+
+rgba(255,255,255,.08);
+
+
+
+backdrop-filter:
+
+blur(20px);
+
+
+
+-webkit-backdrop-filter:
+
+blur(20px);
+
+
+
+border:
+
+1px solid rgba(255,255,255,.15);
+
+
+
+border-radius:15px;
+
+
+
+color:var(--text);
+
+
+
+text-decoration:none;
+
+
+
+text-align:center;
+
+
+
+transition:.3s;
+
+
+
+box-shadow:
+
+0 8px 25px rgba(0,0,0,.2);
+
+
+
+}
+
+
+
+#links a:hover{
+
+
+background:
+
+var(--blue);
+
+
+
+color:white;
+
+
+
+transform:
+
+translateY(-4px);
+
+
+
+}
+
+
+
+/* =====================
+   设置
+===================== */
+
+
+#setting .card label{
+
+
+display:flex;
+
+
+align-items:center;
+
+
+gap:10px;
+
+
+cursor:pointer;
+
+
+padding:10px 0;
+
+
+}
+
+
+
+#setting input[type="checkbox"]{
+
+
+width:18px;
+
+
+height:18px;
+
+
+cursor:pointer;
+
+
+accent-color:
+
+var(--blue);
+
+
+}
+
+
+
+#themeSelect{
+
+
+padding:
+
+10px 15px;
+
+
+
+border-radius:12px;
+
+
+
+border:
+
+1px solid var(--border);
+
+
+
+background:
+
+rgba(255,255,255,.08);
+
+
+
+backdrop-filter:
+
+blur(15px);
+
+
+
+color:var(--text);
+
+
+
+font-size:16px;
+
+
+
+outline:none;
+
+
+}
+
+
+
+/* =====================
+   二维码
+===================== */
+
+
+#wechat{
+
+
+display:none;
+
+
+width:220px;
+
+
+margin-top:20px;
+
+
+border-radius:15px;
+
+
+border:
+
+2px solid var(--border);
+
+
+
+}
+
+
+
+#wechat.show{
+
+
+display:block;
+
+
+
+animation:
+
+zoom .3s ease;
+
+
+
+}
+
+
+
+@keyframes zoom{
+
+
+from{
+
+
+opacity:0;
+
+
+transform:
+
+scale(.8);
+
+
+}
+
+
+to{
+
+
+opacity:1;
+
+
+transform:
+
+scale(1);
+
+
+}
+
+
+}
+
+
+
+/* =====================
+   滚动条
+===================== */
+
+
+::-webkit-scrollbar{
+
+
+width:8px;
+
+
+}
+
+
+
+::-webkit-scrollbar-track{
+
+
+background:
+
+var(--bg);
+
+
+}
+
+
+
+::-webkit-scrollbar-thumb{
+
+
+background:
+
+var(--blue);
+
+
+
+border-radius:10px;
+
+
+}
+
+
+
+::-webkit-scrollbar-thumb:hover{
+
+
+background:#0080ff;
+
+
+}
+
+
+
+/* =====================
+   手机适配
+===================== */
+
+
+@media(max-width:600px){
+
+
+header{
+
+
+padding:
+
+30px 10px;
+
+
+}
+
+
+
+header h1{
+
+
+font-size:26px;
+
+
+}
+
+
+
+.tabs button{
+
+
+font-size:13px;
+
+
+padding:
+
+12px 5px;
+
+
+}
+
+
+
+#list{
+
+
+grid-template-columns:
+
+1fr;
+
+
+gap:15px;
+
+
+}
+
+
+
+#search{
+
+
+width:90%;
+
+
+font-size:14px;
+
+
+}
+
+
+
+/* 手机底部导航效果 */
+
+
+.tabs{
+
+
+position:fixed;
+
+
+bottom:10px;
+
+
+left:10px;
+
+
+right:10px;
+
+
+z-index:999;
+
+
+
+}
+
+
+
+body{
+
+
+padding-bottom:90px;
+
+
+}
 
 
 }
