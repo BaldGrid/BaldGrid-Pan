@@ -7,26 +7,12 @@ let list;
 let search;
 
 
-let data=[];
+let data = [];
 
 
-// 当前目录路径
+// 当前目录
 
-let folderPath=[];
-
-
-
-// 音乐
-
-let bgAudio=new Audio();
-
-let musicList=[];
-
-let currentMusicIndex=0;
-
-let isMusicEnabled=false;
-
-
+let folderPath = [];
 
 
 
@@ -40,12 +26,14 @@ document.addEventListener(
 ()=>{
 
 
-    list=document.getElementById(
+    list =
+    document.getElementById(
         "list"
     );
 
 
-    search=document.getElementById(
+    search =
+    document.getElementById(
         "search"
     );
 
@@ -53,21 +41,21 @@ document.addEventListener(
 
     loadResources();
 
+
     loadLinks();
+
 
     initTheme();
 
+
     initMusic();
+
 
     initSearch();
 
 
 
-
-
-    // 默认打开资源列表
-
-    const firstTab=
+    const firstTab =
     document.querySelector(
         ".tabs button"
     );
@@ -83,7 +71,8 @@ document.addEventListener(
         );
 
 
-    }else{
+    }
+    else{
 
 
         showTab(
@@ -100,12 +89,8 @@ document.addEventListener(
 
 
 
-
-
-
-
 // =====================
-// 页面切换 + Tab高亮
+// Tab切换
 // =====================
 
 
@@ -115,26 +100,19 @@ function showTab(tabId,btn){
 
     const tabs=[
 
-
         "resource",
-
         "friend",
-
         "author",
-
         "setting"
 
-
     ];
-
-
 
 
 
     tabs.forEach(id=>{
 
 
-        const page=
+        const page =
         document.getElementById(id);
 
 
@@ -162,8 +140,7 @@ function showTab(tabId,btn){
 
 
 
-
-    const target=
+    const target =
     document.getElementById(
         tabId
     );
@@ -173,17 +150,12 @@ function showTab(tabId,btn){
     if(target){
 
 
-
         target.classList.remove(
             "hide"
         );
 
 
-
-        // 重新触发动画
-
         void target.offsetWidth;
-
 
 
         target.classList.add(
@@ -191,15 +163,10 @@ function showTab(tabId,btn){
         );
 
 
-
     }
 
 
 
-
-
-
-    // 清除所有按钮高亮
 
 
     document
@@ -218,10 +185,6 @@ function showTab(tabId,btn){
 
 
 
-
-
-
-    // 设置当前按钮
 
 
     if(btn){
@@ -243,53 +206,12 @@ function showTab(tabId,btn){
 
 
 
-
-
-
-// =====================
-// 赞助二维码
-// =====================
-
-
-function showDonate(){
-
-
-
-    const img=
-    document.getElementById(
-        "wechat"
-    );
-
-
-
-    if(img){
-
-
-        img.classList.toggle(
-            "show"
-        );
-
-
-    }
-
-
-}
-
-
-
-
-
-
-
-
-
 // =====================
 // 加载资源
 // =====================
 
 
 function loadResources(){
-
 
 
     fetch(
@@ -303,18 +225,14 @@ function loadResources(){
 
         if(!res.ok){
 
-
             throw new Error(
             "resources.json加载失败"
             );
 
-
         }
 
 
-
         return res.json();
-
 
 
     })
@@ -341,7 +259,7 @@ function loadResources(){
     .catch(err=>{
 
 
-        console.warn(err);
+        console.error(err);
 
 
 
@@ -349,15 +267,14 @@ function loadResources(){
 
         <div class="card">
 
+        <h2>
+        资源加载失败
+        </h2>
 
-            <h2>
-            资源加载失败
-            </h2>
 
-
-            <p>
-            请检查 resources.json
-            </p>
+        <p>
+        请检查resources.json
+        </p>
 
 
         </div>
@@ -369,10 +286,7 @@ function loadResources(){
     });
 
 
-
 }
-
-
 
 
 
@@ -382,28 +296,51 @@ function loadResources(){
 
 // =====================
 // 显示资源
-// 支持文件夹
 // =====================
 
 
 function show(arr){
 
 
-
     if(!list)return;
+
+
+
+    if(!Array.isArray(arr)){
+
+
+        console.error(
+        "目录错误:",
+        arr
+        );
+
+
+        return;
+
+
+    }
+
 
 
 
     list.innerHTML="";
 
 
+
     // 文件夹切换动画
-    list.classList.remove("folder-animation");
-    
+
+    list.classList.remove(
+        "folder-animation"
+    );
+
+
     void list.offsetWidth;
-    
-    list.classList.add("folder-animation");
-    
+
+
+    list.classList.add(
+        "folder-animation"
+    );
+
 
 
 
@@ -411,19 +348,20 @@ function show(arr){
 
     // 返回上一级
 
+
     if(folderPath.length){
 
 
 
-        let back=
+        let back =
         document.createElement(
             "div"
         );
 
 
 
-        back.className=
-        "card";
+        back.className =
+        "card folder-item";
 
 
 
@@ -443,19 +381,14 @@ function show(arr){
 
 
 
-
-
         back.onclick=()=>{
-
 
 
             folderPath.pop();
 
 
 
-
             if(folderPath.length){
-
 
 
                 show(
@@ -465,15 +398,14 @@ function show(arr){
                 );
 
 
-
-            }else{
+            }
+            else{
 
 
                 show(data);
 
 
             }
-
 
 
         };
@@ -492,25 +424,21 @@ function show(arr){
 
 
 
-
-
-    // 渲染内容
+    // 渲染
 
 
     arr.forEach(item=>{
 
 
-        let card=
+        let card =
         document.createElement(
             "div"
         );
 
 
 
-        =
-        "card resource-card";
-
-
+        card.className =
+        "card resource-card folder-item";
 
 
 
@@ -542,11 +470,12 @@ function show(arr){
 
 
 
+
             card.onclick=()=>{
 
 
                 folderPath.push(
-                    item.children
+                    arr
                 );
 
 
@@ -560,10 +489,6 @@ function show(arr){
 
 
         }
-
-
-
-
 
 
 
@@ -621,13 +546,10 @@ function show(arr){
 
 
 
-        list.appendChild(card);
+        list.appendChild(
+            card
+        );
 
-
-        void card.offsetWidth;
-        
-        card.classList.add("folder-item");
-        
 
 
     });
@@ -635,7 +557,6 @@ function show(arr){
 
 
 }
-
 
 
 
@@ -651,28 +572,23 @@ function show(arr){
 function escapeHtml(text){
 
 
-
-    const div=
+    const div =
     document.createElement(
         "div"
     );
 
 
-
-    div.textContent=
+    div.textContent =
     text || "";
 
 
-
     return div.innerHTML;
-
 
 
 }
 
 // =====================
 // 搜索系统
-// 支持文件夹递归搜索
 // =====================
 
 
@@ -684,11 +600,11 @@ function initSearch(){
 
 
     search.addEventListener(
-        "input",
-        ()=>{
+    "input",
+    ()=>{
 
 
-        let key=
+        let key =
         search.value
         .trim()
         .toLowerCase();
@@ -714,7 +630,7 @@ function initSearch(){
 
 
 
-        let result=
+        let result =
         searchAll(
             data,
             key
@@ -741,13 +657,13 @@ function initSearch(){
 
 
 
+
 // =====================
 // 递归搜索
 // =====================
 
 
 function searchAll(arr,key){
-
 
 
     let result=[];
@@ -758,8 +674,7 @@ function searchAll(arr,key){
 
 
 
-        let match=
-
+        let match =
 
         (
             item.name || ""
@@ -797,7 +712,6 @@ function searchAll(arr,key){
 
 
 
-
         if(match){
 
 
@@ -812,15 +726,16 @@ function searchAll(arr,key){
 
 
 
-        // 搜索子文件夹
+        // 搜索文件夹内部
 
 
         if(
             item.type==="folder"
             &&
-            item.children
+            Array.isArray(
+                item.children
+            )
         ){
-
 
 
             result.push(
@@ -844,7 +759,6 @@ function searchAll(arr,key){
     return result;
 
 
-
 }
 
 
@@ -864,7 +778,7 @@ function loadLinks(){
 
 
 
-    const links=
+    const links =
     document.getElementById(
         "links"
     );
@@ -882,40 +796,25 @@ function loadLinks(){
     const defaultLinks=[
 
 
-
         {
-
             name:"Google",
-
             url:"https://www.google.com/"
-
         },
 
 
-
         {
-
             name:"Bilibili",
-
             url:"https://www.bilibili.com/"
-
         },
 
 
-
         {
-
             name:"知乎",
-
             url:"https://www.zhihu.com/"
-
         }
 
 
-
     ];
-
-
 
 
 
@@ -934,11 +833,9 @@ function loadLinks(){
 
         if(!res.ok){
 
-
             throw new Error(
             "links.json加载失败"
             );
-
 
         }
 
@@ -955,41 +852,40 @@ function loadLinks(){
     .then(json=>{
 
 
-
         links.innerHTML="";
-
 
 
 
         json.forEach(item=>{
 
 
-
-            let a=
+            let a =
             document.createElement(
                 "a"
             );
 
 
 
-            a.href=
+            a.href =
             item.url;
 
 
 
-            a.target=
+            a.target =
             "_blank";
 
 
 
-            a.innerHTML=
+            a.innerHTML =
             escapeHtml(
                 item.name
             );
 
 
 
-            links.appendChild(a);
+            links.appendChild(
+                a
+            );
 
 
 
@@ -1004,7 +900,6 @@ function loadLinks(){
     .catch(()=>{
 
 
-
         links.innerHTML="";
 
 
@@ -1012,32 +907,33 @@ function loadLinks(){
         defaultLinks.forEach(item=>{
 
 
-
-            let a=
+            let a =
             document.createElement(
                 "a"
             );
 
 
 
-            a.href=
+            a.href =
             item.url;
 
 
 
-            a.target=
+            a.target =
             "_blank";
 
 
 
-            a.innerHTML=
+            a.innerHTML =
             escapeHtml(
                 item.name
             );
 
 
 
-            links.appendChild(a);
+            links.appendChild(
+                a
+            );
 
 
 
@@ -1068,7 +964,7 @@ function initTheme(){
 
 
 
-    const select=
+    const select =
     document.getElementById(
         "themeSelect"
     );
@@ -1082,7 +978,7 @@ function initTheme(){
 
 
 
-    let theme=
+    let theme =
     localStorage.getItem(
         "theme"
     )
@@ -1092,7 +988,8 @@ function initTheme(){
 
 
 
-    select.value=
+
+    select.value =
     theme;
 
 
@@ -1106,10 +1003,7 @@ function initTheme(){
 
 
 
-
-
     select.onchange=()=>{
-
 
 
         localStorage.setItem(
@@ -1148,13 +1042,11 @@ function applyTheme(theme){
 
 
 
-    if(
-        theme==="system"
-    ){
+    if(theme==="system"){
 
 
 
-        let dark=
+        let dark =
         window
         .matchMedia(
         "(prefers-color-scheme:dark)"
@@ -1166,8 +1058,7 @@ function applyTheme(theme){
         document
         .documentElement
         .dataset
-        .theme=
-
+        .theme =
 
         dark
         ?
@@ -1182,11 +1073,10 @@ function applyTheme(theme){
     else{
 
 
-
         document
         .documentElement
         .dataset
-        .theme=
+        .theme =
         theme;
 
 
@@ -1194,26 +1084,83 @@ function applyTheme(theme){
     }
 
 
-
 }
+
+
+
+
+
+
+
+
+
+// =====================
+// 系统主题监听
+// =====================
+
+
+window.matchMedia(
+"(prefers-color-scheme: dark)"
+)
+.addEventListener(
+"change",
+()=>{
+
+
+    const select =
+    document.getElementById(
+        "themeSelect"
+    );
+
+
+
+    if(
+        select
+        &&
+        select.value==="system"
+    ){
+
+
+        applyTheme(
+            "system"
+        );
+
+
+    }
+
+
+
+});
 
 // =====================
 // 音乐系统
 // =====================
 
 
+let bgAudio = new Audio();
+
+let musicList = [];
+
+let currentMusicIndex = 0;
+
+let isMusicEnabled = false;
+
+
+
+
+
 function initMusic(){
 
 
 
-    const sw=
+    const sw =
     document.getElementById(
         "musicSwitch"
     );
 
 
 
-    const status=
+    const status =
     document.getElementById(
         "musicStatus"
     );
@@ -1227,18 +1174,17 @@ function initMusic(){
 
 
 
-
-
-    sw.checked=
+    sw.checked =
     localStorage.getItem(
         "musicEnabled"
     )
-    ==="true";
+    === "true";
 
 
 
-    isMusicEnabled=
+    isMusicEnabled =
     sw.checked;
+
 
 
 
@@ -1247,7 +1193,7 @@ function initMusic(){
     if(status){
 
 
-        status.textContent=
+        status.textContent =
         isMusicEnabled
         ?
         "开启"
@@ -1256,7 +1202,6 @@ function initMusic(){
 
 
     }
-
 
 
 
@@ -1288,7 +1233,6 @@ function initMusic(){
             "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
 
         }
-
 
 
     ];
@@ -1333,12 +1277,12 @@ function initMusic(){
     .then(json=>{
 
 
+        musicList =
+        json;
 
-        musicList=json;
 
 
-
-        currentMusicIndex=
+        currentMusicIndex =
         Number(
             localStorage.getItem(
                 "musicIndex"
@@ -1368,17 +1312,16 @@ function initMusic(){
     .catch(err=>{
 
 
-
         console.warn(err);
 
 
 
-        musicList=
+        musicList =
         defaultMusic;
 
 
 
-        currentMusicIndex=
+        currentMusicIndex =
         Number(
             localStorage.getItem(
                 "musicIndex"
@@ -1411,17 +1354,14 @@ function initMusic(){
 
 
 
-
     // 音乐开关
 
 
-    sw.onchange=()=>{
+    sw.onchange = ()=>{
 
 
-
-        isMusicEnabled=
+        isMusicEnabled =
         sw.checked;
-
 
 
 
@@ -1440,8 +1380,7 @@ function initMusic(){
         if(status){
 
 
-
-            status.textContent=
+            status.textContent =
             isMusicEnabled
             ?
             "开启"
@@ -1449,11 +1388,7 @@ function initMusic(){
             "关闭";
 
 
-
         }
-
-
-
 
 
 
@@ -1462,21 +1397,16 @@ function initMusic(){
         if(isMusicEnabled){
 
 
-
             playMusic(
                 currentMusicIndex
             );
 
 
-
         }
-
         else{
 
 
-
             bgAudio.pause();
-
 
 
         }
@@ -1492,12 +1422,10 @@ function initMusic(){
 
 
 
-
     // 自动播放下一首
 
 
-    bgAudio.onended=()=>{
-
+    bgAudio.onended = ()=>{
 
 
         if(!isMusicEnabled)
@@ -1506,9 +1434,7 @@ function initMusic(){
 
 
 
-
         currentMusicIndex++;
-
 
 
 
@@ -1520,7 +1446,7 @@ function initMusic(){
         ){
 
 
-            currentMusicIndex=0;
+            currentMusicIndex = 0;
 
 
         }
@@ -1541,8 +1467,6 @@ function initMusic(){
 
 
 }
-
-
 
 
 
@@ -1578,14 +1502,14 @@ function playMusic(index){
 
 
 
-    let song=
+    let song =
     musicList[index];
 
 
 
 
 
-    bgAudio.src=
+    bgAudio.src =
     song.url;
 
 
@@ -1593,8 +1517,8 @@ function playMusic(index){
 
 
     bgAudio.play()
-    .catch(()=>{
 
+    .catch(()=>{
 
 
         console.log(
@@ -1602,10 +1526,7 @@ function playMusic(index){
         );
 
 
-
     });
-
-
 
 
 
@@ -1622,61 +1543,3 @@ function playMusic(index){
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-// =====================
-// 系统主题监听
-// =====================
-
-
-window.matchMedia(
-"(prefers-color-scheme: dark)"
-)
-.addEventListener(
-"change",
-()=>{
-
-
-
-    const select=
-    document.getElementById(
-        "themeSelect"
-    );
-
-
-
-
-    if(
-
-        select
-
-        &&
-
-        select.value==="system"
-
-    ){
-
-
-
-        applyTheme(
-            "system"
-        );
-
-
-
-    }
-
-
-
-
-});
