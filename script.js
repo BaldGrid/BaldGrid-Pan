@@ -3,101 +3,181 @@
 // =====================
 
 let list;
+
 let search;
 
-let data = [];
 
-let bgAudio = new Audio();
+let data=[];
 
-let musicList = [];
 
-let currentMusicIndex = 0;
+// 当前目录路径
 
-let isMusicEnabled = false;
+let folderPath=[];
+
+
+
+// 音乐
+
+let bgAudio=new Audio();
+
+let musicList=[];
+
+let currentMusicIndex=0;
+
+let isMusicEnabled=false;
+
+
+
 
 
 // =====================
 // 页面初始化
 // =====================
 
-document.addEventListener("DOMContentLoaded",()=>{
 
-    list=document.getElementById("list");
-    search=document.getElementById("search");
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+
+    list=document.getElementById(
+        "list"
+    );
+
+
+    search=document.getElementById(
+        "search"
+    );
+
+
 
     loadResources();
+
     loadLinks();
+
     initTheme();
+
     initMusic();
+
     initSearch();
 
 
+
+
+
     // 默认打开资源列表
-    const firstTab=document.querySelector(".tabs button");
+
+    const firstTab=
+    document.querySelector(
+        ".tabs button"
+    );
+
+
 
     if(firstTab){
 
-        showTab("resource",firstTab);
+
+        showTab(
+            "resource",
+            firstTab
+        );
+
 
     }else{
 
-        showTab("resource");
+
+        showTab(
+            "resource"
+        );
+
 
     }
+
+
 
 });
 
 
 
 
+
+
+
+
 // =====================
-// 页面切换 + 动画
+// 页面切换 + Tab高亮
 // =====================
+
 
 function showTab(tabId,btn){
 
 
+
     const tabs=[
 
+
         "resource",
+
         "friend",
+
         "author",
+
         "setting"
+
 
     ];
 
 
 
-    // 隐藏所有页面
+
 
     tabs.forEach(id=>{
 
 
-        const page=document.getElementById(id);
+        const page=
+        document.getElementById(id);
+
 
 
         if(page){
 
-            page.classList.add("hide");
 
-            page.classList.remove("page-show");
+            page.classList.add(
+                "hide"
+            );
+
+
+            page.classList.remove(
+                "page-show"
+            );
+
 
         }
+
 
 
     });
 
 
 
-    // 显示当前页面
 
-    const target=document.getElementById(tabId);
+
+
+    const target=
+    document.getElementById(
+        tabId
+    );
+
 
 
     if(target){
 
 
-        target.classList.remove("hide");
+
+        target.classList.remove(
+            "hide"
+        );
+
 
 
         // 重新触发动画
@@ -105,39 +185,64 @@ function showTab(tabId,btn){
         void target.offsetWidth;
 
 
-        target.classList.add("page-show");
+
+        target.classList.add(
+            "page-show"
+        );
+
 
 
     }
 
 
 
-    // =====================
-    // 修复Tab高亮
-    // =====================
 
 
-    document.querySelectorAll(".tabs button")
+
+    // 清除所有按钮高亮
+
+
+    document
+    .querySelectorAll(
+        ".tabs button"
+    )
     .forEach(button=>{
 
 
-        button.classList.remove("active");
+        button.classList.remove(
+            "active"
+        );
 
 
     });
 
 
 
+
+
+
+    // 设置当前按钮
+
+
     if(btn){
 
 
-        btn.classList.add("active");
+        btn.classList.add(
+            "active"
+        );
 
 
     }
 
 
+
 }
+
+
+
+
+
+
 
 
 
@@ -145,98 +250,131 @@ function showTab(tabId,btn){
 // 赞助二维码
 // =====================
 
+
 function showDonate(){
 
-    const img=document.getElementById("wechat");
+
+
+    const img=
+    document.getElementById(
+        "wechat"
+    );
+
 
 
     if(img){
 
-        img.classList.toggle("show");
+
+        img.classList.toggle(
+            "show"
+        );
+
 
     }
 
+
 }
+
+
+
+
+
+
+
+
 
 // =====================
 // 加载资源
 // =====================
 
+
 function loadResources(){
 
-    const defaultData=[
-
-        {
-            name:"MDN Web 文档",
-            type:"文档",
-            desc:"最权威的 Web 技术参考文档",
-            url:"https://developer.mozilla.org/zh-CN/"
-        },
-
-        {
-            name:"GitHub",
-            type:"工具",
-            desc:"全球最大的代码托管平台",
-            url:"https://github.com/"
-        },
-
-        {
-            name:"Stack Overflow",
-            type:"社区",
-            desc:"程序员问答社区",
-            url:"https://stackoverflow.com/"
-        },
-
-        {
-            name:"Vue.js 官方文档",
-            type:"文档",
-            desc:"渐进式 JavaScript 框架",
-            url:"https://cn.vuejs.org/"
-        },
-
-        {
-            name:"React 官方文档",
-            type:"文档",
-            desc:"用于构建用户界面的 JavaScript 库",
-            url:"https://zh-hans.react.dev/"
-        }
-
-    ];
 
 
+    fetch(
+        "./data/resources.json"
+    )
 
-    fetch("./data/resources.json")
+
 
     .then(res=>{
 
-        if(!res.ok)
-            throw new Error("resources.json加载失败");
+
+        if(!res.ok){
+
+
+            throw new Error(
+            "resources.json加载失败"
+            );
+
+
+        }
+
+
 
         return res.json();
 
+
+
     })
+
 
 
     .then(json=>{
 
+
         data=json;
 
+
+        folderPath=[];
+
+
         show(data);
+
+
 
     })
 
 
+
     .catch(err=>{
 
-        console.warn(err.message);
 
-        data=defaultData;
+        console.warn(err);
 
-        show(data);
+
+
+        list.innerHTML=`
+
+        <div class="card">
+
+
+            <h2>
+            资源加载失败
+            </h2>
+
+
+            <p>
+            请检查 resources.json
+            </p>
+
+
+        </div>
+
+        `;
+
+
 
     });
 
+
+
 }
+
+
+
+
 
 
 
@@ -244,79 +382,250 @@ function loadResources(){
 
 // =====================
 // 显示资源
+// 支持文件夹
 // =====================
+
 
 function show(arr){
 
 
+
     if(!list)return;
+
 
 
     list.innerHTML="";
 
 
 
-    if(!arr || !arr.length){
 
 
-        list.innerHTML=`
 
-        <div class="card" style="text-align:center">
+    // 返回上一级
 
-            <p>😕 没有找到资源</p>
+    if(folderPath.length){
 
-        </div>
+
+
+        let back=
+        document.createElement(
+            "div"
+        );
+
+
+
+        back.className=
+        "card";
+
+
+
+        back.innerHTML=`
+
+        <h2>
+        📂 ..
+        </h2>
+
+
+        <p>
+        返回上一级目录
+        </p>
+
 
         `;
 
 
-        return;
+
+
+
+        back.onclick=()=>{
+
+
+
+            folderPath.pop();
+
+
+
+
+            if(folderPath.length){
+
+
+
+                show(
+                    folderPath[
+                    folderPath.length-1
+                    ]
+                );
+
+
+
+            }else{
+
+
+                show(data);
+
+
+            }
+
+
+
+        };
+
+
+
+        list.appendChild(back);
+
+
 
     }
 
 
 
+
+
+
+
+
+
+    // 渲染内容
+
+
     arr.forEach(item=>{
 
 
-        let card=document.createElement("div");
+        let card=
+        document.createElement(
+            "div"
+        );
 
 
-        card.className="card resource-card";
+
+        card.className=
+        "card resource-card";
 
 
 
-        card.innerHTML=`
-
-        <h2>${escapeHtml(item.name)}</h2>
-
-        <span class="tag">
-        ${escapeHtml(item.type || "资源")}
-        </span>
-
-        <p>
-        ${escapeHtml(item.desc || "暂无描述")}
-        </p>
 
 
-        <a href="${escapeHtml(item.url)}"
-        target="_blank">
 
-        📎 查看资源
 
-        </a>
 
-        `;
+        // 文件夹
+
+
+        if(item.type==="folder"){
+
+
+
+            card.innerHTML=`
+
+            <h2>
+            📁 ${escapeHtml(item.name)}
+            </h2>
+
+
+            <p>
+            ${escapeHtml(
+            item.desc || "文件夹"
+            )}
+            </p>
+
+
+            `;
+
+
+
+            card.onclick=()=>{
+
+
+                folderPath.push(
+                    item.children
+                );
+
+
+                show(
+                    item.children
+                );
+
+
+            };
+
+
+
+        }
+
+
+
+
+
+
+
+
+        // 文件
+
+
+        else{
+
+
+
+            card.innerHTML=`
+
+            <h2>
+            📄 ${escapeHtml(item.name)}
+            </h2>
+
+
+
+            <span class="tag">
+
+            ${escapeHtml(
+            item.type || "资源"
+            )}
+
+            </span>
+
+
+
+            <p>
+
+            ${escapeHtml(
+            item.desc || "暂无描述"
+            )}
+
+            </p>
+
+
+
+            <a href="${escapeHtml(item.url)}"
+            target="_blank">
+
+            📎 查看资源
+
+            </a>
+
+
+            `;
+
+
+
+        }
+
+
 
 
 
         list.appendChild(card);
 
 
+
     });
 
 
+
 }
+
+
+
+
 
 
 
@@ -325,23 +634,34 @@ function show(arr){
 // HTML过滤
 // =====================
 
+
 function escapeHtml(text){
 
-    const div=document.createElement("div");
 
-    div.textContent=text || "";
+
+    const div=
+    document.createElement(
+        "div"
+    );
+
+
+
+    div.textContent=
+    text || "";
+
+
 
     return div.innerHTML;
 
+
+
 }
 
-
-
-
-
 // =====================
-// 搜索
+// 搜索系统
+// 支持文件夹递归搜索
 // =====================
+
 
 function initSearch(){
 
@@ -350,61 +670,172 @@ function initSearch(){
 
 
 
-    search.addEventListener("input",()=>{
+    search.addEventListener(
+        "input",
+        ()=>{
 
 
         let key=
-        search.value.trim().toLowerCase();
+        search.value
+        .trim()
+        .toLowerCase();
+
 
 
 
         if(!key){
 
+
+            folderPath=[];
+
+
             show(data);
 
+
             return;
+
 
         }
 
 
 
-        let result=data.filter(item=>{
 
 
-            return (
-
-                (item.name||"")
-                .toLowerCase()
-                .includes(key)
-
-
-                ||
-
-                (item.type||"")
-                .toLowerCase()
-                .includes(key)
+        let result=
+        searchAll(
+            data,
+            key
+        );
 
 
-                ||
 
-                (item.desc||"")
-                .toLowerCase()
-                .includes(key)
-
-            );
-
-
-        });
-
+        folderPath=[];
 
 
         show(result);
 
 
+
     });
 
 
+
 }
+
+
+
+
+
+
+
+// =====================
+// 递归搜索
+// =====================
+
+
+function searchAll(arr,key){
+
+
+
+    let result=[];
+
+
+
+    arr.forEach(item=>{
+
+
+
+        let match=
+
+
+        (
+            item.name || ""
+        )
+        .toLowerCase()
+        .includes(key)
+
+
+
+        ||
+
+
+
+        (
+            item.type || ""
+        )
+        .toLowerCase()
+        .includes(key)
+
+
+
+        ||
+
+
+
+        (
+            item.desc || ""
+        )
+        .toLowerCase()
+        .includes(key);
+
+
+
+
+
+
+
+
+        if(match){
+
+
+            result.push(item);
+
+
+        }
+
+
+
+
+
+
+
+        // 搜索子文件夹
+
+
+        if(
+            item.type==="folder"
+            &&
+            item.children
+        ){
+
+
+
+            result.push(
+                ...searchAll(
+                    item.children,
+                    key
+                )
+            );
+
+
+        }
+
+
+
+
+    });
+
+
+
+
+    return result;
+
+
+
+}
+
+
+
 
 
 
@@ -415,36 +846,58 @@ function initSearch(){
 // 友情链接
 // =====================
 
+
 function loadLinks(){
 
 
+
     const links=
-    document.getElementById("links");
+    document.getElementById(
+        "links"
+    );
+
 
 
     if(!links)return;
 
 
 
+
+
+
+
     const defaultLinks=[
 
 
+
         {
+
             name:"Google",
+
             url:"https://www.google.com/"
+
         },
 
 
+
         {
+
             name:"Bilibili",
+
             url:"https://www.bilibili.com/"
+
         },
 
 
+
         {
+
             name:"知乎",
+
             url:"https://www.zhihu.com/"
+
         }
+
 
 
     ];
@@ -452,18 +905,34 @@ function loadLinks(){
 
 
 
-    fetch("./data/links.json")
+
+
+
+
+
+    fetch(
+        "./data/links.json"
+    )
+
 
 
     .then(res=>{
 
 
-        if(!res.ok)
+        if(!res.ok){
 
-            throw new Error("links.json加载失败");
+
+            throw new Error(
+            "links.json加载失败"
+            );
+
+
+        }
+
 
 
         return res.json();
+
 
 
     })
@@ -473,22 +942,37 @@ function loadLinks(){
     .then(json=>{
 
 
+
         links.innerHTML="";
+
 
 
 
         json.forEach(item=>{
 
 
-            let a=document.createElement("a");
+
+            let a=
+            document.createElement(
+                "a"
+            );
 
 
-            a.href=item.url;
 
-            a.target="_blank";
+            a.href=
+            item.url;
+
+
+
+            a.target=
+            "_blank";
+
+
 
             a.innerHTML=
-            escapeHtml(item.name);
+            escapeHtml(
+                item.name
+            );
 
 
 
@@ -497,6 +981,7 @@ function loadLinks(){
 
 
         });
+
 
 
     })
@@ -506,6 +991,7 @@ function loadLinks(){
     .catch(()=>{
 
 
+
         links.innerHTML="";
 
 
@@ -513,15 +999,28 @@ function loadLinks(){
         defaultLinks.forEach(item=>{
 
 
-            let a=document.createElement("a");
+
+            let a=
+            document.createElement(
+                "a"
+            );
 
 
-            a.href=item.url;
 
-            a.target="_blank";
+            a.href=
+            item.url;
+
+
+
+            a.target=
+            "_blank";
+
+
 
             a.innerHTML=
-            escapeHtml(item.name);
+            escapeHtml(
+                item.name
+            );
 
 
 
@@ -532,53 +1031,101 @@ function loadLinks(){
         });
 
 
+
     });
 
 
+
 }
+
+
+
+
+
+
+
+
 
 // =====================
 // 主题系统
 // =====================
 
+
 function initTheme(){
 
+
+
     const select=
-    document.getElementById("themeSelect");
+    document.getElementById(
+        "themeSelect"
+    );
+
 
 
     if(!select)return;
 
 
 
+
+
+
     let theme=
-    localStorage.getItem("theme") || "system";
+    localStorage.getItem(
+        "theme"
+    )
+    ||
+    "system";
 
 
 
-    select.value=theme;
+
+    select.value=
+    theme;
 
 
-    applyTheme(theme);
+
+    applyTheme(
+        theme
+    );
+
+
+
+
+
 
 
 
     select.onchange=()=>{
 
 
+
         localStorage.setItem(
+
             "theme",
+
             select.value
+
         );
 
 
-        applyTheme(select.value);
+
+        applyTheme(
+
+            select.value
+
+        );
+
 
 
     };
 
 
+
 }
+
+
+
+
 
 
 
@@ -587,18 +1134,34 @@ function initTheme(){
 function applyTheme(theme){
 
 
-    if(theme==="system"){
+
+    if(
+        theme==="system"
+    ){
+
 
 
         let dark=
-        window.matchMedia(
+        window
+        .matchMedia(
         "(prefers-color-scheme:dark)"
-        ).matches;
+        )
+        .matches;
 
 
 
-        document.documentElement.dataset.theme=
-        dark ? "dark" : "light";
+        document
+        .documentElement
+        .dataset
+        .theme=
+
+
+        dark
+        ?
+        "dark"
+        :
+        "light";
+
 
 
     }
@@ -606,33 +1169,41 @@ function applyTheme(theme){
     else{
 
 
-        document.documentElement.dataset.theme=
+
+        document
+        .documentElement
+        .dataset
+        .theme=
         theme;
+
 
 
     }
 
 
+
 }
-
-
-
-
-
 
 // =====================
 // 音乐系统
 // =====================
 
+
 function initMusic(){
 
 
+
     const sw=
-    document.getElementById("musicSwitch");
+    document.getElementById(
+        "musicSwitch"
+    );
+
 
 
     const status=
-    document.getElementById("musicStatus");
+    document.getElementById(
+        "musicStatus"
+    );
 
 
 
@@ -641,8 +1212,14 @@ function initMusic(){
 
 
 
+
+
+
+
     sw.checked=
-    localStorage.getItem("musicEnabled")
+    localStorage.getItem(
+        "musicEnabled"
+    )
     ==="true";
 
 
@@ -652,12 +1229,23 @@ function initMusic(){
 
 
 
+
+
     if(status){
 
+
         status.textContent=
-        isMusicEnabled ? "开启" : "关闭";
+        isMusicEnabled
+        ?
+        "开启"
+        :
+        "关闭";
+
 
     }
+
+
+
 
 
 
@@ -667,16 +1255,27 @@ function initMusic(){
     const defaultMusic=[
 
 
+
         {
+
             name:"示例音乐1",
-            url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+
+            url:
+            "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+
         },
 
 
+
         {
+
             name:"示例音乐2",
-            url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
+
+            url:
+            "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
+
         }
+
 
 
     ];
@@ -685,44 +1284,68 @@ function initMusic(){
 
 
 
-    fetch("./data/music.json")
+
+
+
+
+    fetch(
+        "./data/music.json"
+    )
+
 
 
     .then(res=>{
 
 
-        if(!res.ok)
+        if(!res.ok){
+
 
             throw new Error(
             "music.json不存在"
             );
 
 
+        }
+
+
+
         return res.json();
+
 
 
     })
 
 
+
     .then(json=>{
+
 
 
         musicList=json;
 
 
+
         currentMusicIndex=
         Number(
-        localStorage.getItem("musicIndex")
-        ||0
+            localStorage.getItem(
+                "musicIndex"
+            )
+            ||
+            0
         );
 
 
 
         if(isMusicEnabled){
 
-            playMusic(currentMusicIndex);
+
+            playMusic(
+                currentMusicIndex
+            );
+
 
         }
+
 
 
     })
@@ -732,7 +1355,8 @@ function initMusic(){
     .catch(err=>{
 
 
-        console.warn(err.message);
+
+        console.warn(err);
 
 
 
@@ -743,17 +1367,25 @@ function initMusic(){
 
         currentMusicIndex=
         Number(
-        localStorage.getItem("musicIndex")
-        ||0
+            localStorage.getItem(
+                "musicIndex"
+            )
+            ||
+            0
         );
 
 
 
         if(isMusicEnabled){
 
-            playMusic(currentMusicIndex);
+
+            playMusic(
+                currentMusicIndex
+            );
+
 
         }
+
 
 
     });
@@ -764,9 +1396,14 @@ function initMusic(){
 
 
 
+
+
+
     // 音乐开关
 
+
     sw.onchange=()=>{
+
 
 
         isMusicEnabled=
@@ -774,28 +1411,49 @@ function initMusic(){
 
 
 
+
         localStorage.setItem(
-        "musicEnabled",
-        isMusicEnabled
+
+            "musicEnabled",
+
+            isMusicEnabled
+
         );
+
+
 
 
 
         if(status){
 
+
+
             status.textContent=
             isMusicEnabled
-            ? "开启"
-            : "关闭";
+            ?
+            "开启"
+            :
+            "关闭";
+
+
 
         }
+
+
+
+
+
 
 
 
         if(isMusicEnabled){
 
 
-            playMusic(currentMusicIndex);
+
+            playMusic(
+                currentMusicIndex
+            );
+
 
 
         }
@@ -803,10 +1461,13 @@ function initMusic(){
         else{
 
 
+
             bgAudio.pause();
 
 
+
         }
+
 
 
     };
@@ -817,12 +1478,19 @@ function initMusic(){
 
 
 
-    // 自动下一首
+
+
+    // 自动播放下一首
+
 
     bgAudio.onended=()=>{
 
 
-        if(!isMusicEnabled)return;
+
+        if(!isMusicEnabled)
+        return;
+
+
 
 
 
@@ -830,7 +1498,13 @@ function initMusic(){
 
 
 
-        if(currentMusicIndex>=musicList.length){
+
+
+        if(
+            currentMusicIndex
+            >=
+            musicList.length
+        ){
 
 
             currentMusicIndex=0;
@@ -840,13 +1514,24 @@ function initMusic(){
 
 
 
-        playMusic(currentMusicIndex);
+
+
+
+        playMusic(
+            currentMusicIndex
+        );
+
 
 
     };
 
 
+
 }
+
+
+
+
 
 
 
@@ -858,15 +1543,25 @@ function initMusic(){
 // 播放音乐
 // =====================
 
+
 function playMusic(index){
 
 
+
     if(
-        !musicList.length ||
+
+        !musicList.length
+
+        ||
+
         !musicList[index]
+
     )
 
     return;
+
+
+
 
 
 
@@ -875,8 +1570,12 @@ function playMusic(index){
 
 
 
+
+
     bgAudio.src=
     song.url;
+
+
 
 
 
@@ -884,19 +1583,29 @@ function playMusic(index){
     .catch(()=>{
 
 
+
         console.log(
         "等待用户操作后播放"
         );
+
 
 
     });
 
 
 
+
+
+
+
     localStorage.setItem(
-    "musicIndex",
-    index
+
+        "musicIndex",
+
+        index
+
     );
+
 
 
 }
@@ -907,9 +1616,15 @@ function playMusic(index){
 
 
 
+
+
+
+
+
 // =====================
-// 系统主题变化监听
+// 系统主题监听
 // =====================
+
 
 window.matchMedia(
 "(prefers-color-scheme: dark)"
@@ -919,21 +1634,36 @@ window.matchMedia(
 ()=>{
 
 
+
     const select=
     document.getElementById(
-    "themeSelect"
+        "themeSelect"
     );
 
 
 
+
     if(
-        select &&
+
+        select
+
+        &&
+
         select.value==="system"
+
     ){
 
-        applyTheme("system");
+
+
+        applyTheme(
+            "system"
+        );
+
+
 
     }
+
+
 
 
 });

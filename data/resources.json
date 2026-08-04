@@ -1,26 +1,42 @@
 [
-{
-"name":"Magisk",
-"type":"Root工具",
-"desc":"Android Root管理工具",
-"url":"https://github.com/topjohnwu/Magisk/releases"
-},
-{
-"name":"OrangeFox Recovery",
-"type":"Recovery",
-"desc":"第三方Recovery",
-"url":"https://orangefox.download"
-},
-{
-"name":"白叶刷机工具",
-"type":"Android Flash Tool",
-"desc":"第三方刷机工具",
-"url":"https://github.com/BaldGrid/Baiye-Flashing-Tool"
-},
-{
-"name":"米塔的袭击beta3源代码",
-"type":"AOTM",
-"desc":"煞笔游戏",
-"url":"https://github.com/BaldGrid/Open-Attack-Of-The-Mita"
-}
+    {
+        "name": "Android",
+        "type": "folder",
+        "desc": "Android 刷机相关资源",
+        "children": [
+            {
+                "name": "Magisk",
+                "type": "Root工具",
+                "desc": "Android Root管理工具",
+                "url": "https://github.com/topjohnwu/Magisk/releases"
+            },
+            {
+                "name": "OrangeFox Recovery",
+                "type": "Recovery",
+                "desc": "第三方Recovery",
+                "url": "https://orangefox.download"
+            },
+            {
+                "name": "白叶刷机工具",
+                "type": "Android Flash Tool",
+                "desc": "第三方刷机工具",
+                "url": "https://github.com/BaldGrid/Baiye-Flashing-Tool"
+            }
+        ]
+    },
+
+
+    {
+        "name": "游戏开发",
+        "type": "folder",
+        "desc": "游戏相关项目",
+        "children": [
+            {
+                "name": "米塔的袭击beta3源代码",
+                "type": "AOTM",
+                "desc": "游戏源代码",
+                "url": "https://github.com/BaldGrid/Open-Attack-Of-The-Mita"
+            }
+        ]
+    }
 ]
