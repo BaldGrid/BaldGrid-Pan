@@ -1,860 +1,698 @@
 /* =====================
-   主题变量
+   BaldGrid Theme
 ===================== */
 
-:root {
-    --bg: #111;
-    --card: #1e1e1e;
-    --box: #222;
-    --text: #fff;
-    --sub: #aaa;
-    --blue: #0057ff;
-    --border: #333;
+:root{
+
+    --bg:#111;
+
+    --card:rgba(255,255,255,.08);
+
+    --box:rgba(255,255,255,.08);
+
+    --text:#fff;
+
+    --sub:#aaa;
+
+    --blue:#0057ff;
+
+    --border:rgba(255,255,255,.15);
+
 }
 
-[data-theme="light"] {
-    --bg: #f5f5f5;
-    --card: #ffffff;
-    --box: #e8e8e8;
-    --text: #111;
-    --sub: #555;
-    --border: #ddd;
+
+
+[data-theme="light"]{
+
+    --bg:#f5f5f5;
+
+    --card:rgba(255,255,255,.65);
+
+    --box:rgba(255,255,255,.55);
+
+    --text:#111;
+
+    --sub:#555;
+
+    --border:#ddd;
+
 }
 
-[data-theme="dark"] {
-    --bg: #111;
-    --card: #1e1e1e;
-    --box: #222;
-    --text: #fff;
-    --sub: #aaa;
-    --border: #333;
+
+
+[data-theme="dark"]{
+
+    --bg:#111;
+
+    --card:rgba(255,255,255,.08);
+
+    --box:rgba(255,255,255,.08);
+
+    --text:#fff;
+
+    --sub:#aaa;
+
 }
+
+
+
 
 /* =====================
-   基础
+   基础修复
 ===================== */
 
-* {
-    box-sizing: border-box;
+
+*{
+
+    box-sizing:border-box;
+
 }
 
-body {
+
+
+html,
+body{
+
+    width:100%;
+
+    max-width:100%;
+
+    overflow-x:hidden;
+
+}
+
+
+
+body{
 
     margin:0;
 
+
+    min-height:100vh;
+
+
     font-family:
+
     "Microsoft YaHei",
     Arial,
     sans-serif;
 
 
-    background:
-
-    linear-gradient(
-        rgba(0,0,0,.55),
-        rgba(0,0,0,.75)
-    ),
-
-    url("./assets/114514.png");
-
-
-    background-size:
-    cover;
-
-
-    background-position:
-    center;
-
-
-    background-attachment:
-    fixed;
-
-
     color:var(--text);
 
 
-    transition:
-    background .3s,
-    color .3s;
+
+    background:
+
+    radial-gradient(
+
+        circle at top,
+
+        rgba(0,87,255,.3),
+
+        transparent 40%
+
+    ),
+
+    var(--bg);
 
 
-    min-height:100vh;
+
+    transition:.3s;
 
 }
+
+
 
 /* =====================
-   顶部
+   玻璃基础
 ===================== */
 
-header {
-    padding: 40px 20px;
-    text-align: center;
-    background: linear-gradient(135deg, #222, #0057ff);
+
+.glass{
+
+    background:rgba(255,255,255,.08);
+
+
+    backdrop-filter:blur(25px);
+
+    -webkit-backdrop-filter:blur(25px);
+
+
+    border:
+
+    1px solid rgba(255,255,255,.15);
+
+
+    box-shadow:
+
+    0 10px 40px rgba(0,0,0,.25);
+
 }
 
-header h1 {
-    font-size: 32px;
-    margin: 0 0 10px;
-    color: #fff;
+
+
+
+/* =====================
+   Header
+===================== */
+
+
+header{
+
+
+    padding:40px 20px;
+
+
+    text-align:center;
+
+
+    overflow:hidden;
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        rgba(0,87,255,.7),
+
+        rgba(0,198,255,.4)
+
+    );
+
+
+    backdrop-filter:blur(25px);
+
+    -webkit-backdrop-filter:blur(25px);
+
+
+    border-bottom:
+
+    1px solid rgba(255,255,255,.15);
+
+
 }
 
-header p {
-    font-size: 18px;
-    opacity: 0.8;
-    color: #fff;
+
+
+header h1{
+
+
+    margin:0 0 10px;
+
+
+    font-size:32px;
+
+
+    color:white;
+
+
 }
+
+
+
+header p{
+
+
+    margin:0;
+
+
+    font-size:18px;
+
+
+    color:white;
+
+
+    opacity:.8;
+
+
+}
+
+
+
+
 
 /* =====================
    公告
 ===================== */
 
-.notice {
-    margin: 20px;
-    padding: 15px;
-    background: var(--box);
-    border-radius: 12px;
-    text-align: center;
+
+.notice{
+
+
+    position:relative;
+
+
+    overflow:hidden;
+
+
+    margin:20px;
+
+
+    padding:15px;
+
+
+    text-align:center;
+
+
+    border-radius:15px;
+
+
+    background:var(--box);
+
+
+    backdrop-filter:blur(20px);
+
+
+    border:
+
+    1px solid var(--border);
+
+
 }
+
+
+
+
 
 /* =====================
    搜索
 ===================== */
 
-#search {
-    display: block;
-    width: 80%;
-    max-width: 500px;
-    margin: 20px auto;
-    padding: 15px 20px;
-    border-radius: 20px;
-    border: 2px solid var(--border);
-    outline: none;
-    background: var(--box);
-    color: var(--text);
-    font-size: 16px;
-    transition: border-color 0.3s;
-}
-
-#search:focus {
-    border-color: var(--blue);
-}
-
-#search::placeholder {
-    color: var(--sub);
-    opacity: 0.6;
-}
-
-/* =====================
-   按钮栏
-===================== */
-
-.tabs {
-    display: flex;
-    margin: 20px;
-    overflow: hidden;
-    border-radius: 15px;
-    background: var(--box);
-}
-
-.tabs button {
-    flex: 1;
-    padding: 15px;
-    border: 0;
-    background: transparent;
-    color: var(--text);
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.25s;
-}
-
-.tabs button:hover {
-    background: var(--blue);
-    color: white;
-}
-
-/* =====================
-   内容区域
-===================== */
-
-#resource,
-#friend,
-#author,
-#setting {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px 40px;
-}
-
-/* =====================
-   卡片网格
-===================== */
-
-#list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
-    padding: 0;
-}
-
-#links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 10px 0;
-}
-
-.card {
-    background: var(--card);
-    padding: 20px;
-    border-radius: 15px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    border: 1px solid var(--border);
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-}
-
-.card h2 {
-    margin-top: 0;
-    font-size: 20px;
-}
-
-.card p {
-    color: var(--sub);
-    line-height: 1.6;
-}
-
-.card a {
-    display: block;
-    margin-top: 12px;
-    padding: 12px;
-    background: var(--blue);
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 10px;
-    transition: 0.25s;
-}
-
-.card a:hover {
-    background: #0080ff;
-}
-
-.card a:active {
-    transform: scale(0.95);
-}
-
-/* =====================
-   设置
-===================== */
-
-#setting .card label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-}
-
-#themeSelect {
-    padding: 10px 15px;
-    border-radius: 10px;
-    border: 2px solid var(--border);
-    background: var(--box);
-    color: var(--text);
-    font-size: 16px;
-    cursor: pointer;
-    outline: none;
-}
-
-#themeSelect:focus {
-    border-color: var(--blue);
-}
-
-/* =====================
-   二维码
-===================== */
-
-#wechat {
-    display: none;
-    width: 220px;
-    margin-top: 20px;
-    border-radius: 12px;
-    border: 2px solid var(--border);
-}
-
-/* =====================
-   隐藏
-===================== */
-
-.hide {
-    display: none !important;
-}
-
-/* =====================
-   滚动条
-===================== */
-
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--bg);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--blue);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #0080ff;
-}
-
-/* =====================
-   手机适配
-===================== */
-
-@media (max-width: 600px) {
-    header {
-        padding: 30px 10px;
-    }
-
-    header h1 {
-        font-size: 26px;
-    }
-
-    .tabs button {
-        font-size: 13px;
-        padding: 12px 5px;
-    }
-
-    #list {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-
-    #search {
-        width: 90%;
-        font-size: 14px;
-    }
-}
-
-/* =====================
-   友情链接卡片样式
-===================== */
-
-#links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    padding: 10px 0;
-}
-
-#links a {
-    display: inline-block;
-    padding: 14px 24px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    color: var(--text);
-    text-decoration: none;
-    font-size: 15px;
-    transition: all 0.3s ease;
-}
-
-#links a:hover {
-    background: var(--blue);
-    color: #fff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 87, 255, 0.3);
-}
-
-/* =====================
-   音乐设置样式
-===================== */
-
-#setting .card label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    padding: 8px 0;
-}
-
-#setting .card input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
-    accent-color: var(--blue);
-}
-
-/* 页面动画 */
-
-.page-show{
-
-display:block;
-
-animation:pageIn .35s ease;
-
-}
-
-
-@keyframes pageIn{
-
-from{
-
-opacity:0;
-
-transform:translateY(20px);
-
-}
-
-
-to{
-
-opacity:1;
-
-transform:none;
-
-}
-
-}
-
-
-
-/* 当前按钮 */
-
-.tabs button.active{
-
-background:var(--blue);
-
-color:white;
-
-}
-
-
-
-/* 友链卡片 */
-
-#links a{
-
-display:inline-block;
-
-padding:14px 24px;
-
-background:var(--card);
-
-border:1px solid var(--border);
-
-border-radius:12px;
-
-color:var(--text);
-
-text-decoration:none;
-
-transition:.3s;
-
-}
-
-
-#links a:hover{
-
-background:var(--blue);
-
-color:white;
-
-transform:translateY(-3px);
-
-}
-
-
-
-/* 二维码动画 */
-
-#wechat.show{
-
-display:block;
-
-animation:zoom .3s ease;
-
-}
-
-
-
-@keyframes zoom{
-
-from{
-
-opacity:0;
-
-transform:scale(.8);
-
-}
-
-to{
-
-opacity:1;
-
-transform:scale(1);
-
-}
-
-}
-
-
-/* 卡片进入 */
-
-.resource-card{
-
-animation:cardIn .4s ease;
-
-}
-
-
-
-@keyframes cardIn{
-
-from{
-
-opacity:0;
-
-transform:translateY(15px);
-
-}
-
-
-to{
-
-opacity:1;
-
-transform:none;
-
-}
-
-}
-
-
-
-/* 点击反馈 */
-
-.tabs button:active,
-.card a:active{
-
-transform:scale(.95);
-
-}
-
-/* =====================
-   BaldGrid Liquid Glass
-   液态玻璃效果
-===================== */
-
-
-/* 全局玻璃层 */
-
-body{
-
-background:
-radial-gradient(
-circle at top,
-rgba(0,87,255,.25),
-transparent 40%
-),
-var(--bg);
-
-}
-
-
-
-/* 顶部液态玻璃 */
-
-header{
-
-position:relative;
-
-overflow:hidden;
-
-background:
-linear-gradient(
-135deg,
-rgba(0,87,255,.65),
-rgba(0,198,255,.35)
-);
-
-
-backdrop-filter:blur(25px);
-
--webkit-backdrop-filter:blur(25px);
-
-
-border-bottom:
-
-1px solid rgba(255,255,255,.15);
-
-
-}
-
-
-/* 公告玻璃 */
-
-.notice{
-
-
-background:
-
-rgba(255,255,255,.08);
-
-
-backdrop-filter:
-
-blur(20px);
-
-
--webkit-backdrop-filter:
-
-blur(20px);
-
-
-border:
-
-1px solid rgba(255,255,255,.12);
-
-
-box-shadow:
-
-0 8px 30px rgba(0,0,0,.25);
-
-
-}
-
-
-
-/* 搜索框玻璃 */
-
 
 #search{
 
 
-background:
-
-rgba(255,255,255,.08);
+    display:block;
 
 
-backdrop-filter:
-
-blur(20px);
+    width:80%;
 
 
--webkit-backdrop-filter:
-
-blur(20px);
+    max-width:500px;
 
 
-border:
-
-1px solid rgba(255,255,255,.15);
+    margin:20px auto;
 
 
-box-shadow:
+    padding:15px 20px;
 
-0 8px 25px rgba(0,0,0,.2);
+
+    border-radius:20px;
+
+
+    border:
+
+    1px solid var(--border);
+
+
+    outline:none;
+
+
+    background:var(--box);
+
+
+    backdrop-filter:blur(20px);
+
+
+    color:var(--text);
+
+
+    font-size:16px;
 
 
 }
 
 
 
-/* Tab栏液态玻璃 */
+
+
+
+/* =====================
+   Tab
+===================== */
 
 
 .tabs{
 
 
-background:
-
-rgba(255,255,255,.08);
+    position:relative;
 
 
-backdrop-filter:
-
-blur(25px);
+    overflow:hidden;
 
 
--webkit-backdrop-filter:
-
-blur(25px);
+    display:flex;
 
 
-border:
-
-1px solid rgba(255,255,255,.12);
+    margin:20px;
 
 
-box-shadow:
+    border-radius:15px;
 
-0 10px 35px rgba(0,0,0,.25);
+
+    background:var(--box);
+
+
+    backdrop-filter:blur(25px);
+
+
+    border:
+
+    1px solid var(--border);
 
 
 }
 
 
-
-/* 按钮玻璃 */
 
 
 .tabs button{
 
 
-position:relative;
+    flex:1;
 
 
-overflow:hidden;
+    padding:15px;
+
+
+    border:0;
+
+
+    background:transparent;
+
+
+    color:var(--text);
+
+
+    cursor:pointer;
+
+
+    font-size:16px;
+
+
+    transition:.25s;
 
 
 }
 
 
-/* 激活按钮 */
 
+
+.tabs button:hover,
 .tabs button.active{
 
 
-background:
+    background:
 
-linear-gradient(
-135deg,
-rgba(0,87,255,.8),
-rgba(0,198,255,.7)
-);
+    linear-gradient(
+
+        135deg,
+
+        rgba(0,87,255,.8),
+
+        rgba(0,198,255,.7)
+
+    );
 
 
-backdrop-filter:blur(15px);
-
-
-box-shadow:
-
-0 0 25px rgba(0,87,255,.5);
+    color:white;
 
 
 }
 
 
 
-/* 卡片液态玻璃 */
+
+
+/* =====================
+   页面
+===================== */
+
+
+#resource,
+#friend,
+#author,
+#setting{
+
+
+    max-width:1200px;
+
+
+    margin:auto;
+
+
+    padding:
+
+    0 20px 40px;
+
+
+}
+
+
+
+.hide{
+
+    display:none!important;
+
+}
+
+
+
+.page-show{
+
+
+    display:block;
+
+
+    animation:
+
+    liquidIn .45s ease;
+
+
+}
+
+/* =====================
+   资源卡片
+===================== */
+
+
+#list{
+
+
+    display:grid;
+
+
+    grid-template-columns:
+
+
+    repeat(
+        auto-fit,
+        minmax(260px,1fr)
+    );
+
+
+    gap:20px;
+
+
+}
+
 
 
 .card{
 
 
-background:
-
-rgba(255,255,255,.07);
+    position:relative;
 
 
-
-backdrop-filter:
-
-blur(25px);
+    overflow:hidden;
 
 
-
--webkit-backdrop-filter:
-
-blur(25px);
+    padding:20px;
 
 
-
-border:
-
-1px solid rgba(255,255,255,.12);
+    border-radius:18px;
 
 
+    background:var(--card);
 
-box-shadow:
 
-0 10px 40px rgba(0,0,0,.25);
+    backdrop-filter:blur(25px);
+
+
+    -webkit-backdrop-filter:blur(25px);
+
+
+    border:
+
+    1px solid var(--border);
+
+
+    box-shadow:
+
+    0 10px 40px rgba(0,0,0,.25);
+
+
+    transition:.3s;
 
 
 }
 
 
 
-/* 卡片悬浮 */
 
 .card:hover{
 
 
-background:
-
-rgba(255,255,255,.12);
+    transform:translateY(-5px);
 
 
-box-shadow:
+    box-shadow:
 
-0 20px 50px rgba(0,87,255,.25);
+    0 20px 50px rgba(0,87,255,.25);
 
 
 }
 
 
 
-/* 设置选择框 */
 
-#themeSelect{
-
-
-background:
-
-rgba(255,255,255,.1);
+.card h2{
 
 
+    margin-top:0;
 
-backdrop-filter:
 
-blur(20px);
-
+    font-size:20px;
 
 
 }
 
 
 
-/* 友链玻璃按钮 */
+.card p{
+
+
+    color:var(--sub);
+
+
+    line-height:1.6;
+
+
+}
+
+
+
+
+.card a{
+
+
+    display:block;
+
+
+    margin-top:12px;
+
+
+    padding:12px;
+
+
+    text-align:center;
+
+
+    border-radius:10px;
+
+
+    background:var(--blue);
+
+
+    color:white;
+
+
+    text-decoration:none;
+
+
+    transition:.25s;
+
+
+}
+
+
+
+
+.card a:hover{
+
+
+    background:#0080ff;
+
+
+}
+
+
+
+
+.card a:active{
+
+
+    transform:scale(.95);
+
+
+}
+
+
+
+
+
+/* =====================
+   友情链接
+===================== */
+
+
+#links{
+
+
+    display:flex;
+
+
+    flex-wrap:wrap;
+
+
+    gap:16px;
+
+
+}
+
 
 
 #links a{
 
 
-background:
-
-rgba(255,255,255,.08);
+    padding:14px 24px;
 
 
-
-backdrop-filter:
-
-blur(18px);
+    border-radius:12px;
 
 
-
--webkit-backdrop-filter:
-
-blur(18px);
+    color:var(--text);
 
 
-
-border:
-
-1px solid rgba(255,255,255,.15);
+    text-decoration:none;
 
 
+    background:var(--card);
 
-box-shadow:
 
-0 8px 25px rgba(0,0,0,.2);
+    backdrop-filter:blur(18px);
+
+
+    border:
+
+    1px solid var(--border);
+
+
+    transition:.3s;
 
 
 }
@@ -864,16 +702,138 @@ box-shadow:
 #links a:hover{
 
 
-background:
+    background:var(--blue);
 
-rgba(0,87,255,.6);
+
+    color:white;
+
+
+    transform:translateY(-3px);
 
 
 }
 
 
 
-/* 光泽流动动画 */
+
+
+/* =====================
+   设置
+===================== */
+
+
+#themeSelect{
+
+
+    padding:10px 15px;
+
+
+    border-radius:10px;
+
+
+    border:
+
+    1px solid var(--border);
+
+
+    background:var(--box);
+
+
+    color:var(--text);
+
+
+    outline:none;
+
+
+}
+
+
+
+
+#setting .card label{
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:10px;
+
+
+    padding:8px 0;
+
+
+    cursor:pointer;
+
+
+}
+
+
+
+#setting input[type="checkbox"]{
+
+
+    width:18px;
+
+
+    height:18px;
+
+
+    accent-color:var(--blue);
+
+
+}
+
+
+
+
+
+/* =====================
+   二维码
+===================== */
+
+
+#wechat{
+
+
+    display:none;
+
+
+    width:220px;
+
+
+    margin-top:20px;
+
+
+    border-radius:12px;
+
+
+}
+
+
+
+#wechat.show{
+
+
+    display:block;
+
+
+    animation:
+
+    zoom .3s ease;
+
+
+}
+
+
+
+
+
+/* =====================
+   玻璃光效
+===================== */
 
 
 .card::before,
@@ -881,43 +841,41 @@ rgba(0,87,255,.6);
 .tabs::before{
 
 
-content:"";
+    content:"";
 
 
-position:absolute;
+    position:absolute;
 
 
-inset:0;
+    inset:0;
 
 
-background:
-
-linear-gradient(
-
-120deg,
-
-transparent,
-
-rgba(255,255,255,.18),
-
-transparent
-
-);
+    background:
 
 
-transform:
+    linear-gradient(
 
-translateX(-100%);
+        120deg,
+
+        transparent,
+
+        rgba(255,255,255,.18),
+
+        transparent
+
+    );
 
 
-
-animation:
-
-glassMove 6s infinite;
+    transform:translateX(-120%);
 
 
+    animation:
 
-pointer-events:none;
+
+    glassMove 6s infinite;
+
+
+    pointer-events:none;
 
 
 }
@@ -927,80 +885,271 @@ pointer-events:none;
 @keyframes glassMove{
 
 
-0%{
-
-transform:translateX(-120%);
-
-}
+    0%{
 
 
-40%,100%{
+        transform:translateX(-120%);
 
-transform:translateX(120%);
-
-}
-
-
-}
+    }
 
 
 
-/* 页面切换更丝滑 */
+    40%,100%{
 
 
-.page-show{
+        transform:translateX(120%);
 
-
-animation:
-
-liquidIn .45s cubic-bezier(.2,.8,.2,1);
-
+    }
 
 }
 
+
+
+
+
+/* =====================
+   动画
+===================== */
 
 
 @keyframes liquidIn{
 
 
-from{
+    from{
 
 
-opacity:0;
+        opacity:0;
 
 
-transform:
+        transform:
 
-translateY(25px)
-scale(.96);
+        translateY(25px)
+
+        scale(.96);
 
 
-filter:
+        filter:blur(10px);
 
-blur(10px);
+
+    }
+
+
+
+    to{
+
+
+        opacity:1;
+
+
+        transform:
+
+        translateY(0)
+
+        scale(1);
+
+
+        filter:blur(0);
+
+
+    }
+
+}
+
+
+
+
+@keyframes zoom{
+
+
+    from{
+
+
+        opacity:0;
+
+
+        transform:scale(.8);
+
+
+    }
+
+
+    to{
+
+
+        opacity:1;
+
+
+        transform:scale(1);
+
+
+    }
+
+}
+
+
+
+
+
+/* =====================
+   滚动条
+===================== */
+
+
+::-webkit-scrollbar{
+
+
+    width:8px;
 
 
 }
 
 
-to{
+
+::-webkit-scrollbar-track{
 
 
-opacity:1;
-
-
-transform:
-
-translateY(0)
-scale(1);
-
-
-filter:
-
-blur(0);
+    background:var(--bg);
 
 
 }
+
+
+
+::-webkit-scrollbar-thumb{
+
+
+    background:var(--blue);
+
+
+    border-radius:10px;
+
+
+}
+
+
+
+
+
+/* =====================
+   手机适配
+===================== */
+
+
+@media(max-width:600px){
+
+
+
+header{
+
+
+    padding:30px 15px;
+
+
+}
+
+
+
+header h1{
+
+
+    font-size:26px;
+
+
+}
+
+
+
+header p{
+
+
+    font-size:16px;
+
+
+}
+
+
+
+.notice{
+
+
+    margin:16px;
+
+
+}
+
+
+
+#search{
+
+
+    width:
+
+    calc(100% - 32px);
+
+
+}
+
+
+
+.tabs{
+
+
+    margin:16px;
+
+
+}
+
+
+
+.tabs button{
+
+
+    padding:12px 5px;
+
+
+    font-size:13px;
+
+
+}
+
+
+
+#resource,
+#friend,
+#author,
+#setting{
+
+
+    padding:
+
+    0 16px 30px;
+
+
+}
+
+
+
+#list{
+
+
+    grid-template-columns:1fr;
+
+
+    gap:15px;
+
+
+}
+
+
+
+.card{
+
+
+    width:100%;
+
+
+}
+
 
 
 }
