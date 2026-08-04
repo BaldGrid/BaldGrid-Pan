@@ -1153,3 +1153,41 @@ header p{
 
 
 }
+
+/* 文件夹切换动画 */
+
+.folder-animation{
+
+    animation:folderIn .35s ease;
+
+}
+
+
+
+@keyframes folderIn{
+
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(30px);
+
+        filter:blur(8px);
+
+    }
+
+
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+        filter:blur(0);
+
+    }
+
+
+}

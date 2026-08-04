@@ -397,6 +397,14 @@ function show(arr){
     list.innerHTML="";
 
 
+    // 文件夹切换动画
+    list.classList.remove("folder-animation");
+    
+    void list.offsetWidth;
+    
+    list.classList.add("folder-animation");
+    
+
 
 
 
