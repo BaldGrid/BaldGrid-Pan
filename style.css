@@ -1191,3 +1191,36 @@ header p{
 
 
 }
+
+.folder-item{
+
+animation:folderOpen .35s ease both;
+
+}
+
+
+
+@keyframes folderOpen{
+
+from{
+
+opacity:0;
+
+transform:translateY(20px) scale(.96);
+
+filter:blur(8px);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:translateY(0) scale(1);
+
+filter:blur(0);
+
+}
+
+}

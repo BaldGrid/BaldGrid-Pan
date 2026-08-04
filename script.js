@@ -507,7 +507,7 @@ function show(arr){
 
 
 
-        card.className=
+        =
         "card resource-card";
 
 
@@ -623,6 +623,11 @@ function show(arr){
 
         list.appendChild(card);
 
+
+        void card.offsetWidth;
+        
+        card.classList.add("folder-item");
+        
 
 
     });
