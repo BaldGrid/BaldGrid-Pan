@@ -13,6 +13,7 @@ let data = [];
 // 当前目录
 
 let folderPath = [];
+let currentFolder = data;
 
 
 
@@ -383,33 +384,30 @@ function show(arr){
 
         back.onclick=()=>{
 
-
+        
+            let parent =
             folderPath.pop();
-
-
-
-            if(folderPath.length){
-
-
-                show(
-                    folderPath[
-                    folderPath.length-1
-                    ]
-                );
-
-
+        
+        
+        
+            if(parent !== undefined){
+        
+        
+                show(parent);
+        
+        
             }
             else{
-
-
+        
+        
                 show(data);
-
-
+        
+        
             }
-
-
+        
+        
         };
-
+        
 
 
         list.appendChild(back);
@@ -477,16 +475,15 @@ function show(arr){
                 folderPath.push(
                     arr
                 );
-
-
+            
+            
                 show(
                     item.children
                 );
-
-
+            
+            
             };
-
-
+            
 
         }
 
