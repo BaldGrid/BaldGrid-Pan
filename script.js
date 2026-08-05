@@ -1543,3 +1543,16 @@ function playMusic(index){
 
 
 }
+
+function showDonate(){
+
+    const img =
+    document.getElementById("wechat");
+
+
+    if(!img)return;
+
+
+    img.classList.toggle("show");
+
+}
