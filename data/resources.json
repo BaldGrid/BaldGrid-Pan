@@ -5,7 +5,7 @@
         "desc": "Android 刷机相关资源",
         "children": [
             {
-                "name": "OPPO",
+                "name": "欧珀 OPPO",
                 "type": "folder",
                 "desc": "OPPO 相关资源",
                 "children": [
@@ -29,7 +29,33 @@
                                         "name": "工程abl",
                                         "type": "file",
                                         "desc": "OPPO A11 工程abl文件",
-                                        "url": "https://www.yhcres.top/d/public/02-%E6%89%8B%E6%9C%BA%E5%B9%B3%E6%9D%BF/OPPO/A%E7%B3%BB%E5%88%97/OPPO%20A11%EF%BC%88PCHM10%EF%BC%89%EF%BC%88%E9%AA%81%E9%BE%99665%EF%BC%89/%E5%B7%A5%E7%A8%8Babl/665-debug-abl.img?sign=0iTYwhapYymrkqP2_6GYYPancnRcnKUsAIbJts5lMNw=:1785935665"
+                                        "url": "https://onedrive.live.com/personal/6ed1c23368a7eb3a/_layouts/15/download.aspx?SourceUrl=%2Fpersonal%2F6ed1c23368a7eb3a%2FDocuments%2F%E7%8E%A9%E6%9C%BA%E8%B5%84%E6%BA%90%E7%AB%99%2F%E5%B7%A5%E7%A8%8Babl%2FOPPO%20665%2Eelf%2Eelf"
+                                    },
+                                    {
+                                        "name": "线刷包",
+                                        "type": "folder",
+                                        "desc": "",
+                                        "children": [
+                                            {
+                                                "name": "大陆国行",
+                                                "type": "folder",
+                                                "desc": "",
+                                                "children": [
+                                                    {
+                                                        "name": "ColorOS11 F.12",
+                                                        "type": "file",
+                                                        "desc": "",
+                                                        "url": "https://dfs-serverauto-cn.allawnfs.com/dfs/24/02/01/ae3ade3c2c80422b95126f683af68849.zip"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "name": "海外全球",
+                                                "type": "folder",
+                                                "desc": "",
+                                                "children": []
+                                            }
+                                        ]
                                     }
                                 ]
                             },
@@ -42,7 +68,26 @@
                                         "name": "工程abl",
                                         "type": "file",
                                         "desc": "OPPO A32 工程abl文件",
-                                        "url": "https://www.yhcres.top/d/public/02-%E6%89%8B%E6%9C%BA%E5%B9%B3%E6%9D%BF/OPPO/A%E7%B3%BB%E5%88%97/OPPO%20A32/abl-a32-debug/abl-a32-debug.img?sign=BVp56TruFrJTxsMChWLC20aucolKoHrvBysjXkbVoaU=:1785935939"
+                                        "url": "https://onedrive.live.com/personal/6ed1c23368a7eb3a/_layouts/15/download.aspx?SourceUrl=%2Fpersonal%2F6ed1c23368a7eb3a%2FDocuments%2F%E7%8E%A9%E6%9C%BA%E8%B5%84%E6%BA%90%E7%AB%99%2F%E5%B7%A5%E7%A8%8Babl%2FOPPO%20460%2Eimg%2Eimg"
+                                    },
+                                    {
+                                        "name": "线刷包",
+                                        "type": "folder",
+                                        "desc": "",
+                                        "children": [
+                                            {
+                                                "name": "大陆国行",
+                                                "type": "folder",
+                                                "desc": "",
+                                                "children": []
+                                            },
+                                            {
+                                                "name": "海外全球",
+                                                "type": "folder",
+                                                "desc": "",
+                                                "children": []
+                                            }
+                                        ]
                                     }
                                 ]
                             }
@@ -51,20 +96,40 @@
                 ]
             },
             {
+                "name": "小米 XiaoMi",
+                "type": "folder",
+                "desc": "小米 相关资源",
+                "children": [
+                    {
+                        "name": "高通骁龙处理器",
+                        "type": "folder",
+                        "desc": "高通骁龙处理器机型",
+                        "children": [
+                            {
+                                "name": "小米2/s",
+                                "type": "folder",
+                                "desc": "aries",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
                 "name": "Magisk",
-                "type": "Root工具",
+                "type": "file",
                 "desc": "Android Root管理工具",
                 "url": "https://github.com/topjohnwu/Magisk/releases"
             },
             {
                 "name": "OrangeFox Recovery",
-                "type": "Recovery",
+                "type": "file",
                 "desc": "第三方Recovery",
                 "url": "https://orangefox.download"
             },
             {
                 "name": "白叶刷机工具",
-                "type": "Android Flash Tool",
+                "type": "file",
                 "desc": "第三方刷机工具",
                 "url": "https://github.com/BaldGrid/Baiye-Flashing-Tool"
             }
@@ -77,7 +142,7 @@
         "children": [
             {
                 "name": "米塔的袭击beta3源代码",
-                "type": "AOTM",
+                "type": "file",
                 "desc": "游戏源代码",
                 "url": "https://github.com/BaldGrid/Open-Attack-Of-The-Mita"
             }
