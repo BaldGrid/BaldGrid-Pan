@@ -50,6 +50,12 @@ document.addEventListener(
 
 
     initMusic();
+    
+    
+    initGlass();
+    
+    
+    initAnimation();
 
 
     initSearch();
@@ -1551,5 +1557,151 @@ function showDonate(){
 
 
     img.classList.toggle("show");
+
+}
+
+// =====================
+// 液态玻璃开关
+// =====================
+
+function initGlass(){
+
+
+    const sw =
+    document.getElementById(
+        "glassSwitch"
+    );
+
+
+    if(!sw)return;
+
+
+
+    let enabled =
+    localStorage.getItem(
+        "glassEnabled"
+    );
+
+
+    if(enabled===null){
+
+        enabled=true;
+
+    }
+    else{
+
+        enabled =
+        enabled==="true";
+
+    }
+
+
+
+    sw.checked=enabled;
+
+
+
+    document.body.classList.toggle(
+        "no-glass",
+        !enabled
+    );
+
+
+
+    sw.onchange=()=>{
+
+
+        enabled =
+        sw.checked;
+
+
+        localStorage.setItem(
+            "glassEnabled",
+            enabled
+        );
+
+
+
+        document.body.classList.toggle(
+            "no-glass",
+            !enabled
+        );
+
+
+    };
+
+
+}
+
+// =====================
+// 动画开关
+// =====================
+
+function initAnimation(){
+
+
+    const sw =
+    document.getElementById(
+        "animationSwitch"
+    );
+
+
+    if(!sw)return;
+
+
+
+    let enabled =
+    localStorage.getItem(
+        "animationEnabled"
+    );
+
+
+    if(enabled===null){
+
+        enabled=true;
+
+    }
+    else{
+
+        enabled =
+        enabled==="true";
+
+    }
+
+
+
+    sw.checked=enabled;
+
+
+
+    document.body.classList.toggle(
+        "no-animation",
+        !enabled
+    );
+
+
+
+    sw.onchange=()=>{
+
+
+        enabled =
+        sw.checked;
+
+
+        localStorage.setItem(
+            "animationEnabled",
+            enabled
+        );
+
+
+
+        document.body.classList.toggle(
+            "no-animation",
+            !enabled
+        );
+
+
+    };
+
 
 }

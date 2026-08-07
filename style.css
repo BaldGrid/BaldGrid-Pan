@@ -1224,3 +1224,70 @@ filter:blur(0);
 }
 
 }
+
+
+/* =====================
+   关闭液态玻璃
+===================== */
+
+body.no-glass .card,
+body.no-glass .notice,
+body.no-glass .tabs,
+body.no-glass #links a,
+body.no-glass #search,
+body.no-glass #themeSelect,
+body.no-glass header{
+
+
+    backdrop-filter:none !important;
+
+    -webkit-backdrop-filter:none !important;
+
+
+}
+
+
+/* 去除透明玻璃背景 */
+
+body.no-glass .card,
+body.no-glass .notice,
+body.no-glass .tabs,
+body.no-glass #links a,
+body.no-glass #search,
+body.no-glass #themeSelect{
+
+
+    background:var(--bg);
+
+
+}
+
+
+
+/* 关闭流光 */
+
+body.no-glass .card::before,
+body.no-glass .notice::before,
+body.no-glass .tabs::before{
+
+    display:none!important;
+
+}
+
+/* =====================
+   关闭动画
+===================== */
+
+
+body.no-animation *,
+body.no-animation *::before,
+body.no-animation *::after{
+
+
+    animation:none!important;
+
+
+    transition:none!important;
+
+
+}
