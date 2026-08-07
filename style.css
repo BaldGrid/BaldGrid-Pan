@@ -827,7 +827,29 @@ header p{
 
 }
 
+#telegram{
 
+    display:none;
+
+    width:220px;
+
+    margin-top:20px;
+
+    border-radius:12px;
+
+}
+
+
+
+#telegram.show{
+
+    display:block;
+
+    animation:
+
+    zoom .3s ease;
+
+}
 
 
 

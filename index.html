@@ -1,360 +1,60 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width,initial-scale=1">
-
 <title>BaldGrid · 资源中心</title>
-
 <link rel="stylesheet" href="style.css">
-
 </head>
-
-
 <body>
-
-
 <header>
-
-<h1>
-BaldGrid · 资源中心
-</h1>
-
-
-<p>
-Android · 刷机 · 工具 · 教程
-</p>
-
-
+<h1>BaldGrid · 资源中心</h1>
+<p>Android · 刷机 · 工具 · 教程</p>
 </header>
-
-
-
-
-
-<div class="notice">
-
-📢 公告：下载速度较慢的情况下请使用海外IP节点！
-
-</div>
-
-
-
-
-
-<input 
-id="search"
-placeholder="🔍 搜索资源..."
->
-
-
-
-
-
-
-
+<div class="notice">📢 公告：下载速度较慢的情况下请使用海外IP节点！</div>
+<input id="search" placeholder="🔍 搜索资源...">
 <div class="tabs">
-
-
-<button class="active"
-onclick="showTab('resource',this)">
-
-资源列表
-
-</button>
-
-
-
-<button
-onclick="showTab('friend',this)">
-
-友情链接
-
-</button>
-
-
-
-<button
-onclick="showTab('author',this)">
-
-联系作者
-
-</button>
-
-
-
-<button
-onclick="showTab('setting',this)">
-
-设置
-
-</button>
-
-
+<button class="active" onclick="showTab('resource',this)">资源列表</button>
+<button onclick="showTab('friend',this)">友情链接</button>
+<button onclick="showTab('author',this)">联系作者</button>
+<button onclick="showTab('setting',this)">设置</button>
 </div>
-
-
-
-
-
-
-
-
 <div id="resource">
-
-
-<main id="list">
-
-</main>
-
-
+<main id="list"></main>
 </div>
-
-
-
-
-
-
-
-
-
 <div id="friend" class="hide">
-
-
-<h2 class="title">
-
-友情链接
-
-</h2>
-
-
-<main id="links">
-
-</main>
-
-
+<h2 class="title">友情链接</h2>
+<main id="links"></main>
 </div>
-
-
-
-
-
-
-
-
-
 <div id="author" class="hide">
-
-
 <div class="card">
-
-
-<h2>
-联系作者
-</h2>
-
-
-
-
-<a href="https://www.coolapk.com/u/35803319"
-target="_blank">
-
-① 白叶の酷安链接
-
-</a>
-
-
-
-
-
-<a href="https://space.bilibili.com/1009842165"
-target="_blank">
-
-② 白叶の哔哩哔哩链接
-
-</a>
-
-
-
-
-<a href="https://github.com/BaldGrid"
-target="_blank">
-
-③ 白叶のGitHub链接
-
-</a>
-
-
-
-
-
-<a onclick="showDonate()">
-
-④ 赞助本喵
-
-</a>
-
-
-
-
-
-<img 
-id="wechat"
-src="assets/wechat.png"
->
-
-
+<h2>联系作者</h2>
+<a href="https://www.coolapk.com/u/35803319" target="_blank">① 白叶の酷安链接</a>
+<a href="https://space.bilibili.com/1009842165" target="_blank">② 白叶の哔哩哔哩链接</a>
+<a href="https://github.com/BaldGrid" target="_blank">③ 白叶のGitHub链接</a>
+<a onclick="showDonate()">④ 赞助本喵</a>
+<img id="wechat" src="assets/wechat.png">
+<a onclick="showTelegram()">⑤ 白叶の电报</a>
+<img id="telegram" src="assets/tg.jpg">
 </div>
-
-
 </div>
-
-
-
-
-
-
-
-
-
 <div id="setting" class="hide">
-
-
 <div class="card">
-
-
-<h2>
-
-网站设置
-
-</h2>
-
-
-
-
-<p>
-
-🎨 主题模式
-
-</p>
-
-
-
-
-
+<h2>网站设置</h2>
+<p>🎨 主题模式</p>
 <select id="themeSelect">
-
-
-<option value="system">
-
-跟随系统
-
-</option>
-
-
-
-<option value="dark">
-
-深色模式
-
-</option>
-
-
-
-<option value="light">
-
-亮色模式
-
-</option>
-
-
+<option value="system">跟随系统</option>
+<option value="dark">深色模式</option>
+<option value="light">亮色模式</option>
 </select>
-
-
-
-
-<p>
-
-🪟 液态玻璃效果
-
-</p>
-
-
-<label>
-
-<input
-type="checkbox"
-id="glassSwitch"
-checked
->
-
-开启液态玻璃
-
-</label>
-
-
-<p>
-
-<p>
-
-✨ 页面动画
-
-</p>
-
-
-<label>
-
-<input
-type="checkbox"
-id="animationSwitch"
-checked
->
-
-开启动画
-
-</label>
-
-
-🎵 播放音乐
-
-</p>
-
-
-
-<label>
-
-
-<input 
-type="checkbox"
-id="musicSwitch"
->
-
-
-开启音乐
-
-
-</label>
-
-
-
-
+<p>🪟 液态玻璃效果</p>
+<label><input type="checkbox" id="glassSwitch" checked> 开启液态玻璃</label>
+<p>✨ 页面动画</p>
+<label><input type="checkbox" id="animationSwitch" checked> 开启动画</label>
+<p>🎵 播放音乐</p>
+<label><input type="checkbox" id="musicSwitch"> 开启音乐</label>
 </div>
-
-
 </div>
-
-
-
-
-
-
-
 <script src="script.js?v=3"></script>
-
-
 </body>
-
 </html>

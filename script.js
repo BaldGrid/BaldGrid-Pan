@@ -1560,6 +1560,19 @@ function showDonate(){
 
 }
 
+function showTelegram(){
+
+    const img =
+    document.getElementById("telegram");
+
+
+    if(!img)return;
+
+
+    img.classList.toggle("show");
+
+}
+
 // =====================
 // 液态玻璃开关
 // =====================
