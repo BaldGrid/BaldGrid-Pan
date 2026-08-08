@@ -390,7 +390,8 @@ card.onclick=()=>{
 openDownload(
 encodeURIComponent(item.url),
 encodeURIComponent(item.name),
-item.icon || 0
+item.icon || 0,
+currentFolder.readme || ""
 );
 
 
@@ -1424,7 +1425,8 @@ index
 // 下载页面
 // =====================
 
-function openDownload(url,name,icon){
+
+function openDownload(url,name,icon,readme){
 
 
 downloadUrl=
@@ -1462,6 +1464,11 @@ icons[icon]||icons[0];
 
 
 
+// 加载文件介绍
+
+loadDownloadReadme(readme);
+
+
 
 // 隐藏资源页
 
@@ -1475,13 +1482,109 @@ document.getElementById("download")
 .classList.remove("hide");
 
 
+
 }
+
+
+
+
+// =====================
+// 下载页面 README
+// =====================
+
+
+function loadDownloadReadme(path){
+
+
+let box=
+document.getElementById(
+"downloadReadme"
+);
+
+
+
+if(!box)return;
+
+
+
+if(!path){
+
+
+box.innerHTML=
+`
+<h3>
+文件介绍
+</h3>
+
+暂无介绍
+
+`;
+
+return;
+
+}
+
+
+
+fetch(path)
+
+.then(r=>r.text())
+
+.then(text=>{
+
+
+box.innerHTML=
+`
+<h3>
+文件介绍
+</h3>
+
+<div class="markdown">
+
+${marked.parse(text)}
+
+</div>
+
+`;
+
+
+
+})
+
+
+.catch(()=>{
+
+
+box.innerHTML=
+`
+<h3>
+文件介绍
+</h3>
+
+暂无介绍
+
+`;
+
+
+
+});
+
+
+}
+
+
+
+
+
 
 function startDownload(){
 
+
 location.href=downloadUrl;
 
+
 }
+
 
 
 
@@ -1498,6 +1601,7 @@ alert("链接已复制");
 
 
 
+
 function backResource(){
 
 
@@ -1505,8 +1609,10 @@ document.getElementById("download")
 .classList.add("hide");
 
 
+
 document.getElementById("resource")
 .classList.remove("hide");
+
 
 
 }

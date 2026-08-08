@@ -2084,3 +2084,53 @@ header p{
     transform:scale(.95);
 
 }
+
+/* =====================
+   下载页 README
+===================== */
+
+
+.download-readme{
+
+
+    margin-top:20px;
+
+
+    padding:20px;
+
+
+    border-radius:18px;
+
+
+    background:var(--box);
+
+
+    backdrop-filter:blur(25px);
+
+
+    -webkit-backdrop-filter:blur(25px);
+
+
+    border:1px solid var(--border);
+
+
+    line-height:1.8;
+
+
+    animation:readmeIn .45s ease;
+
+
+}
+
+
+
+.download-readme h3{
+
+
+    margin-top:0;
+
+
+    font-size:20px;
+
+
+}
