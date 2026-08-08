@@ -30,10 +30,22 @@
                                                 "desc": "",
                                                 "children": [
                                                     {
-                                                        "name": "ColorOS11 F.12",
+                                                        "name": "f.12",
                                                         "type": "file",
                                                         "desc": "",
                                                         "url": "https://dfs-serverauto-cn.allawnfs.com/dfs/24/02/01/ae3ade3c2c80422b95126f683af68849.zip"
+                                                    },
+                                                    {
+                                                        "name": "c.78",
+                                                        "type": "file",
+                                                        "desc": "",
+                                                        "url": "https://dfs-serverauto-cn.allawnfs.com/dfs/23/12/05/5159ea34a0db4e4c987eaaac6491f31e.zip"
+                                                    },
+                                                    {
+                                                        "name": "a.55",
+                                                        "type": "file",
+                                                        "desc": "",
+                                                        "url": "https://dfs-serverauto-cn.allawnfs.com/dfs/24/02/02/e8822ec2753a4d5bae9cbadb902d2b35.zip"
                                                     }
                                                 ]
                                             },
@@ -56,7 +68,7 @@
                                         "type": "file",
                                         "desc": "OPPO A11 工程abl文件",
                                         "url": "https://onedrive.live.com/personal/6ed1c23368a7eb3a/_layouts/15/download.aspx?SourceUrl=%2Fpersonal%2F6ed1c23368a7eb3a%2FDocuments%2F%E7%8E%A9%E6%9C%BA%E8%B5%84%E6%BA%90%E7%AB%99%2F%E5%B7%A5%E7%A8%8Babl%2FOPPO%20665%2Eelf%2Eelf"
-                                    }    
+                                    }
                                 ]
                             },
                             {
@@ -73,7 +85,14 @@
                                                 "name": "大陆国行",
                                                 "type": "folder",
                                                 "desc": "",
-                                                "children": []
+                                                "children": [
+                                                    {
+                                                        "name": "c.29",
+                                                        "type": "file",
+                                                        "desc": "",
+                                                        "url": "https://dfs-serverauto-cn.allawnfs.com/dfs/24/08/30/c988b64e33b042ff801ede29e0764cad.zip"
+                                                    }
+                                                ]
                                             },
                                             {
                                                 "name": "海外全球",
