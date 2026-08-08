@@ -2272,3 +2272,30 @@ font-size:20px;
 
 
 }
+
+/* =====================
+下载按钮高亮
+===================== */
+
+
+.download-buttons button:first-child{
+
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #0057ff,
+        #00c6ff
+    );
+
+
+    color:white;
+
+
+    box-shadow:
+
+    0 10px 30px rgba(0,87,255,.35);
+
+
+}
