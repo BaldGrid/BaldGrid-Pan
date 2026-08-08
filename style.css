@@ -1313,3 +1313,335 @@ body.no-animation *::after{
 
 
 }
+
+/* =====================
+   OpenList 三段式布局
+===================== */
+
+
+/* 第一段：路径 */
+
+#breadcrumb{
+
+
+    margin-bottom:20px;
+
+
+    padding:15px 20px;
+
+
+    border-radius:15px;
+
+
+    background:var(--box);
+
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+
+    border:
+
+    1px solid var(--border);
+
+
+    color:var(--text);
+
+
+    font-size:16px;
+
+
+    box-shadow:
+
+    0 10px 30px rgba(0,0,0,.2);
+
+
+}
+
+
+
+
+
+
+/* 第二段：文件列表 */
+
+
+#list{
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:12px;
+
+
+}
+
+
+
+
+
+/* 文件/文件夹 */
+
+.resource-card{
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:space-between;
+
+
+    cursor:pointer;
+
+
+    padding:16px 20px;
+
+
+}
+
+
+
+
+
+.resource-card h2{
+
+
+    margin:0;
+
+
+    font-size:18px;
+
+
+}
+
+
+
+
+
+.resource-card p{
+
+
+    margin:5px 0 0;
+
+
+    font-size:14px;
+
+
+}
+
+
+
+
+
+/* 文件下载按钮 */
+
+.resource-card a{
+
+
+    width:auto;
+
+
+    min-width:90px;
+
+
+    margin:0;
+
+
+    padding:8px 15px;
+
+
+}
+
+
+
+
+
+/* 第三段：readme */
+
+
+#readme{
+
+    margin-top:20px;
+
+    padding:20px;
+
+    min-height:120px;
+
+    border-radius:18px;
+
+    background:var(--box);
+
+    backdrop-filter:blur(25px);
+
+    -webkit-backdrop-filter:blur(25px);
+
+    border:
+
+    1px solid var(--border);
+
+    color:var(--text);
+
+    line-height:1.8;
+
+}
+
+
+/* readme切换动画 */
+
+.readme-animation{
+
+    animation:
+
+    readmeIn .45s ease;
+
+}
+
+
+
+@keyframes readmeIn{
+
+
+    from{
+
+
+        opacity:0;
+
+
+        transform:
+
+        translateY(25px)
+
+        scale(.96);
+
+
+        filter:blur(10px);
+
+
+    }
+
+
+
+    to{
+
+
+        opacity:1;
+
+
+        transform:
+
+        translateY(0)
+
+        scale(1);
+
+
+        filter:blur(0);
+
+
+    }
+
+
+}
+
+
+
+
+#readme h3{
+
+
+    margin-top:0;
+
+
+    font-size:20px;
+
+
+}
+
+
+
+
+
+#readme pre{
+
+
+    white-space:pre-wrap;
+
+
+    font-family:
+
+    "Microsoft YaHei",
+    Arial,
+    sans-serif;
+
+
+    color:var(--sub);
+
+
+}
+
+
+
+
+
+/* 返回按钮 */
+
+#list .card:first-child{
+
+
+    border-left:
+
+    4px solid var(--blue);
+
+
+}
+
+
+
+
+
+
+/* 手机适配 */
+
+@media(max-width:600px){
+
+
+.resource-card{
+
+
+    display:block;
+
+
+}
+
+
+.resource-card a{
+
+
+    margin-top:12px;
+
+
+    width:100%;
+
+
+}
+
+
+
+#breadcrumb{
+
+
+    font-size:14px;
+
+
+}
+
+
+
+}

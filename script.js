@@ -3,212 +3,133 @@
 // =====================
 
 let list;
-
 let search;
 
-
-let data = [];
+let data=[];
 
 
 // 当前目录
+let folderStack=[];
 
-let folderPath = [];
-let currentFolder = data;
+let currentFolder=null;
 
+let currentPath=[];
 
 
 // =====================
-// 页面初始化
+// 初始化
 // =====================
-
 
 document.addEventListener(
 "DOMContentLoaded",
 ()=>{
 
 
-    list =
-    document.getElementById(
-        "list"
-    );
+list=document.getElementById("list");
+
+search=document.getElementById("search");
 
 
-    search =
-    document.getElementById(
-        "search"
-    );
+loadResources();
 
+loadLinks();
 
+initTheme();
 
-    loadResources();
+initMusic();
 
+initGlass();
 
-    loadLinks();
+initAnimation();
 
-
-    initTheme();
-
-
-    initMusic();
-    
-    
-    initGlass();
-    
-    
-    initAnimation();
-
-
-    initSearch();
+initSearch();
 
 
 
-    const firstTab =
-    document.querySelector(
-        ".tabs button"
-    );
+let first=document.querySelector(
+".tabs button"
+);
 
 
+if(first){
 
-    if(firstTab){
+showTab(
+"resource",
+first
+);
 
-
-        showTab(
-            "resource",
-            firstTab
-        );
-
-
-    }
-    else{
-
-
-        showTab(
-            "resource"
-        );
-
-
-    }
-
+}
 
 
 });
 
 
 
-
 // =====================
-// Tab切换
+// Tab
 // =====================
 
 
 function showTab(tabId,btn){
 
 
-
-    const tabs=[
-
-        "resource",
-        "friend",
-        "author",
-        "setting"
-
-    ];
+[
+"resource",
+"friend",
+"author",
+"setting"
+]
+.forEach(id=>{
 
 
+let e=document.getElementById(id);
 
-    tabs.forEach(id=>{
+if(e){
 
+e.classList.add("hide");
 
-        const page =
-        document.getElementById(id);
-
-
-
-        if(page){
-
-
-            page.classList.add(
-                "hide"
-            );
-
-
-            page.classList.remove(
-                "page-show"
-            );
-
-
-        }
-
-
-
-    });
-
-
-
-
-
-    const target =
-    document.getElementById(
-        tabId
-    );
-
-
-
-    if(target){
-
-
-        target.classList.remove(
-            "hide"
-        );
-
-
-        void target.offsetWidth;
-
-
-        target.classList.add(
-            "page-show"
-        );
-
-
-    }
-
-
-
-
-
-    document
-    .querySelectorAll(
-        ".tabs button"
-    )
-    .forEach(button=>{
-
-
-        button.classList.remove(
-            "active"
-        );
-
-
-    });
-
-
-
-
-
-    if(btn){
-
-
-        btn.classList.add(
-            "active"
-        );
-
-
-    }
-
-
+e.classList.remove("page-show");
 
 }
 
 
+});
+
+
+
+let target=document.getElementById(tabId);
+
+
+if(target){
+
+target.classList.remove("hide");
+
+void target.offsetWidth;
+
+target.classList.add("page-show");
+
+}
+
+
+
+document.querySelectorAll(
+".tabs button"
+)
+.forEach(b=>{
+
+b.classList.remove("active");
+
+});
+
+
+if(btn){
+
+btn.classList.add("active");
+
+}
+
+
+}
 
 
 
@@ -221,76 +142,50 @@ function showTab(tabId,btn){
 function loadResources(){
 
 
-    fetch(
-        "./data/resources.json"
-    )
+fetch(
+"./data/resources.json"
+)
+
+.then(r=>r.json())
+
+.then(json=>{
 
 
-
-    .then(res=>{
-
-
-        if(!res.ok){
-
-            throw new Error(
-            "resources.json加载失败"
-            );
-
-        }
+data=json;
 
 
-        return res.json();
+folderStack=[];
+
+currentFolder={
+children:data
+};
+
+currentPath=[];
 
 
-    })
+renderFolder();
 
 
-
-    .then(json=>{
-
-
-        data=json;
+})
 
 
-        folderPath=[];
+.catch(e=>{
 
 
-        show(data);
+console.error(e);
 
 
-
-    })
-
-
-
-    .catch(err=>{
-
-
-        console.error(err);
-
+list.innerHTML=
+`
+<div class="card">
+<h2>
+资源加载失败
+</h2>
+</div>
+`;
 
 
-        list.innerHTML=`
-
-        <div class="card">
-
-        <h2>
-        资源加载失败
-        </h2>
-
-
-        <p>
-        请检查resources.json
-        </p>
-
-
-        </div>
-
-        `;
-
-
-
-    });
+});
 
 
 }
@@ -298,40 +193,15 @@ function loadResources(){
 
 
 
-
-
-
 // =====================
-// 显示资源
+// 渲染目录
 // =====================
 
 
-function show(arr){
-
-
-    if(!list)return;
-
-
-
-    if(!Array.isArray(arr)){
-
-
-        console.error(
-        "目录错误:",
-        arr
-        );
-
-
-        return;
-
-
-    }
-
-
+function renderFolder(){
 
 
     list.innerHTML="";
-
 
 
     // 文件夹切换动画
@@ -347,216 +217,177 @@ function show(arr){
     list.classList.add(
         "folder-animation"
     );
+// 第一部分 路径
 
+let bread=document.getElementById(
+"breadcrumb"
+);
 
 
+if(bread){
 
+bread.innerHTML=
+"🏠 首页 / "+
+currentPath.join(" / ");
 
+}
 
-    // 返回上一级
 
 
-    if(folderPath.length){
 
+// 返回按钮
 
+if(folderStack.length){
 
-        let back =
-        document.createElement(
-            "div"
-        );
 
+let back=document.createElement(
+"div"
+);
 
 
-        back.className =
-        "card folder-item";
+back.className=
+"card";
 
 
+back.innerHTML=
+`
+<h2>
+⬅ 返回上一级
+</h2>
+`;
 
-        back.innerHTML=`
 
-        <h2>
-        📂 ..
-        </h2>
 
+back.onclick=()=>{
 
-        <p>
-        返回上一级目录
-        </p>
 
+folderStack.pop();
 
-        `;
+currentFolder=
+folderStack[
+folderStack.length-1
+]
+||
+{
+children:data
+};
 
 
+currentPath.pop();
 
-        back.onclick=()=>{
 
-        
-            let parent =
-            folderPath.pop();
-        
-        
-        
-            if(parent !== undefined){
-        
-        
-                show(parent);
-        
-        
-            }
-            else{
-        
-        
-                show(data);
-        
-        
-            }
-        
-        
-        };
-        
+renderFolder();
 
 
-        list.appendChild(back);
+};
 
 
+list.appendChild(back);
 
-    }
 
+}
 
 
 
 
+// 文件列表
 
 
-    // 渲染
+currentFolder.children.forEach(item=>{
 
 
-    arr.forEach(item=>{
+let card=document.createElement(
+"div"
+);
 
 
-        let card =
-        document.createElement(
-            "div"
-        );
+card.className=
+"card resource-card folder-item";
 
 
 
-        card.className =
-        "card resource-card folder-item";
+if(item.type==="folder"){
 
 
+card.innerHTML=
+`
+<h2>
+📁 ${escapeHtml(item.name)}
+</h2>
 
+<p>
+${escapeHtml(item.desc||"文件夹")}
+</p>
+`;
 
 
 
-        // 文件夹
+card.onclick=()=>{
 
 
-        if(item.type==="folder"){
+folderStack.push(
+currentFolder
+);
 
 
+currentFolder=item;
 
-            card.innerHTML=`
 
-            <h2>
-            📁 ${escapeHtml(item.name)}
-            </h2>
+currentPath.push(
+item.name
+);
 
 
-            <p>
-            ${escapeHtml(
-            item.desc || "文件夹"
-            )}
-            </p>
+renderFolder();
 
 
-            `;
+loadReadme(item);
 
 
+};
 
 
-            card.onclick=()=>{
 
+}
 
-                folderPath.push(
-                    arr
-                );
-            
-            
-                show(
-                    item.children
-                );
-            
-            
-            };
-            
+else{
 
-        }
 
+card.innerHTML=
+`
+<h2>
+📄 ${escapeHtml(item.name)}
+</h2>
 
+<p>
+${escapeHtml(item.desc||"暂无描述")}
+</p>
 
 
-        // 文件
+<a href="${escapeHtml(item.url)}"
+target="_blank">
 
+📎 打开资源
 
-        else{
+</a>
 
+`;
 
 
-            card.innerHTML=`
 
-            <h2>
-            📄 ${escapeHtml(item.name)}
-            </h2>
+}
 
 
 
-            <span class="tag">
+list.appendChild(card);
 
-            ${escapeHtml(
-            item.type || "资源"
-            )}
 
-            </span>
 
+});
 
 
-            <p>
 
-            ${escapeHtml(
-            item.desc || "暂无描述"
-            )}
-
-            </p>
-
-
-
-            <a href="${escapeHtml(item.url)}"
-            target="_blank">
-
-            📎 查看资源
-
-            </a>
-
-
-            `;
-
-
-
-        }
-
-
-
-
-
-        list.appendChild(
-            card
-        );
-
-
-
-    });
-
+loadReadme(currentFolder);
 
 
 }
@@ -565,7 +396,88 @@ function show(arr){
 
 
 
+// =====================
+// README读取
+// =====================
 
+
+function loadReadme(folder){
+
+
+let box=document.getElementById(
+"readme"
+);
+
+box.classList.remove(
+"readme-animation"
+);
+
+
+void box.offsetWidth;
+
+
+box.classList.add(
+"readme-animation"
+);
+
+if(!box)return;
+
+
+
+if(!folder.readme){
+
+
+box.innerHTML=
+`
+<h3>
+资源介绍
+</h3>
+
+暂无介绍
+
+`;
+
+return;
+
+
+}
+
+
+
+fetch(folder.readme)
+
+.then(r=>r.text())
+
+.then(text=>{
+
+
+box.innerHTML=
+`
+<h3>
+资源介绍
+</h3>
+
+<pre>
+${escapeHtml(text)}
+</pre>
+`;
+
+
+
+})
+
+.catch(()=>{
+
+
+box.innerHTML=
+`
+暂无介绍
+`;
+
+});
+
+
+}
 
 // =====================
 // HTML过滤
@@ -575,20 +487,22 @@ function show(arr){
 function escapeHtml(text){
 
 
-    const div =
-    document.createElement(
-        "div"
-    );
+const div=document.createElement(
+"div"
+);
 
 
-    div.textContent =
-    text || "";
+div.textContent=text||"";
 
 
-    return div.innerHTML;
+return div.innerHTML;
 
 
 }
+
+
+
+
 
 // =====================
 // 搜索系统
@@ -598,64 +512,74 @@ function escapeHtml(text){
 function initSearch(){
 
 
-    if(!search)return;
+if(!search)return;
 
 
 
-    search.addEventListener(
-    "input",
-    ()=>{
+search.addEventListener(
+"input",
+()=>{
 
 
-        let key =
-        search.value
-        .trim()
-        .toLowerCase();
-
-
-
-
-        if(!key){
-
-
-            folderPath=[];
-
-
-            show(data);
-
-
-            return;
-
-
-        }
+let key=
+search.value
+.trim()
+.toLowerCase();
 
 
 
+if(!key){
 
 
-        let result =
-        searchAll(
-            data,
-            key
-        );
+currentFolder={
+children:data
+};
 
 
+folderStack=[];
 
-        folderPath=[];
-
-
-        show(result);
+currentPath=[];
 
 
+renderFolder();
 
-    });
 
+return;
 
 
 }
 
 
 
+
+
+let result=
+searchAll(
+data,
+key
+);
+
+
+
+currentFolder={
+children:result
+};
+
+
+folderStack=[];
+
+currentPath=[];
+
+
+renderFolder();
+
+
+
+});
+
+
+
+}
 
 
 
@@ -669,102 +593,78 @@ function initSearch(){
 function searchAll(arr,key){
 
 
-    let result=[];
+let result=[];
 
 
 
-    arr.forEach(item=>{
+arr.forEach(item=>{
+
+
+let match=
+
+
+(
+item.name||""
+)
+.toLowerCase()
+.includes(key)
 
 
 
-        let match =
-
-        (
-            item.name || ""
-        )
-        .toLowerCase()
-        .includes(key)
+||
 
 
 
-        ||
-
-
-
-        (
-            item.type || ""
-        )
-        .toLowerCase()
-        .includes(key)
-
-
-
-        ||
-
-
-
-        (
-            item.desc || ""
-        )
-        .toLowerCase()
-        .includes(key);
+(
+item.desc||""
+)
+.toLowerCase()
+.includes(key);
 
 
 
 
 
+if(match){
 
 
-        if(match){
-
-
-            result.push(item);
-
-
-        }
-
-
-
-
-
-
-
-        // 搜索文件夹内部
-
-
-        if(
-            item.type==="folder"
-            &&
-            Array.isArray(
-                item.children
-            )
-        ){
-
-
-            result.push(
-                ...searchAll(
-                    item.children,
-                    key
-                )
-            );
-
-
-        }
-
-
-
-
-    });
-
-
-
-
-    return result;
+result.push(item);
 
 
 }
 
 
+
+
+if(
+item.type==="folder"
+&&
+Array.isArray(item.children)
+){
+
+
+
+result.push(
+...searchAll(
+item.children,
+key
+)
+);
+
+
+
+}
+
+
+
+});
+
+
+
+return result;
+
+
+}
 
 
 
@@ -781,170 +681,88 @@ function loadLinks(){
 
 
 
-    const links =
-    document.getElementById(
-        "links"
-    );
+const links=
+document.getElementById(
+"links"
+);
 
 
 
-    if(!links)return;
+if(!links)return;
 
 
 
 
+fetch(
+"./data/links.json"
+)
 
 
 
-    const defaultLinks=[
+.then(r=>{
 
 
-        {
-            name:"Google",
-            url:"https://www.google.com/"
-        },
+if(!r.ok)
+throw new Error();
 
 
-        {
-            name:"Bilibili",
-            url:"https://www.bilibili.com/"
-        },
+return r.json();
 
 
-        {
-            name:"知乎",
-            url:"https://www.zhihu.com/"
-        }
+})
 
 
-    ];
 
+.then(json=>{
 
 
+links.innerHTML="";
 
 
 
+json.forEach(item=>{
 
-    fetch(
-        "./data/links.json"
-    )
 
+let a=document.createElement(
+"a"
+);
 
 
-    .then(res=>{
 
+a.href=item.url;
 
-        if(!res.ok){
 
-            throw new Error(
-            "links.json加载失败"
-            );
+a.target="_blank";
 
-        }
 
+a.innerHTML=
+escapeHtml(
+item.name
+);
 
 
-        return res.json();
 
+links.appendChild(a);
 
 
-    })
 
+});
 
 
-    .then(json=>{
 
+})
 
-        links.innerHTML="";
 
 
+.catch(()=>{
 
-        json.forEach(item=>{
 
+links.innerHTML=
+"暂无友情链接";
 
-            let a =
-            document.createElement(
-                "a"
-            );
 
 
-
-            a.href =
-            item.url;
-
-
-
-            a.target =
-            "_blank";
-
-
-
-            a.innerHTML =
-            escapeHtml(
-                item.name
-            );
-
-
-
-            links.appendChild(
-                a
-            );
-
-
-
-        });
-
-
-
-    })
-
-
-
-    .catch(()=>{
-
-
-        links.innerHTML="";
-
-
-
-        defaultLinks.forEach(item=>{
-
-
-            let a =
-            document.createElement(
-                "a"
-            );
-
-
-
-            a.href =
-            item.url;
-
-
-
-            a.target =
-            "_blank";
-
-
-
-            a.innerHTML =
-            escapeHtml(
-                item.name
-            );
-
-
-
-            links.appendChild(
-                a
-            );
-
-
-
-        });
-
-
-
-    });
+});
 
 
 
@@ -956,7 +774,62 @@ function loadLinks(){
 
 
 
+// =====================
+// 赞助图片
+// =====================
 
+
+function showDonate(){
+
+
+let img=
+document.getElementById(
+"wechat"
+);
+
+
+
+if(!img)return;
+
+
+
+img.classList.toggle(
+"show"
+);
+
+
+
+}
+
+
+
+
+// =====================
+// 电报图片
+// =====================
+
+
+function showTelegram(){
+
+
+let img=
+document.getElementById(
+"telegram"
+);
+
+
+
+if(!img)return;
+
+
+
+img.classList.toggle(
+"show"
+);
+
+
+
+}
 
 // =====================
 // 主题系统
@@ -966,74 +839,54 @@ function loadLinks(){
 function initTheme(){
 
 
-
-    const select =
-    document.getElementById(
-        "themeSelect"
-    );
-
-
-
-    if(!select)return;
+const select=
+document.getElementById(
+"themeSelect"
+);
 
 
 
+if(!select)return;
 
 
 
-    let theme =
-    localStorage.getItem(
-        "theme"
-    )
-    ||
-    "system";
+let theme=
+localStorage.getItem(
+"theme"
+)
+||
+"system";
 
 
 
+select.value=theme;
 
 
-    select.value =
-    theme;
-
-
-
-    applyTheme(
-        theme
-    );
+applyTheme(theme);
 
 
 
+select.onchange=()=>{
+
+
+localStorage.setItem(
+"theme",
+select.value
+);
 
 
 
-    select.onchange=()=>{
-
-
-        localStorage.setItem(
-
-            "theme",
-
-            select.value
-
-        );
+applyTheme(
+select.value
+);
 
 
 
-        applyTheme(
-
-            select.value
-
-        );
-
-
-
-    };
+};
 
 
 
 }
-
-
 
 
 
@@ -1044,47 +897,35 @@ function initTheme(){
 function applyTheme(theme){
 
 
-
-    if(theme==="system"){
-
+if(theme==="system"){
 
 
-        let dark =
-        window
-        .matchMedia(
-        "(prefers-color-scheme:dark)"
-        )
-        .matches;
+let dark=
+window.matchMedia(
+"(prefers-color-scheme:dark)"
+)
+.matches;
 
 
 
-        document
-        .documentElement
-        .dataset
-        .theme =
-
-        dark
-        ?
-        "dark"
-        :
-        "light";
+document.documentElement.dataset.theme=
+dark
+?
+"dark"
+:
+"light";
 
 
+}
 
-    }
-
-    else{
-
-
-        document
-        .documentElement
-        .dataset
-        .theme =
-        theme;
+else{
 
 
+document.documentElement.dataset.theme=
+theme;
 
-    }
+
+}
 
 
 }
@@ -1092,14 +933,6 @@ function applyTheme(theme){
 
 
 
-
-
-
-
-
-// =====================
-// 系统主题监听
-// =====================
 
 
 window.matchMedia(
@@ -1110,43 +943,233 @@ window.matchMedia(
 ()=>{
 
 
-    const select =
-    document.getElementById(
-        "themeSelect"
-    );
+let select=
+document.getElementById(
+"themeSelect"
+);
 
 
-
-    if(
-        select
-        &&
-        select.value==="system"
-    ){
+if(
+select &&
+select.value==="system"
+){
 
 
-        applyTheme(
-            "system"
-        );
+applyTheme(
+"system"
+);
 
 
-    }
+}
 
 
 
 });
+
+
+
+
+
+
+
+
+
+// =====================
+// 液态玻璃
+// =====================
+
+
+function initGlass(){
+
+
+const sw=
+document.getElementById(
+"glassSwitch"
+);
+
+
+
+if(!sw)return;
+
+
+
+let enabled=
+localStorage.getItem(
+"glassEnabled"
+);
+
+
+
+if(enabled===null){
+
+enabled=true;
+
+}
+
+else{
+
+enabled=
+enabled==="true";
+
+}
+
+
+
+sw.checked=enabled;
+
+
+
+document.body.classList.toggle(
+"no-glass",
+!enabled
+);
+
+
+
+
+sw.onchange=()=>{
+
+
+enabled=
+sw.checked;
+
+
+
+localStorage.setItem(
+"glassEnabled",
+enabled
+);
+
+
+
+document.body.classList.toggle(
+"no-glass",
+!enabled
+);
+
+
+
+};
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// =====================
+// 动画开关
+// =====================
+
+
+function initAnimation(){
+
+
+const sw=
+document.getElementById(
+"animationSwitch"
+);
+
+
+
+if(!sw)return;
+
+
+
+let enabled=
+localStorage.getItem(
+"animationEnabled"
+);
+
+
+
+if(enabled===null){
+
+enabled=true;
+
+}
+
+else{
+
+enabled=
+enabled==="true";
+
+}
+
+
+
+sw.checked=enabled;
+
+
+
+document.body.classList.toggle(
+"no-animation",
+!enabled
+);
+
+
+
+
+
+sw.onchange=()=>{
+
+
+enabled=
+sw.checked;
+
+
+
+localStorage.setItem(
+"animationEnabled",
+enabled
+);
+
+
+
+document.body.classList.toggle(
+"no-animation",
+!enabled
+);
+
+
+
+};
+
+
+}
+
+
+
+
+
+
+
+
 
 // =====================
 // 音乐系统
 // =====================
 
 
-let bgAudio = new Audio();
+let bgAudio=
+new Audio();
 
-let musicList = [];
 
-let currentMusicIndex = 0;
+let musicList=[];
 
-let isMusicEnabled = false;
+
+let currentMusicIndex=0;
+
+
+let isMusicEnabled=false;
+
+
 
 
 
@@ -1155,317 +1178,167 @@ let isMusicEnabled = false;
 function initMusic(){
 
 
+const sw=
+document.getElementById(
+"musicSwitch"
+);
 
-    const sw =
-    document.getElementById(
-        "musicSwitch"
-    );
 
 
+if(!sw)return;
 
-    const status =
-    document.getElementById(
-        "musicStatus"
-    );
 
 
+isMusicEnabled=
+localStorage.getItem(
+"musicEnabled"
+)
+==="true";
 
-    if(!sw)return;
 
 
+sw.checked=
+isMusicEnabled;
 
 
 
 
-    sw.checked =
-    localStorage.getItem(
-        "musicEnabled"
-    )
-    === "true";
 
 
+fetch(
+"./data/music.json"
+)
 
-    isMusicEnabled =
-    sw.checked;
 
+.then(r=>r.json())
 
 
+.then(json=>{
 
 
+musicList=json;
 
-    if(status){
 
 
-        status.textContent =
-        isMusicEnabled
-        ?
-        "开启"
-        :
-        "关闭";
+currentMusicIndex=
+Number(
+localStorage.getItem(
+"musicIndex"
+)
+||
+0
+);
 
 
-    }
 
+if(isMusicEnabled){
 
+playMusic(
+currentMusicIndex
+);
 
+}
 
 
 
+})
 
 
-    const defaultMusic=[
 
+.catch(()=>{
 
 
-        {
+musicList=[
 
-            name:"示例音乐1",
+{
+name:"示例音乐",
+url:
+"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+}
 
-            url:
-            "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+];
 
-        },
 
+});
 
 
-        {
 
-            name:"示例音乐2",
 
-            url:
-            "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
 
-        }
 
 
-    ];
+sw.onchange=()=>{
 
 
+isMusicEnabled=
+sw.checked;
 
 
 
+localStorage.setItem(
+"musicEnabled",
+isMusicEnabled
+);
 
 
 
+if(isMusicEnabled){
 
-    fetch(
-        "./data/music.json"
-    )
 
+playMusic(
+currentMusicIndex
+);
 
 
-    .then(res=>{
+}
 
+else{
 
-        if(!res.ok){
 
+bgAudio.pause();
 
-            throw new Error(
-            "music.json不存在"
-            );
 
+}
 
-        }
 
 
+};
 
-        return res.json();
 
 
 
-    })
 
 
 
-    .then(json=>{
+bgAudio.onended=()=>{
 
 
-        musicList =
-        json;
+if(!isMusicEnabled)
+return;
 
 
 
-        currentMusicIndex =
-        Number(
-            localStorage.getItem(
-                "musicIndex"
-            )
-            ||
-            0
-        );
+currentMusicIndex++;
 
 
 
-        if(isMusicEnabled){
+if(
+currentMusicIndex>=musicList.length
+){
 
+currentMusicIndex=0;
 
-            playMusic(
-                currentMusicIndex
-            );
+}
 
 
-        }
 
+playMusic(
+currentMusicIndex
+);
 
 
-    })
 
-
-
-    .catch(err=>{
-
-
-        console.warn(err);
-
-
-
-        musicList =
-        defaultMusic;
-
-
-
-        currentMusicIndex =
-        Number(
-            localStorage.getItem(
-                "musicIndex"
-            )
-            ||
-            0
-        );
-
-
-
-        if(isMusicEnabled){
-
-
-            playMusic(
-                currentMusicIndex
-            );
-
-
-        }
-
-
-
-    });
-
-
-
-
-
-
-
-
-
-    // 音乐开关
-
-
-    sw.onchange = ()=>{
-
-
-        isMusicEnabled =
-        sw.checked;
-
-
-
-        localStorage.setItem(
-
-            "musicEnabled",
-
-            isMusicEnabled
-
-        );
-
-
-
-
-
-        if(status){
-
-
-            status.textContent =
-            isMusicEnabled
-            ?
-            "开启"
-            :
-            "关闭";
-
-
-        }
-
-
-
-
-
-        if(isMusicEnabled){
-
-
-            playMusic(
-                currentMusicIndex
-            );
-
-
-        }
-        else{
-
-
-            bgAudio.pause();
-
-
-        }
-
-
-
-    };
-
-
-
-
-
-
-
-
-    // 自动播放下一首
-
-
-    bgAudio.onended = ()=>{
-
-
-        if(!isMusicEnabled)
-        return;
-
-
-
-
-        currentMusicIndex++;
-
-
-
-
-        if(
-            currentMusicIndex
-            >=
-            musicList.length
-        ){
-
-
-            currentMusicIndex = 0;
-
-
-        }
-
-
-
-
-
-
-        playMusic(
-            currentMusicIndex
-        );
-
-
-
-    };
+};
 
 
 
@@ -1476,245 +1349,50 @@ function initMusic(){
 
 
 
-
-
-
-// =====================
-// 播放音乐
-// =====================
 
 
 function playMusic(index){
 
 
+if(
+!musicList.length
+||
+!musicList[index]
+)
 
-    if(
-
-        !musicList.length
-
-        ||
-
-        !musicList[index]
-
-    )
-
-    return;
+return;
 
 
 
+let song=
+musicList[index];
 
 
 
-    let song =
-    musicList[index];
+bgAudio.src=
+song.url;
 
 
 
+bgAudio.play()
+.catch(()=>{
 
 
-    bgAudio.src =
-    song.url;
+console.log(
+"等待用户操作播放"
+);
 
 
-
-
-
-    bgAudio.play()
-
-    .catch(()=>{
-
-
-        console.log(
-        "等待用户操作后播放"
-        );
-
-
-    });
+});
 
 
 
-
-
-    localStorage.setItem(
-
-        "musicIndex",
-
-        index
-
-    );
+localStorage.setItem(
+"musicIndex",
+index
+);
 
 
 
 }
 
-function showDonate(){
-
-    const img =
-    document.getElementById("wechat");
-
-
-    if(!img)return;
-
-
-    img.classList.toggle("show");
-
-}
-
-function showTelegram(){
-
-    const img =
-    document.getElementById("telegram");
-
-
-    if(!img)return;
-
-
-    img.classList.toggle("show");
-
-}
-
-// =====================
-// 液态玻璃开关
-// =====================
-
-function initGlass(){
-
-
-    const sw =
-    document.getElementById(
-        "glassSwitch"
-    );
-
-
-    if(!sw)return;
-
-
-
-    let enabled =
-    localStorage.getItem(
-        "glassEnabled"
-    );
-
-
-    if(enabled===null){
-
-        enabled=true;
-
-    }
-    else{
-
-        enabled =
-        enabled==="true";
-
-    }
-
-
-
-    sw.checked=enabled;
-
-
-
-    document.body.classList.toggle(
-        "no-glass",
-        !enabled
-    );
-
-
-
-    sw.onchange=()=>{
-
-
-        enabled =
-        sw.checked;
-
-
-        localStorage.setItem(
-            "glassEnabled",
-            enabled
-        );
-
-
-
-        document.body.classList.toggle(
-            "no-glass",
-            !enabled
-        );
-
-
-    };
-
-
-}
-
-// =====================
-// 动画开关
-// =====================
-
-function initAnimation(){
-
-
-    const sw =
-    document.getElementById(
-        "animationSwitch"
-    );
-
-
-    if(!sw)return;
-
-
-
-    let enabled =
-    localStorage.getItem(
-        "animationEnabled"
-    );
-
-
-    if(enabled===null){
-
-        enabled=true;
-
-    }
-    else{
-
-        enabled =
-        enabled==="true";
-
-    }
-
-
-
-    sw.checked=enabled;
-
-
-
-    document.body.classList.toggle(
-        "no-animation",
-        !enabled
-    );
-
-
-
-    sw.onchange=()=>{
-
-
-        enabled =
-        sw.checked;
-
-
-        localStorage.setItem(
-            "animationEnabled",
-            enabled
-        );
-
-
-
-        document.body.classList.toggle(
-            "no-animation",
-            !enabled
-        );
-
-
-    };
-
-
-}
