@@ -17,6 +17,8 @@ let currentPath=[];
 
 let downloadUrl="";
 
+let downloadReadme="";
+
 
 // =====================
 // 初始化
@@ -1434,6 +1436,11 @@ decodeURIComponent(url);
 
 
 
+downloadReadme=
+readme || "";
+
+
+
 document.getElementById("downloadName")
 .innerHTML=
 decodeURIComponent(name);
@@ -1466,26 +1473,33 @@ icons[icon]||icons[0];
 
 // 加载文件介绍
 
-loadDownloadReadme(readme);
+loadDownloadReadme();
 
 
 
-// 隐藏资源页
+// 隐藏资源
 
 document.getElementById("resource")
 .classList.add("hide");
 
 
-// 显示下载页
 
-document.getElementById("download")
-.classList.remove("hide");
+// 显示下载
 
+let page=
+document.getElementById("download");
+
+
+page.classList.remove("hide");
+
+
+void page.offsetWidth;
+
+
+page.classList.add("page-show");
 
 
 }
-
-
 
 
 // =====================
