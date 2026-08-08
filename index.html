@@ -48,6 +48,7 @@ placeholder="🔍 搜索资源..."
 
 <div class="tabs">
 
+
 <button 
 class="active"
 onclick="showTab('resource',this)">
@@ -100,7 +101,6 @@ id="breadcrumb">
 
 
 
-
 <!-- 第二段：文件列表 -->
 
 <main id="list">
@@ -111,9 +111,7 @@ id="breadcrumb">
 
 
 
-
 <!-- 第三段：介绍 -->
-
 
 <div 
 class="box"
@@ -125,6 +123,81 @@ id="readme">
 
 </div>
 
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- =====================
+下载页面
+===================== -->
+
+
+<div 
+id="download"
+class="hide download-page">
+
+
+<div class="card download-box download-window">
+
+
+<div 
+id="downloadIcon"
+class="download-icon">
+
+🌐
+
+</div>
+
+
+
+<h2 
+id="downloadName">
+
+文件下载
+
+</h2>
+
+
+
+
+<button 
+onclick="startDownload()">
+
+⬇️ 立即下载
+
+</button>
+
+
+
+
+<button 
+onclick="copyDownloadLink()">
+
+🔗 复制链接
+
+</button>
+
+
+
+
+<button 
+onclick="backResource()">
+
+↩️ 返回
+
+</button>
+
+
+
+</div>
 
 
 </div>
@@ -220,10 +293,12 @@ target="_blank">
 </a>
 
 
+
 <img 
 id="wechat"
 src="assets/wechat.png"
 >
+
 
 
 
@@ -234,10 +309,12 @@ src="assets/wechat.png"
 </a>
 
 
+
 <img 
 id="telegram"
 src="assets/tg.jpg"
 >
+
 
 
 </div>
@@ -272,9 +349,11 @@ class="hide">
 
 
 
+
 <p>
 🎨 主题模式
 </p>
+
 
 
 <select id="themeSelect">
@@ -302,6 +381,8 @@ class="hide">
 
 
 </select>
+
+
 
 
 
@@ -387,6 +468,7 @@ id="musicSwitch">
 
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
 <script src="script.js?v=4"></script>
 
 

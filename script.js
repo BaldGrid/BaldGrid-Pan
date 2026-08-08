@@ -15,6 +15,8 @@ let currentFolder=null;
 
 let currentPath=[];
 
+let downloadUrl="";
+
 
 // =====================
 // 初始化
@@ -77,7 +79,8 @@ function showTab(tabId,btn){
 "resource",
 "friend",
 "author",
-"setting"
+"setting",
+"download"
 ]
 .forEach(id=>{
 
@@ -364,15 +367,21 @@ card.innerHTML=
 ${escapeHtml(item.desc||"暂无描述")}
 </p>
 
-
-<a href="${escapeHtml(item.url)}"
-target="_blank">
-
-📎 打开资源
-
-</a>
-
 `;
+
+
+
+card.onclick=()=>{
+
+
+openDownload(
+encodeURIComponent(item.url),
+encodeURIComponent(item.name),
+item.icon || 0
+);
+
+
+};
 
 
 
@@ -1397,3 +1406,93 @@ index
 
 }
 
+// =====================
+// 下载页面
+// =====================
+
+function openDownload(url,name,icon){
+
+
+downloadUrl=
+decodeURIComponent(url);
+
+
+
+document.getElementById("downloadName")
+.innerHTML=
+decodeURIComponent(name);
+
+
+
+let icons=[
+
+"🌐",
+"📦",
+"📁",
+"📄",
+"🎵",
+"🎬",
+"🖼️",
+"📱",
+"⚙️",
+"🚀",
+"🔥"
+
+];
+
+
+
+document.getElementById("downloadIcon")
+.innerHTML=
+icons[icon]||icons[0];
+
+
+
+
+// 隐藏资源页
+
+document.getElementById("resource")
+.classList.add("hide");
+
+
+// 显示下载页
+
+document.getElementById("download")
+.classList.remove("hide");
+
+
+}
+
+function startDownload(){
+
+location.href=downloadUrl;
+
+}
+
+
+
+function copyDownloadLink(){
+
+
+navigator.clipboard.writeText(downloadUrl);
+
+
+alert("链接已复制");
+
+
+}
+
+
+
+function backResource(){
+
+
+document.getElementById("download")
+.classList.add("hide");
+
+
+document.getElementById("resource")
+.classList.remove("hide");
+
+
+}

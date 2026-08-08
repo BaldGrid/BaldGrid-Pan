@@ -52,13 +52,16 @@
 
     --sub:#aaa;
 
+    --border:rgba(255,255,255,.15);
+
 }
 
 
 
 
+
 /* =====================
-   基础修复
+   基础
 ===================== */
 
 
@@ -87,7 +90,6 @@ body{
 
     margin:0;
 
-
     min-height:100vh;
 
 
@@ -98,11 +100,13 @@ body{
     sans-serif;
 
 
+
     color:var(--text);
 
 
 
     background:
+
 
     radial-gradient(
 
@@ -114,6 +118,7 @@ body{
 
     ),
 
+
     var(--bg);
 
 
@@ -121,6 +126,8 @@ body{
     transition:.3s;
 
 }
+
+
 
 
 
@@ -136,7 +143,9 @@ body{
 
     backdrop-filter:blur(25px);
 
+
     -webkit-backdrop-filter:blur(25px);
+
 
 
     border:
@@ -144,11 +153,15 @@ body{
     1px solid rgba(255,255,255,.15);
 
 
+
     box-shadow:
 
     0 10px 40px rgba(0,0,0,.25);
 
 }
+
+
+
 
 
 
@@ -170,7 +183,9 @@ header{
     overflow:hidden;
 
 
+
     background:
+
 
 
     linear-gradient(
@@ -184,9 +199,12 @@ header{
     );
 
 
+
     backdrop-filter:blur(25px);
 
+
     -webkit-backdrop-filter:blur(25px);
+
 
 
     border-bottom:
@@ -235,6 +253,8 @@ header p{
 
 
 
+
+
 /* =====================
    公告
 ===================== */
@@ -261,10 +281,13 @@ header p{
     border-radius:15px;
 
 
+
     background:var(--box);
 
 
+
     backdrop-filter:blur(20px);
+
 
 
     border:
@@ -273,6 +296,8 @@ header p{
 
 
 }
+
+
 
 
 
@@ -304,32 +329,33 @@ header p{
     border-radius:20px;
 
 
+
     border:
 
     1px solid var(--border);
 
 
+
     outline:none;
+
 
 
     background:var(--box);
 
 
+
     backdrop-filter:blur(20px);
 
 
+
     color:var(--text);
+
 
 
     font-size:16px;
 
 
 }
-
-
-
-
-
 
 /* =====================
    Tab
@@ -354,10 +380,16 @@ header p{
     border-radius:15px;
 
 
+
     background:var(--box);
 
 
+
     backdrop-filter:blur(25px);
+
+
+    -webkit-backdrop-filter:blur(25px);
+
 
 
     border:
@@ -428,6 +460,7 @@ header p{
 
 
 
+
 /* =====================
    页面
 ===================== */
@@ -475,30 +508,33 @@ header p{
 
 }
 
+
+
+
+
+
+
 /* =====================
-   资源卡片
+   资源列表
 ===================== */
 
 
 #list{
 
 
-    display:grid;
+    display:flex;
 
 
-    grid-template-columns:
+    flex-direction:column;
 
 
-    repeat(
-        auto-fit,
-        minmax(260px,1fr)
-    );
-
-
-    gap:20px;
+    gap:12px;
 
 
 }
+
+
+
 
 
 
@@ -517,7 +553,9 @@ header p{
     border-radius:18px;
 
 
+
     background:var(--card);
+
 
 
     backdrop-filter:blur(25px);
@@ -526,14 +564,17 @@ header p{
     -webkit-backdrop-filter:blur(25px);
 
 
+
     border:
 
     1px solid var(--border);
 
 
+
     box-shadow:
 
     0 10px 40px rgba(0,0,0,.25);
+
 
 
     transition:.3s;
@@ -544,10 +585,12 @@ header p{
 
 
 
+
 .card:hover{
 
 
     transform:translateY(-5px);
+
 
 
     box-shadow:
@@ -556,6 +599,7 @@ header p{
 
 
 }
+
 
 
 
@@ -587,34 +631,29 @@ header p{
 
 
 
-.card a{
 
 
-    display:block;
+/* =====================
+   OpenList 文件卡片
+===================== */
 
 
-    margin-top:12px;
+.resource-card{
 
 
-    padding:12px;
+    display:flex;
 
 
-    text-align:center;
+    align-items:center;
 
 
-    border-radius:10px;
+    justify-content:space-between;
 
 
-    background:var(--blue);
+    cursor:pointer;
 
 
-    color:white;
-
-
-    text-decoration:none;
-
-
-    transition:.25s;
+    padding:16px 20px;
 
 
 }
@@ -622,10 +661,14 @@ header p{
 
 
 
-.card a:hover{
+
+.resource-card h2{
 
 
-    background:#0080ff;
+    margin:0;
+
+
+    font-size:18px;
 
 
 }
@@ -633,10 +676,116 @@ header p{
 
 
 
-.card a:active{
+.resource-card p{
 
 
-    transform:scale(.95);
+    margin:5px 0 0;
+
+
+    font-size:14px;
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================
+   路径
+===================== */
+
+
+#breadcrumb{
+
+
+    margin-bottom:20px;
+
+
+    padding:15px 20px;
+
+
+    border-radius:15px;
+
+
+
+    background:var(--box);
+
+
+
+    backdrop-filter:blur(20px);
+
+
+    -webkit-backdrop-filter:blur(20px);
+
+
+
+    border:
+
+    1px solid var(--border);
+
+
+
+    font-size:16px;
+
+
+}
+
+
+
+
+
+
+
+/* =====================
+   README
+===================== */
+
+
+#readme{
+
+
+    margin-top:20px;
+
+
+    padding:20px;
+
+
+    min-height:120px;
+
+
+    border-radius:18px;
+
+
+
+    background:var(--box);
+
+
+
+    backdrop-filter:blur(25px);
+
+
+
+    border:
+
+    1px solid var(--border);
+
+
+
+    line-height:1.8;
+
+
+}
+
+
+
+#readme h3{
+
+
+    margin-top:0;
 
 
 }
@@ -681,10 +830,13 @@ header p{
     text-decoration:none;
 
 
+
     background:var(--card);
 
 
+
     backdrop-filter:blur(18px);
+
 
 
     border:
@@ -692,10 +844,12 @@ header p{
     1px solid var(--border);
 
 
+
     transition:.3s;
 
 
 }
+
 
 
 
@@ -712,6 +866,8 @@ header p{
 
 
 }
+
+
 
 
 
@@ -736,17 +892,14 @@ header p{
     1px solid var(--border);
 
 
+
     background:var(--box);
 
 
     color:var(--text);
 
 
-    outline:none;
-
-
 }
-
 
 
 
@@ -763,9 +916,6 @@ header p{
 
 
     padding:8px 0;
-
-
-    cursor:pointer;
 
 
 }
@@ -786,75 +936,53 @@ header p{
 
 }
 
-
-
-
-
 /* =====================
-   二维码
+   二维码 / 电报图片
 ===================== */
 
 
-#wechat{
-
-
-    display:none;
-
-
-    width:220px;
-
-
-    margin-top:20px;
-
-
-    border-radius:12px;
-
-
-}
-
-
-
-#wechat.show{
-
-
-    display:block;
-
-
-    animation:
-
-    zoom .3s ease;
-
-
-}
-
+#wechat,
 #telegram{
 
+
     display:none;
+
 
     width:220px;
 
+
     margin-top:20px;
 
+
     border-radius:12px;
+
 
 }
 
 
 
+#wechat.show,
 #telegram.show{
 
+
     display:block;
+
 
     animation:
 
     zoom .3s ease;
 
+
 }
+
+
+
+
 
 
 
 /* =====================
-   玻璃光效
+   玻璃流光
 ===================== */
 
 
@@ -870,6 +998,7 @@ header p{
 
 
     inset:0;
+
 
 
     background:
@@ -888,19 +1017,23 @@ header p{
     );
 
 
+
     transform:translateX(-120%);
+
 
 
     animation:
 
-
     glassMove 6s infinite;
+
 
 
     pointer-events:none;
 
 
 }
+
+
 
 
 
@@ -912,6 +1045,7 @@ header p{
 
         transform:translateX(-120%);
 
+
     }
 
 
@@ -921,7 +1055,9 @@ header p{
 
         transform:translateX(120%);
 
+
     }
+
 
 }
 
@@ -929,8 +1065,10 @@ header p{
 
 
 
+
+
 /* =====================
-   动画
+   页面动画
 ===================== */
 
 
@@ -948,6 +1086,7 @@ header p{
         translateY(25px)
 
         scale(.96);
+
 
 
         filter:blur(10px);
@@ -970,12 +1109,15 @@ header p{
         scale(1);
 
 
+
         filter:blur(0);
 
 
     }
 
+
 }
+
 
 
 
@@ -995,6 +1137,7 @@ header p{
     }
 
 
+
     to{
 
 
@@ -1006,7 +1149,208 @@ header p{
 
     }
 
+
 }
+
+
+
+
+
+
+
+/* =====================
+   文件夹切换动画
+===================== */
+
+
+.folder-animation{
+
+
+    animation:
+
+    folderIn .35s ease;
+
+
+}
+
+
+
+
+
+@keyframes folderIn{
+
+
+    from{
+
+
+        opacity:0;
+
+
+        transform:translateX(30px);
+
+
+        filter:blur(8px);
+
+
+    }
+
+
+
+    to{
+
+
+        opacity:1;
+
+
+        transform:translateX(0);
+
+
+        filter:blur(0);
+
+
+    }
+
+
+}
+
+
+
+
+
+.folder-item{
+
+
+    animation:
+
+    folderOpen .35s ease both;
+
+
+}
+
+
+
+
+
+@keyframes folderOpen{
+
+
+    from{
+
+
+        opacity:0;
+
+
+        transform:
+
+        translateY(20px)
+
+        scale(.96);
+
+
+
+        filter:blur(8px);
+
+
+    }
+
+
+
+    to{
+
+
+        opacity:1;
+
+
+        transform:
+
+        translateY(0)
+
+        scale(1);
+
+
+
+        filter:blur(0);
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================
+   README动画
+===================== */
+
+
+.readme-animation{
+
+
+    animation:
+
+    readmeIn .45s ease;
+
+
+}
+
+
+
+
+
+@keyframes readmeIn{
+
+
+    from{
+
+
+        opacity:0;
+
+
+        transform:
+
+        translateY(25px)
+
+        scale(.96);
+
+
+
+        filter:blur(10px);
+
+
+    }
+
+
+
+    to{
+
+
+        opacity:1;
+
+
+        transform:
+
+        translateY(0)
+
+        scale(1);
+
+
+
+        filter:blur(0);
+
+
+    }
+
+
+}
+
+
+
 
 
 
@@ -1047,6 +1391,451 @@ header p{
 
 
 }
+
+
+
+
+
+
+
+/* =====================
+   关闭玻璃
+===================== */
+
+
+body.no-glass .card,
+body.no-glass .notice,
+body.no-glass .tabs,
+body.no-glass #links a,
+body.no-glass #search,
+body.no-glass #themeSelect,
+body.no-glass header{
+
+
+    backdrop-filter:none!important;
+
+
+    -webkit-backdrop-filter:none!important;
+
+
+}
+
+
+
+
+
+body.no-glass .card,
+body.no-glass .notice,
+body.no-glass .tabs,
+body.no-glass #links a,
+body.no-glass #search,
+body.no-glass #themeSelect{
+
+
+    background:var(--bg);
+
+
+}
+
+
+
+
+
+body.no-glass .card::before,
+body.no-glass .notice::before,
+body.no-glass .tabs::before{
+
+
+    display:none!important;
+
+
+}
+
+
+
+
+
+
+
+/* =====================
+   关闭动画
+===================== */
+
+
+body.no-animation *,
+body.no-animation *::before,
+body.no-animation *::after{
+
+
+    animation:none!important;
+
+
+    transition:none!important;
+
+
+}
+
+/* =====================
+   下载页面
+===================== */
+
+
+#download{
+
+
+    min-height:60vh;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+}
+
+
+
+
+
+.download-box{
+
+
+    width:90%;
+
+
+    max-width:420px;
+
+
+    padding:40px 25px;
+
+
+    text-align:center;
+
+
+
+    animation:
+
+    downloadShow .45s ease;
+
+
+
+}
+
+
+
+
+
+
+
+/* 下载图标 */
+
+
+.download-icon{
+
+
+    width:120px;
+
+
+    height:120px;
+
+
+    margin:0 auto 20px;
+
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+
+    border-radius:50%;
+
+
+
+    font-size:70px;
+
+
+
+    background:
+
+    rgba(255,255,255,.12);
+
+
+
+    backdrop-filter:blur(20px);
+
+
+
+    border:
+
+    1px solid var(--border);
+
+
+
+    animation:
+
+    iconFloat 2s infinite ease-in-out;
+
+
+}
+
+
+
+
+
+
+
+#downloadName{
+
+
+    margin:20px 0 35px;
+
+
+    font-size:24px;
+
+
+    word-break:break-all;
+
+
+}
+
+
+
+
+
+
+
+
+/* 三个按钮 */
+
+
+.download-box button{
+
+
+    display:block;
+
+
+
+    width:85%;
+
+
+    max-width:320px;
+
+
+
+    margin:15px auto;
+
+
+
+    padding:17px;
+
+
+
+    border:0;
+
+
+
+    border-radius:25px;
+
+
+
+    font-size:18px;
+
+
+
+    color:var(--text);
+
+
+
+    cursor:pointer;
+
+
+
+    background:
+
+
+    rgba(255,255,255,.15);
+
+
+
+    backdrop-filter:blur(20px);
+
+
+
+    border:
+
+    1px solid var(--border);
+
+
+
+    transition:.3s;
+
+
+}
+
+
+
+
+
+.download-box button:first-of-type{
+
+
+    background:
+
+
+    linear-gradient(
+
+    135deg,
+
+    #0057ff,
+
+    #00c6ff
+
+    );
+
+
+    color:white;
+
+
+}
+
+
+
+
+
+
+
+.download-box button:hover{
+
+
+    transform:
+
+    scale(1.06);
+
+
+}
+
+
+
+
+
+.download-box button:active{
+
+
+    transform:
+
+    scale(.95);
+
+
+}
+
+
+
+
+
+
+
+
+
+/* 下载窗口出现 */
+
+
+@keyframes downloadShow{
+
+
+    from{
+
+
+        opacity:0;
+
+
+        transform:
+
+
+        translateY(40px)
+
+        scale(.9);
+
+
+
+        filter:blur(10px);
+
+
+    }
+
+
+
+    to{
+
+
+        opacity:1;
+
+
+        transform:
+
+
+        translateY(0)
+
+        scale(1);
+
+
+
+        filter:blur(0);
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
+/* 图标浮动 */
+
+
+@keyframes iconFloat{
+
+
+    0%,100%{
+
+
+        transform:
+
+        translateY(0);
+
+
+    }
+
+
+
+    50%{
+
+
+        transform:
+
+        translateY(-12px);
+
+
+    }
+
+
+}
+
+
+
 
 
 
@@ -1151,258 +1940,11 @@ header p{
 
 
 
-#list{
-
-
-    grid-template-columns:1fr;
-
-
-    gap:15px;
-
-
-}
-
-
-
-.card{
-
-
-    width:100%;
-
-
-}
-
-
-
-}
-
-/* 文件夹切换动画 */
-
-.folder-animation{
-
-    animation:folderIn .35s ease;
-
-}
-
-
-
-@keyframes folderIn{
-
-
-    from{
-
-        opacity:0;
-
-        transform:translateX(30px);
-
-        filter:blur(8px);
-
-    }
-
-
-
-    to{
-
-        opacity:1;
-
-        transform:translateX(0);
-
-        filter:blur(0);
-
-    }
-
-
-}
-
-.folder-item{
-
-animation:folderOpen .35s ease both;
-
-}
-
-
-
-@keyframes folderOpen{
-
-from{
-
-opacity:0;
-
-transform:translateY(20px) scale(.96);
-
-filter:blur(8px);
-
-}
-
-
-to{
-
-opacity:1;
-
-transform:translateY(0) scale(1);
-
-filter:blur(0);
-
-}
-
-}
-
-
-/* =====================
-   关闭液态玻璃
-===================== */
-
-body.no-glass .card,
-body.no-glass .notice,
-body.no-glass .tabs,
-body.no-glass #links a,
-body.no-glass #search,
-body.no-glass #themeSelect,
-body.no-glass header{
-
-
-    backdrop-filter:none !important;
-
-    -webkit-backdrop-filter:none !important;
-
-
-}
-
-
-/* 去除透明玻璃背景 */
-
-body.no-glass .card,
-body.no-glass .notice,
-body.no-glass .tabs,
-body.no-glass #links a,
-body.no-glass #search,
-body.no-glass #themeSelect{
-
-
-    background:var(--bg);
-
-
-}
-
-
-
-/* 关闭流光 */
-
-body.no-glass .card::before,
-body.no-glass .notice::before,
-body.no-glass .tabs::before{
-
-    display:none!important;
-
-}
-
-/* =====================
-   关闭动画
-===================== */
-
-
-body.no-animation *,
-body.no-animation *::before,
-body.no-animation *::after{
-
-
-    animation:none!important;
-
-
-    transition:none!important;
-
-
-}
-
-/* =====================
-   OpenList 三段式布局
-===================== */
-
-
-/* 第一段：路径 */
-
-#breadcrumb{
-
-
-    margin-bottom:20px;
-
-
-    padding:15px 20px;
-
-
-    border-radius:15px;
-
-
-    background:var(--box);
-
-
-    backdrop-filter:blur(20px);
-
-    -webkit-backdrop-filter:blur(20px);
-
-
-    border:
-
-    1px solid var(--border);
-
-
-    color:var(--text);
-
-
-    font-size:16px;
-
-
-    box-shadow:
-
-    0 10px 30px rgba(0,0,0,.2);
-
-
-}
-
-
-
-
-
-
-/* 第二段：文件列表 */
-
-
-#list{
-
-
-    display:flex;
-
-
-    flex-direction:column;
-
-
-    gap:12px;
-
-
-}
-
-
-
-
-
-/* 文件/文件夹 */
 
 .resource-card{
 
 
-    display:flex;
-
-
-    align-items:center;
-
-
-    justify-content:space-between;
-
-
-    cursor:pointer;
-
-
-    padding:16px 20px;
+    display:block;
 
 
 }
@@ -1414,25 +1956,27 @@ body.no-animation *::after{
 .resource-card h2{
 
 
-    margin:0;
-
-
-    font-size:18px;
+    font-size:17px;
 
 
 }
-
-
 
 
 
 .resource-card p{
 
 
-    margin:5px 0 0;
+    margin-top:8px;
 
 
-    font-size:14px;
+}
+
+
+
+.download-box{
+
+
+    padding:30px 15px;
 
 
 }
@@ -1441,21 +1985,16 @@ body.no-animation *::after{
 
 
 
-/* 文件下载按钮 */
-
-.resource-card a{
+.download-icon{
 
 
-    width:auto;
+    width:100px;
 
 
-    min-width:90px;
+    height:100px;
 
 
-    margin:0;
-
-
-    padding:8px 15px;
+    font-size:55px;
 
 
 }
@@ -1464,99 +2003,7 @@ body.no-animation *::after{
 
 
 
-/* 第三段：readme */
-
-
-#readme{
-
-    margin-top:20px;
-
-    padding:20px;
-
-    min-height:120px;
-
-    border-radius:18px;
-
-    background:var(--box);
-
-    backdrop-filter:blur(25px);
-
-    -webkit-backdrop-filter:blur(25px);
-
-    border:
-
-    1px solid var(--border);
-
-    color:var(--text);
-
-    line-height:1.8;
-
-}
-
-
-/* readme切换动画 */
-
-.readme-animation{
-
-    animation:
-
-    readmeIn .45s ease;
-
-}
-
-
-
-@keyframes readmeIn{
-
-
-    from{
-
-
-        opacity:0;
-
-
-        transform:
-
-        translateY(25px)
-
-        scale(.96);
-
-
-        filter:blur(10px);
-
-
-    }
-
-
-
-    to{
-
-
-        opacity:1;
-
-
-        transform:
-
-        translateY(0)
-
-        scale(1);
-
-
-        filter:blur(0);
-
-
-    }
-
-
-}
-
-
-
-
-#readme h3{
-
-
-    margin-top:0;
+#downloadName{
 
 
     font-size:20px;
@@ -1566,78 +2013,10 @@ body.no-animation *::after{
 
 
 
+.download-box button{
 
 
-#readme pre{
-
-
-    white-space:pre-wrap;
-
-
-    font-family:
-
-    "Microsoft YaHei",
-    Arial,
-    sans-serif;
-
-
-    color:var(--sub);
-
-
-}
-
-
-
-
-
-/* 返回按钮 */
-
-#list .card:first-child{
-
-
-    border-left:
-
-    4px solid var(--blue);
-
-
-}
-
-
-
-
-
-
-/* 手机适配 */
-
-@media(max-width:600px){
-
-
-.resource-card{
-
-
-    display:block;
-
-
-}
-
-
-.resource-card a{
-
-
-    margin-top:12px;
-
-
-    width:100%;
-
-
-}
-
-
-
-#breadcrumb{
-
-
-    font-size:14px;
+    width:95%;
 
 
 }
