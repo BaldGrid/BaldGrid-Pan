@@ -393,7 +393,7 @@ openDownload(
 encodeURIComponent(item.url),
 encodeURIComponent(item.name),
 item.icon || 0,
-currentFolder.readme || ""
+item.readme || ""
 );
 
 
@@ -1473,8 +1473,7 @@ icons[icon]||icons[0];
 
 // 加载文件介绍
 
-loadDownloadReadme();
-
+loadDownloadReadme(downloadReadme);
 
 
 // 隐藏资源
