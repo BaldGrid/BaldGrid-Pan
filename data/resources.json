@@ -4,6 +4,7 @@
         "type": "folder",
         "desc": "Android 刷机相关资源",
         "children": [
+        "readme":"data/rm/android.md"
             {
                 "name": "欧珀 OPPO",
                 "type": "folder",
@@ -158,6 +159,7 @@
         "name": "游戏开发",
         "type": "folder",
         "desc": "游戏相关项目",
+        "readme":"data/rm/game.md"
         "children": [
             {
                 "name": "米塔的袭击beta3源代码",

@@ -157,7 +157,8 @@ data=json;
 folderStack=[];
 
 currentFolder={
-children:data
+children:data,
+readme:"data/rm/root.md"
 };
 
 currentPath=[];
@@ -457,9 +458,9 @@ box.innerHTML=
 资源介绍
 </h3>
 
-<pre>
-${escapeHtml(text)}
-</pre>
+<div class="markdown">
+${marked.parse(text)}
+</div>
 `;
 
 
