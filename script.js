@@ -265,22 +265,35 @@ back.innerHTML=
 back.onclick=()=>{
 
 
+let parent=
 folderStack.pop();
 
-currentFolder=
-folderStack[
-folderStack.length-1
-]
-||
-{
-children:data
+
+
+if(parent){
+
+
+currentFolder=parent;
+
+
+}else{
+
+
+currentFolder={
+children:data,
+readme:"data/rm/root.md"
 };
+
+
+}
+
 
 
 currentPath.pop();
 
 
 renderFolder();
+
 
 
 };
@@ -542,7 +555,8 @@ if(!key){
 
 
 currentFolder={
-children:data
+children:data,
+readme:"data/rm/root.md"
 };
 
 
