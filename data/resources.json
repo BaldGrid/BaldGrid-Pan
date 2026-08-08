@@ -27,7 +27,7 @@
                                         "name": "线刷包",
                                         "type": "folder",
                                         "desc": "",
-                                        "readme": "data/rm/xsb.md",
+                                        "readme": "data/rm/file/xsb.md",
                                         "children": [
                                             {
                                                 "name": "大陆国行",
