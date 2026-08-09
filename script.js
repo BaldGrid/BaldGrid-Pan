@@ -600,7 +600,7 @@
             .then(data => {
                 if (!Array.isArray(data) || !data.length) {
                     container.innerHTML =
-                        `<div class="a-error"><h3>📭 暂无作者信息</h3><p>请添加 data/zuozhe.json</p></div>`;
+                        `<div class="card glass" style="text-align:center;padding:30px;">📭 暂无作者信息</div>`;
                     return;
                 }
                 renderAuthors(container, data);
@@ -608,7 +608,7 @@
             .catch(err => {
                 console.warn('[Authors]', err);
                 container.innerHTML =
-                    `<div class="a-error"><h3>⚠️ 加载失败</h3><p>请检查 data/zuozhe.json 是否存在且格式正确</p></div>`;
+                    `<div class="card glass" style="text-align:center;padding:30px;">⚠️ 加载失败，请检查 data/zuozhe.json</div>`;
             });
     };
 
@@ -618,7 +618,7 @@
 
         items.forEach((item, index) => {
             const card = document.createElement('div');
-            card.className = 'author-card';
+            card.className = 'author-card glass';
             card.dataset.index = index;
 
             const icon = item.icon || '👤';
@@ -626,28 +626,28 @@
             const role = escapeHtml(item.role || '');
             const desc = item.desc ? escapeHtml(item.desc) : '';
             const image = item.image || '';
-            const link = item.link || '';
+            const links = item.links || [];
 
             // 头部
             const header = document.createElement('div');
-            header.className = 'a-header';
+            header.className = 'author-header';
             header.innerHTML = `
-                <span class="a-icon">${icon}</span>
-                <div class="a-info">
-                    <div class="a-name">${name}</div>
-                    ${role ? `<div class="a-role">${role}</div>` : ''}
+                <span class="author-icon">${icon}</span>
+                <div class="author-info">
+                    <div class="author-name">${name}</div>
+                    ${role ? `<div class="author-role">${role}</div>` : ''}
                 </div>
-                <span class="a-arrow">›</span>
+                <span class="author-arrow">›</span>
             `;
             card.appendChild(header);
 
             // 展开区
             const expand = document.createElement('div');
-            expand.className = 'a-expand';
+            expand.className = 'author-expand';
 
             // 图片
             const wrap = document.createElement('div');
-            wrap.className = 'a-image-wrap';
+            wrap.className = 'author-image-wrap';
             if (image) {
                 const img = document.createElement('img');
                 img.src = image;
@@ -655,34 +655,38 @@
                 img.loading = 'lazy';
                 img.onerror = () => {
                     wrap.innerHTML =
-                        `<div class="a-img-placeholder">🖼️ 图片加载失败</div>`;
+                        `<div class="author-img-placeholder">🖼️ 图片加载失败</div>`;
                 };
                 wrap.appendChild(img);
             } else {
                 wrap.innerHTML =
-                    `<div class="a-img-placeholder">📷 暂无图片</div>`;
+                    `<div class="author-img-placeholder">📷 暂无图片</div>`;
             }
             expand.appendChild(wrap);
 
             // 描述
             if (desc) {
                 const p = document.createElement('div');
-                p.className = 'a-desc';
+                p.className = 'author-desc';
                 p.textContent = desc;
                 expand.appendChild(p);
             }
 
-            // 链接按钮
-            if (link) {
-                const btn = document.createElement('a');
-                btn.className = 'a-link-btn';
-                btn.href = link;
-                btn.target = '_blank';
-                btn.rel = 'noopener noreferrer';
-                btn.innerHTML = '🔗 访问链接';
-                // 阻止卡片点击冒泡，避免展开/收起干扰
-                btn.addEventListener('click', e => e.stopPropagation());
-                expand.appendChild(btn);
+            // 链接按钮（支持多个）
+            if (links.length) {
+                const btnGroup = document.createElement('div');
+                btnGroup.className = 'author-links';
+                links.forEach(link => {
+                    const a = document.createElement('a');
+                    a.className = 'author-link-btn';
+                    a.href = link.url || '#';
+                    a.target = '_blank';
+                    a.rel = 'noopener noreferrer';
+                    a.textContent = link.label || '链接';
+                    a.addEventListener('click', e => e.stopPropagation());
+                    btnGroup.appendChild(a);
+                });
+                expand.appendChild(btnGroup);
             }
 
             card.appendChild(expand);
@@ -695,26 +699,20 @@
         const cards = container.querySelectorAll('.author-card');
         cards.forEach(card => {
             card.addEventListener('click', function(e) {
-                // 如果点的是链接按钮内部，不处理（已 stopPropagation）
-                if (e.target.closest('.a-link-btn')) return;
+                if (e.target.closest('.author-link-btn')) return;
 
                 const isActive = this.classList.contains('active');
-                // 先收起所有
                 cards.forEach(c => c.classList.remove('active'));
-                // 如果之前是收起状态，则展开当前
                 if (!isActive) {
                     this.classList.add('active');
-                    // 滚动到可视区域（移动端友好）
                     this.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
                 }
             });
         });
 
-        // 默认展开第一个（如果只有一个或第一个有内容）
+        // 默认展开第一个（只有一个作者时）
         if (cards.length === 1) {
             cards[0].classList.add('active');
-        } else if (cards.length > 1) {
-            // 不自动展开，让用户点击
         }
     };
 
