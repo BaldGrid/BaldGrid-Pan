@@ -1850,154 +1850,63 @@ body {
   .glass-btn, .glass-btn-play, .glass-btn-rect, .music-open-btn { transition: none; }
 }
 /* =====================================================
-   BaldGrid Pure White Light Glass Theme
-   完整浅色白色背景版
+   BaldGrid Light Glass + Performance Balance
 ===================================================== */
 
 
 /* =====================
-   浅色主题变量
+   浅色背景
 ===================== */
 
-[data-theme="light"] {
-
-
-    --bg:#f5f5f7;
-
-
-    --bg-elevated:
-    rgba(255,255,255,.85);
-
-
-    --card:
-    rgba(255,255,255,.72);
-
-
-    --box:
-    rgba(255,255,255,.82);
-
-
-    --text:
-    #1c1c1e;
-
-
-    --sub:
-    #6e6e73;
-
-
-    --separator:
-    rgba(0,0,0,.08);
-
-
-
-    --bg-gradient:
-
-    radial-gradient(
-        ellipse 70% 45% at 15% 0%,
-        rgba(0,122,255,.18),
-        transparent 60%
-    ),
-
-    radial-gradient(
-        ellipse 60% 50% at 90% 10%,
-        rgba(90,200,250,.15),
-        transparent 60%
-    ),
-
-    linear-gradient(
-        180deg,
-        #ffffff 0%,
-        #f5f5f7 55%,
-        #eeeeef 100%
-    );
-
-
-}
-
-
-
-/* =====================
-   强制浅色背景
-===================== */
-
-
-[data-theme="light"],
 [data-theme="light"] body {
-
 
     background:
 
-    #f5f5f7;
-
+    linear-gradient(
+        180deg,
+        #eaf4ff 0%,
+        #f7f9ff 50%,
+        #ffffff 100%
+    );
 
 }
 
 
+/* =====================
+   背景光晕
+===================== */
 
-/* 页面主背景 */
 
 [data-theme="light"] body::before {
 
 
-    background:
+    content:"";
 
-    radial-gradient(
-        ellipse 70% 40% at 20% 0%,
-        rgba(0,122,255,.12),
-        transparent 65%
-    ),
+    position:fixed;
 
-    radial-gradient(
-        ellipse 50% 40% at 90% 20%,
-        rgba(0,200,255,.12),
-        transparent 65%
-    );
+    inset:0;
 
-
-}
-
-
-
-/* =====================
-   顶部区域
-===================== */
-
-
-[data-theme="light"] header {
+    pointer-events:none;
 
 
     background:
 
-    linear-gradient(
-        180deg,
-        rgba(255,255,255,.95),
-        rgba(245,245,247,.75)
-    );
-
-
-}
-
-
-
-[data-theme="light"] header::before {
-
-
-    background:
 
     radial-gradient(
-        ellipse 70% 80% at 20% 20%,
+        ellipse 70% 45% at 15% 0%,
         rgba(0,122,255,.25),
         transparent 65%
     ),
 
+
     radial-gradient(
-        ellipse 60% 70% at 80% 20%,
-        rgba(90,200,250,.22),
+        ellipse 50% 40% at 90% 10%,
+        rgba(0,200,255,.18),
         transparent 65%
     );
 
 
-    filter:blur(50px);
+    z-index:-1;
 
 
 }
@@ -2005,7 +1914,7 @@ body {
 
 
 /* =====================
-   所有玻璃卡片
+   玻璃卡片
 ===================== */
 
 
@@ -2016,46 +1925,33 @@ body {
 [data-theme="light"] #breadcrumb,
 [data-theme="light"] #readme,
 [data-theme="light"] .download-window,
-[data-theme="light"] .download-readme,
 [data-theme="light"] .mp-player {
 
 
     background:
 
-    rgba(255,255,255,.72);
+    rgba(255,255,255,.6);
 
 
 
     backdrop-filter:
 
-    blur(25px)
-    saturate(160%);
+    blur(20px)
+    saturate(150%);
 
 
 
     -webkit-backdrop-filter:
 
-    blur(25px)
-    saturate(160%);
+    blur(20px)
+    saturate(150%);
 
 
 
     border:
 
     1px solid
-    rgba(255,255,255,.9);
-
-
-
-    box-shadow:
-
-
-    inset 0 1px 0
-    rgba(255,255,255,.9),
-
-
-    0 12px 35px
-    rgba(0,0,0,.08);
+    rgba(255,255,255,.7);
 
 
 }
@@ -2063,49 +1959,23 @@ body {
 
 
 /* =====================
-   文字颜色
+   GPU优化
 ===================== */
 
 
-[data-theme="light"] * {
+.card,
+.notice,
+.tabs,
+.mp-player,
+.download-window {
 
 
-    color:#1c1c1e;
+    transform:
+    translateZ(0);
 
 
-}
-
-
-[data-theme="light"] .sub,
-[data-theme="light"] small {
-
-
-    color:#6e6e73;
-
-
-}
-
-
-
-/* =====================
-   搜索框
-===================== */
-
-
-[data-theme="light"] #search {
-
-
-    color:#1c1c1e;
-
-
-}
-
-
-
-[data-theme="light"] #search::placeholder {
-
-
-    color:#8e8e93;
+    contain:
+    paint;
 
 
 }
@@ -2113,89 +1983,12 @@ body {
 
 
 /* =====================
-   标签栏
-===================== */
-
-
-[data-theme="light"] .tabs button {
-
-
-    color:#6e6e73;
-
-
-}
-
-
-[data-theme="light"] .tabs button.active {
-
-
-    background:
-
-    rgba(255,255,255,.95);
-
-
-
-    color:#000;
-
-
-}
-
-
-
-/* =====================
-   设置按钮
-===================== */
-
-
-[data-theme="light"] button {
-
-
-    color:#1c1c1e;
-
-
-}
-
-
-
-/* =====================
-   音乐播放器
-===================== */
-
-
-[data-theme="light"] .mp-player {
-
-
-    color:#1c1c1e;
-
-
-}
-
-
-[data-theme="light"] .mp-title {
-
-
-    color:#000;
-
-
-}
-
-
-[data-theme="light"] .mp-sub {
-
-
-    color:#6e6e73;
-
-
-}
-
-
-
-/* =====================
-   手机优化
+   手机性能模式
 ===================== */
 
 
 @media(max-width:700px){
+
 
 
     [data-theme="light"] .card,
@@ -2207,14 +2000,82 @@ body {
 
         backdrop-filter:
 
-        blur(18px)
-        saturate(150%);
+        blur(12px)
+        saturate(130%);
+
 
 
         -webkit-backdrop-filter:
 
-        blur(18px)
-        saturate(150%);
+        blur(12px)
+        saturate(130%);
+
+
+    }
+
+
+
+    /* 减少背景计算 */
+
+
+    [data-theme="light"] body::before {
+
+
+        filter:none;
+
+
+    }
+
+
+
+}
+
+
+
+/* =====================
+   低端手机
+===================== */
+
+
+@media(max-width:400px){
+
+
+    [data-theme="light"] .card,
+    [data-theme="light"] .notice,
+    [data-theme="light"] .tabs,
+    [data-theme="light"] #search {
+
+
+        backdrop-filter:none;
+
+        -webkit-backdrop-filter:none;
+
+
+        background:
+
+        rgba(255,255,255,.88);
+
+
+    }
+
+
+
+}
+
+
+
+/* =====================
+   禁止无意义动画
+===================== */
+
+
+@media(max-width:700px){
+
+
+    header::before {
+
+
+        animation:none!important;
 
 
     }
