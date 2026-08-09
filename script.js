@@ -293,10 +293,10 @@
             list.classList.remove('folder-animation');
         }
         renderBreadcrumb();
-    
+
         const frag = document.createDocumentFragment();
         let backAdded = false;
-    
+
         if (State.folderStack.length > 0 || State.isSearchActive) {
             const back = document.createElement('div');
             back.className = 'card resource-card folder-item';
@@ -310,7 +310,7 @@
             frag.appendChild(back);
             backAdded = true;
         }
-    
+
         const children = State.currentFolder?.children || [];
         if (children.length === 0) {
             const empty = document.createElement('div');
@@ -348,7 +348,7 @@
             tpl.innerHTML = parts.join('');
             while (tpl.content.firstChild) frag.appendChild(tpl.content.firstChild);
         }
-    
+
         list.appendChild(frag);
         loadReadme(State.currentFolder);
     };
@@ -521,9 +521,11 @@
         ind.style.width = r.width + 'px';
         ind.style.transform = `translateX(${r.left - pr.left}px)`;
     };
+
+    // ★★★★★ 修改点 1：showTab 隐藏列表增加 'download' ★★★★★
     window.showTab = (tabId, btn) => {
-        // 隐藏所有主页面（不包括 download，由 openDownload 独立控制）
-        ['resource', 'friend', 'author', 'setting'].forEach(id => {
+        // 隐藏所有主页面（包括 download）
+        ['resource', 'friend', 'author', 'setting', 'download'].forEach(id => {
             const el = document.getElementById(id);
             if (el) {
                 el.classList.add('hide');
@@ -531,7 +533,7 @@
                 el.style.display = 'none';
             }
         });
-    
+
         // 显示目标页面
         const target = document.getElementById(tabId);
         if (target) {
@@ -540,14 +542,14 @@
             void target.offsetWidth;
             target.classList.add('page-show');
         }
-    
+
         // 更新按钮状态
         document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
         if (btn) {
             btn.classList.add('active');
             moveTabIndicator(btn);
         }
-    
+
         State.lastTabId = tabId;
         State.lastTabBtn = btn || null;
         window.scrollTo?.({ top: 0, behavior: 'auto' });
@@ -601,12 +603,12 @@
             .catch(err => { console.warn('[Links]', err);
                 c.innerHTML = '<div class="card folder-item"><h3>友情链接</h3><p>暂无</p></div>'; });
     };
-    
+
     // ---- ★ 加载作者（data/zuozhe.json） ----
     const loadAuthors = () => {
         const container = document.getElementById('authorList');
         if (!container) return;
-    
+
         fetch('./data/zuozhe.json', { cache: 'no-store' })
             .then(r => {
                 if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -624,15 +626,15 @@
                 container.innerHTML = `<div class="card glass" style="text-align:center;padding:30px;">⚠️ 加载失败，请检查 data/zuozhe.json</div>`;
             });
     };
-    
+
     const renderAuthors = (container, items) => {
         container.innerHTML = '';
         const frag = document.createDocumentFragment();
-    
+
         items.forEach(item => {
             const card = document.createElement('div');
             card.className = 'author-card glass';
-    
+
             // 头部
             const header = document.createElement('div');
             header.className = 'a-header';
@@ -645,11 +647,11 @@
                 <span class="a-arrow">›</span>
             `;
             card.appendChild(header);
-    
+
             // 展开区
             const expand = document.createElement('div');
             expand.className = 'a-expand';
-    
+
             // 图片
             const wrap = document.createElement('div');
             wrap.className = 'a-image-wrap';
@@ -666,7 +668,7 @@
                 wrap.innerHTML = `<div class="a-img-placeholder">📷 暂无图片</div>`;
             }
             expand.appendChild(wrap);
-    
+
             // 描述
             if (item.desc) {
                 const desc = document.createElement('div');
@@ -674,7 +676,7 @@
                 desc.textContent = item.desc;
                 expand.appendChild(desc);
             }
-    
+
             // 链接按钮
             if (item.links && item.links.length) {
                 const btnGroup = document.createElement('div');
@@ -691,13 +693,13 @@
                 });
                 expand.appendChild(btnGroup);
             }
-    
+
             card.appendChild(expand);
             frag.appendChild(card);
         });
-    
+
         container.appendChild(frag);
-    
+
         // 点击交互
         const cards = container.querySelectorAll('.author-card');
         cards.forEach(card => {
@@ -711,7 +713,7 @@
                 }
             });
         });
-    
+
         // 默认展开第一个
         if (cards.length === 1) {
             cards[0].classList.add('active');
@@ -1036,6 +1038,8 @@
         initListDelegation();
         loadResources();
         loadLinks();
+        // ★★★★★ 修改点 2：加载作者数据 ★★★★★
+        loadAuthors();
         initTabs();
 
         // 窗口 resize 更新 tab 指示器
