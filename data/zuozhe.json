@@ -2,9 +2,8 @@
     {
         "name": "白叶 / guiwowoxx",
         "role": "作者 / 维护者",
-        "icon": "👁️👄👁️",
-        "image": "assets/author.png",
-        "desc": "精神状态良好",
+        "icon": "🤓",
+        "desc": "关注白叶喵，关注白叶谢谢喵",
         "links": [
             { "label": "酷安", "url": "https://www.coolapk.com/u/35803319" },
             { "label": "B站", "url": "https://space.bilibili.com/1009842165" },
@@ -16,13 +15,13 @@
         "role": "喜欢就请我喝杯咖啡吧 ☕",
         "icon": "❤️",
         "image": "assets/wechat.png",
-        "desc": "关注白叶喵，关注白叶谢谢喵",
+        "desc": "感谢您的赞助喵",
         "links": []
     },
     {
         "name": "电报账号",
         "role": "欢迎加本喵好友喵",
-        "icon": "",
+        "icon": "✈️",
         "image": "assets/tg.jpg",
         "desc": "就喵就喵，吵死你喵",
         "links": []
