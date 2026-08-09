@@ -1849,10 +1849,9 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .glass-btn, .glass-btn-play, .glass-btn-rect, .music-open-btn { transition: none; }
 }
-
 /* =====================================================
-   BaldGrid Light Liquid Glass Theme
-   iOS / macOS Sequoia Light Style
+   BaldGrid Pure White Light Glass Theme
+   完整浅色白色背景版
 ===================================================== */
 
 
@@ -1860,73 +1859,56 @@ body {
    浅色主题变量
 ===================== */
 
-
 [data-theme="light"] {
 
 
-    --bg:#edf3ff;
+    --bg:#f5f5f7;
 
 
     --bg-elevated:
-    rgba(255,255,255,.82);
-
+    rgba(255,255,255,.85);
 
 
     --card:
-    rgba(255,255,255,.48);
-
+    rgba(255,255,255,.72);
 
 
     --box:
-    rgba(255,255,255,.62);
-
+    rgba(255,255,255,.82);
 
 
     --text:
     #1c1c1e;
 
 
-
     --sub:
     #6e6e73;
 
 
-
     --separator:
-
-    rgba(60,60,67,.12);
+    rgba(0,0,0,.08);
 
 
 
     --bg-gradient:
 
-
     radial-gradient(
-        ellipse 70% 55% at 10% 0%,
-        rgba(40,120,255,.45),
-        transparent 65%
-    ),
-
-
-    radial-gradient(
-        ellipse 55% 50% at 90% 10%,
-        rgba(0,220,255,.35),
+        ellipse 70% 45% at 15% 0%,
+        rgba(0,122,255,.18),
         transparent 60%
     ),
 
-
     radial-gradient(
-        ellipse 60% 45% at 50% 100%,
-        rgba(170,90,255,.18),
-        transparent 70%
+        ellipse 60% 50% at 90% 10%,
+        rgba(90,200,250,.15),
+        transparent 60%
     ),
-
 
     linear-gradient(
         180deg,
-        #d9ecff 0%,
-        #edf3ff 50%,
-        #f5f5fa 100%
+        #ffffff 0%,
+        #f5f5f7 55%,
+        #eeeeef 100%
     );
 
 
@@ -1935,47 +1917,66 @@ body {
 
 
 /* =====================
-   全局浅色文字
+   强制浅色背景
 ===================== */
 
 
-[data-theme="light"] {
+[data-theme="light"],
+[data-theme="light"] body {
 
 
-    color:#1c1c1e;
+    background:
 
-
-}
-
-
-
-[data-theme="light"] h1,
-[data-theme="light"] h2,
-[data-theme="light"] h3 {
-
-
-    color:#1c1c1e;
+    #f5f5f7;
 
 
 }
 
 
 
-[data-theme="light"] p,
-[data-theme="light"] span {
+/* 页面主背景 */
+
+[data-theme="light"] body::before {
 
 
-    color:inherit;
+    background:
+
+    radial-gradient(
+        ellipse 70% 40% at 20% 0%,
+        rgba(0,122,255,.12),
+        transparent 65%
+    ),
+
+    radial-gradient(
+        ellipse 50% 40% at 90% 20%,
+        rgba(0,200,255,.12),
+        transparent 65%
+    );
 
 
 }
-
 
 
 
 /* =====================
-   Header 顶部光晕
+   顶部区域
 ===================== */
+
+
+[data-theme="light"] header {
+
+
+    background:
+
+    linear-gradient(
+        180deg,
+        rgba(255,255,255,.95),
+        rgba(245,245,247,.75)
+    );
+
+
+}
+
 
 
 [data-theme="light"] header::before {
@@ -1983,46 +1984,31 @@ body {
 
     background:
 
-
     radial-gradient(
-        ellipse 60% 80% at 20% 30%,
-        rgba(0,122,255,.45),
-        transparent 60%
+        ellipse 70% 80% at 20% 20%,
+        rgba(0,122,255,.25),
+        transparent 65%
     ),
 
-
     radial-gradient(
-        ellipse 50% 70% at 80% 30%,
-        rgba(0,210,255,.35),
-        transparent 60%
-    ),
-
-
-    radial-gradient(
-        ellipse 40% 40% at 50% 100%,
-        rgba(170,80,255,.2),
-        transparent 70%
+        ellipse 60% 70% at 80% 20%,
+        rgba(90,200,250,.22),
+        transparent 65%
     );
 
 
-    filter:
-    blur(45px);
-
-
-    opacity:.9;
+    filter:blur(50px);
 
 
 }
 
 
 
-
 /* =====================
-   白色玻璃卡片核心
+   所有玻璃卡片
 ===================== */
 
 
-[data-theme="light"] .glass,
 [data-theme="light"] .card,
 [data-theme="light"] .notice,
 [data-theme="light"] .tabs,
@@ -2030,32 +2016,34 @@ body {
 [data-theme="light"] #breadcrumb,
 [data-theme="light"] #readme,
 [data-theme="light"] .download-window,
-[data-theme="light"] .download-readme {
+[data-theme="light"] .download-readme,
+[data-theme="light"] .mp-player {
 
 
     background:
-    rgba(255,255,255,.48);
+
+    rgba(255,255,255,.72);
 
 
 
     backdrop-filter:
 
-    blur(35px)
-    saturate(180%);
+    blur(25px)
+    saturate(160%);
 
 
 
     -webkit-backdrop-filter:
 
-    blur(35px)
-    saturate(180%);
+    blur(25px)
+    saturate(160%);
 
 
 
     border:
 
     1px solid
-    rgba(255,255,255,.7);
+    rgba(255,255,255,.9);
 
 
 
@@ -2066,13 +2054,33 @@ body {
     rgba(255,255,255,.9),
 
 
-    inset 0 -1px 0
-    rgba(0,0,0,.04),
+    0 12px 35px
+    rgba(0,0,0,.08);
 
 
-    0 12px 40px
-    rgba(60,90,150,.16);
+}
 
+
+
+/* =====================
+   文字颜色
+===================== */
+
+
+[data-theme="light"] * {
+
+
+    color:#1c1c1e;
+
+
+}
+
+
+[data-theme="light"] .sub,
+[data-theme="light"] small {
+
+
+    color:#6e6e73;
 
 
 }
@@ -2104,22 +2112,9 @@ body {
 
 
 
-
 /* =====================
-   Tabs 分段按钮
+   标签栏
 ===================== */
-
-
-[data-theme="light"] .tabs {
-
-
-    background:
-
-    rgba(255,255,255,.55);
-
-
-}
-
 
 
 [data-theme="light"] .tabs button {
@@ -2131,8 +2126,13 @@ body {
 }
 
 
-
 [data-theme="light"] .tabs button.active {
+
+
+    background:
+
+    rgba(255,255,255,.95);
+
 
 
     color:#000;
@@ -2142,19 +2142,15 @@ body {
 
 
 
-
 /* =====================
-   资源卡片
+   设置按钮
 ===================== */
 
 
-[data-theme="light"] .resource-card {
+[data-theme="light"] button {
 
 
-    background:
-
-    rgba(255,255,255,.55);
-
+    color:#1c1c1e;
 
 
 }
@@ -2169,110 +2165,25 @@ body {
 [data-theme="light"] .mp-player {
 
 
-    background:
-
-    rgba(255,255,255,.55);
-
-
-
-    backdrop-filter:
-
-    blur(40px)
-    saturate(180%);
-
-
-
-    -webkit-backdrop-filter:
-
-    blur(40px)
-    saturate(180%);
-
-
-
     color:#1c1c1e;
 
 
 }
-
 
 
 [data-theme="light"] .mp-title {
 
 
-    color:#1c1c1e;
+    color:#000;
 
 
 }
-
 
 
 [data-theme="light"] .mp-sub {
 
 
     color:#6e6e73;
-
-
-}
-
-
-
-
-
-/* =====================
-   下载窗口
-===================== */
-
-
-[data-theme="light"] .download-window {
-
-
-    background:
-
-    rgba(255,255,255,.6);
-
-
-}
-
-
-
-/* =====================
-   按钮
-===================== */
-
-
-[data-theme="light"] button {
-
-
-    color:#1c1c1e;
-
-
-}
-
-
-
-[data-theme="light"] button:hover {
-
-
-    background:
-
-    rgba(255,255,255,.45);
-
-
-}
-
-
-
-/* =====================
-   设置页面
-===================== */
-
-
-[data-theme="light"] .settings-card {
-
-
-    background:
-
-    rgba(255,255,255,.55);
 
 
 }
@@ -2287,57 +2198,23 @@ body {
 @media(max-width:700px){
 
 
-    [data-theme="light"] .glass,
     [data-theme="light"] .card,
     [data-theme="light"] .notice,
     [data-theme="light"] .tabs,
-    [data-theme="light"] #search {
+    [data-theme="light"] #search,
+    [data-theme="light"] .mp-player {
 
 
         backdrop-filter:
 
-        blur(22px)
-        saturate(160%);
-
+        blur(18px)
+        saturate(150%);
 
 
         -webkit-backdrop-filter:
 
-        blur(22px)
-        saturate(160%);
-
-
-    }
-
-
-
-}
-
-
-
-/* =====================
-   低性能模式
-===================== */
-
-
-@media(max-width:400px){
-
-
-    [data-theme="light"] .glass,
-    [data-theme="light"] .card,
-    [data-theme="light"] .notice,
-    [data-theme="light"] .tabs {
-
-
-        backdrop-filter:none;
-
-
-        -webkit-backdrop-filter:none;
-
-
-        background:
-
-        rgba(255,255,255,.9);
+        blur(18px)
+        saturate(150%);
 
 
     }
