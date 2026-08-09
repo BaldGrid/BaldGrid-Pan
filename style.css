@@ -2114,3 +2114,12 @@ body.no-animation *::after {
         gap: 8px;
     }
 }
+
+/* 关闭动画时，强制所有卡片立即可见 */
+body.no-animation .folder-item,
+body.no-animation .resource-card,
+body.no-animation #links a {
+    opacity: 1 !important;
+    animation: none !important;
+    transform: none !important;
+}
