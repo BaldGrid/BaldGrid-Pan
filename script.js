@@ -3,6 +3,7 @@
 // · 删除 BA 蔚蓝档案特效
 // · 删除音乐播放器歌词解析
 // · 保留核心功能
+// · 新增：联系作者 动态加载 data/zuozhe.json
 // =========================================================
 
 (() => {
@@ -13,6 +14,7 @@
         dataPath: './data/resources.json',
         linksPath: './data/links.json',
         musicPath: './data/music.json',
+        authorsPath: './data/zuozhe.json',      // ★ 新增
         defaultReadme: 'data/rm/root.md',
         icons: ['🌐', '📦', '📁', '📄', '🎵', '🎬', '🖼️', '📱', '⚙️', '🚀', '🔥'],
         defaultIcon: { folder: '📁', file: '📄' },
@@ -585,6 +587,137 @@
                 c.innerHTML = '<div class="card folder-item"><h3>友情链接</h3><p>暂无</p></div>'; });
     };
 
+    // ---- ★ 加载作者（data/zuozhe.json） ----
+    const loadAuthors = () => {
+        const container = document.getElementById('authorList');
+        if (!container) return;
+
+        fetch(CONFIG.authorsPath, { cache: 'no-store' })
+            .then(r => {
+                if (!r.ok) throw new Error('HTTP ' + r.status);
+                return r.json();
+            })
+            .then(data => {
+                if (!Array.isArray(data) || !data.length) {
+                    container.innerHTML =
+                        `<div class="a-error"><h3>📭 暂无作者信息</h3><p>请添加 data/zuozhe.json</p></div>`;
+                    return;
+                }
+                renderAuthors(container, data);
+            })
+            .catch(err => {
+                console.warn('[Authors]', err);
+                container.innerHTML =
+                    `<div class="a-error"><h3>⚠️ 加载失败</h3><p>请检查 data/zuozhe.json 是否存在且格式正确</p></div>`;
+            });
+    };
+
+    const renderAuthors = (container, items) => {
+        container.innerHTML = '';
+        const frag = document.createDocumentFragment();
+
+        items.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.className = 'author-card';
+            card.dataset.index = index;
+
+            const icon = item.icon || '👤';
+            const name = escapeHtml(item.name || '未命名');
+            const role = escapeHtml(item.role || '');
+            const desc = item.desc ? escapeHtml(item.desc) : '';
+            const image = item.image || '';
+            const link = item.link || '';
+
+            // 头部
+            const header = document.createElement('div');
+            header.className = 'a-header';
+            header.innerHTML = `
+                <span class="a-icon">${icon}</span>
+                <div class="a-info">
+                    <div class="a-name">${name}</div>
+                    ${role ? `<div class="a-role">${role}</div>` : ''}
+                </div>
+                <span class="a-arrow">›</span>
+            `;
+            card.appendChild(header);
+
+            // 展开区
+            const expand = document.createElement('div');
+            expand.className = 'a-expand';
+
+            // 图片
+            const wrap = document.createElement('div');
+            wrap.className = 'a-image-wrap';
+            if (image) {
+                const img = document.createElement('img');
+                img.src = image;
+                img.alt = name;
+                img.loading = 'lazy';
+                img.onerror = () => {
+                    wrap.innerHTML =
+                        `<div class="a-img-placeholder">🖼️ 图片加载失败</div>`;
+                };
+                wrap.appendChild(img);
+            } else {
+                wrap.innerHTML =
+                    `<div class="a-img-placeholder">📷 暂无图片</div>`;
+            }
+            expand.appendChild(wrap);
+
+            // 描述
+            if (desc) {
+                const p = document.createElement('div');
+                p.className = 'a-desc';
+                p.textContent = desc;
+                expand.appendChild(p);
+            }
+
+            // 链接按钮
+            if (link) {
+                const btn = document.createElement('a');
+                btn.className = 'a-link-btn';
+                btn.href = link;
+                btn.target = '_blank';
+                btn.rel = 'noopener noreferrer';
+                btn.innerHTML = '🔗 访问链接';
+                // 阻止卡片点击冒泡，避免展开/收起干扰
+                btn.addEventListener('click', e => e.stopPropagation());
+                expand.appendChild(btn);
+            }
+
+            card.appendChild(expand);
+            frag.appendChild(card);
+        });
+
+        container.appendChild(frag);
+
+        // ---- 点击交互：切换展开 / 蓝色高亮 ----
+        const cards = container.querySelectorAll('.author-card');
+        cards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                // 如果点的是链接按钮内部，不处理（已 stopPropagation）
+                if (e.target.closest('.a-link-btn')) return;
+
+                const isActive = this.classList.contains('active');
+                // 先收起所有
+                cards.forEach(c => c.classList.remove('active'));
+                // 如果之前是收起状态，则展开当前
+                if (!isActive) {
+                    this.classList.add('active');
+                    // 滚动到可视区域（移动端友好）
+                    this.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                }
+            });
+        });
+
+        // 默认展开第一个（如果只有一个或第一个有内容）
+        if (cards.length === 1) {
+            cards[0].classList.add('active');
+        } else if (cards.length > 1) {
+            // 不自动展开，让用户点击
+        }
+    };
+
     // ---- Tab 初始化 ----
     const initTabs = () => {
         const firstTab = document.querySelector('.tabs button');
@@ -895,6 +1028,7 @@
         initListDelegation();
         loadResources();
         loadLinks();
+        loadAuthors();   // ★ 新增
         initTabs();
 
         // 窗口 resize 更新 tab 指示器

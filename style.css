@@ -4,6 +4,7 @@
    · 深色模式保留
    · 删除 BA 特效样式
    · 删除音乐播放器歌词样式
+   · 新增：作者卡片（动态加载 / 图片滑出 / 蓝色高亮）
    ========================================================= */
 
 /* ---- 基础变量 ---- */
@@ -1495,7 +1496,223 @@ body.no-animation *::after {
     }
 }
 
-/* ---- 响应式 ---- */
+/* =========================================================
+   ★ 新增：作者卡片（动态加载 / 图片滑出 / 蓝色高亮）
+   ========================================================= */
+.author-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.author-card {
+    background: var(--card);
+    backdrop-filter: saturate(180%) blur(var(--blur));
+    -webkit-backdrop-filter: saturate(180%) blur(var(--blur));
+    border: 1.5px solid var(--separator);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transition: border-color var(--dur) var(--ease-ios),
+                box-shadow var(--dur) var(--ease-ios),
+                transform var(--dur) var(--ease-spring);
+    cursor: pointer;
+    will-change: transform;
+}
+.author-card:active {
+    transform: scale(0.992);
+    transition-duration: .08s;
+}
+
+/* 头部：图标 + 名称 + 角色 + 箭头 */
+.author-card .a-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    background: transparent;
+    transition: background var(--dur) var(--ease-ios);
+    user-select: none;
+}
+.author-card .a-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background: rgba(0, 102, 204, 0.07);
+    border: 0.5px solid rgba(0, 102, 204, 0.08);
+    flex-shrink: 0;
+    transition: transform .32s var(--ease-spring), background .32s;
+}
+[data-theme="dark"] .author-card .a-icon {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.06);
+}
+.author-card:hover .a-icon {
+    transform: scale(1.04);
+    background: rgba(0, 102, 204, 0.13);
+}
+[data-theme="dark"] .author-card:hover .a-icon {
+    background: rgba(10, 132, 255, 0.18);
+}
+.author-card .a-info {
+    flex: 1;
+    min-width: 0;
+}
+.author-card .a-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+}
+.author-card .a-role {
+    font-size: 12.5px;
+    color: var(--sub);
+    margin-top: 1px;
+}
+.author-card .a-arrow {
+    color: var(--sub);
+    opacity: 0.35;
+    font-size: 18px;
+    transition: transform .4s var(--ease-spring), opacity .3s;
+    flex-shrink: 0;
+}
+.author-card.active .a-arrow {
+    transform: rotate(90deg);
+    opacity: 0.8;
+}
+
+/* 展开区：图片 + 描述 + 链接按钮 */
+.author-card .a-expand {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .55s var(--ease-spring),
+                padding .4s var(--ease-ios),
+                opacity .35s var(--ease-ios);
+    padding: 0 18px;
+    opacity: 0;
+}
+.author-card.active .a-expand {
+    max-height: 800px;
+    padding: 0 18px 20px;
+    opacity: 1;
+}
+
+.author-card .a-expand .a-image-wrap {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--bg);
+    margin-bottom: 12px;
+    border: 0.5px solid var(--separator);
+    position: relative;
+    transition: border-color var(--dur);
+}
+.author-card.active .a-expand .a-image-wrap {
+    border-color: rgba(0, 102, 204, 0.20);
+}
+[data-theme="dark"] .author-card.active .a-expand .a-image-wrap {
+    border-color: rgba(10, 132, 255, 0.25);
+}
+.author-card .a-expand .a-image-wrap img {
+    width: 100%;
+    display: block;
+    height: auto;
+    max-height: 320px;
+    object-fit: contain;
+    background: var(--bg);
+    transition: opacity .4s;
+}
+.author-card .a-expand .a-image-wrap .a-img-placeholder {
+    display: grid;
+    place-items: center;
+    min-height: 80px;
+    color: var(--sub);
+    font-size: 13px;
+    padding: 20px;
+    background: var(--bg);
+}
+
+.author-card .a-expand .a-desc {
+    color: var(--sub);
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    padding: 0 2px;
+}
+
+.author-card .a-expand .a-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 22px;
+    border-radius: var(--radius-pill);
+    background: var(--blue);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background var(--dur) var(--ease-ios),
+                transform var(--dur) var(--ease-spring),
+                box-shadow var(--dur) var(--ease-ios);
+    box-shadow: 0 2px 8px rgba(0, 102, 204, 0.20);
+    border: none;
+    cursor: pointer;
+}
+[data-theme="dark"] .author-card .a-expand .a-link-btn {
+    box-shadow: 0 2px 8px rgba(10, 132, 255, 0.25);
+}
+.author-card .a-expand .a-link-btn:hover {
+    background: var(--blue-press);
+    transform: scale(1.02) translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0, 102, 204, 0.30);
+}
+[data-theme="dark"] .author-card .a-expand .a-link-btn:hover {
+    box-shadow: 0 4px 16px rgba(10, 132, 255, 0.35);
+}
+.author-card .a-expand .a-link-btn:active {
+    transform: scale(0.97);
+    transition-duration: .08s;
+}
+
+/* 激活状态：蓝色高亮 */
+.author-card.active {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 1.5px var(--blue), var(--shadow-hover);
+}
+[data-theme="dark"] .author-card.active {
+    box-shadow: 0 0 0 1.5px rgba(10, 132, 255, 0.6), var(--shadow-hover);
+}
+.author-card.active .a-header {
+    background: rgba(0, 102, 204, 0.05);
+}
+[data-theme="dark"] .author-card.active .a-header {
+    background: rgba(10, 132, 255, 0.08);
+}
+
+/* 加载失败 / 空状态 */
+.author-grid .a-error {
+    padding: 24px 18px;
+    text-align: center;
+    color: var(--sub);
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    border: 0.5px solid var(--separator);
+}
+.author-grid .a-error h3 {
+    margin: 0 0 6px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+}
+.author-grid .a-error p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* 响应式 */
 @media(max-width:600px) {
     header {
         padding: 32px 16px 20px;
@@ -1628,6 +1845,32 @@ body.no-animation *::after {
     }
     .mp-header {
         padding: 10px 14px;
+    }
+
+    /* 作者卡片移动端适配 */
+    .author-card .a-header {
+        padding: 12px 14px;
+        gap: 12px;
+    }
+    .author-card .a-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    .author-card .a-name {
+        font-size: 15px;
+    }
+    .author-card .a-role {
+        font-size: 12px;
+    }
+    .author-card .a-expand {
+        padding: 0 14px;
+    }
+    .author-card.active .a-expand {
+        padding: 0 14px 16px;
+    }
+    .author-card .a-expand .a-image-wrap img {
+        max-height: 200px;
     }
 }
 
