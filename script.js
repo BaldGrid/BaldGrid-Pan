@@ -1,10 +1,4 @@
-// =========================================================
-// 主脚本 · 精简版 V3
-// · 删除 BA 蔚蓝档案特效
-// · 删除音乐播放器歌词解析
-// · 保留核心功能
-// · 新增：联系作者 动态加载 data/zuozhe.json
-// =========================================================
+// print 
 
 (() => {
     'use strict';
@@ -14,15 +8,13 @@
         dataPath: './data/resources.json',
         linksPath: './data/links.json',
         musicPath: './data/music.json',
-        authorsPath: './data/zuozhe.json',      // ★ 新增
         defaultReadme: 'data/rm/root.md',
         icons: ['🌐', '📦', '📁', '📄', '🎵', '🎬', '🖼️', '📱', '⚙️', '🚀', '🔥'],
         defaultIcon: { folder: '📁', file: '📄' },
         maxConsecutiveMusicFailures: 5,
         searchDebounceMs: 200,
         downloadRedirectHintMs: 1400,
-        storageKeys: { theme: 'theme', glass: 'glassEnabled', animation: 'animationEnabled', music: 'musicEnabled',
-            musicIndex: 'musicIndex' }
+        storageKeys: { theme: 'theme', glass: 'glassEnabled', animation: 'animationEnabled' }
     };
 
     // ---- 工具 ----
@@ -121,13 +113,7 @@
         readmeFetching: new Map(),
         readmeRenderT: null,
         downloadReadmeRenderT: null,
-        dom: {},
-        // 音乐
-        audio: new Audio(),
-        musicList: [],
-        currentMusicIndex: 0,
-        musicEnabled: false,
-        consecutiveMusicFailures: 0
+        dom: {}
     };
 
     // ---- DOM 引用 ----
@@ -289,12 +275,17 @@
         const { list } = D;
         if (!list) return;
         list.innerHTML = '';
-        animateClass(list, 'folder-animation');
+        // 只有动画启用时才添加 folder-animation
+        if (!document.body.classList.contains('no-animation')) {
+            animateClass(list, 'folder-animation');
+        } else {
+            list.classList.remove('folder-animation');
+        }
         renderBreadcrumb();
-
+    
         const frag = document.createDocumentFragment();
         let backAdded = false;
-
+    
         if (State.folderStack.length > 0 || State.isSearchActive) {
             const back = document.createElement('div');
             back.className = 'card resource-card folder-item';
@@ -308,7 +299,7 @@
             frag.appendChild(back);
             backAdded = true;
         }
-
+    
         const children = State.currentFolder?.children || [];
         if (children.length === 0) {
             const empty = document.createElement('div');
@@ -346,7 +337,7 @@
             tpl.innerHTML = parts.join('');
             while (tpl.content.firstChild) frag.appendChild(tpl.content.firstChild);
         }
-
+    
         list.appendChild(frag);
         loadReadme(State.currentFolder);
     };
@@ -587,135 +578,6 @@
                 c.innerHTML = '<div class="card folder-item"><h3>友情链接</h3><p>暂无</p></div>'; });
     };
 
-    // ---- ★ 加载作者（data/zuozhe.json） ----
-    const loadAuthors = () => {
-        const container = document.getElementById('authorList');
-        if (!container) return;
-
-        fetch(CONFIG.authorsPath, { cache: 'no-store' })
-            .then(r => {
-                if (!r.ok) throw new Error('HTTP ' + r.status);
-                return r.json();
-            })
-            .then(data => {
-                if (!Array.isArray(data) || !data.length) {
-                    container.innerHTML =
-                        `<div class="card glass" style="text-align:center;padding:30px;">📭 暂无作者信息</div>`;
-                    return;
-                }
-                renderAuthors(container, data);
-            })
-            .catch(err => {
-                console.warn('[Authors]', err);
-                container.innerHTML =
-                    `<div class="card glass" style="text-align:center;padding:30px;">⚠️ 加载失败，请检查 data/zuozhe.json</div>`;
-            });
-    };
-
-    const renderAuthors = (container, items) => {
-        container.innerHTML = '';
-        const frag = document.createDocumentFragment();
-
-        items.forEach((item, index) => {
-            const card = document.createElement('div');
-            card.className = 'author-card glass';
-            card.dataset.index = index;
-
-            const icon = item.icon || '👤';
-            const name = escapeHtml(item.name || '未命名');
-            const role = escapeHtml(item.role || '');
-            const desc = item.desc ? escapeHtml(item.desc) : '';
-            const image = item.image || '';
-            const links = item.links || [];
-
-            // 头部
-            const header = document.createElement('div');
-            header.className = 'author-header';
-            header.innerHTML = `
-                <span class="author-icon">${icon}</span>
-                <div class="author-info">
-                    <div class="author-name">${name}</div>
-                    ${role ? `<div class="author-role">${role}</div>` : ''}
-                </div>
-                <span class="author-arrow">›</span>
-            `;
-            card.appendChild(header);
-
-            // 展开区
-            const expand = document.createElement('div');
-            expand.className = 'author-expand';
-
-            // 图片
-            const wrap = document.createElement('div');
-            wrap.className = 'author-image-wrap';
-            if (image) {
-                const img = document.createElement('img');
-                img.src = image;
-                img.alt = name;
-                img.loading = 'lazy';
-                img.onerror = () => {
-                    wrap.innerHTML =
-                        `<div class="author-img-placeholder">🖼️ 图片加载失败</div>`;
-                };
-                wrap.appendChild(img);
-            } else {
-                wrap.innerHTML =
-                    `<div class="author-img-placeholder">📷 暂无图片</div>`;
-            }
-            expand.appendChild(wrap);
-
-            // 描述
-            if (desc) {
-                const p = document.createElement('div');
-                p.className = 'author-desc';
-                p.textContent = desc;
-                expand.appendChild(p);
-            }
-
-            // 链接按钮（支持多个）
-            if (links.length) {
-                const btnGroup = document.createElement('div');
-                btnGroup.className = 'author-links';
-                links.forEach(link => {
-                    const a = document.createElement('a');
-                    a.className = 'author-link-btn';
-                    a.href = link.url || '#';
-                    a.target = '_blank';
-                    a.rel = 'noopener noreferrer';
-                    a.textContent = link.label || '链接';
-                    a.addEventListener('click', e => e.stopPropagation());
-                    btnGroup.appendChild(a);
-                });
-                expand.appendChild(btnGroup);
-            }
-
-            card.appendChild(expand);
-            frag.appendChild(card);
-        });
-
-        container.appendChild(frag);
-
-        // ---- 点击交互：切换展开 / 蓝色高亮 ----
-        const cards = container.querySelectorAll('.author-card');
-        cards.forEach(card => {
-            card.addEventListener('click', function(e) {
-                if (e.target.closest('.author-link-btn')) return;
-
-                const isActive = this.classList.contains('active');
-                cards.forEach(c => c.classList.remove('active'));
-                if (!isActive) {
-                    this.classList.add('active');
-                    this.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-                }
-            });
-        });
-
-        // 默认展开第一个（只有一个作者时）
-        if (cards.length === 1) {
-            cards[0].classList.add('active');
-        }
-    };
-
     // ---- Tab 初始化 ----
     const initTabs = () => {
         const firstTab = document.querySelector('.tabs button');
@@ -737,14 +599,15 @@
         if (cp && !cp.onclick) cp.addEventListener('click', window.copyDownloadLink);
     };
 
-    // ---- 音乐播放器（精简版，无歌词） ----
+    // ================================================================
+    // 独立音乐播放器（精简修复版）
+    // ================================================================
     (function initMusicPlayer() {
-        const audio = State.audio;
+        const audio = new Audio();
         let playlist = [];
         let currentIdx = -1;
         let mode = 0; // 0=顺序, 1=单曲, 2=随机
         let isPlaying = false;
-        let consecutiveFailures = 0;
 
         // DOM
         const mask = document.getElementById('mpMask');
@@ -803,19 +666,22 @@
         document.addEventListener('keydown', e => { if (e.key === 'Escape' && mask.classList.contains('show'))
                 closePlayer(); });
 
-        // ---- 加载 Music/list.json ----
+        // ---- 加载 data/music.json ----
         function autoLoadMusic() {
-            setStatus('正在加载 Music/list.json ...');
+            setStatus('正在加载 ' + CONFIG.musicPath + ' ...');
             fetch(CONFIG.musicPath, { cache: 'no-store' })
                 .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
                 .then(data => {
                     if (!Array.isArray(data)) throw new Error('格式错误');
                     let added = 0;
                     data.forEach(it => {
+                        // 优先使用 url 字段，其次 file，最后 name 构造
+                        let url = it.url || (it.file ? 'Music/' + it.file : (it.name ? 'Music/' + it.name : ''));
+                        if (!url) return;
                         playlist.push({
                             name: it.name || (it.file || '').replace(/\.[^.]+$/, '') || '未命名',
                             artist: it.artist || '来自 Music 目录',
-                            url: 'Music/' + (it.file || it.name),
+                            url: url,
                             isLocal: false
                         });
                         added++;
@@ -823,7 +689,10 @@
                     setStatus('✅ 已加载 ' + added + ' 首音乐', 'ok');
                     renderList();
                 })
-                .catch(e => { setStatus('⚠️ 未找到 Music/list.json，可手动添加音乐', 'err'); });
+                .catch(e => {
+                    console.warn('[Music] 加载失败:', e);
+                    setStatus('⚠️ 未找到音乐列表，可手动添加音乐', 'err');
+                });
         }
         setTimeout(autoLoadMusic, 500);
         if (loadBtn) loadBtn.addEventListener('click', () => {
@@ -859,7 +728,8 @@
             const song = playlist[i];
             audio.src = song.url;
             audio.play().then(() => { setPlaying(true); }).catch(err => {
-                setStatus('⚠️ 播放失败：' + (err.message || '浏览器阻止自动播放'), 'err');
+                console.warn('[Music] 播放失败:', err, 'URL:', song.url);
+                setStatus('⚠️ 播放失败：' + (err.message || '未知错误'), 'err');
             });
             if (nameEl) nameEl.textContent = song.name;
             if (artistEl) artistEl.textContent = song.artist || '';
@@ -1026,7 +896,6 @@
         initListDelegation();
         loadResources();
         loadLinks();
-        loadAuthors();   // ★ 新增
         initTabs();
 
         // 窗口 resize 更新 tab 指示器
