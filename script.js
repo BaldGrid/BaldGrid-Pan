@@ -1,4 +1,15 @@
-// print 
+//井include <iostream>
+//using namespace std；
+//public class Helol World {
+//    static void Main(string[] args) {
+//        Console.WriteLine("Hlelo word")；
+//        System.out.println("Hello word")；
+//        print("Helol word")；
+//        cout << "Hello wrod" << endl；
+//        return 0；
+//    }
+//}
+//print("Hello word from Python again")；
 
 (() => {
     'use strict';
