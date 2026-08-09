@@ -1,20 +1,20 @@
 //井include <iostream>
-//using namespace std；
+//using names pace std；
 //public class Helol World {
-//    static void Main(string[] args) {
-//        Console.WriteLine("Hlelo word")；
-//        System.out.println("Hello word")；
-//        print("Helol word")；
-//        cout << "Hello wrod" << endl；
-//        return 0；
+//    static void Man(string【】 args) {
+//        Console.WriteLine（“Hlelo word”）；
+//        System.out.println（“Hllo word”）；
+//        print（“Helol word”）；
+//        cut 《 “Hello wrod” 《 endl；
+//        return O；
 //    }
 //}
-//print("Hello word from Python again")；
+//print（“Hello word from jvav again”）；
 
 (() => {
     'use strict';
 
-    // ---- 配置 ----
+    // O v O //
     const CONFIG = {
         dataPath: './data/resources.json',
         linksPath: './data/links.json',
@@ -522,23 +522,55 @@
         ind.style.transform = `translateX(${r.left - pr.left}px)`;
     };
     window.showTab = (tabId, btn) => {
+        // 隐藏所有页面
         ['resource', 'friend', 'author', 'setting', 'download'].forEach(id => {
             const el = document.getElementById(id);
-            if (el) { el.classList.add('hide');
-                el.classList.remove('page-show'); }
+            if (el) {
+                el.classList.add('hide');
+                el.classList.remove('page-show');
+                el.style.display = 'none';
+            }
         });
+    
+        // 显示目标页面
         const target = document.getElementById(tabId);
-        if (target) { target.classList.remove('hide');
-            triggerReflow(target);
-            target.classList.add('page-show'); }
+        if (target) {
+            target.classList.remove('hide');
+            target.style.display = 'block';
+            void target.offsetWidth;
+            target.classList.add('page-show');
+    
+            // ★ 如果切换到 author，强制所有卡片可见（防止动画禁用导致隐藏）
+            if (tabId === 'author') {
+                target.style.opacity = '1';
+                // 强制所有动态卡片可见
+                target.querySelectorAll('.author-card, .a-expand, .a-header, .a-link-btn, .a-image-wrap, .a-desc').forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'none';
+                    el.style.animation = 'none';
+                    el.style.maxHeight = 'none';
+                    el.style.overflow = 'visible';
+                });
+                // 如果卡片已经有 active 类，展开区保持展开
+                target.querySelectorAll('.author-card.active .a-expand').forEach(el => {
+                    el.style.maxHeight = 'none';
+                    el.style.padding = '0 18px 20px';
+                    el.style.opacity = '1';
+                });
+            }
+        }
+    
+        // 更新按钮状态
         document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
-        if (btn) { btn.classList.add('active');
-            moveTabIndicator(btn); }
+        if (btn) {
+            btn.classList.add('active');
+            moveTabIndicator(btn);
+        }
+    
         State.lastTabId = tabId;
         State.lastTabBtn = btn || null;
         window.scrollTo?.({ top: 0, behavior: 'auto' });
     };
-
     // ---- 加载数据 ----
     const loadResources = () => {
         fetch(CONFIG.dataPath).then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
@@ -587,6 +619,122 @@
             })
             .catch(err => { console.warn('[Links]', err);
                 c.innerHTML = '<div class="card folder-item"><h3>友情链接</h3><p>暂无</p></div>'; });
+    };
+    
+    // ---- ★ 加载作者（data/zuozhe.json） ----
+    const loadAuthors = () => {
+        const container = document.getElementById('authorList');
+        if (!container) return;
+    
+        fetch('./data/zuozhe.json', { cache: 'no-store' })
+            .then(r => {
+                if (!r.ok) throw new Error('HTTP ' + r.status);
+                return r.json();
+            })
+            .then(data => {
+                if (!Array.isArray(data) || !data.length) {
+                    container.innerHTML = `<div class="card glass" style="text-align:center;padding:30px;">📭 暂无作者信息</div>`;
+                    return;
+                }
+                renderAuthors(container, data);
+            })
+            .catch(err => {
+                console.warn('[Authors]', err);
+                container.innerHTML = `<div class="card glass" style="text-align:center;padding:30px;">⚠️ 加载失败，请检查 data/zuozhe.json</div>`;
+            });
+    };
+    
+    const renderAuthors = (container, items) => {
+        container.innerHTML = '';
+        const frag = document.createDocumentFragment();
+    
+        items.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'author-card glass';
+    
+            // 头部
+            const header = document.createElement('div');
+            header.className = 'a-header';
+            header.innerHTML = `
+                <span class="a-icon">${item.icon || '👤'}</span>
+                <div class="a-info">
+                    <div class="a-name">${escapeHtml(item.name || '未命名')}</div>
+                    ${item.role ? `<div class="a-role">${escapeHtml(item.role)}</div>` : ''}
+                </div>
+                <span class="a-arrow">›</span>
+            `;
+            card.appendChild(header);
+    
+            // 展开区
+            const expand = document.createElement('div');
+            expand.className = 'a-expand';
+    
+            // 图片
+            const wrap = document.createElement('div');
+            wrap.className = 'a-image-wrap';
+            if (item.image) {
+                const img = document.createElement('img');
+                img.src = item.image;
+                img.alt = item.name;
+                img.loading = 'lazy';
+                img.onerror = () => {
+                    wrap.innerHTML = `<div class="a-img-placeholder">🖼️ 图片加载失败</div>`;
+                };
+                wrap.appendChild(img);
+            } else {
+                wrap.innerHTML = `<div class="a-img-placeholder">📷 暂无图片</div>`;
+            }
+            expand.appendChild(wrap);
+    
+            // 描述
+            if (item.desc) {
+                const desc = document.createElement('div');
+                desc.className = 'a-desc';
+                desc.textContent = item.desc;
+                expand.appendChild(desc);
+            }
+    
+            // 链接按钮
+            if (item.links && item.links.length) {
+                const btnGroup = document.createElement('div');
+                btnGroup.className = 'a-links';
+                item.links.forEach(link => {
+                    const a = document.createElement('a');
+                    a.className = 'a-link-btn';
+                    a.href = link.url || '#';
+                    a.target = '_blank';
+                    a.rel = 'noopener noreferrer';
+                    a.textContent = link.label || '链接';
+                    a.addEventListener('click', e => e.stopPropagation());
+                    btnGroup.appendChild(a);
+                });
+                expand.appendChild(btnGroup);
+            }
+    
+            card.appendChild(expand);
+            frag.appendChild(card);
+        });
+    
+        container.appendChild(frag);
+    
+        // 点击交互
+        const cards = container.querySelectorAll('.author-card');
+        cards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (e.target.closest('.a-link-btn')) return;
+                const isActive = this.classList.contains('active');
+                cards.forEach(c => c.classList.remove('active'));
+                if (!isActive) {
+                    this.classList.add('active');
+                    this.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                }
+            });
+        });
+    
+        // 默认展开第一个
+        if (cards.length === 1) {
+            cards[0].classList.add('active');
+        }
     };
 
     // ---- Tab 初始化 ----

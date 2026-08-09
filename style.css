@@ -2123,3 +2123,19 @@ body.no-animation #links a {
     animation: none !important;
     transform: none !important;
 }
+
+/* 关闭动画时，强制联系作者卡片展开可见 */
+body.no-animation .author-card .a-expand {
+    max-height: none !important;
+    opacity: 1 !important;
+    padding: 0 18px 20px !important;
+    overflow: visible !important;
+}
+body.no-animation .author-card .a-arrow {
+    transform: rotate(90deg) !important;
+    opacity: 0.8 !important;
+}
+body.no-animation .author-card {
+    opacity: 1 !important;
+    transform: none !important;
+}
