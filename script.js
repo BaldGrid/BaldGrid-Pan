@@ -286,7 +286,6 @@
         const { list } = D;
         if (!list) return;
         list.innerHTML = '';
-        // 只有动画启用时才添加 folder-animation
         if (!document.body.classList.contains('no-animation')) {
             animateClass(list, 'folder-animation');
         } else {
@@ -451,6 +450,8 @@
         if (res) res.classList.add('hide');
         if (down) {
             down.classList.remove('hide');
+            // ★★★★★ 修复点：强制设置 display 为 block，覆盖内联 none ★★★★★
+            down.style.display = 'block';
             triggerReflow(down);
             down.classList.add('page-show');
         }
@@ -499,6 +500,8 @@
         if (down) { down.classList.add('hide');
             down.classList.remove('page-show'); }
         if (res) { res.classList.remove('hide');
+            // ★★★★★ 修复点：强制设置 display 为 block，覆盖内联 none ★★★★★
+            res.style.display = 'block';
             triggerReflow(res);
             res.classList.add('page-show'); }
         document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
@@ -524,7 +527,6 @@
 
     // ★★★★★ 修改点 1：showTab 隐藏列表增加 'download' ★★★★★
     window.showTab = (tabId, btn) => {
-        // 隐藏所有主页面（包括 download）
         ['resource', 'friend', 'author', 'setting', 'download'].forEach(id => {
             const el = document.getElementById(id);
             if (el) {
@@ -534,7 +536,6 @@
             }
         });
 
-        // 显示目标页面
         const target = document.getElementById(tabId);
         if (target) {
             target.classList.remove('hide');
@@ -543,7 +544,6 @@
             target.classList.add('page-show');
         }
 
-        // 更新按钮状态
         document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
         if (btn) {
             btn.classList.add('active');
@@ -635,7 +635,6 @@
             const card = document.createElement('div');
             card.className = 'author-card glass';
 
-            // 头部
             const header = document.createElement('div');
             header.className = 'a-header';
             header.innerHTML = `
@@ -648,11 +647,9 @@
             `;
             card.appendChild(header);
 
-            // 展开区
             const expand = document.createElement('div');
             expand.className = 'a-expand';
 
-            // 图片
             const wrap = document.createElement('div');
             wrap.className = 'a-image-wrap';
             if (item.image) {
@@ -669,7 +666,6 @@
             }
             expand.appendChild(wrap);
 
-            // 描述
             if (item.desc) {
                 const desc = document.createElement('div');
                 desc.className = 'a-desc';
@@ -677,7 +673,6 @@
                 expand.appendChild(desc);
             }
 
-            // 链接按钮
             if (item.links && item.links.length) {
                 const btnGroup = document.createElement('div');
                 btnGroup.className = 'a-links';
@@ -700,7 +695,6 @@
 
         container.appendChild(frag);
 
-        // 点击交互
         const cards = container.querySelectorAll('.author-card');
         cards.forEach(card => {
             card.addEventListener('click', function(e) {
@@ -714,7 +708,6 @@
             });
         });
 
-        // 默认展开第一个
         if (cards.length === 1) {
             cards[0].classList.add('active');
         }
@@ -748,10 +741,9 @@
         const audio = new Audio();
         let playlist = [];
         let currentIdx = -1;
-        let mode = 0; // 0=顺序, 1=单曲, 2=随机
+        let mode = 0;
         let isPlaying = false;
 
-        // DOM
         const mask = document.getElementById('mpMask');
         const closeBtn = document.getElementById('mpClose');
         const openBtn = D.musicSwitch;
@@ -808,7 +800,6 @@
         document.addEventListener('keydown', e => { if (e.key === 'Escape' && mask.classList.contains('show'))
                 closePlayer(); });
 
-        // ---- 加载 data/music.json ----
         function autoLoadMusic() {
             setStatus('正在加载 ' + CONFIG.musicPath + ' ...');
             fetch(CONFIG.musicPath, { cache: 'no-store' })
@@ -817,7 +808,6 @@
                     if (!Array.isArray(data)) throw new Error('格式错误');
                     let added = 0;
                     data.forEach(it => {
-                        // 优先使用 url 字段，其次 file，最后 name 构造
                         let url = it.url || (it.file ? 'Music/' + it.file : (it.name ? 'Music/' + it.name : ''));
                         if (!url) return;
                         playlist.push({
@@ -844,7 +834,6 @@
             autoLoadMusic();
         });
 
-        // ---- 手动导入 ----
         if (fileInput) fileInput.addEventListener('change', e => {
             const files = Array.from(e.target.files);
             if (!files.length) return;
@@ -863,7 +852,6 @@
             if (currentIdx === -1) playIdx(0);
         });
 
-        // ---- 播放控制 ----
         function playIdx(i) {
             if (i < 0 || i >= playlist.length) return;
             currentIdx = i;
@@ -922,7 +910,6 @@
         });
         if (nextBtn) nextBtn.addEventListener('click', () => playNext(false));
 
-        // ---- audio 事件 ----
         let uiPending = false;
         let lastRatio = 0,
             lastCur = 0;
@@ -949,7 +936,6 @@
         audio.addEventListener('play', () => setPlaying(true));
         audio.addEventListener('pause', () => { if (!audio.ended) setPlaying(false); });
 
-        // ---- 进度条点击 ----
         if (bar) {
             bar.addEventListener('click', e => {
                 if (!audio.duration) return;
@@ -960,7 +946,6 @@
             });
         }
 
-        // ---- 音量 ----
         if (volSlider) {
             volSlider.addEventListener('input', () => {
                 audio.volume = volSlider.value / 100;
@@ -969,7 +954,6 @@
             audio.volume = 0.75;
         }
 
-        // ---- 播放模式 ----
         function moveMode() {
             if (!modeSeg || !modeInd) return;
             const active = modeSeg.querySelector('.mp-mode-item.active');
@@ -990,7 +974,6 @@
         window.addEventListener('resize', moveMode);
         setTimeout(moveMode, 120);
 
-        // ---- 播放列表渲染 ----
         function renderList() {
             if (!listEl) return;
             if (!playlist.length) {
@@ -1024,7 +1007,6 @@
             else playIdx(idx);
         });
 
-        // ---- 初始状态 ----
         setPlaying(false);
         renderList();
     })();
@@ -1042,14 +1024,12 @@
         loadAuthors();
         initTabs();
 
-        // 窗口 resize 更新 tab 指示器
         window.addEventListener('resize', debounce(() => {
             const a = document.querySelector('.tabs button.active');
             if (a) moveTabIndicator(a);
         }, 120));
     };
 
-    // DOM 就绪
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
