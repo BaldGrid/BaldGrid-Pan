@@ -522,8 +522,8 @@
         ind.style.transform = `translateX(${r.left - pr.left}px)`;
     };
     window.showTab = (tabId, btn) => {
-        // 隐藏所有页面
-        ['resource', 'friend', 'author', 'setting', 'download'].forEach(id => {
+        // 隐藏所有主页面（不包括 download，由 openDownload 独立控制）
+        ['resource', 'friend', 'author', 'setting'].forEach(id => {
             const el = document.getElementById(id);
             if (el) {
                 el.classList.add('hide');
@@ -539,25 +539,6 @@
             target.style.display = 'block';
             void target.offsetWidth;
             target.classList.add('page-show');
-    
-            // ★ 如果切换到 author，强制所有卡片可见（防止动画禁用导致隐藏）
-            if (tabId === 'author') {
-                target.style.opacity = '1';
-                // 强制所有动态卡片可见
-                target.querySelectorAll('.author-card, .a-expand, .a-header, .a-link-btn, .a-image-wrap, .a-desc').forEach(el => {
-                    el.style.opacity = '1';
-                    el.style.transform = 'none';
-                    el.style.animation = 'none';
-                    el.style.maxHeight = 'none';
-                    el.style.overflow = 'visible';
-                });
-                // 如果卡片已经有 active 类，展开区保持展开
-                target.querySelectorAll('.author-card.active .a-expand').forEach(el => {
-                    el.style.maxHeight = 'none';
-                    el.style.padding = '0 18px 20px';
-                    el.style.opacity = '1';
-                });
-            }
         }
     
         // 更新按钮状态
