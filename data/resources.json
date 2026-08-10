@@ -66,6 +66,16 @@
                   "name": "小米4c",
                   "type": "loader",
                   "src": "XiaoMi/QC/libra/1.json"
+                },
+                {
+                  "name": "小米8",
+                  "type": "loader",
+                  "src": "XiaoMi/QC/dipper/1.json"
+                },
+                {
+                  "name": "小米8屏幕指纹版",
+                  "type": "loader",
+                  "src": "XiaoMi/QC/equuleus/1.json"
                 }
               ]
             },
