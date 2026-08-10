@@ -214,5 +214,36 @@
                 "url": "https://github.com/BaldGrid/Open-Attack-Of-The-Mita"
             }
         ]
+    },
+    {
+        "name": "音乐",
+        "type": "folder",
+        "desc": "",
+        "readme": "data/rm/musiced.md",
+        "children": [
+            {
+                "name": "Baldi",
+                "type": "folder",
+                "desc": "",
+                "readme": "data/rm/baldi.md",
+                "children": [
+                    {
+                        "name": "Schoolhouse Trouble",
+                        "type": "folder",
+                        "desc": "",
+                        "readme": "data/rm/baldis/sht.md",
+                        "children": [
+                            {
+                                "name": "Schoolhouse Trouble Demo MIDI",
+                                "type": "file",
+                                "desc": "",
+                                "readme": "data/rm/baldis/demomidi.md",
+                                "url": ""
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
     }
 ]
