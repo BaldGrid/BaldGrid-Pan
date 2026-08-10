@@ -556,11 +556,21 @@
     };
     // ---- 加载数据 ----
     const loadResources = () => {
-        fetch(CONFIG.dataPath).then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-            .then(json => {
-                const arr = Array.isArray(json) ? json : (json.data || json.children || []);
-                if (!Array.isArray(arr)) throw new Error('格式错误');
-                State.data = arr;
+        fetch(CONFIG.dataPath)
+            .then(r => { 
+                if (!r.ok) throw new Error('HTTP ' + r.status); 
+                return r.json(); 
+            })
+            .then(root => {
+                // resources.json 是 { categories: [...] } 格式
+                if (!root.categories || !Array.isArray(root.categories)) {
+                    throw new Error('resources.json 缺少 categories 数组');
+                }
+                // 递归加载所有 loader
+                return loadTreeArray(root.categories);
+            })
+            .then(loadedData => {
+                State.data = loadedData;
                 State.folderStack = [];
                 State.currentFolder = { children: State.data, readme: CONFIG.defaultReadme };
                 State.currentPath = [];
@@ -570,10 +580,81 @@
             })
             .catch(e => {
                 console.error('[Resources]', e);
-                if (D.list) D.list.innerHTML =
-                    `<div class="card folder-item"><h2>资源加载失败</h2><p>请检查 data/resources.json</p></div>`;
+                if (D.list) D.list.innerHTML = 
+                    `<div class="card folder-item">
+                        <h2>❌ 资源加载失败</h2>
+                        <p>${e.message}</p>
+                    </div>`;
             });
     };
+    
+    // ---- loader 递归加载器（处理数组） ----
+    async function loadTreeArray(arr) {
+        if (!Array.isArray(arr)) return arr;
+        for (const item of arr) {
+            await loadTreeItem(item);
+        }
+        return arr;
+    }
+    
+    // ---- loader 递归加载器（处理单个节点） ----
+    async function loadTreeItem(node) {
+        if (!node) return node;
+        
+        // 如果是 loader，加载并替换
+        if (node.type === 'loader') {
+            try {
+                const srcPath = node.src;
+                let data;
+                
+                // 检查是否有 # 锚点 (tools.json#magisk)
+                if (srcPath.includes('#')) {
+                    const [file, key] = srcPath.split('#');
+                    const resp = await fetch(`data/res/${file}`);
+                    const json = await resp.json();
+                    data = json[key];
+                    if (!data) throw new Error(`找不到 key: ${key}`);
+                } else {
+                    const resp = await fetch(`data/res/${srcPath}`);
+                    data = await resp.json();
+                }
+                
+                // 用加载的数据替换当前节点
+                Object.keys(data).forEach(key => {
+                    node[key] = data[key];
+                });
+                node._loaded = true;
+                node.type = data.type || 'folder';
+                
+                // 递归处理子节点
+                if (node.children && Array.isArray(node.children)) {
+                    for (const child of node.children) {
+                        await loadTreeItem(child);
+                    }
+                }
+                return node;
+            } catch (err) {
+                console.error('[Loader] 加载失败:', node.src, err);
+                node.type = 'folder';
+                node.children = [{
+                    name: '⚠️ 加载失败',
+                    type: 'file',
+                    desc: `无法加载: ${err.message}`,
+                    readme: 'data/rm/error.md',
+                    url: '#'
+                }];
+                return node;
+            }
+        }
+        
+        // 如果是普通文件夹，递归处理 children
+        if (node.children && Array.isArray(node.children)) {
+            for (const child of node.children) {
+                await loadTreeItem(child);
+            }
+        }
+        return node;
+    }
     const loadLinks = () => {
         const c = D.linksContainer;
         if (!c) return;
