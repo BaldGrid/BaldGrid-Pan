@@ -505,47 +505,35 @@ header h1 .hl {
     }
 }
 
+/* ---- 优化后的列表项动画（更流畅，减少卡顿） ---- */
 .folder-item {
     opacity: 0;
-    animation: itemPush .24s var(--ease-ios) both;
+    animation: itemPush .3s cubic-bezier(0.25, 0.1, 0.25, 1) both;
+    /* 关键优化：隔离布局，提示浏览器 */
+    contain: layout style paint;
+    will-change: transform, opacity;
 }
-.folder-item:nth-child(1) {
-    animation-delay: .005s;
-}
-.folder-item:nth-child(2) {
-    animation-delay: .025s;
-}
-.folder-item:nth-child(3) {
-    animation-delay: .045s;
-}
-.folder-item:nth-child(4) {
-    animation-delay: .065s;
-}
-.folder-item:nth-child(5) {
-    animation-delay: .085s;
-}
-.folder-item:nth-child(6) {
-    animation-delay: .105s;
-}
-.folder-item:nth-child(7) {
-    animation-delay: .125s;
-}
-.folder-item:nth-child(8) {
-    animation-delay: .145s;
-}
-.folder-item:nth-child(9) {
-    animation-delay: .165s;
-}
-.folder-item:nth-child(10) {
-    animation-delay: .185s;
-}
+
+/* 减少延迟累积，让更多项同时出现 */
+.folder-item:nth-child(1)  { animation-delay: 0.00s; }
+.folder-item:nth-child(2)  { animation-delay: 0.02s; }
+.folder-item:nth-child(3)  { animation-delay: 0.04s; }
+.folder-item:nth-child(4)  { animation-delay: 0.06s; }
+.folder-item:nth-child(5)  { animation-delay: 0.08s; }
+.folder-item:nth-child(6)  { animation-delay: 0.10s; }
+.folder-item:nth-child(7)  { animation-delay: 0.12s; }
+.folder-item:nth-child(8)  { animation-delay: 0.14s; }
+.folder-item:nth-child(9)  { animation-delay: 0.16s; }
+.folder-item:nth-child(10) { animation-delay: 0.18s; }
+/* 第11项及以后统一延迟，避免累积过多 */
 .folder-item:nth-child(n+11) {
-    animation-delay: .205s;
+    animation-delay: 0.20s;
 }
+
 @keyframes itemPush {
     0% {
         opacity: 0;
-        transform: translateY(6px) scale(0.992);
+        transform: translateY(8px) scale(0.99);
     }
     100% {
         opacity: 1;
@@ -553,6 +541,16 @@ header h1 .hl {
     }
 }
 
+/* 文件夹容器也加上 contain，减少重排影响 */
+#list {
+    contain: layout style;
+}
+
+/* 卡片本身也做隔离 */
+.card {
+    contain: layout style;
+    will-change: transform;
+}
 /* ---- 面包屑 ---- */
 #breadcrumb {
     margin: 0 0 12px;
