@@ -294,7 +294,128 @@
                                 "type": "folder",
                                 "desc": "aries",
                                 "readme": "data/rm/file/test.md",
-                                "children": []
+                                "children": [
+                                    {
+                                        "name": "线刷包",
+                                        "type": "folder",
+                                        "desc": "",
+                                        "readme": "data/rm/file/xsb.md",
+                                        "children": [
+                                            {
+                                                "name": "JLB52.0",
+                                                "type": "file",
+                                                "desc": "",
+                                                "readme": "data/rm/file/XiaoMi/aries/JLB52.0.md",
+                                                "url": ""
+                                            },
+                                            {
+                                                "name": "V9.2.3.0.LXACNEK",
+                                                "type": "file",
+                                                "desc": "",
+                                                "readme": "data/rm/file/XiaoMi/aries/V9.2.3.0.LXACNEK.md",
+                                                "url": ""
+                                            },
+                                            {
+                                                "name": "V8.5.1.0.LXACNED",
+                                                "type": "file",
+                                                "desc": "",
+                                                "readme": "data/rm/file/XiaoMi/aries/V8.5.1.0.LXACNED.md",
+                                                "url": ""
+                                            },
+                                            {
+                                                "name": "V8.2.1.0.LXACNDL",
+                                                "type": "file",
+                                                "desc": "",
+                                                "readme": "data/rm/file/XiaoMi/aries/V8.2.1.0.LXACNDL.md",
+                                                "url": ""
+                                            },
+                                            {
+                                                "name": "V8.1.2.0.LXACNDI",
+                                                "type": "file",
+                                                "desc": "",
+                                                "readme": "data/rm/file/XiaoMi/aries/V8.1.2.0.LXACNDI.md",
+                                                "url": ""
+                                            },
+                                            {
+                                                "name": "V8.0.1.0.LXACNDG",
+                                                "type": "file",
+                                                "desc": "",
+                                                "readme": "data/rm/file/XiaoMi/aries/V8.0.1.0.LXACNDG.md",
+                                                "url": ""
+                                            },
+                                            {
+                                                "name": "V7.5.1.0.LXACNDE",
+                                                "type": "file",
+                                                "desc": "",
+                                                "readme": "data/rm/file/XiaoMi/aries/V7.5.1.0.LXACNDE.md",
+                                                "url": ""
+                                            },
+                                            {
+                                                "name": "V7.3.2.0.LXACNDD",
+                                                "type": "file",
+                                                "desc": "",
+                                                "readme": "data/rm/file/XiaoMi/aries/V7.3.2.0.LXACNDD.md",
+                                                "url": ""
+                                            },
+                                            {
+                                                "name": "V7.2.5.0.LXACNDA",
+                                                "type": "file",
+                                                "desc": "",
+                                                "readme": "data/rm/file/XiaoMi/aries/V7.2.5.0.LXACNDA.md",
+                                                "url": ""
+                                            },
+                                            {
+                                                "name": "V7.2.4.0.LXACNDA",
+                                                "type": "file",
+                                                "desc": "",
+                                                "readme": "data/rm/file/XiaoMi/aries/V7.2.4.0.LXACNDA.md",
+                                                "url": ""
+                                            },
+                                            {
+                                                "name": "V7.1.5.0.LXACNCK",
+                                                "type": "file",
+                                                "desc": "",
+                                                "readme": "data/rm/file/XiaoMi/aries/V7.1.5.0.LXACNCK.md",
+                                                "url": ""
+                                            },
+                                            {
+                                                "name": "V7.0.4.0.LXACNCI",
+                                                "type": "file",
+                                                "desc": "",
+                                                "readme": "data/rm/file/XiaoMi/aries/V7.0.4.0.LXACNCI.md",
+                                                "url": ""
+                                            },
+                                            {
+                                                "name": "JLB54.0",
+                                                "type": "file",
+                                                "desc": "",
+                                                "readme": "data/rm/file/XiaoMi/aries/JLB54.0.md",
+                                                "url": ""
+                                            },
+                                            {
+                                                "name": "JLB50.0",
+                                                "type": "file",
+                                                "desc": "",
+                                                "readme": "data/rm/file/XiaoMi/aries/JLB50.0.md",
+                                                "url": ""
+                                            },
+                                            {
+                                                "name": "中国联通定制版 JLB50.0",
+                                                "type": "file",
+                                                "desc": "",
+                                                "readme": "data/rm/file/XiaoMi/aries/中国联通定制版 JLB50.0.md",
+                                                "url": ""
+                                            },
+                                            {
+                                                "name": "JLB49.0",
+                                                "type": "file",
+                                                "desc": "",
+                                                "readme": "data/rm/file/XiaoMi/aries/JLB49.0.md",
+                                                "url": ""
+                                            }
+                                        ]
+                                    }
+                                ]
                             }
                         ]
                     }
