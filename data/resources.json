@@ -79,18 +79,11 @@
                                                 "desc": "",
                                                 "readme": "data/rm/file/OPPO/PCHM10/qfq.md",
                                                 "url": "https://onedrive.live.com/personal/6ed1c23368a7eb3a/_layouts/15/download.aspx?SourceUrl=%2Fpersonal%2F6ed1c23368a7eb3a%2FDocuments%2F%E7%8E%A9%E6%9C%BA%E8%B5%84%E6%BA%90%E7%AB%99%2F%E5%85%A8%E5%88%86%E5%8C%BA%E5%9B%9E%E8%AF%BB%2FPCHM10%5F11%5FF%2E12%2E7z"
-                                            },
-                                            {
-                                                "name": "A11x全分区回读",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/OPPO/PCHM10/qfq.md",
-                                                "url": "https://onedrive.live.com/personal/6ed1c23368a7eb3a/_layouts/15/download.aspx?SourceUrl=%2Fpersonal%2F6ed1c23368a7eb3a%2FDocuments%2F%E7%8E%A9%E6%9C%BA%E8%B5%84%E6%BA%90%E7%AB%99%2F%E5%85%A8%E5%88%86%E5%8C%BA%E5%9B%9E%E8%AF%BB%2FA11X%E5%85%A8%E5%AD%97%E5%BA%93%2Ezip"
                                             }
                                         ]
                                     },
                                     {
-                                        "name": "国际版cph1933线刷包",
+                                        "name": "国际版A5 2020线刷包",
                                         "type": "file",
                                         "desc": "这是一个测试文件",
                                         "readme": "data/rm/file/test.md",
@@ -101,6 +94,94 @@
                                         "type": "file",
                                         "desc": "OPPO A11 工程abl文件",
                                         "readme": "data/rm/file/OPPO/PCHM10/abl.md",
+                                        "url": "https://onedrive.live.com/personal/6ed1c23368a7eb3a/_layouts/15/download.aspx?SourceUrl=%2Fpersonal%2F6ed1c23368a7eb3a%2FDocuments%2F%E7%8E%A9%E6%9C%BA%E8%B5%84%E6%BA%90%E7%AB%99%2F%E5%B7%A5%E7%A8%8Babl%2FOPPO%20665%2Eelf%2Eelf"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "OPPO A11x",
+                                "type": "folder",
+                                "desc": "OPPO A11x 系列资源",
+                                "readme": "data/rm/pchm30.md",
+                                "children": [
+                                    {
+                                        "name": "线刷包",
+                                        "type": "folder",
+                                        "desc": "",
+                                        "readme": "data/rm/file/xsb.md",
+                                        "children": [
+                                            {
+                                                "name": "大陆国行",
+                                                "type": "folder",
+                                                "desc": "",
+                                                "readme": "data/rm/file/prc.md",
+                                                "children": [
+                                                    {
+                                                        "name": "f.14",
+                                                        "type": "file",
+                                                        "desc": "",
+                                                        "readme": "data/rm/file/OPPO/PCHM30/f14.md",
+                                                        "url": "https://dfs-serverauto-in.allawnofs.com/dfs/24/11/18/dbe72bee9dc74133b0ca83e87b89b50b.zip"
+                                                    },
+                                                    {
+                                                        "name": "f.13",
+                                                        "type": "file",
+                                                        "desc": "",
+                                                        "readme": "data/rm/file/OPPO/PCHM30/f13.md",
+                                                        "url": "https://dfs-serverauto-in.allawnofs.com/dfs/23/10/26/ac0b1de6fe1947d092bc685f11aecc6e.zip"
+                                                    },
+                                                    {
+                                                        "name": "f.12",
+                                                        "type": "file",
+                                                        "desc": "",
+                                                        "readme": "data/rm/file/OPPO/PCHM30/f12.md",
+                                                        "url": "https://dfs-serverauto-in.allawnofs.com/dfs/23/12/05/a5df7347569141e2bee5e080ae46e582.zip"
+                                                    },
+                                                    {
+                                                        "name": "c.78",
+                                                        "type": "file",
+                                                        "desc": "",
+                                                        "readme": "data/rm/file/OPPO/PCHM30/c78.md",
+                                                        "url": "https://dfs-serverauto-in.allawnofs.com/dfs/23/12/05/5159ea34a0db4e4c987eaaac6491f31e.zip"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "name": "海外全球",
+                                                "type": "folder",
+                                                "desc": "",
+                                                "readme": "data/rm/file/chi.md",
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "name": "全分区回读",
+                                        "type": "folder",
+                                        "desc": "",
+                                        "readme": "data/rm/file/OPPO/PCHM30/qfq1.md",
+                                        "children": [
+                                            {
+                                                "name": "A11x全分区回读",
+                                                "type": "file",
+                                                "desc": "",
+                                                "readme": "data/rm/file/OPPO/PCHM30/qfq.md",
+                                                "url": "https://onedrive.live.com/personal/6ed1c23368a7eb3a/_layouts/15/download.aspx?SourceUrl=%2Fpersonal%2F6ed1c23368a7eb3a%2FDocuments%2F%E7%8E%A9%E6%9C%BA%E8%B5%84%E6%BA%90%E7%AB%99%2F%E5%85%A8%E5%88%86%E5%8C%BA%E5%9B%9E%E8%AF%BB%2FA11X%E5%85%A8%E5%AD%97%E5%BA%93%2Ezip"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "name": "国际版A9 2020线刷包",
+                                        "type": "file",
+                                        "desc": "这是一个测试文件",
+                                        "readme": "data/rm/file/test.md",
+                                        "url": "https://www.yhcres.top/d/public/02-%E6%89%8B%E6%9C%BA%E5%B9%B3%E6%9D%BF/OPPO/A%E7%B3%BB%E5%88%97/OPPO%20A11%EF%BC%88PCHM10%EF%BC%89%EF%BC%88%E9%AA%81%E9%BE%99665%EF%BC%89/%E5%9B%BD%E9%99%85%E7%89%88A5%20(2020)(CPH1933)%E7%BA%BF%E5%88%B7%E5%8C%85/PCHM10%E5%9B%BD%E9%99%85%E7%89%88CPH1933%E7%BA%BF%E5%88%B7%E5%9B%BA%E4%BB%B6.7z?sign=MTF015dGApE016RriXQdw4gstfItZr3HoK_SXtRd8CI=:1785925116"
+                                    },
+                                    {
+                                        "name": "工程abl",
+                                        "type": "file",
+                                        "desc": "OPPO A11x 工程abl文件",
+                                        "readme": "data/rm/file/OPPO/PCHM30/abl.md",
                                         "url": "https://onedrive.live.com/personal/6ed1c23368a7eb3a/_layouts/15/download.aspx?SourceUrl=%2Fpersonal%2F6ed1c23368a7eb3a%2FDocuments%2F%E7%8E%A9%E6%9C%BA%E8%B5%84%E6%BA%90%E7%AB%99%2F%E5%B7%A5%E7%A8%8Babl%2FOPPO%20665%2Eelf%2Eelf"
                                     }
                                 ]
@@ -129,6 +210,48 @@
                                                         "desc": "",
                                                         "readme": "data/rm/file/OPPO/PDVM00/c29.md",
                                                         "url": "https://dfs-serverauto-cn.allawnfs.com/dfs/24/08/30/c988b64e33b042ff801ede29e0764cad.zip"
+                                                    },
+                                                    {
+                                                        "name": "c.28",
+                                                        "type": "file",
+                                                        "desc": "",
+                                                        "readme": "data/rm/file/OPPO/PDVM00/c28.md",
+                                                        "url": "https://dfs-serverauto-in.allawnofs.com/dfs/24/05/30/6a81ab213be641b28b23d3079657bb83.zip"
+                                                    },
+                                                    {
+                                                        "name": "c.27",
+                                                        "type": "file",
+                                                        "desc": "",
+                                                        "readme": "data/rm/file/OPPO/PDVM00/c27.md",
+                                                        "url": "https://dfs-serverauto-in.allawnofs.com/dfs/24/02/19/4b254edba75b46af8257ceca0a556f58.zip"
+                                                    },
+                                                    {
+                                                        "name": "c.26",
+                                                        "type": "file",
+                                                        "desc": "",
+                                                        "readme": "data/rm/file/OPPO/PDVM00/c26.md",
+                                                        "url": "https://dfs-serverauto-in.allawnofs.com/dfs/23/10/10/edb3e7ff5fee4193ba747583e8ad5357.zip"
+                                                    },
+                                                    {
+                                                        "name": "c.25",
+                                                        "type": "file",
+                                                        "desc": "",
+                                                        "readme": "data/rm/file/OPPO/PDVM00/c25.md",
+                                                        "url": "https://dfs-serverauto-in.allawnofs.com/dfs/23/09/12/4fee13d2bee049909b7d1dfd0a03e2fa.zip"
+                                                    },
+                                                    {
+                                                        "name": "c.24",
+                                                        "type": "file",
+                                                        "desc": "",
+                                                        "readme": "data/rm/file/OPPO/PDVM00/c24.md",
+                                                        "url": "https://dfs-serverauto-in.allawnofs.com/dfs/23/07/25/4f56609fe1b74dbd8f868829fdb76f91.zip"
+                                                    },
+                                                    {
+                                                        "name": "c.23",
+                                                        "type": "file",
+                                                        "desc": "",
+                                                        "readme": "data/rm/file/OPPO/PDVM00/c23.md",
+                                                        "url": "https://dfs-serverauto-in.allawnofs.com/dfs/23/05/11/6ee41e8c1a7b41268a5d1f9dd53e8562.zip"
                                                     }
                                                 ]
                                             },
