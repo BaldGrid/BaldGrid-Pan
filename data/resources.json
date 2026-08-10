@@ -147,7 +147,7 @@
                 {
                   "name": "Schoolhouse Trouble Demo MIDI",
                   "type": "loader",
-                  "src": "music/baldi_sht_demo.json"
+                  "src": "data/rm/baldis/demo_midi.json"
                 }
               ]
             }

@@ -556,27 +556,37 @@
     };
     // ---- 加载数据 ----
     const loadResources = () => {
+        const list = D.list;
+        if (!list) return;
+        
+        // 先显示骨架屏（保持 HTML 中的骨架不变，清空后重新显示）
+        list.innerHTML = `
+            <div class="skeleton-card"><div class="skeleton-icon"></div><div class="skeleton-text"><div class="skeleton-line"></div><div class="skeleton-line short"></div></div></div>
+            <div class="skeleton-card"><div class="skeleton-icon"></div><div class="skeleton-text"><div class="skeleton-line"></div><div class="skeleton-line short"></div></div></div>
+            <div class="skeleton-card"><div class="skeleton-icon"></div><div class="skeleton-text"><div class="skeleton-line"></div><div class="skeleton-line short"></div></div></div>
+        `;
+        
         fetch(CONFIG.dataPath)
-            .then(r => { 
-                if (!r.ok) throw new Error('HTTP ' + r.status); 
-                return r.json(); 
-            })
+            .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
             .then(root => {
-                // resources.json 是 { categories: [...] } 格式
                 if (!root.categories || !Array.isArray(root.categories)) {
                     throw new Error('resources.json 缺少 categories 数组');
                 }
-                // 递归加载所有 loader
-                return loadTreeArray(root.categories);
+                // 直接返回数据，不要等 loader 全部加载完
+                return root.categories;
             })
-            .then(loadedData => {
-                State.data = loadedData;
+            .then(categories => {
+                // 先直接渲染，显示文件夹结构（loader 节点先显示为"加载中..."）
+                State.data = categories;
                 State.folderStack = [];
                 State.currentFolder = { children: State.data, readme: CONFIG.defaultReadme };
                 State.currentPath = [];
                 State.isSearchActive = false;
                 State.searchKeyword = '';
-                renderFolder();
+                renderFolder(); // 立即渲染
+                
+                // 然后异步加载所有 loader 的内容（不阻塞 UI）
+                loadAllLoaders(categories);
             })
             .catch(e => {
                 console.error('[Resources]', e);
@@ -588,14 +598,14 @@
             });
     };
     
-    // ---- loader 递归加载器（处理数组） ----
-    async function loadTreeArray(arr) {
-        if (!Array.isArray(arr)) return arr;
-        for (const item of arr) {
+    // 新增：后台异步加载所有 loader
+    const loadAllLoaders = async (data) => {
+        for (const item of data) {
             await loadTreeItem(item);
         }
-        return arr;
-    }
+        // 所有 loader 加载完成后刷新显示
+        renderFolder();
+    };
     
     // ---- loader 递归加载器（处理单个节点） ----
     async function loadTreeItem(node) {
@@ -606,16 +616,29 @@
             try {
                 const srcPath = node.src;
                 let data;
+                let fetchPath;
+                
+                // ★★★ 判断路径类型 ★★★
+                if (srcPath.startsWith('data/') || srcPath.startsWith('/')) {
+                    // 如果是 data/ 开头或 / 开头，直接用原路径
+                    fetchPath = srcPath;
+                } else if (srcPath.startsWith('res/')) {
+                    // 如果是 res/ 开头，去掉 res/ 前缀，从 data/res/ 加载
+                    fetchPath = `data/${srcPath}`;
+                } else {
+                    // 否则默认从 data/res/ 加载
+                    fetchPath = `data/res/${srcPath}`;
+                }
                 
                 // 检查是否有 # 锚点 (tools.json#magisk)
-                if (srcPath.includes('#')) {
-                    const [file, key] = srcPath.split('#');
-                    const resp = await fetch(`data/res/${file}`);
+                if (fetchPath.includes('#')) {
+                    const [file, key] = fetchPath.split('#');
+                    const resp = await fetch(file);
                     const json = await resp.json();
                     data = json[key];
                     if (!data) throw new Error(`找不到 key: ${key}`);
                 } else {
-                    const resp = await fetch(`data/res/${srcPath}`);
+                    const resp = await fetch(fetchPath);
                     data = await resp.json();
                 }
                 
@@ -655,6 +678,8 @@
         }
         return node;
     }
+    
+    
     const loadLinks = () => {
         const c = D.linksContainer;
         if (!c) return;
