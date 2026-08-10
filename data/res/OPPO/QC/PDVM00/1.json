@@ -1,0 +1,87 @@
+{
+  "name": "OPPO A32系列",
+  "type": "folder",
+  "desc": "OPPO A32 系列资源",
+  "readme": "data/rm/pdvm00.md",
+  "children": [
+    {
+      "name": "线刷包",
+      "type": "folder",
+      "desc": "",
+      "readme": "data/rm/file/xsb.md",
+      "children": [
+        {
+          "name": "大陆国行",
+          "type": "folder",
+          "desc": "",
+          "readme": "data/rm/file/prc.md",
+          "children": [
+            {
+              "name": "c.29",
+              "type": "file",
+              "desc": "",
+              "readme": "data/rm/file/OPPO/PDVM00/c29.md",
+              "url": "https://dfs-serverauto-cn.allawnfs.com/dfs/24/08/30/c988b64e33b042ff801ede29e0764cad.zip"
+            },
+            {
+              "name": "c.28",
+              "type": "file",
+              "desc": "",
+              "readme": "data/rm/file/OPPO/PDVM00/c28.md",
+              "url": "https://dfs-serverauto-in.allawnofs.com/dfs/24/05/30/6a81ab213be641b28b23d3079657bb83.zip"
+            },
+            {
+              "name": "c.27",
+              "type": "file",
+              "desc": "",
+              "readme": "data/rm/file/OPPO/PDVM00/c27.md",
+              "url": "https://dfs-serverauto-in.allawnofs.com/dfs/24/02/19/4b254edba75b46af8257ceca0a556f58.zip"
+            },
+            {
+              "name": "c.26",
+              "type": "file",
+              "desc": "",
+              "readme": "data/rm/file/OPPO/PDVM00/c26.md",
+              "url": "https://dfs-serverauto-in.allawnofs.com/dfs/23/10/10/edb3e7ff5fee4193ba747583e8ad5357.zip"
+            },
+            {
+              "name": "c.25",
+              "type": "file",
+              "desc": "",
+              "readme": "data/rm/file/OPPO/PDVM00/c25.md",
+              "url": "https://dfs-serverauto-in.allawnofs.com/dfs/23/09/12/4fee13d2bee049909b7d1dfd0a03e2fa.zip"
+            },
+            {
+              "name": "c.24",
+              "type": "file",
+              "desc": "",
+              "readme": "data/rm/file/OPPO/PDVM00/c24.md",
+              "url": "https://dfs-serverauto-in.allawnofs.com/dfs/23/07/25/4f56609fe1b74dbd8f868829fdb76f91.zip"
+            },
+            {
+              "name": "c.23",
+              "type": "file",
+              "desc": "",
+              "readme": "data/rm/file/OPPO/PDVM00/c23.md",
+              "url": "https://dfs-serverauto-in.allawnofs.com/dfs/23/05/11/6ee41e8c1a7b41268a5d1f9dd53e8562.zip"
+            }
+          ]
+        },
+        {
+          "name": "海外全球",
+          "type": "folder",
+          "desc": "",
+          "readme": "data/rm/file/chi.md",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "工程abl",
+      "type": "file",
+      "desc": "OPPO A32 工程abl文件",
+      "readme": "data/rm/file/OPPO/PDVM00/abl.md",
+      "url": "https://onedrive.live.com/personal/6ed1c23368a7eb3a/_layouts/15/download.aspx?SourceUrl=%2Fpersonal%2F6ed1c23368a7eb3a%2FDocuments%2F%E7%8E%A9%E6%9C%BA%E8%B5%84%E6%BA%90%E7%AB%99%2F%E5%B7%A5%E7%A8%8Babl%2FOPPO%20460%2Eimg%2Eimg"
+    }
+  ]
+}

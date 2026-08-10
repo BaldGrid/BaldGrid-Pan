@@ -1,642 +1,149 @@
-[
+{
+  "version": "1.0",
+  "categories": [
     {
-        "name": "Android",
-        "type": "folder",
-        "desc": "Android 刷机相关资源",
-        "readme": "data/rm/android.md",
-        "children": [
+      "name": "Android",
+      "type": "folder",
+      "desc": "Android 刷机相关资源",
+      "readme": "data/rm/android.md",
+      "children": [
+        {
+          "name": "欧珀 OPPO",
+          "type": "folder",
+          "desc": "OPPO 相关资源",
+          "readme": "data/rm/oppo.md",
+          "children": [
             {
-                "name": "欧珀 OPPO",
-                "type": "folder",
-                "desc": "OPPO 相关资源",
-                "readme": "data/rm/oppo.md",
-                "children": [
-                    {
-                        "name": "高通骁龙处理器",
-                        "type": "folder",
-                        "desc": "高通骁龙处理器机型",
-                        "readme": "data/rm/op_qc.md",
-                        "children": [
-                            {
-                                "name": "OPPO A11系列",
-                                "type": "folder",
-                                "desc": "OPPO A11 系列资源",
-                                "readme": "data/rm/pchm10.md",
-                                "children": [
-                                    {
-                                        "name": "线刷包",
-                                        "type": "folder",
-                                        "desc": "",
-                                        "readme": "data/rm/file/xsb.md",
-                                        "children": [
-                                            {
-                                                "name": "大陆国行",
-                                                "type": "folder",
-                                                "desc": "",
-                                                "readme": "data/rm/file/prc.md",
-                                                "children": [
-                                                    {
-                                                        "name": "f.12",
-                                                        "type": "file",
-                                                        "desc": "",
-                                                        "readme": "data/rm/file/OPPO/PCHM10/f12.md",
-                                                        "url": "https://dfs-serverauto-cn.allawnfs.com/dfs/24/02/01/ae3ade3c2c80422b95126f683af68849.zip"
-                                                    },
-                                                    {
-                                                        "name": "c.78",
-                                                        "type": "file",
-                                                        "desc": "",
-                                                        "readme": "data/rm/file/OPPO/PCHM10/c78.md",
-                                                        "url": "https://dfs-serverauto-cn.allawnfs.com/dfs/23/12/05/5159ea34a0db4e4c987eaaac6491f31e.zip"
-                                                    },
-                                                    {
-                                                        "name": "a.55",
-                                                        "type": "file",
-                                                        "desc": "",
-                                                        "readme": "data/rm/file/OPPO/PCHM10/a55.md",
-                                                        "url": "https://dfs-serverauto-cn.allawnfs.com/dfs/24/02/02/e8822ec2753a4d5bae9cbadb902d2b35.zip"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "name": "海外全球",
-                                                "type": "folder",
-                                                "desc": "",
-                                                "readme": "data/rm/file/chi.md",
-                                                "children": []
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "name": "全分区回读",
-                                        "type": "folder",
-                                        "desc": "",
-                                        "readme": "data/rm/file/OPPO/PCHM10/qfq1.md",
-                                        "children": [
-                                            {
-                                                "name": "A11全分区回读",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/OPPO/PCHM10/qfq.md",
-                                                "url": "https://onedrive.live.com/personal/6ed1c23368a7eb3a/_layouts/15/download.aspx?SourceUrl=%2Fpersonal%2F6ed1c23368a7eb3a%2FDocuments%2F%E7%8E%A9%E6%9C%BA%E8%B5%84%E6%BA%90%E7%AB%99%2F%E5%85%A8%E5%88%86%E5%8C%BA%E5%9B%9E%E8%AF%BB%2FPCHM10%5F11%5FF%2E12%2E7z"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "name": "国际版A5 2020线刷包",
-                                        "type": "file",
-                                        "desc": "这是一个测试文件",
-                                        "readme": "data/rm/file/test.md",
-                                        "url": "https://www.yhcres.top/d/public/02-%E6%89%8B%E6%9C%BA%E5%B9%B3%E6%9D%BF/OPPO/A%E7%B3%BB%E5%88%97/OPPO%20A11%EF%BC%88PCHM10%EF%BC%89%EF%BC%88%E9%AA%81%E9%BE%99665%EF%BC%89/%E5%9B%BD%E9%99%85%E7%89%88A5%20(2020)(CPH1933)%E7%BA%BF%E5%88%B7%E5%8C%85/PCHM10%E5%9B%BD%E9%99%85%E7%89%88CPH1933%E7%BA%BF%E5%88%B7%E5%9B%BA%E4%BB%B6.7z?sign=MTF015dGApE016RriXQdw4gstfItZr3HoK_SXtRd8CI=:1785925116"
-                                    },
-                                    {
-                                        "name": "工程abl",
-                                        "type": "file",
-                                        "desc": "OPPO A11 工程abl文件",
-                                        "readme": "data/rm/file/OPPO/PCHM10/abl.md",
-                                        "url": "https://onedrive.live.com/personal/6ed1c23368a7eb3a/_layouts/15/download.aspx?SourceUrl=%2Fpersonal%2F6ed1c23368a7eb3a%2FDocuments%2F%E7%8E%A9%E6%9C%BA%E8%B5%84%E6%BA%90%E7%AB%99%2F%E5%B7%A5%E7%A8%8Babl%2FOPPO%20665%2Eelf%2Eelf"
-                                    }
-                                ]
-                            },
-                            {
-                                "name": "OPPO A11x",
-                                "type": "folder",
-                                "desc": "OPPO A11x 系列资源",
-                                "readme": "data/rm/pchm30.md",
-                                "children": [
-                                    {
-                                        "name": "线刷包",
-                                        "type": "folder",
-                                        "desc": "",
-                                        "readme": "data/rm/file/xsb.md",
-                                        "children": [
-                                            {
-                                                "name": "大陆国行",
-                                                "type": "folder",
-                                                "desc": "",
-                                                "readme": "data/rm/file/prc.md",
-                                                "children": [
-                                                    {
-                                                        "name": "f.14",
-                                                        "type": "file",
-                                                        "desc": "",
-                                                        "readme": "data/rm/file/OPPO/PCHM30/f14.md",
-                                                        "url": "https://dfs-serverauto-in.allawnofs.com/dfs/24/11/18/dbe72bee9dc74133b0ca83e87b89b50b.zip"
-                                                    },
-                                                    {
-                                                        "name": "f.13",
-                                                        "type": "file",
-                                                        "desc": "",
-                                                        "readme": "data/rm/file/OPPO/PCHM30/f13.md",
-                                                        "url": "https://dfs-serverauto-in.allawnofs.com/dfs/23/10/26/ac0b1de6fe1947d092bc685f11aecc6e.zip"
-                                                    },
-                                                    {
-                                                        "name": "f.12",
-                                                        "type": "file",
-                                                        "desc": "",
-                                                        "readme": "data/rm/file/OPPO/PCHM30/f12.md",
-                                                        "url": "https://dfs-serverauto-in.allawnofs.com/dfs/23/12/05/a5df7347569141e2bee5e080ae46e582.zip"
-                                                    },
-                                                    {
-                                                        "name": "c.78",
-                                                        "type": "file",
-                                                        "desc": "",
-                                                        "readme": "data/rm/file/OPPO/PCHM30/c78.md",
-                                                        "url": "https://dfs-serverauto-in.allawnofs.com/dfs/23/12/05/5159ea34a0db4e4c987eaaac6491f31e.zip"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "name": "海外全球",
-                                                "type": "folder",
-                                                "desc": "",
-                                                "readme": "data/rm/file/chi.md",
-                                                "children": []
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "name": "全分区回读",
-                                        "type": "folder",
-                                        "desc": "",
-                                        "readme": "data/rm/file/OPPO/PCHM30/qfq1.md",
-                                        "children": [
-                                            {
-                                                "name": "A11x全分区回读",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/OPPO/PCHM30/qfq.md",
-                                                "url": "https://onedrive.live.com/personal/6ed1c23368a7eb3a/_layouts/15/download.aspx?SourceUrl=%2Fpersonal%2F6ed1c23368a7eb3a%2FDocuments%2F%E7%8E%A9%E6%9C%BA%E8%B5%84%E6%BA%90%E7%AB%99%2F%E5%85%A8%E5%88%86%E5%8C%BA%E5%9B%9E%E8%AF%BB%2FA11X%E5%85%A8%E5%AD%97%E5%BA%93%2Ezip"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "name": "国际版A9 2020线刷包",
-                                        "type": "file",
-                                        "desc": "这是一个测试文件",
-                                        "readme": "data/rm/file/test.md",
-                                        "url": "https://www.yhcres.top/d/public/02-%E6%89%8B%E6%9C%BA%E5%B9%B3%E6%9D%BF/OPPO/A%E7%B3%BB%E5%88%97/OPPO%20A11%EF%BC%88PCHM10%EF%BC%89%EF%BC%88%E9%AA%81%E9%BE%99665%EF%BC%89/%E5%9B%BD%E9%99%85%E7%89%88A5%20(2020)(CPH1933)%E7%BA%BF%E5%88%B7%E5%8C%85/PCHM10%E5%9B%BD%E9%99%85%E7%89%88CPH1933%E7%BA%BF%E5%88%B7%E5%9B%BA%E4%BB%B6.7z?sign=MTF015dGApE016RriXQdw4gstfItZr3HoK_SXtRd8CI=:1785925116"
-                                    },
-                                    {
-                                        "name": "工程abl",
-                                        "type": "file",
-                                        "desc": "OPPO A11x 工程abl文件",
-                                        "readme": "data/rm/file/OPPO/PCHM30/abl.md",
-                                        "url": "https://onedrive.live.com/personal/6ed1c23368a7eb3a/_layouts/15/download.aspx?SourceUrl=%2Fpersonal%2F6ed1c23368a7eb3a%2FDocuments%2F%E7%8E%A9%E6%9C%BA%E8%B5%84%E6%BA%90%E7%AB%99%2F%E5%B7%A5%E7%A8%8Babl%2FOPPO%20665%2Eelf%2Eelf"
-                                    }
-                                ]
-                            },
-                            {
-                                "name": "OPPO A32系列",
-                                "type": "folder",
-                                "desc": "OPPO A32 系列资源",
-                                "readme": "data/rm/pdvm00.md",
-                                "children": [
-                                    {
-                                        "name": "线刷包",
-                                        "type": "folder",
-                                        "desc": "",
-                                        "readme": "data/rm/file/xsb.md",
-                                        "children": [
-                                            {
-                                                "name": "大陆国行",
-                                                "type": "folder",
-                                                "desc": "",
-                                                "readme": "data/rm/file/prc.md",
-                                                "children": [
-                                                    {
-                                                        "name": "c.29",
-                                                        "type": "file",
-                                                        "desc": "",
-                                                        "readme": "data/rm/file/OPPO/PDVM00/c29.md",
-                                                        "url": "https://dfs-serverauto-cn.allawnfs.com/dfs/24/08/30/c988b64e33b042ff801ede29e0764cad.zip"
-                                                    },
-                                                    {
-                                                        "name": "c.28",
-                                                        "type": "file",
-                                                        "desc": "",
-                                                        "readme": "data/rm/file/OPPO/PDVM00/c28.md",
-                                                        "url": "https://dfs-serverauto-in.allawnofs.com/dfs/24/05/30/6a81ab213be641b28b23d3079657bb83.zip"
-                                                    },
-                                                    {
-                                                        "name": "c.27",
-                                                        "type": "file",
-                                                        "desc": "",
-                                                        "readme": "data/rm/file/OPPO/PDVM00/c27.md",
-                                                        "url": "https://dfs-serverauto-in.allawnofs.com/dfs/24/02/19/4b254edba75b46af8257ceca0a556f58.zip"
-                                                    },
-                                                    {
-                                                        "name": "c.26",
-                                                        "type": "file",
-                                                        "desc": "",
-                                                        "readme": "data/rm/file/OPPO/PDVM00/c26.md",
-                                                        "url": "https://dfs-serverauto-in.allawnofs.com/dfs/23/10/10/edb3e7ff5fee4193ba747583e8ad5357.zip"
-                                                    },
-                                                    {
-                                                        "name": "c.25",
-                                                        "type": "file",
-                                                        "desc": "",
-                                                        "readme": "data/rm/file/OPPO/PDVM00/c25.md",
-                                                        "url": "https://dfs-serverauto-in.allawnofs.com/dfs/23/09/12/4fee13d2bee049909b7d1dfd0a03e2fa.zip"
-                                                    },
-                                                    {
-                                                        "name": "c.24",
-                                                        "type": "file",
-                                                        "desc": "",
-                                                        "readme": "data/rm/file/OPPO/PDVM00/c24.md",
-                                                        "url": "https://dfs-serverauto-in.allawnofs.com/dfs/23/07/25/4f56609fe1b74dbd8f868829fdb76f91.zip"
-                                                    },
-                                                    {
-                                                        "name": "c.23",
-                                                        "type": "file",
-                                                        "desc": "",
-                                                        "readme": "data/rm/file/OPPO/PDVM00/c23.md",
-                                                        "url": "https://dfs-serverauto-in.allawnofs.com/dfs/23/05/11/6ee41e8c1a7b41268a5d1f9dd53e8562.zip"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "name": "海外全球",
-                                                "type": "folder",
-                                                "desc": "",
-                                                "readme": "data/rm/file/chi.md",
-                                                "children": []
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "name": "工程abl",
-                                        "type": "file",
-                                        "desc": "OPPO A32 工程abl文件",
-                                        "readme": "data/rm/file/OPPO/PDVM00/abl.md",
-                                        "url": "https://onedrive.live.com/personal/6ed1c23368a7eb3a/_layouts/15/download.aspx?SourceUrl=%2Fpersonal%2F6ed1c23368a7eb3a%2FDocuments%2F%E7%8E%A9%E6%9C%BA%E8%B5%84%E6%BA%90%E7%AB%99%2F%E5%B7%A5%E7%A8%8Babl%2FOPPO%20460%2Eimg%2Eimg"
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
+              "name": "高通骁龙处理器",
+              "type": "folder",
+              "desc": "高通骁龙处理器机型",
+              "readme": "data/rm/op_qc.md",
+              "children": [
+                {
+                  "name": "OPPO A11系列",
+                  "type": "loader",
+                  "src": "OPPO/QC/PCHM10/1.json"
+                },
+                {
+                  "name": "OPPO A11x",
+                  "type": "loader",
+                  "src": "OPPO/QC/PCHM30/1.json"
+                },
+                {
+                  "name": "OPPO A32系列",
+                  "type": "loader",
+                  "src": "OPPO/QC/PDVM00/1.json"
+                }
+              ]
             },
             {
-                "name": "小米 XiaoMi",
-                "type": "folder",
-                "desc": "小米 相关资源",
-                "readme": "data/rm/xiaomi.md",
-                "children": [
-                    {
-                        "name": "高通骁龙处理器",
-                        "type": "folder",
-                        "desc": "高通骁龙处理器机型",
-                        "readme": "data/rm/xm_qc.md",
-                        "children": [
-                            {
-                                "name": "小米2/s",
-                                "type": "folder",
-                                "desc": "aries",
-                                "readme": "data/rm/file/XiaoMi/aries/1.md",
-                                "children": [
-                                    {
-                                        "name": "线刷包",
-                                        "type": "folder",
-                                        "desc": "",
-                                        "readme": "data/rm/file/xsb.md",
-                                        "children": [
-                                            {
-                                                "name": "JLB52.0",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/aries/JLB52.0.md",
-                                                "url": "https://ultimateota.d.miui.com/JLB52.0/aries_images_JLB52.0_4.1_cn_4853321892.tgz?t=1786288481&s=2a1a508f4f1b3f5c9408d97b44acf8c7"
-                                            },
-                                            {
-                                                "name": "V9.2.3.0.LXACNEK",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/aries/V9.2.3.0.LXACNEK.md",
-                                                "url": "https://ultimateota.d.miui.com/V9.2.3.0.LXACNEK/aries_images_V9.2.3.0.LXACNEK_20171229.0000.00_5.0_cn_c54a41d74c.tgz?t=1786288481&s=2105df502792135441feadd9e350550c"
-                                            },
-                                            {
-                                                "name": "V8.5.1.0.LXACNED",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/aries/V8.5.1.0.LXACNED.md",
-                                                "url": "https://ultimateota.d.miui.com/V8.5.1.0.LXACNED/aries_images_V8.5.1.0.LXACNED_20170906.0000.00_5.0_cn_93a86db626.tgz?t=1786288481&s=032f50be3733034b3dbbe74a1d193d49"
-                                            },
-                                            {
-                                                "name": "V8.2.1.0.LXACNDL",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/aries/V8.2.1.0.LXACNDL.md",
-                                                "url": "https://ultimateota.d.miui.com/V8.2.1.0.LXACNDL/aries_images_V8.2.1.0.LXACNDL_20170117.0000.00_5.0_cn_dd2fadd1c0.tgz?t=1786288481&s=f2a928b10f077e4b8c46c1ae6d94d1c7"
-                                            },
-                                            {
-                                                "name": "V8.0.1.0.LXACNDG",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/aries/V8.0.1.0.LXACNDG.md",
-                                                "url": "https://ultimateota.d.miui.com/V8.1.2.0.LXACNDI/aries_images_V8.1.2.0.LXACNDI_20161107.0000.00_5.0_cn_299204e8dd.tgz?t=1786288481&s=4b7bbdaf7a5b5d66713a1d269190a371"
-                                            },
-                                            {
-                                                "name": "V7.5.1.0.LXACNDE",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/aries/V7.5.1.0.LXACNDE.md",
-                                                "url": "https://ultimateota.d.miui.com/V7.5.1.0.LXACNDE/aries_images_V7.5.1.0.LXACNDE_20160523.0000.23_5.0_cn_38664460b1.tgz?t=1786288481&s=58b7d1c9d7f78aba557c0abb0f4eb95d"
-                                            },
-                                            {
-                                                "name": "V7.3.2.0.LXACNDD",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/aries/V7.3.2.0.LXACNDD.md",
-                                                "url": "https://ultimateota.d.miui.com/V7.3.2.0.LXACNDD/aries_images_V7.3.2.0.LXACNDD_20160419.0000.19_5.0_cn_41a03f792c.tgz?t=1786288481&s=54d92e431692514f984012704b703e84"
-                                            },
-                                            {
-                                                "name": "V7.2.5.0.LXACNDA",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/aries/V7.2.5.0.LXACNDA.md",
-                                                "url": "https://ultimateota.d.miui.com/V7.2.5.0.LXACNDA/aries_images_V7.2.5.0.LXACNDA_20160129.0000.14_5.0_cn_974cca3541.tgz?t=1786288481&s=e15e646560f80de49cab382198d4c8c1"
-                                            },
-                                            {
-                                                "name": "V7.2.4.0.LXACNDA",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/aries/V7.2.4.0.LXACNDA.md",
-                                                "url": "https://ultimateota.d.miui.com/V7.2.4.0.LXACNDA/aries_images_V7.2.4.0.LXACNDA_20160129.0000.14_5.0_cn_6122cfc1b7.tgz?t=1786288481&s=563318c1e681b6f0f1c569b43f49e002"
-                                            },
-                                            {
-                                                "name": "V7.1.5.0.LXACNCK",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/aries/V7.1.5.0.LXACNCK.md",
-                                                "url": "https://ultimateota.d.miui.com/V7.1.5.0.LXACNCK/aries_images_V7.1.5.0.LXACNCK_20160125.0000.13_5.0_cn_5448238090.tgz?t=1786288481&s=0dbc190f70daf1f0049e1b665277b9e6"
-                                            },
-                                            {
-                                                "name": "V7.0.4.0.LXACNCI",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/aries/V7.0.4.0.LXACNCI.md",
-                                                "url": "https://ultimateota.d.miui.com/V7.0.4.0.LXACNCI/aries_images_V7.0.4.0.LXACNCI_20151016.0000.3_5.0_cn_7ad57c479e.tgz?t=1786288481&s=cd3c4801dcac078fd9f967ceb84d8355"
-                                            },
-                                            {
-                                                "name": "JLB54.0",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/aries/JLB54.0.md",
-                                                "url": "https://ultimateota.d.miui.com/JLB54.0/aries_images_JLB54.0_4.1_cn_2eda98ac63.tgz?t=1786288481&s=8534985397e9e7710eb67c94ee48dd8c"
-                                            },
-                                            {
-                                                "name": "JLB50.0",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/aries/JLB50.0.md",
-                                                "url": "https://ultimateota.d.miui.com/JLB50.0/aries_images_JLB50.0_4.1_cn_9317da5f38.tgz?t=1786288481&s=5ee51c567e3bfac2ac852a2f7e6abe86"
-                                            },
-                                            {
-                                                "name": "中国联通定制版 JLB50.0",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/aries/中国联通定制版 JLB50.0.md",
-                                                "url": "https://ultimateota.d.miui.com/JLB50.0/aries_images_JLB50.0_4.1_cn_chinaunicom_161132cdf3.tgz?t=1786288481&s=fbc880600a821b445405bf8f9ca31914"
-                                            },
-                                            {
-                                                "name": "JLB49.0",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/aries/JLB49.0.md",
-                                                "url": "https://ultimateota.d.miui.com/JLB49.0/aries_images_JLB49.0_4.1_cn_5b246a7ed4.tgz?t=1786288481&s=4c0a3386f15b5d00c9ea07720f16464f"
-                                            }
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "name": "小米4c",
-                                "type": "folder",
-                                "desc": "libra",
-                                "readme": "data/rm/file/XiaoMi/libra/1.md",
-                                "children": [
-                                    {
-                                        "name": "线刷包",
-                                        "type": "folder",
-                                        "desc": "",
-                                        "readme": "data/rm/file/xsb.md",
-                                        "children": [
-                                            {
-                                                "name": "V10.1.1.0.NXKCNFI",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/libra/V10.1.1.0.NXKCNFI.md",
-                                                "url": "https://ultimateota.d.miui.com/V10.1.1.0.NXKCNFI/libra_images_V10.1.1.0.NXKCNFI_20181009.0000.00_7.0_cn_24e34e7e33.tgz?t=1786288482&s=5c8459a9f4d1f59526e2742f8c607278"
-                                            },
-                                            {
-                                                "name": "V9.6.3.0.NXKCNFD",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/libra/V9.6.3.0.NXKCNFD.md",
-                                                "url": "https://ultimateota.d.miui.com/V9.6.3.0.NXKCNFD/libra_images_V9.6.3.0.NXKCNFD_20180716.0000.00_7.0_cn_350d0ee58c.tgz?t=1786288482&s=a11fd72623504dbfc3cab029a78ba2a7"
-                                            },
-                                            {
-                                                "name": "V9.6.2.0.NXKCNFD",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/libra/V9.6.2.0.NXKCNFD.md",
-                                                "url": "https://ultimateota.d.miui.com/V9.6.2.0.NXKCNFD/libra_images_V9.6.2.0.NXKCNFD_20180608.0000.00_7.0_cn_caefff2d03.tgz?t=1786288482&s=5cae276aba0296fd3d1036463fc2c454"
-                                            },
-                                            {
-                                                "name": "V9.5.2.0.NXKCNFA",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/libra/V9.5.2.0.NXKCNFA.md",
-                                                "url": "https://ultimateota.d.miui.com/V9.5.2.0.NXKCNFA/libra_images_V9.5.2.0.NXKCNFA_20180405.0000.00_7.0_cn_3dce54155d.tgz?t=1786288482&s=ed716de19396867bd24c03163ecb8f3a"
-                                            },
-                                            {
-                                                "name": "V9.5.1.0.NXKCNFA",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/libra/V9.5.1.0.NXKCNFA.md",
-                                                "url": "https://ultimateota.d.miui.com/V9.5.1.0.NXKCNFA/libra_images_V9.5.1.0.NXKCNFA_20180306.0000.00_7.0_cn_abe990531b.tgz?t=1786288482&s=6a7b63bab7b42efa9eee22280a21f13a"
-                                            },
-                                            {
-                                                "name": "V9.2.2.0.NXKCNEK",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/libra/V9.2.2.0.NXKCNEK.md",
-                                                "url": "https://ultimateota.d.miui.com/V9.2.2.0.NXKCNEK/libra_images_V9.2.2.0.NXKCNEK_20180123.0000.00_7.0_cn_75e9d336d5.tgz?t=1786288482&s=39268212b799baebba90df1c4d308d0c"
-                                            },
-                                            {
-                                                "name": "V9.2.1.0.NXKCNEK",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/libra/V9.2.1.0.NXKCNEK.md",
-                                                "url": "https://ultimateota.d.miui.com/V9.2.1.0.NXKCNEK/libra_images_V9.2.1.0.NXKCNEK_20171219.0000.00_7.0_cn_e17bf9197d.tgz?t=1786288482&s=f5a43d909eef7f18b99a8ac32e8b3042"
-                                            },
-                                            {
-                                                "name": "V9.1.3.0.NXKCNEI",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/libra/V9.1.3.0.NXKCNEI.md",
-                                                "url": "https://ultimateota.d.miui.com/V9.1.3.0.NXKCNEI/libra_images_V9.1.3.0.NXKCNEI_20171124.0000.00_7.0_cn_513aacfe65.tgz?t=1786288482&s=48fe33fe2e927eeede9d442600e2d9bf"
-                                            },
-                                            {
-                                                "name": "V9.1.2.0.NXKCNEI",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/libra/V9.1.2.0.NXKCNEI.md",
-                                                "url": "https://ultimateota.d.miui.com/V9.1.2.0.NXKCNEI/libra_images_V9.1.2.0.NXKCNEI_20171102.0000.00_7.0_cn_846224ba9d.tgz?t=1786288482&s=d8403abeafd1502b5326203fb3844c2f"
-                                            },
-                                            {
-                                                "name": "V8.5.1.0.NXKCNED",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/libra/V8.5.1.0.NXKCNED.md",
-                                                "url": "https://ultimateota.d.miui.com/V8.5.1.0.NXKCNED/libra_images_V8.5.1.0.NXKCNED_20170619.0000.00_7.0_cn_2b6ded3649.tgz?t=1786288482&s=126a8865dd7669f22b29ad6dc00c2560"
-                                            },
-                                            {
-                                                "name": "V8.2.3.0.NXKCNEC",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/libra/V8.2.3.0.NXKCNEC.md",
-                                                "url": "https://ultimateota.d.miui.com/V8.2.3.0.NXKCNEC/libra_images_V8.2.3.0.NXKCNEC_20170407.0000.00_7.0_cn_65308fae52.tgz?t=1786288482&s=29087091e3aaeaef84383ce577247c21"
-                                            },
-                                            {
-                                                "name": "V8.2.1.0.LXKCNDL",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/libra/V8.2.1.0.LXKCNDL.md",
-                                                "url": "https://ultimateota.d.miui.com/V8.2.1.0.LXKCNDL/libra_images_V8.2.1.0.LXKCNDL_20170110.0000.00_5.1_cn_c60ccb13c7.tgz?t=1786288482&s=0921d65bd5377eca4a992f4dae43749d"
-                                            },
-                                            {
-                                                "name": "V8.1.3.0.LXKCNDI",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/libra/V8.1.3.0.LXKCNDI.md",
-                                                "url": "https://ultimateota.d.miui.com/V8.1.3.0.LXKCNDI/libra_images_V8.1.3.0.LXKCNDI_20161213.0000.00_5.1_cn_0b3ce6d35d.tgz?t=1786288482&s=60a7fdacd945a9eee30a4a3050ab1b31"
-                                            },
-                                            {
-                                                "name": "V8.1.2.0.LXKCNDI",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/libra/V8.1.2.0.LXKCNDI.md",
-                                                "url": "https://ultimateota.d.miui.com/V8.1.2.0.LXKCNDI/libra_images_V8.1.2.0.LXKCNDI_20161120.0000.00_5.1_cn_89c8591fd1.tgz?t=1786288482&s=906bbedd9c209417186859a23121b36b"
-                                            },
-                                            {
-                                                "name": "V8.1.1.0.LXKCNDI",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/libra/V8.1.1.0.LXKCNDI.md",
-                                                "url": "https://ultimateota.d.miui.com/V8.1.1.0.LXKCNDI/libra_images_V8.1.1.0.LXKCNDI_20161107.0000.00_5.1_cn_103869def5.tgz?t=1786288482&s=55a991f261bde6ce9d6a983a89520d74"
-                                            },
-                                            {
-                                                "name": "V8.0.5.0.LXKcNDG",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/libra/V8.0.5.0.LXKcNDG.md",
-                                                "url": "https://ultimateota.d.miui.com/V8.1.1.0.LXKCNDI/libra_images_V8.1.1.0.LXKCNDI_20161107.0000.00_5.1_cn_103869def5.tgz?t=1786288482&s=55a991f261bde6ce9d6a983a89520d74"
-                                            },
-                                            {
-                                                "name": "V8.0.4.0.LXKcNDG",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/libra/V8.0.4.0.LXKcNDG.md",
-                                                "url": "https://ultimateota.d.miui.com/V8.0.4.0.LXKCNDG/libra_images_V8.0.4.0.LXKCNDG_20160805.0000.29_5.1_cn_95f7161b1a.tgz?t=1786288482&s=6f10d2f99147bd6a3d94aef4690c0488"
-                                            },
-                                            {
-                                                "name": "V7.5.4.0.LXKcNDE",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/libra/V7.5.4.0.LXKcNDE.md",
-                                                "url": "https://ultimateota.d.miui.com/V7.5.4.0.LXKCNDE/libra_images_V7.5.4.0.LXKCNDE_20160629.0000.25_5.1_cn_33a18f6950.tgz?t=1786288482&s=bbf4990a5e22139c752e92cb864ae879"
-                                            },
-                                            {
-                                                "name": "V7.5.3.0.LXKcNDE",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/libra/V7.5.3.0.LXKcNDE.md",
-                                                "url": "https://ultimateota.d.miui.com/V7.5.3.0.LXKCNDE/libra_images_V7.5.3.0.LXKCNDE_20160523.0000.23_5.1_cn_e14d5f3136.tgz?t=1786288482&s=89248283ff8a829bc2a3d7d6a3d16a61"
-                                            },
-                                            {
-                                                "name": "V7.0.4.0.LXKCNCI",
-                                                "type": "file",
-                                                "desc": "",
-                                                "readme": "data/rm/file/XiaoMi/libra/V7.0.4.0.LXKCNCI.md",
-                                                "url": "https://ultimateota.d.miui.com/V7.0.4.0.LXKCNCI/libra_images_V7.0.4.0.LXKCNCI_20150826.0000.7_5.1_cn_a7b0a12cef.tgz?t=1786288482&s=07a35afd7a72f8f0d8eff8a1dcd006bd"
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "name": "Magisk",
-                "type": "file",
-                "desc": "Android Root管理工具",
-                "readme": "data/rm/file/test.md",
-                "url": "https://github.com/topjohnwu/Magisk/releases"
-            },
-            {
-                "name": "OrangeFox Recovery",
-                "type": "file",
-                "desc": "第三方Recovery",
-                "readme": "data/rm/file/test.md",
-                "url": "https://orangefox.download"
-            },
-            {
-                "name": "白叶刷机工具",
-                "type": "file",
-                "desc": "第三方刷机工具",
-                "readme": "data/rm/file/test.md",
-                "url": "https://github.com/BaldGrid/Baiye-Flashing-Tool"
+              "name": "联发科处理器",
+              "type": "folder",
+              "desc": "联发科处理器机型",
+              "readme": "data/rm/op_mtk.md",
+              "children": []
             }
-        ]
+          ]
+        },
+        {
+          "name": "小米 XiaoMi",
+          "type": "folder",
+          "desc": "小米 相关资源",
+          "readme": "data/rm/xiaomi.md",
+          "children": [
+            {
+              "name": "高通骁龙处理器",
+              "type": "folder",
+              "desc": "高通骁龙处理器机型",
+              "readme": "data/rm/xm_qc.md",
+              "children": [
+                {
+                  "name": "小米2/s",
+                  "type": "loader",
+                  "src": "XiaoMi/QC/aries/1.json"
+                },
+                {
+                  "name": "小米4c",
+                  "type": "loader",
+                  "src": "XiaoMi/QC/libra/1.json"
+                }
+              ]
+            },
+            {
+              "name": "联发科处理器",
+              "type": "folder",
+              "desc": "联发科处理器机型",
+              "readme": "data/rm/xm_mtk.md",
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "通用工具",
+          "type": "folder",
+          "desc": "刷机通用工具",
+          "readme": "data/rm/tools.md",
+          "children": [
+            {
+              "name": "Magisk",
+              "type": "loader",
+              "src": "tools/tools.json#magisk"
+            },
+            {
+              "name": "OrangeFox Recovery",
+              "type": "loader",
+              "src": "tools/tools.json#orangefox"
+            },
+            {
+              "name": "白叶刷机工具",
+              "type": "loader",
+              "src": "tools/tools.json#baiye"
+            }
+          ]
+        }
+      ]
     },
     {
-        "name": "游戏开发",
-        "type": "folder",
-        "desc": "游戏相关项目",
-        "readme": "data/rm/game.md",
-        "children": [
-            {
-                "name": "米塔的袭击beta3源代码",
-                "type": "file",
-                "desc": "游戏源代码",
-                "readme": "data/rm/file/fuck_games.md",
-                "url": "https://github.com/BaldGrid/Open-Attack-Of-The-Mita"
-            }
-        ]
+      "name": "游戏开发",
+      "type": "folder",
+      "desc": "游戏相关项目",
+      "readme": "data/rm/game.md",
+      "children": [
+        {
+          "name": "米塔的袭击beta3源代码",
+          "type": "loader",
+          "src": "game/mita.json"
+        }
+      ]
     },
     {
-        "name": "音乐",
-        "type": "folder",
-        "desc": "",
-        "readme": "data/rm/musiced.md",
-        "children": [
+      "name": "音乐",
+      "type": "folder",
+      "desc": "",
+      "readme": "data/rm/musiced.md",
+      "children": [
+        {
+          "name": "Baldi",
+          "type": "folder",
+          "desc": "",
+          "readme": "data/rm/baldi.md",
+          "children": [
             {
-                "name": "Baldi",
-                "type": "folder",
-                "desc": "",
-                "readme": "data/rm/baldi.md",
-                "children": [
-                    {
-                        "name": "Schoolhouse Trouble",
-                        "type": "folder",
-                        "desc": "",
-                        "readme": "data/rm/baldis/sht.md",
-                        "children": [
-                            {
-                                "name": "Schoolhouse Trouble Demo MIDI",
-                                "type": "file",
-                                "desc": "",
-                                "readme": "data/rm/baldis/demomidi.md",
-                                "url": "https://onedrive.live.com/personal/6ed1c23368a7eb3a/_layouts/15/download.aspx?UniqueId=6a68a437%2D1a62%2D4266%2D888b%2D83d2aa0c22f9"
-                            }
-                        ]
-                    }
-                ]
+              "name": "Schoolhouse Trouble",
+              "type": "folder",
+              "desc": "",
+              "readme": "data/rm/baldis/sht.md",
+              "children": [
+                {
+                  "name": "Schoolhouse Trouble Demo MIDI",
+                  "type": "loader",
+                  "src": "music/baldi_sht_demo.json"
+                }
+              ]
             }
-        ]
+          ]
+        }
+      ]
     }
-]
+  ]
+}

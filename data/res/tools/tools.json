@@ -1,0 +1,23 @@
+{
+  "magisk": {
+    "name": "Magisk",
+    "type": "file",
+    "desc": "Android Root管理工具",
+    "readme": "data/rm/file/test.md",
+    "url": "https://github.com/topjohnwu/Magisk/releases"
+  },
+  "orangefox": {
+    "name": "OrangeFox Recovery",
+    "type": "file",
+    "desc": "第三方Recovery",
+    "readme": "data/rm/file/test.md",
+    "url": "https://orangefox.download"
+  },
+  "baiye": {
+    "name": "白叶刷机工具",
+    "type": "file",
+    "desc": "第三方刷机工具",
+    "readme": "data/rm/file/test.md",
+    "url": "https://github.com/BaldGrid/Baiye-Flashing-Tool"
+  }
+}

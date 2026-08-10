@@ -1,0 +1,156 @@
+{
+  "name": "小米4c",
+  "type": "folder",
+  "desc": "libra",
+  "readme": "data/rm/file/XiaoMi/libra/1.md",
+  "children": [
+    {
+      "name": "线刷包",
+      "type": "folder",
+      "desc": "",
+      "readme": "data/rm/file/xsb.md",
+      "children": [
+        {
+          "name": "V10.1.1.0.NXKCNFI",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/libra/V10.1.1.0.NXKCNFI.md",
+          "url": "https://ultimateota.d.miui.com/V10.1.1.0.NXKCNFI/libra_images_V10.1.1.0.NXKCNFI_20181009.0000.00_7.0_cn_24e34e7e33.tgz?t=1786288482&s=5c8459a9f4d1f59526e2742f8c607278"
+        },
+        {
+          "name": "V9.6.3.0.NXKCNFD",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/libra/V9.6.3.0.NXKCNFD.md",
+          "url": "https://ultimateota.d.miui.com/V9.6.3.0.NXKCNFD/libra_images_V9.6.3.0.NXKCNFD_20180716.0000.00_7.0_cn_350d0ee58c.tgz?t=1786288482&s=a11fd72623504dbfc3cab029a78ba2a7"
+        },
+        {
+          "name": "V9.6.2.0.NXKCNFD",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/libra/V9.6.2.0.NXKCNFD.md",
+          "url": "https://ultimateota.d.miui.com/V9.6.2.0.NXKCNFD/libra_images_V9.6.2.0.NXKCNFD_20180608.0000.00_7.0_cn_caefff2d03.tgz?t=1786288482&s=5cae276aba0296fd3d1036463fc2c454"
+        },
+        {
+          "name": "V9.5.2.0.NXKCNFA",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/libra/V9.5.2.0.NXKCNFA.md",
+          "url": "https://ultimateota.d.miui.com/V9.5.2.0.NXKCNFA/libra_images_V9.5.2.0.NXKCNFA_20180405.0000.00_7.0_cn_3dce54155d.tgz?t=1786288482&s=ed716de19396867bd24c03163ecb8f3a"
+        },
+        {
+          "name": "V9.5.1.0.NXKCNFA",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/libra/V9.5.1.0.NXKCNFA.md",
+          "url": "https://ultimateota.d.miui.com/V9.5.1.0.NXKCNFA/libra_images_V9.5.1.0.NXKCNFA_20180306.0000.00_7.0_cn_abe990531b.tgz?t=1786288482&s=6a7b63bab7b42efa9eee22280a21f13a"
+        },
+        {
+          "name": "V9.2.2.0.NXKCNEK",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/libra/V9.2.2.0.NXKCNEK.md",
+          "url": "https://ultimateota.d.miui.com/V9.2.2.0.NXKCNEK/libra_images_V9.2.2.0.NXKCNEK_20180123.0000.00_7.0_cn_75e9d336d5.tgz?t=1786288482&s=39268212b799baebba90df1c4d308d0c"
+        },
+        {
+          "name": "V9.2.1.0.NXKCNEK",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/libra/V9.2.1.0.NXKCNEK.md",
+          "url": "https://ultimateota.d.miui.com/V9.2.1.0.NXKCNEK/libra_images_V9.2.1.0.NXKCNEK_20171219.0000.00_7.0_cn_e17bf9197d.tgz?t=1786288482&s=f5a43d909eef7f18b99a8ac32e8b3042"
+        },
+        {
+          "name": "V9.1.3.0.NXKCNEI",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/libra/V9.1.3.0.NXKCNEI.md",
+          "url": "https://ultimateota.d.miui.com/V9.1.3.0.NXKCNEI/libra_images_V9.1.3.0.NXKCNEI_20171124.0000.00_7.0_cn_513aacfe65.tgz?t=1786288482&s=48fe33fe2e927eeede9d442600e2d9bf"
+        },
+        {
+          "name": "V9.1.2.0.NXKCNEI",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/libra/V9.1.2.0.NXKCNEI.md",
+          "url": "https://ultimateota.d.miui.com/V9.1.2.0.NXKCNEI/libra_images_V9.1.2.0.NXKCNEI_20171102.0000.00_7.0_cn_846224ba9d.tgz?t=1786288482&s=d8403abeafd1502b5326203fb3844c2f"
+        },
+        {
+          "name": "V8.5.1.0.NXKCNED",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/libra/V8.5.1.0.NXKCNED.md",
+          "url": "https://ultimateota.d.miui.com/V8.5.1.0.NXKCNED/libra_images_V8.5.1.0.NXKCNED_20170619.0000.00_7.0_cn_2b6ded3649.tgz?t=1786288482&s=126a8865dd7669f22b29ad6dc00c2560"
+        },
+        {
+          "name": "V8.2.3.0.NXKCNEC",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/libra/V8.2.3.0.NXKCNEC.md",
+          "url": "https://ultimateota.d.miui.com/V8.2.3.0.NXKCNEC/libra_images_V8.2.3.0.NXKCNEC_20170407.0000.00_7.0_cn_65308fae52.tgz?t=1786288482&s=29087091e3aaeaef84383ce577247c21"
+        },
+        {
+          "name": "V8.2.1.0.LXKCNDL",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/libra/V8.2.1.0.LXKCNDL.md",
+          "url": "https://ultimateota.d.miui.com/V8.2.1.0.LXKCNDL/libra_images_V8.2.1.0.LXKCNDL_20170110.0000.00_5.1_cn_c60ccb13c7.tgz?t=1786288482&s=0921d65bd5377eca4a992f4dae43749d"
+        },
+        {
+          "name": "V8.1.3.0.LXKCNDI",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/libra/V8.1.3.0.LXKCNDI.md",
+          "url": "https://ultimateota.d.miui.com/V8.1.3.0.LXKCNDI/libra_images_V8.1.3.0.LXKCNDI_20161213.0000.00_5.1_cn_0b3ce6d35d.tgz?t=1786288482&s=60a7fdacd945a9eee30a4a3050ab1b31"
+        },
+        {
+          "name": "V8.1.2.0.LXKCNDI",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/libra/V8.1.2.0.LXKCNDI.md",
+          "url": "https://ultimateota.d.miui.com/V8.1.2.0.LXKCNDI/libra_images_V8.1.2.0.LXKCNDI_20161120.0000.00_5.1_cn_89c8591fd1.tgz?t=1786288482&s=906bbedd9c209417186859a23121b36b"
+        },
+        {
+          "name": "V8.1.1.0.LXKCNDI",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/libra/V8.1.1.0.LXKCNDI.md",
+          "url": "https://ultimateota.d.miui.com/V8.1.1.0.LXKCNDI/libra_images_V8.1.1.0.LXKCNDI_20161107.0000.00_5.1_cn_103869def5.tgz?t=1786288482&s=55a991f261bde6ce9d6a983a89520d74"
+        },
+        {
+          "name": "V8.0.5.0.LXKcNDG",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/libra/V8.0.5.0.LXKcNDG.md",
+          "url": "https://ultimateota.d.miui.com/V8.1.1.0.LXKCNDI/libra_images_V8.1.1.0.LXKCNDI_20161107.0000.00_5.1_cn_103869def5.tgz?t=1786288482&s=55a991f261bde6ce9d6a983a89520d74"
+        },
+        {
+          "name": "V8.0.4.0.LXKcNDG",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/libra/V8.0.4.0.LXKcNDG.md",
+          "url": "https://ultimateota.d.miui.com/V8.0.4.0.LXKCNDG/libra_images_V8.0.4.0.LXKCNDG_20160805.0000.29_5.1_cn_95f7161b1a.tgz?t=1786288482&s=6f10d2f99147bd6a3d94aef4690c0488"
+        },
+        {
+          "name": "V7.5.4.0.LXKcNDE",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/libra/V7.5.4.0.LXKcNDE.md",
+          "url": "https://ultimateota.d.miui.com/V7.5.4.0.LXKCNDE/libra_images_V7.5.4.0.LXKCNDE_20160629.0000.25_5.1_cn_33a18f6950.tgz?t=1786288482&s=bbf4990a5e22139c752e92cb864ae879"
+        },
+        {
+          "name": "V7.5.3.0.LXKcNDE",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/libra/V7.5.3.0.LXKcNDE.md",
+          "url": "https://ultimateota.d.miui.com/V7.5.3.0.LXKCNDE/libra_images_V7.5.3.0.LXKCNDE_20160523.0000.23_5.1_cn_e14d5f3136.tgz?t=1786288482&s=89248283ff8a829bc2a3d7d6a3d16a61"
+        },
+        {
+          "name": "V7.0.4.0.LXKCNCI",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/libra/V7.0.4.0.LXKCNCI.md",
+          "url": "https://ultimateota.d.miui.com/V7.0.4.0.LXKCNCI/libra_images_V7.0.4.0.LXKCNCI_20150826.0000.7_5.1_cn_a7b0a12cef.tgz?t=1786288482&s=07a35afd7a72f8f0d8eff8a1dcd006bd"
+        }
+      ]
+    }
+  ]
+}

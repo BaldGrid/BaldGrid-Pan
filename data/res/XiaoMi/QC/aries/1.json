@@ -1,0 +1,121 @@
+{
+  "name": "小米2/s",
+  "type": "folder",
+  "desc": "aries",
+  "readme": "data/rm/file/XiaoMi/aries/1.md",
+  "children": [
+    {
+      "name": "线刷包",
+      "type": "folder",
+      "desc": "",
+      "readme": "data/rm/file/xsb.md",
+      "children": [
+        {
+          "name": "JLB52.0",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/aries/JLB52.0.md",
+          "url": "https://ultimateota.d.miui.com/JLB52.0/aries_images_JLB52.0_4.1_cn_4853321892.tgz?t=1786288481&s=2a1a508f4f1b3f5c9408d97b44acf8c7"
+        },
+        {
+          "name": "V9.2.3.0.LXACNEK",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/aries/V9.2.3.0.LXACNEK.md",
+          "url": "https://ultimateota.d.miui.com/V9.2.3.0.LXACNEK/aries_images_V9.2.3.0.LXACNEK_20171229.0000.00_5.0_cn_c54a41d74c.tgz?t=1786288481&s=2105df502792135441feadd9e350550c"
+        },
+        {
+          "name": "V8.5.1.0.LXACNED",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/aries/V8.5.1.0.LXACNED.md",
+          "url": "https://ultimateota.d.miui.com/V8.5.1.0.LXACNED/aries_images_V8.5.1.0.LXACNED_20170906.0000.00_5.0_cn_93a86db626.tgz?t=1786288481&s=032f50be3733034b3dbbe74a1d193d49"
+        },
+        {
+          "name": "V8.2.1.0.LXACNDL",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/aries/V8.2.1.0.LXACNDL.md",
+          "url": "https://ultimateota.d.miui.com/V8.2.1.0.LXACNDL/aries_images_V8.2.1.0.LXACNDL_20170117.0000.00_5.0_cn_dd2fadd1c0.tgz?t=1786288481&s=f2a928b10f077e4b8c46c1ae6d94d1c7"
+        },
+        {
+          "name": "V8.0.1.0.LXACNDG",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/aries/V8.0.1.0.LXACNDG.md",
+          "url": "https://ultimateota.d.miui.com/V8.1.2.0.LXACNDI/aries_images_V8.1.2.0.LXACNDI_20161107.0000.00_5.0_cn_299204e8dd.tgz?t=1786288481&s=4b7bbdaf7a5b5d66713a1d269190a371"
+        },
+        {
+          "name": "V7.5.1.0.LXACNDE",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/aries/V7.5.1.0.LXACNDE.md",
+          "url": "https://ultimateota.d.miui.com/V7.5.1.0.LXACNDE/aries_images_V7.5.1.0.LXACNDE_20160523.0000.23_5.0_cn_38664460b1.tgz?t=1786288481&s=58b7d1c9d7f78aba557c0abb0f4eb95d"
+        },
+        {
+          "name": "V7.3.2.0.LXACNDD",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/aries/V7.3.2.0.LXACNDD.md",
+          "url": "https://ultimateota.d.miui.com/V7.3.2.0.LXACNDD/aries_images_V7.3.2.0.LXACNDD_20160419.0000.19_5.0_cn_41a03f792c.tgz?t=1786288481&s=54d92e431692514f984012704b703e84"
+        },
+        {
+          "name": "V7.2.5.0.LXACNDA",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/aries/V7.2.5.0.LXACNDA.md",
+          "url": "https://ultimateota.d.miui.com/V7.2.5.0.LXACNDA/aries_images_V7.2.5.0.LXACNDA_20160129.0000.14_5.0_cn_974cca3541.tgz?t=1786288481&s=e15e646560f80de49cab382198d4c8c1"
+        },
+        {
+          "name": "V7.2.4.0.LXACNDA",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/aries/V7.2.4.0.LXACNDA.md",
+          "url": "https://ultimateota.d.miui.com/V7.2.4.0.LXACNDA/aries_images_V7.2.4.0.LXACNDA_20160129.0000.14_5.0_cn_6122cfc1b7.tgz?t=1786288481&s=563318c1e681b6f0f1c569b43f49e002"
+        },
+        {
+          "name": "V7.1.5.0.LXACNCK",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/aries/V7.1.5.0.LXACNCK.md",
+          "url": "https://ultimateota.d.miui.com/V7.1.5.0.LXACNCK/aries_images_V7.1.5.0.LXACNCK_20160125.0000.13_5.0_cn_5448238090.tgz?t=1786288481&s=0dbc190f70daf1f0049e1b665277b9e6"
+        },
+        {
+          "name": "V7.0.4.0.LXACNCI",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/aries/V7.0.4.0.LXACNCI.md",
+          "url": "https://ultimateota.d.miui.com/V7.0.4.0.LXACNCI/aries_images_V7.0.4.0.LXACNCI_20151016.0000.3_5.0_cn_7ad57c479e.tgz?t=1786288481&s=cd3c4801dcac078fd9f967ceb84d8355"
+        },
+        {
+          "name": "JLB54.0",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/aries/JLB54.0.md",
+          "url": "https://ultimateota.d.miui.com/JLB54.0/aries_images_JLB54.0_4.1_cn_2eda98ac63.tgz?t=1786288481&s=8534985397e9e7710eb67c94ee48dd8c"
+        },
+        {
+          "name": "JLB50.0",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/aries/JLB50.0.md",
+          "url": "https://ultimateota.d.miui.com/JLB50.0/aries_images_JLB50.0_4.1_cn_9317da5f38.tgz?t=1786288481&s=5ee51c567e3bfac2ac852a2f7e6abe86"
+        },
+        {
+          "name": "中国联通定制版 JLB50.0",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/aries/中国联通定制版 JLB50.0.md",
+          "url": "https://ultimateota.d.miui.com/JLB50.0/aries_images_JLB50.0_4.1_cn_chinaunicom_161132cdf3.tgz?t=1786288481&s=fbc880600a821b445405bf8f9ca31914"
+        },
+        {
+          "name": "JLB49.0",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/aries/JLB49.0.md",
+          "url": "https://ultimateota.d.miui.com/JLB49.0/aries_images_JLB49.0_4.1_cn_5b246a7ed4.tgz?t=1786288481&s=4c0a3386f15b5d00c9ea07720f16464f"
+        }
+      ]
+    }
+  ]
+}
