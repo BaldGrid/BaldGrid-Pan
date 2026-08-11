@@ -22,17 +22,17 @@
                 {
                   "name": "OPPO A11系列",
                   "type": "loader",
-                  "src": "OPPO/QC/PCHM10/1.json"
+                  "src": "data/res/OPPOQC/PCHM10/1.json"
                 },
                 {
                   "name": "OPPO A11x",
                   "type": "loader",
-                  "src": "OPPO/QC/PCHM30/1.json"
+                  "src": "data/res/OPPOQC/PCHM30/1.json"
                 },
                 {
                   "name": "OPPO A32系列",
                   "type": "loader",
-                  "src": "OPPO/QC/PDVM00/1.json"
+                  "src": "data/res/OPPOQC/PDVM00/1.json"
                 }
               ]
             },
@@ -42,6 +42,11 @@
               "desc": "联发科处理器机型",
               "readme": "data/rm/op_mtk.md",
               "children": []
+            },
+            {
+              "name": "解包ofp",
+              "type": "loader",
+              "src": "data/res/OPPO/OFP/main.json"
             }
           ]
         },
@@ -60,22 +65,22 @@
                 {
                   "name": "小米2/s",
                   "type": "loader",
-                  "src": "XiaoMi/QC/aries/aries.json"
+                  "src": "data/res/XiaoMi/QC/aries/aries.json"
                 },
                 {
                   "name": "小米4c",
                   "type": "loader",
-                  "src": "XiaoMi/QC/libra/libra.json"
+                  "src": "data/res/XiaoMi/QC/libra/libra.json"
                 },
                 {
                   "name": "小米8",
                   "type": "loader",
-                  "src": "XiaoMi/QC/dipper/dipper.json"
+                  "src": "data/res/XiaoMi/QC/dipper/dipper.json"
                 },
                 {
                   "name": "小米8屏幕指纹版",
                   "type": "loader",
-                  "src": "XiaoMi/QC/equuleus/equuleus.json"
+                  "src": "data/res/XiaoMi/QC/equuleus/equuleus.json"
                 }
               ]
             },
