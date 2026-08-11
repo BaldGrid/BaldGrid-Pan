@@ -5,6 +5,36 @@
   "readme": "data/rm/pchm10.md",
   "children": [
     {
+      "name": "ksu内核",
+      "type": "folder",
+      "desc": "KernelSU 内核资源",
+      "readme": "",
+      "children": [
+        {
+          "name": "A11通用杂鱼内核",
+          "type": "file",
+          "desc": "Sukisu Ultra",
+          "readme": "data/rm/file/OPPO/PCHM10/sksu.md",
+          "url": "https://onedrive.live.com/personal/6ed1c23368a7eb3a/_layouts/15/download.aspx?UniqueId=deba2de7%2D96ff%2D4349%2Da94b%2D69655d9622b1"
+        }
+      ]
+    },
+    {
+      "name": "第三方recovery",
+      "type": "folder",
+      "desc": "第三方 Recovery 资源",
+      "readme": "",
+      "children": [
+        {
+          "name": "橙狐recovery",
+          "type": "file",
+          "desc": "OFRP",
+          "readme": "data/rm/file/OPPO/PCHM10/ofrp.md",
+          "url": "https://onedrive.live.com/personal/6ed1c23368a7eb3a/_layouts/15/download.aspx?UniqueId=ed7a4e7a%2D4c79%2D4c09%2D800a%2D29df78331ea5"
+        }
+      ]
+    },
+    {
       "name": "线刷包",
       "type": "folder",
       "desc": "",
