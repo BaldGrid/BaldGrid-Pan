@@ -22,17 +22,17 @@
                 {
                   "name": "OPPO A11系列",
                   "type": "loader",
-                  "src": "data/res/OPPOQC/PCHM10/1.json"
+                  "src": "data/res/OPPO/QC/PCHM10/1.json"
                 },
                 {
                   "name": "OPPO A11x",
                   "type": "loader",
-                  "src": "data/res/OPPOQC/PCHM30/1.json"
+                  "src": "data/res/OPPO/QC/PCHM30/1.json"
                 },
                 {
                   "name": "OPPO A32系列",
                   "type": "loader",
-                  "src": "data/res/OPPOQC/PDVM00/1.json"
+                  "src": "data/res/OPPO/QC/PDVM00/1.json"
                 }
               ]
             },
