@@ -45,4 +45,6 @@ MIT License © BaldGrid
 
 ---
 
+[![查看更新日志](https://img.shields.io/badge/📜-查看更新日志-blue?style=for-the-badge)](./更新日志.log)
+
 > 如有问题或建议，欢迎通过网站内的"联系作者"反馈 🎉
