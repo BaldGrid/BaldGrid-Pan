@@ -73,6 +73,21 @@
       ]
     },
     {
+      "name": "Color OS12线刷包",
+      "type": "folder",
+      "desc": "",
+      "readme": "data/rm/file/OPPO/QC/PDVM00/ColorOS12/1.md",
+      "children": [
+        {
+          "name": "Color OS12升级包",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://onedrive.live.com/personal/6ed1c23368a7eb3a/_layouts/15/download.aspx?UniqueId=eba36016%2D06ea%2D4692%2Db6a7%2De3ccedaf6675"
+        }
+      ]
+    },
+    {
       "name": "全分区回读",
       "type": "folder",
       "desc": "",

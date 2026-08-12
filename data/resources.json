@@ -20,7 +20,7 @@
               "readme": "data/rm/op_qc.md",
               "children": [
                 {
-                  "name": "OPPO A11系列",
+                  "name": "OPPO A11",
                   "type": "loader",
                   "src": "data/res/OPPO/QC/PCHM10/1.json"
                 },
@@ -30,7 +30,7 @@
                   "src": "data/res/OPPO/QC/PCHM30/1.json"
                 },
                 {
-                  "name": "OPPO A32系列",
+                  "name": "OPPO A32/11s",
                   "type": "loader",
                   "src": "data/res/OPPO/QC/PDVM00/1.json"
                 }
