@@ -5,6 +5,118 @@
   "readme": "data/rm/pdvm00.md",
   "children": [
     {
+      "name": "解锁bl方案",
+      "type": "folder",
+      "desc": "",
+      "readme": "data/rm/file/OPPO/QC/PDVM00/BL/main.md",
+      "children": [
+        {
+          "name": "自动解锁方案",
+          "type": "folder",
+          "desc": "",
+          "readme": "data/rm/file/OPPO/QC/PDVM00/BL/1.md",
+          "children": [
+            {
+              "name": "文件.zip",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://onedrive.live.com/personal/6ed1c23368a7eb3a/_layouts/15/download.aspx?UniqueId=28a028ed%2Dfcb7%2D4f85%2D9ceb%2Dd32d6220a3a5"
+            }
+          ]
+        },
+        {
+          "name": "手动解锁方案",
+          "type": "folder",
+          "desc": "",
+          "readme": "data/rm/file/OPPO/QC/PDVM00/BL/2.md",
+          "children": [
+            {
+              "name": "文件.zip",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://onedrive.live.com/personal/6ed1c23368a7eb3a/_layouts/15/download.aspx?UniqueId=39752c82%2Db5df%2D4524%2Db639%2D536ce519f5c0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "开机第一屏",
+      "type": "folder",
+      "desc": "",
+      "readme": "data/rm/file/OPPO/QC/PDVM00/KJ/1.md",
+      "children": [
+        {
+          "name": "splash.img",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://onedrive.live.com/personal/6ed1c23368a7eb3a/_layouts/15/download.aspx?UniqueId=aa17479e%2Db777%2D491f%2Db91a%2D42a8a6b1424a"
+        }
+      ]
+    },
+    {
+      "name": "类原生",
+      "type": "folder",
+      "desc": "",
+      "readme": "data/rm/file/OPPO/QC/PDVM00/GSI/1.md",
+      "children": [
+        {
+          "name": "Lineage OS通刷包",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://onedrive.live.com/personal/6ed1c23368a7eb3a/_layouts/15/download.aspx?UniqueId=447e7c6e%2D6125%2D467d%2Dbee9%2De8d0c0b032e9"
+        }
+      ]
+    },
+    {
+      "name": "全分区回读",
+      "type": "folder",
+      "desc": "",
+      "readme": "data/rm/file/OPPO/QC/PDVM00/qfq.md",
+      "children": [
+        {
+          "name": "Color OS11全分区回读",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/OPPO/QC/PDVM00/QFQ/1.md",
+          "url": ""
+        },
+        {
+          "name": "Color OS7全分区回读",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/OPPO/QC/PDVM00/QFQ/2.md",
+          "url": "https://onedrive.live.com/personal/6ed1c23368a7eb3a/_layouts/15/download.aspx?UniqueId=b3c1dedd%2Db156%2D4586%2D88f3%2Dc85af39ff240"
+        }
+      ]
+    },
+    {
+      "name": "Recovery",
+      "type": "folder",
+      "desc": "",
+      "readme": "data/rm/file/OPPO/QC/PDVM00/REC/recovery.md",
+      "children": [
+        {
+          "name": "Twrp",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/OPPO/QC/PDVM00/REC/recovery1.md",
+          "url": "https://onedrive.live.com/personal/6ed1c23368a7eb3a/_layouts/15/download.aspx?UniqueId=ecf5c7ef%2D5e6f%2D4da5%2Db230%2D27e5435bc750"
+        },
+        {
+          "name": "小米_Recovery",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/OPPO/QC/PDVM00/REC/recovery2.md",
+          "url": "https://onedrive.live.com/personal/6ed1c23368a7eb3a/_layouts/15/download.aspx?UniqueId=a50c784f%2D411b%2D4d04%2Dad50%2D4d113669a1cf"
+        }
+      ]
+    },
+    {
       "name": "线刷包",
       "type": "folder",
       "desc": "",
