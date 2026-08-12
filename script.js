@@ -172,16 +172,7 @@
         if (!sw) return;
         const enabled = Storage.getBool(CONFIG.storageKeys.glass, true);
         sw.checked = enabled;
-
-        // 移动端 / 低核心设备自动使用轻量玻璃：
-        // 保留液态玻璃观感，同时降低 blur、saturate 和背景动画的 GPU 压力。
-        const isMobile = window.matchMedia?.('(max-width: 700px)').matches;
-        const isLowPower = (navigator.hardwareConcurrency || 8) <= 4;
-        const useLiteGlass = isMobile || isLowPower;
-
-        document.body.classList.toggle('glass-lite', useLiteGlass);
         document.body.classList.toggle('no-glass', !enabled);
-
         sw.addEventListener('change', () => {
             const v = sw.checked;
             Storage.setBool(CONFIG.storageKeys.glass, v);
@@ -202,14 +193,164 @@
     };
 
     // ---- 面包屑 ----
-    const renderBreadcrumb = () => {
-        const { breadcrumb } = D;
-        if (!breadcrumb) return;
-        const prefix = State.isSearchActive ? `🔍 ${escapeHtml(State.searchKeyword)}` : '🏠 首页';
-        const path = State.currentPath.length ? ` › ${State.currentPath.map(escapeHtml).join(' › ')}` : '';
-        breadcrumb.innerHTML = prefix + path;
-    };
+    function renderBreadcrumb(){
 
+        const breadcrumb =
+        document.getElementById("breadcrumb");
+    
+    
+        if(!breadcrumb)return;
+    
+    
+    
+        let html = `
+    
+        <span class="crumb-item"
+        data-index="-1">
+    
+        🏠 首页
+    
+        </span>
+    
+        `;
+    
+    
+    
+        State.currentPath.forEach(
+        (name,index)=>{
+    
+    
+            html += `
+    
+            <span class="crumb-arrow">
+            /
+            </span>
+    
+    
+            <span class="crumb-item"
+            data-index="${index}">
+    
+            ${name}
+    
+            </span>
+    
+            `;
+    
+    
+        });
+    
+    
+    
+        breadcrumb.innerHTML = html;
+    
+    
+    
+        breadcrumb
+        .querySelectorAll(".crumb-item")
+        .forEach(item=>{
+    
+    
+            item.onclick=function(){
+    
+    
+                let index =
+                Number(
+                this.dataset.index
+                );
+    
+    
+                jumpToPath(index);
+    
+    
+    
+            };
+    
+    
+        });
+    
+    
+    
+    }
+    
+    function jumpToPath(index){
+
+
+        let path;
+    
+    
+    
+        // 返回首页
+    
+        if(index === -1){
+    
+            path=[];
+    
+        }
+    
+        else{
+    
+            path =
+            State.currentPath
+            .slice(0,index+1);
+    
+        }
+    
+    
+    
+        let folder = {
+    
+            children:
+            State.data
+    
+        };
+    
+    
+    
+        // 重新寻找目标目录
+    
+        for(let name of path){
+    
+    
+            let next =
+            folder.children.find(
+            item=>
+            item.name===name
+            );
+    
+    
+    
+            if(next){
+    
+                folder=next;
+    
+            }
+    
+        }
+    
+    
+    
+        // 更新状态
+    
+        State.currentPath =
+        path;
+    
+    
+    
+        State.currentFolder =
+        folder;
+    
+    
+    
+        // 重新渲染
+    
+        renderBreadcrumb();
+    
+    
+        renderFolder();
+    
+    
+    }
+    
     // ---- 图标 ----
     const getIconFor = item => {
         if (typeof item.icon === 'number') return CONFIG.icons[item.icon] || CONFIG.icons[0];
@@ -219,10 +360,54 @@
 
     // ---- README ----
     const setReadmeHtml = (box, htmlGetter, typeKey) => {
+
         if (!box) return;
-        const tKey = typeKey === 'download' ? 'downloadReadmeRenderT' : 'readmeRenderT';
-        if (State[tKey]) clearTimeout(State[tKey]);
-        State[tKey] = setTimeout(() => { try { box.innerHTML = htmlGetter(); } catch (_) {} }, 80);
+    
+    
+        const tKey =
+        typeKey === 'download'
+        ? 'downloadReadmeRenderT'
+        : 'readmeRenderT';
+    
+    
+    
+        if(State[tKey])
+            clearTimeout(State[tKey]);
+    
+    
+    
+        // 先隐藏
+        box.classList.remove(
+            'readme-animation'
+        );
+    
+    
+        // 强制刷新动画状态
+        void box.offsetWidth;
+    
+    
+    
+        State[tKey] = setTimeout(()=>{
+    
+            try{
+    
+                box.innerHTML =
+                htmlGetter();
+    
+    
+    
+                // 内容更新后重新播放动画
+    
+                box.classList.add(
+                    'readme-animation'
+                );
+    
+    
+            }catch(_){}
+    
+    
+        },80);
+    
     };
     const loadReadme = folder => {
         const box = D.readmeBox;
