@@ -172,7 +172,16 @@
         if (!sw) return;
         const enabled = Storage.getBool(CONFIG.storageKeys.glass, true);
         sw.checked = enabled;
+
+        // 移动端 / 低核心设备自动使用轻量玻璃：
+        // 保留液态玻璃观感，同时降低 blur、saturate 和背景动画的 GPU 压力。
+        const isMobile = window.matchMedia?.('(max-width: 700px)').matches;
+        const isLowPower = (navigator.hardwareConcurrency || 8) <= 4;
+        const useLiteGlass = isMobile || isLowPower;
+
+        document.body.classList.toggle('glass-lite', useLiteGlass);
         document.body.classList.toggle('no-glass', !enabled);
+
         sw.addEventListener('change', () => {
             const v = sw.checked;
             Storage.setBool(CONFIG.storageKeys.glass, v);

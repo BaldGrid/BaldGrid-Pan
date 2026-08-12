@@ -1,5 +1,4 @@
 
-/* ---- 基础变量 ---- */
 :root {
     /* 浅色默认（截图风格） */
     --bg: #f5f5f7;
@@ -25,7 +24,7 @@
     --ease-ios: cubic-bezier(0.25, 0.1, 0.25, 1);
     --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
     --dur: .32s;
-    --blur: 20px;
+    --blur: 12px;
     --max-width: 820px;
 }
 
@@ -402,6 +401,7 @@ header h1 .hl {
     border: 0.5px solid var(--separator);
     overflow: hidden;
     box-shadow: var(--shadow-card);
+    contain: layout style;
 }
 
 .card {
@@ -416,6 +416,7 @@ header h1 .hl {
     border-bottom: 0.5px solid var(--separator);
     box-shadow: none;
     transition: background var(--dur) var(--ease-ios), box-shadow var(--dur);
+    contain: layout style;
 }
 .card:last-child {
     border-bottom: 0;
@@ -527,7 +528,6 @@ header h1 .hl {
     animation: itemPush .3s cubic-bezier(0.25, 0.1, 0.25, 1) both;
     /* 关键优化：隔离布局，提示浏览器 */
     contain: layout style paint;
-    will-change: transform, opacity;
 }
 
 /* 减少延迟累积，让更多项同时出现 */
@@ -2191,3 +2191,88 @@ body.no-animation .author-card {
     background: linear-gradient(90deg, rgba(255,255,255,0.06) 25%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.06) 75%);
     background-size: 200% 100%;
 }
+
+
+/* ================================================================
+   BaldGrid · 液态玻璃性能优化
+   保留液态玻璃观感，降低移动端 GPU / 合成压力
+   ================================================================ */
+:root { --blur: 12px; }
+
+/* 背景极光：降低超大 blur 与混合模式成本 */
+.aurora {
+    filter: blur(42px) saturate(115%);
+    mix-blend-mode: normal;
+    will-change: transform;
+}
+.aurora-1,
+.aurora-2,
+.aurora-3 { animation-duration: 48s; }
+
+/* 噪点只作为轻微质感，移动端关闭 */
+.bg-noise { opacity: 0.018; }
+@media (max-width: 700px) {
+    .bg-noise { display: none; }
+}
+
+/* JS 会在移动端 / 低核心设备自动启用轻量玻璃 */
+body.glass-lite { --blur: 8px; }
+body.glass-lite .glass,
+body.glass-lite .card,
+body.glass-lite .notice,
+body.glass-lite .tabs,
+body.glass-lite #search,
+body.glass-lite .download-window,
+body.glass-lite #breadcrumb,
+body.glass-lite #readme,
+body.glass-lite .download-readme,
+body.glass-lite #links a,
+body.glass-lite #list {
+    backdrop-filter: saturate(125%) blur(8px);
+    -webkit-backdrop-filter: saturate(125%) blur(8px);
+}
+
+/* #list 已经是一整块玻璃，列表卡片不要再次创建玻璃合成层 */
+.card {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* 大量列表项不再永久占用独立合成层 */
+.folder-item { will-change: auto; }
+
+/* 关闭动画时也停止极光后台动画 */
+body.no-animation .aurora {
+    animation: none !important;
+    will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .aurora {
+        animation: none !important;
+        filter: blur(28px) saturate(110%);
+        will-change: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    :root { --blur: 8px; }
+    .aurora { filter: blur(30px) saturate(110%); }
+    .aurora-1,
+    .aurora-2,
+    .aurora-3 { animation-duration: 64s; }
+    .mp-player {
+        backdrop-filter: saturate(140%) blur(18px);
+        -webkit-backdrop-filter: saturate(140%) blur(18px);
+    }
+    .mp-mask {
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+    }
+}
+
+/* 极低性能设备：保留玻璃，但进一步压低背景效果 */
+body.glass-lite .aurora { filter: blur(24px) saturate(105%); }
+body.glass-lite .aurora-1,
+body.glass-lite .aurora-2,
+body.glass-lite .aurora-3 { animation-duration: 80s; }
