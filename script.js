@@ -33,10 +33,12 @@
         d.textContent = t || '';
         return d.innerHTML; };
     const triggerReflow = el => void el.offsetWidth;
-    const animateClass = (el, cn) => { if (!el) return;
+    const animateClass = (el, cn) => {
+        if (!el || document.body.classList.contains('no-animation')) return;
         el.classList.remove(cn);
         triggerReflow(el);
-        el.classList.add(cn); };
+        el.classList.add(cn);
+    };
     const debounce = (fn, ms) => { let t = null; const run = (...a) => { if (t) clearTimeout(t);
             t = setTimeout(() => fn.apply(null, a), ms); };
         run.flush = () => { if (t) { clearTimeout(t);
@@ -142,6 +144,8 @@
     D.animationSwitch = document.getElementById('animationSwitch');
     D.musicSwitch = document.getElementById('musicSwitch');
     D.tabIndicator = document.getElementById('tabIndicator');
+    D.navToggle = document.getElementById('navToggle');
+    D.tabs = document.getElementById('tabsContainer');
 
     // ---- 主题 ----
     const applyTheme = theme => document.documentElement.setAttribute('data-theme', theme === 'light' ? 'light' :
@@ -715,8 +719,13 @@
         if (!ind || !btn) return;
         const pr = btn.parentElement.getBoundingClientRect();
         const r = btn.getBoundingClientRect();
-        ind.style.width = r.width + 'px';
-        ind.style.transform = `translateX(${r.left - pr.left}px)`;
+        if (window.matchMedia?.('(min-width: 701px)').matches) {
+            ind.style.width = (pr.width - 16) + 'px';
+            ind.style.transform = `translateY(${r.top - pr.top}px)`;
+        } else {
+            ind.style.width = r.width + 'px';
+            ind.style.transform = `translateX(${r.left - pr.left}px)`;
+        }
     };
 
     // ★★★★★ 修改点 1：showTab 隐藏列表增加 'download' ★★★★★
@@ -726,14 +735,13 @@
             if (el) {
                 el.classList.add('hide');
                 el.classList.remove('page-show');
-                el.style.display = 'none';
+                el.style.removeProperty('display');
             }
         });
 
         const target = document.getElementById(tabId);
         if (target) {
             target.classList.remove('hide');
-            target.style.display = 'block';
             void target.offsetWidth;
             target.classList.add('page-show');
         }
@@ -1013,18 +1021,34 @@
         }
     };
 
-    // ---- Tab 初始化 ----
+    // ---- Tab / 响应式导航初始化 ----
     const initTabs = () => {
         const firstTab = document.querySelector('.tabs button');
         if (firstTab) window.showTab('resource', firstTab);
+
+        const setNavOpen = open => {
+            document.body.classList.toggle('nav-open', open);
+            if (D.navToggle) {
+                D.navToggle.setAttribute('aria-expanded', String(open));
+                D.navToggle.setAttribute('aria-label', open ? '关闭导航' : '打开导航');
+            }
+        };
+        if (D.navToggle) {
+            D.navToggle.addEventListener('click', () => {
+                setNavOpen(!document.body.classList.contains('nav-open'));
+            });
+        }
         document.querySelectorAll('.tabs button[data-tab]').forEach(btn => {
             btn.addEventListener('click', () => {
                 const id = btn.getAttribute('data-tab');
-                if (id) window.showTab(id, btn);
+                if (id) {
+                    window.showTab(id, btn);
+                    if (window.matchMedia?.('(max-width: 700px)').matches) setNavOpen(false);
+                }
             });
-            btn.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e
-                        .preventDefault();
-                    btn.click(); } });
+            btn.addEventListener('keydown', e => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }
+            });
         });
         const bk = document.querySelector('#download [data-action="back"]');
         if (bk && !bk.onclick) bk.addEventListener('click', window.backResource);

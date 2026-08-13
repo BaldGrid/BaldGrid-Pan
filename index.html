@@ -20,6 +20,11 @@
     </div>
     <div class="bg-noise" aria-hidden="true"></div>
 
+    <!-- 响应式导航开关：桌面端左上角抽屉 / 移动端底部导航 -->
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="打开导航" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+
     <!-- Header -->
     <header>
         <h1>BaldGrid·<span class="hl">资源中心</span></h1>
@@ -75,37 +80,59 @@
         <div id="authorList" class="author-grid"></div>
     </div>
 
-    <!-- 设置 -->
+    <!-- 设置：移动端采用独立选项卡，桌面端保持紧凑网格 -->
     <div id="setting" class="hide">
-        <div class="card">
-            <h2>网站设置</h2>
+        <div class="settings-grid">
+            <section class="setting-card">
+                <div class="setting-card-icon">🎨</div>
+                <div class="setting-card-body">
+                    <h2>主题模式</h2>
+                    <p>切换浅色 / 深色外观</p>
+                </div>
+                <label class="setting-control">
+                    <span class="sr-only">切换主题</span>
+                    <select id="themeSelect" aria-label="切换主题">
+                        <option value="light">☀️ 浅色</option>
+                        <option value="dark">🌙 深色</option>
+                    </select>
+                </label>
+            </section>
 
-            <p>🎨 主题模式</p>
-            <label>
-                <span class="lbl">切换主题</span>
-                <select id="themeSelect">
-                    <option value="light">☀️ 浅色</option>
-                    <option value="dark">🌙 深色</option>
-                </select>
-            </label>
+            <section class="setting-card">
+                <div class="setting-card-icon">🪟</div>
+                <div class="setting-card-body">
+                    <h2>液态玻璃</h2>
+                    <p>控制页面的玻璃材质效果</p>
+                </div>
+                <label class="setting-control">
+                    <span class="sr-only">开启液态玻璃</span>
+                    <input type="checkbox" id="glassSwitch" checked>
+                </label>
+            </section>
 
-            <p>🪟 液态玻璃效果</p>
-            <label>
-                <span class="lbl">开启液态玻璃</span>
-                <input type="checkbox" id="glassSwitch" checked>
-            </label>
+            <section class="setting-card">
+                <div class="setting-card-icon">✨</div>
+                <div class="setting-card-body">
+                    <h2>页面动画</h2>
+                    <p>控制页面切换与列表动效</p>
+                </div>
+                <label class="setting-control">
+                    <span class="sr-only">开启动画</span>
+                    <input type="checkbox" id="animationSwitch" checked>
+                </label>
+            </section>
 
-            <p>✨ 页面动画</p>
-            <label>
-                <span class="lbl">开启动画</span>
-                <input type="checkbox" id="animationSwitch" checked>
-            </label>
-
-            <p>🎵 音乐播放器</p>
-            <button id="musicSwitch" class="music-open-btn">
-                <span class="music-open-icon">♪</span>
-                <span>打开音乐播放器</span>
-            </button>
+            <section class="setting-card setting-card-action">
+                <div class="setting-card-icon">🎵</div>
+                <div class="setting-card-body">
+                    <h2>音乐播放器</h2>
+                    <p>打开独立音乐播放器</p>
+                </div>
+                <button id="musicSwitch" class="music-open-btn" type="button">
+                    <span class="music-open-icon">♪</span>
+                    <span>打开</span>
+                </button>
+            </section>
         </div>
     </div>
 
