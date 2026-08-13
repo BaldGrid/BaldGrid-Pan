@@ -174,7 +174,7 @@
     const initGlass = () => {
         const sw = D.glassSwitch;
         if (!sw) return;
-        const enabled = Storage.getBool(CONFIG.storageKeys.glass, true);
+        const enabled = Storage.getBool(CONFIG.storageKeys.glass, false);
         sw.checked = enabled;
         document.body.classList.toggle('no-glass', !enabled);
         sw.addEventListener('change', () => {
