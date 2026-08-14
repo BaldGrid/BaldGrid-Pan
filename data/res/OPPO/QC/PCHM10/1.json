@@ -94,6 +94,21 @@
       ]
     },
     {
+      "name": "OPPO A11/X 通用模块",
+      "type": "folder",
+      "desc": "",
+      "readme": "data/rm/file/OPPO/PCHM10/comMK.md",
+      "children": [
+        {
+          "name": "A11全分区回读",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/OPPO/PCHM10/MK/display.md",
+          "url": "https://onedrive.live.com/personal/6ed1c23368a7eb3a/_layouts/15/download.aspx?UniqueId=9fa83f5f%2D137b%2D4a5b%2D99de%2Db76c3b12c8c0"
+        }
+      ]
+    },
+    {
       "name": "国际版A5 2020线刷包",
       "type": "file",
       "desc": "这是一个测试文件",
