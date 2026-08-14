@@ -107,7 +107,7 @@
       "readme": "data/rm/file/OPPO/PCHM30/comMK.md",
       "children": [
         {
-          "name": "A11全分区回读",
+          "name": "gsi强制适应水滴屏模块",
           "type": "file",
           "desc": "",
           "readme": "data/rm/file/OPPO/PCHM30/MK/display.md",
