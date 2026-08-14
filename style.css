@@ -2486,3 +2486,159 @@ body.no-glass .setting-card, body.no-glass .setting-card::before { background:va
         box-shadow: 0 1px 3px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.08);
     }
 }
+
+/* ================================================================
+   KernelSU 风格 · 移动端底部导航（性能优化版）
+   ================================================================ */
+@media (max-width: 700px) {
+    .nav-toggle { display: none; }
+    body { padding-bottom: 82px; }
+
+    .tabs {
+        position: fixed;
+        left: 16px;
+        right: 16px;
+        bottom: max(16px, env(safe-area-inset-bottom));
+        z-index: 10040;
+        height: 64px;
+        padding: 4px 6px;
+        gap: 0;
+        border-radius: 32px;
+        /* ⚡ 性能优化：使用更轻的 backdrop-filter */
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: saturate(150%) blur(16px);
+        -webkit-backdrop-filter: saturate(150%) blur(16px);
+        border: 0.5px solid rgba(255, 255, 255, 0.25);
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        /* ⚡ 强制 GPU 加速，减少重绘 */
+        transform: translateZ(0);
+        will-change: transform;
+    }
+
+    [data-theme="dark"] .tabs {
+        background: rgba(28, 28, 32, 0.80);
+        border: 0.5px solid rgba(255, 255, 255, 0.06);
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    .tabs button {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0px;
+        padding: 4px 2px;
+        border-radius: 26px;
+        background: transparent;
+        border: none;
+        font-size: 0;
+        color: var(--sub, #8e8e93);
+        cursor: pointer;
+        /* ⚡ 只过渡必要属性 */
+        transition: background 0.2s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        -webkit-tap-highlight-color: transparent;
+        position: relative;
+        /* ⚡ 避免文字重排 */
+        contain: layout style;
+    }
+
+    .tabs button::before {
+        font-size: 22px;
+        line-height: 1.2;
+        opacity: 0.55;
+        /* ⚡ 只过渡透明度，不触发重排 */
+        transition: opacity 0.2s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .tabs button[data-tab="resource"]::before { content: '⌂'; font-size: 22px; }
+    .tabs button[data-tab="friend"]::before { content: '🔗'; font-size: 20px; }
+    .tabs button[data-tab="author"]::before { content: '♧'; font-size: 22px; }
+    .tabs button[data-tab="setting"]::before { content: '⚙'; font-size: 21px; }
+
+    .tabs button .label-text {
+        font-size: 9px;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        opacity: 0.45;
+        /* ⚡ 只过渡颜色和透明度 */
+        transition: opacity 0.2s ease, color 0.2s ease;
+        color: var(--sub, #8e8e93);
+        line-height: 1.4;
+    }
+
+    /* 激活态 — 使用更轻量的高亮 */
+    .tabs button.active {
+        background: rgba(0, 102, 204, 0.08);
+        color: var(--blue, #0066CC);
+        transform: translateY(-1px);
+    }
+
+    [data-theme="dark"] .tabs button.active {
+        background: rgba(10, 132, 255, 0.12);
+        color: var(--blue-light, #0A84FF);
+    }
+
+    .tabs button.active::before {
+        opacity: 1;
+        transform: scale(1.04);
+    }
+
+    .tabs button.active .label-text {
+        opacity: 1;
+        color: var(--blue, #0066CC);
+    }
+
+    [data-theme="dark"] .tabs button.active .label-text {
+        color: var(--blue-light, #0A84FF);
+    }
+
+    /* 点击反馈 */
+    .tabs button:active {
+        transform: scale(0.92);
+        transition-duration: 0.06s;
+    }
+
+    /* ⚡ 隐藏指示器，用背景高亮替代 */
+    .tab-indicator {
+        display: none !important;
+    }
+}
+
+/* ================================================================
+   README 切换动画（修复版）
+   ================================================================ */
+
+/* 默认状态：准备动画 */
+#readme {
+    /* ⚡ 确保动画属性存在 */
+    transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 动画触发类 */
+#readme.readme-animation {
+    animation: readmeSlideIn 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes readmeSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* 无动画模式 */
+body.no-animation #readme,
+body.no-animation #readme.readme-animation {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+}
