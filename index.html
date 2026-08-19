@@ -1,228 +1,1363 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-
+<html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>BaldGrid·资源中心</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- marked 用于 README 渲染 -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资源列表</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            font-weight: 400;
+            color: rgb(97, 97, 97);
+            transition: 0.5s;
+            cursor: pointer;
+        }
+
+        a:hover {
+            color: rgb(36, 36, 36);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            position: relative;
+        }
+
+        .container {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 1100px;
+        }
+
+        header {
+            width: 100%;
+            line-height: 48px;
+            background-color: rgba(255, 255, 255, 0.5);
+            position: fixed;
+            z-index: 1;
+            backdrop-filter: blur(10px);
+        }
+
+        header nav a {
+            color: rgb(36, 36, 36);
+            font-weight: 600;
+            transition: 0.5s;
+        }
+
+        nav svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        nav div {
+            min-width: 48px;
+            height: 48px;
+            transition: 0.5s;
+        }
+
+        .pull-left {
+            float: left;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pull-right {
+            float: right;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .expand {
+            transform: rotate(0deg);
+            transition: 0.5s;
+        }
+
+        .expand_on {
+            transform: rotate(-90deg);
+            transition: 0.5s;
+        }
+
+        nav a {
+            padding: 0 20px;
+        }
+
+        nav div:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        main {
+            position: relative;
+            height: 100%;
+            background: #f0f0f4;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .scroll {
+            overflow-y: auto;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 48px 0 100px 0;
+        }
+
+        .scroll::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .scroll::-webkit-scrollbar-thumb {
+            background: #a8a8a8;
+        }
+
+        .scroll::-webkit-scrollbar-button {
+            display: none;
+        }
+
+        main .main-item-list {
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            background: rgba(255, 255, 255, 0.8);
+            margin: 20px;
+            line-height: 32px;
+            font-size: 14px;
+            box-sizing: border-box;
+            border-radius: 12px;
+            border: #e0e0e0 solid 1px;
+            padding: 12px 0;
+            backdrop-filter: blur(20px);
+            transition: 0.3s;
+        }
+
+        main .main-title h1 {
+            margin: 0;
+            padding: 32px 32px 10px 32px;
+            font-size: 19px;
+            font-weight: 600;
+        }
+
+        div.main-title>h1>a:last-of-type {
+            font-weight: 600;
+            color: rgb(36, 36, 36);
+        }
+
+        main .main-item-list .inner-container {
+            display: flex;
+            justify-content: flex-start;
+            width: 100%;
+            height: auto;
+            box-sizing: border-box;
+        }
+
+        main .main-item-list .inner-container>div {
+            padding-left: 12px;
+            padding-right: 8px;
+            box-sizing: border-box;
+            text-wrap: nowrap;
+            font-weight: 600;
+        }
+
+        div.main-items.main-item-title>div>div.main-items-icon {
+            display: none;
+        }
+
+        main .main-item-list .main-item-title {
+            border-bottom: 1px solid #EAEAEA;
+        }
+
+        main .main-items {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 0 20px;
+            overflow: hidden;
+            transition: 0.5s;
+            margin-top: 2.5px;
+            margin-bottom: 2.5px;
+            cursor: default;
+            min-height: 48px;
+        }
+
+        main .main-items:hover {
+            background-color: #F4F4F4;
+            transform: scale(0.980);
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        main .main-item-list .main-items-icon {
+            min-width: 38px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        main .main-item-list .main-items-icon img {
+            display: block;
+            width: 20px;
+            height: 20px;
+        }
+
+        main .main-item-list .main-items-icon .iconfont {
+            font-size: 20px;
+            line-height: 1;
+        }
+
+        main .main-item-title .main-items-icon {
+            height: 32px !important;
+            line-height: 9px !important;
+        }
+
+        main .main-item-title .main-items-icon:hover,
+        main .main-item-list .main-items-displayName:hover,
+        main .main-item-list .main-items-dateModified:hover,
+        main .main-item-list .main-items-size:hover {
+            background-color: #EAEAEA;
+        }
+
+        main .main-item-list .main-items-displayName,
+        main .main-item-list .main-items-fileName {
+            flex: 1;
+            padding: 11px 8px 11px 12px;
+            min-height: 42px;
+            line-height: 22px;
+            font-family: "Microsoft Yahei UI", Verdana, Simsun, "Segoe UI", -apple-system, BlinkMacSystemFont, "Roboto", "Helvetica Neue", sans-serif;
+            box-sizing: border-box;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            min-width: 0;
+        }
+
+        main .main-item-list .main-items-fileName .name-text {
+            font-weight: 500;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            flex-shrink: 1;
+            min-width: 0;
+        }
+
+        main .main-item-list .main-items-fileName .desc-text {
+            color: #999;
+            font-size: 12px;
+            margin-left: 10px;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        main .main-item-list .main-items-fileName a {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: inline-block;
+            color: inherit;
+            align-items: center;
+            max-width: 100%;
+            white-space: nowrap;
+        }
+
+        main .main-item-list .main-items-fileName a:hover {
+            text-decoration: underline;
+        }
+
+        main .main-item-list .main-items-dateModified,
+        main .main-item-list .main-items-dateTime {
+            width: 140px;
+            text-align: center;
+            flex: 1;
+            padding: 11px 8px 11px 12px;
+            min-height: 42px;
+            line-height: 22px;
+            box-sizing: border-box;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        main .main-item-list .main-items-size,
+        main .main-item-list .main-items-fileSize {
+            padding: 11px 8px 11px 12px;
+            min-height: 42px;
+            line-height: 22px;
+            box-sizing: border-box;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex-shrink: 0;
+            gap: 6px;
+        }
+
+        .file-actions {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .file-actions a {
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: 0.2s;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .file-actions .btn-download {
+            color: #16a34a;
+            background: rgba(22, 163, 74, 0.08);
+        }
+
+        .file-actions .btn-download:hover {
+            background: rgba(22, 163, 74, 0.15);
+        }
+
+        .file-actions .btn-copy {
+            color: #0078d4;
+            background: rgba(0, 120, 212, 0.08);
+        }
+
+        .file-actions .btn-copy:hover {
+            background: rgba(0, 120, 212, 0.15);
+        }
+
+        .folder-info {
+            color: #999;
+            font-size: 13px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        @media screen and (max-width: 600px) {
+            .file-actions a {
+                padding: 2px 8px;
+                font-size: 11px;
+            }
+            .file-actions {
+                gap: 4px;
+            }
+            main .main-item-list .main-items-fileSize {
+                padding: 11px 4px;
+            }
+            .desc-text {
+                display: none !important;
+            }
+        }
+
+        .empty-state {
+            padding: 60px 20px;
+            text-align: center;
+            color: #999;
+        }
+
+        .empty-state .icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .readme {
+            padding: 10px 20px;
+        }
+
+        .markdown-body {
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .markdown-body h1,
+        .markdown-body h2,
+        .markdown-body h3 {
+            margin: 16px 0 8px 0;
+        }
+
+        .markdown-body ul {
+            padding-left: 20px;
+        }
+
+        .markdown-body code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        #foot_info {
+            text-align: center;
+            padding: 20px;
+            font-size: 13px;
+            color: #888;
+        }
+
+        #sidebar {
+            position: fixed;
+            background: white;
+            height: 100%;
+            padding: 20px;
+            padding-top: 60px;
+            width: 200px;
+            transition: 0.5s;
+            display: flex;
+            flex-direction: column;
+            z-index: 1;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            transform: translateX(-240px);
+            overflow-y: auto;
+        }
+
+        #sidebar svg {
+            min-width: 24px;
+            height: 24px;
+            padding-right: 15px;
+        }
+
+        .multidisk {
+            display: flex;
+            font-size: 16px;
+            padding: 10px;
+            transition: 0.5s;
+            margin: 10px 0;
+            align-items: center;
+            justify-content: flex-start;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .multidisk:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .curr-disk {
+            background: rgba(0, 120, 212, 0.1);
+            font-weight: 600;
+            color: #0078d4;
+        }
+
+        .folder-item {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .folder-item:active {
+            transform: scale(0.95);
+            background-color: #e8f0fe;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #fileItems .main-items {
+            animation: fadeInUp 0.25s ease forwards;
+        }
+
+        #fileItems .main-items:nth-child(1) { animation-delay: 0.00s; }
+        #fileItems .main-items:nth-child(2) { animation-delay: 0.02s; }
+        #fileItems .main-items:nth-child(3) { animation-delay: 0.04s; }
+        #fileItems .main-items:nth-child(4) { animation-delay: 0.06s; }
+        #fileItems .main-items:nth-child(5) { animation-delay: 0.08s; }
+        #fileItems .main-items:nth-child(6) { animation-delay: 0.10s; }
+        #fileItems .main-items:nth-child(7) { animation-delay: 0.12s; }
+        #fileItems .main-items:nth-child(8) { animation-delay: 0.14s; }
+        #fileItems .main-items:nth-child(9) { animation-delay: 0.16s; }
+        #fileItems .main-items:nth-child(10) { animation-delay: 0.18s; }
+        #fileItems .main-items:nth-child(11) { animation-delay: 0.20s; }
+        #fileItems .main-items:nth-child(12) { animation-delay: 0.22s; }
+        #fileItems .main-items:nth-child(13) { animation-delay: 0.24s; }
+        #fileItems .main-items:nth-child(14) { animation-delay: 0.26s; }
+        #fileItems .main-items:nth-child(15) { animation-delay: 0.28s; }
+        #fileItems .main-items:nth-child(16) { animation-delay: 0.30s; }
+        #fileItems .main-items:nth-child(17) { animation-delay: 0.32s; }
+        #fileItems .main-items:nth-child(18) { animation-delay: 0.34s; }
+        #fileItems .main-items:nth-child(19) { animation-delay: 0.36s; }
+        #fileItems .main-items:nth-child(20) { animation-delay: 0.38s; }
+
+        #readmeContainer {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #readmeContainer.fade-out {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        #readmeContainer.fade-in {
+            animation: readmeFadeIn 0.35s ease forwards;
+        }
+
+        @keyframes readmeFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .preview-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .preview-overlay.active {
+            display: flex;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .preview-modal {
+            background: white;
+            border-radius: 16px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.25s ease;
+        }
+
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            border-bottom: 1px solid #eee;
+            flex-shrink: 0;
+        }
+
+        .preview-header h3 {
+            font-size: 16px;
+            font-weight: 600;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 80%;
+        }
+
+        .preview-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+            padding: 0 8px;
+            transition: 0.2s;
+            line-height: 1;
+        }
+
+        .preview-close:hover {
+            color: #333;
+            transform: scale(1.1);
+        }
+
+        .preview-body {
+            padding: 20px;
+            overflow-y: auto;
+            flex: 1;
+            font-size: 14px;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .preview-body .loading {
+            color: #999;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .preview-body .json-view {
+            background: #f8f8fa;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: "JetBrains Mono", "Consolas", monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+            word-break: break-all;
+            max-height: 50vh;
+            overflow-y: auto;
+        }
+
+        .preview-body .error {
+            color: #dc2626;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .preview-footer {
+            padding: 12px 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            flex-shrink: 0;
+        }
+
+        .preview-footer a {
+            padding: 6px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .preview-footer .btn-download-preview {
+            background: #16a34a;
+            color: white;
+        }
+
+        .preview-footer .btn-download-preview:hover {
+            background: #15803d;
+        }
+
+        .preview-footer .btn-close-preview {
+            background: #f3f4f6;
+            color: #333;
+        }
+
+        .preview-footer .btn-close-preview:hover {
+            background: #e5e7eb;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            backdrop-filter: blur(10px);
+        }
+
+        .toast.show {
+            opacity: 1;
+        }
+    </style>
+
+    <style>
+        @font-face {
+            font-family: 'iconfont';
+            src: url('//at.alicdn.com/t/font_1634400_9yg8f5s278.eot');
+            src: url('//at.alicdn.com/t/font_1634400_9yg8f5s278.eot?#iefix') format('embedded-opentype'),
+                url('//at.alicdn.com/t/font_1634400_9yg8f5s278.woff2') format('woff2'),
+                url('//at.alicdn.com/t/font_1634400_9yg8f5s278.woff') format('woff'),
+                url('//at.alicdn.com/t/font_1634400_9yg8f5s278.ttf') format('truetype'),
+                url('//at.alicdn.com/t/font_1634400_9yg8f5s278.svg#iconfont') format('svg');
+        }
+
+        .iconfont {
+            font-family: "iconfont" !important;
+            font-size: 16px;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+</head>
 <body>
 
-    <!-- 背景光晕（纯装饰） -->
-    <div class="bg-aurora" aria-hidden="true">
-        <div class="aurora aurora-1"></div>
-        <div class="aurora aurora-2"></div>
-        <div class="aurora aurora-3"></div>
+    <div id="sidebar">
+        <div class="multidisk curr-disk" onclick="navigateTo(null)">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.207 4c.46 0 .908.141 1.284.402l.156.12L12.022 6.5h7.728a2.25 2.25 0 0 1 2.229 1.938l.016.158.005.154v9a2.25 2.25 0 0 1-2.096 2.245L19.75 20H4.25a2.25 2.25 0 0 1-2.245-2.096L2 17.75V6.25a2.25 2.25 0 0 1 2.096-2.245L4.25 4h3.957Zm1.44 5.979a2.25 2.25 0 0 1-1.244.512l-.196.009-4.707-.001v7.251c0 .38.282.694.648.743l.102.007h15.5a.75.75 0 0 0 .743-.648l.007-.102v-9a.75.75 0 0 0-.648-.743L19.75 8h-7.729L9.647 9.979ZM8.207 5.5H4.25a.75.75 0 0 0-.743.648L3.5 6.25v2.749L8.207 9a.75.75 0 0 0 .395-.113l.085-.06 1.891-1.578-1.89-1.575a.75.75 0 0 0-.377-.167L8.207 5.5Z" fill="#000000" />
+            </svg>
+            <span>📂 根目录</span>
+        </div>
+        <div id="sidebarCategories"></div>
     </div>
-    <div class="bg-noise" aria-hidden="true"></div>
 
-    <!-- 响应式导航开关：桌面端左上角抽屉 / 移动端底部导航 -->
-    <button class="nav-toggle" id="navToggle" type="button" aria-label="打开导航" aria-expanded="false">
-        <span></span><span></span><span></span>
-    </button>
-
-    <!-- Header -->
     <header>
-        <h1>BaldGrid·<span class="hl">资源中心</span></h1>
-        <p>Android · 刷机 · 工具 · 教程</p>
+        <nav class="header_container">
+            <div class="pull-left expand" id="expand" onclick="toggleSidebar()">
+                <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 17a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM5 17a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm7-7a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM5 10a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm7-7a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM5 3a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z" fill="#040303" />
+                </svg>
+            </div>
+            <div class="pull-left">
+                <a onclick="navigateTo(null)">📁 资源列表</a>
+            </div>
+            <div class="pull-right" id="statsDisplay" style="padding:0 20px;font-size:13px;color:#888;">
+                加载中...
+            </div>
+        </nav>
     </header>
 
-    <!-- 公告 -->
-    <div class="notice">📢 公告：如果无法播放音乐请尝试关闭音乐或链接海外节点后刷新网页！</div>
+    <div class="toast" id="toast"></div>
 
-    <!-- 搜索 -->
-    <input id="search" placeholder="🔍 搜索资源...">
-
-    <!-- Tabs -->
-    <div class="tabs" id="tabsContainer">
-        <button class="active" data-tab="resource">
-            <span class="label-text">首页</span>
-        </button>
-        <button data-tab="friend">
-            <span class="label-text">友链</span>
-        </button>
-        <button data-tab="author">
-            <span class="label-text">作者</span>
-        </button>
-        <button data-tab="setting">
-            <span class="label-text">设置</span>
-        </button>
-    </div>
-
-    <!-- 资源区域 -->
-    <div id="resource" class="page-show">
-        <div id="breadcrumb">🏠 首页</div>
-        <main id="list"></main>
-        <div id="readme">暂无介绍</div>
-    </div>
-
-    <!-- 下载页面 -->
-    <div id="download" class="hide">
-        <div class="download-window">
-            <div id="downloadIcon" class="download-icon">🌐</div>
-            <h2 id="downloadName">文件下载</h2>
-            <div class="download-buttons">
-                <button onclick="startDownload()">⬇️ 立即下载</button>
-                <button onclick="copyDownloadLink()">🔗 复制链接</button>
-                <button onclick="backResource()">↩️ 返回</button>
+    <div class="preview-overlay" id="previewOverlay" onclick="if(event.target===this)closePreview()">
+        <div class="preview-modal">
+            <div class="preview-header">
+                <h3 id="previewTitle">加载中...</h3>
+                <button class="preview-close" onclick="closePreview()">✕</button>
             </div>
-            <div id="downloadReadme" class="download-readme">
-                <h3>文件介绍</h3>
-                暂无介绍
+            <div class="preview-body" id="previewBody">
+                <div class="loading">⏳ 加载中...</div>
+            </div>
+            <div class="preview-footer">
+                <button class="btn-close-preview" onclick="closePreview()">关闭</button>
+                <a class="btn-download-preview" id="previewDownloadBtn" download>⬇ 下载文件</a>
             </div>
         </div>
     </div>
 
-    <!-- 友情链接 -->
-    <div id="friend" class="hide">
-        <main id="links"></main>
-    </div>
+    <main>
+        <div class="scroll" id="mainScroll">
+            <div class="container">
 
-    <!-- ===== 联系作者（动态加载） ===== -->
-    <div id="author" class="hide">
-        <div id="authorList" class="author-grid"></div>
-    </div>
-
-    <!-- 设置：移动端采用独立选项卡，桌面端保持紧凑网格 -->
-    <div id="setting" class="hide">
-        <div class="settings-grid">
-            <section class="setting-card">
-                <div class="setting-card-icon">🎨</div>
-                <div class="setting-card-body">
-                    <h2>主题模式</h2>
-                    <p>切换浅色 / 深色外观</p>
+                <div class="main-title">
+                    <h1 class="main-title-path" id="breadcrumbDisplay">
+                        <a onclick="navigateTo(null)">📂 根目录</a>
+                    </h1>
                 </div>
-                <label class="setting-control">
-                    <span class="sr-only">切换主题</span>
-                    <select id="themeSelect" aria-label="切换主题">
-                        <option value="light">☀️ 浅色</option>
-                        <option value="dark">🌙 深色</option>
-                    </select>
-                </label>
-            </section>
 
-            <section class="setting-card">
-                <div class="setting-card-icon">✨</div>
-                <div class="setting-card-body">
-                    <h2>页面动画</h2>
-                    <p>控制页面切换与列表动效</p>
+                <div class="main-item-list" id="fileList">
+                    <div class="main-items main-item-title">
+                        <div class="inner-container">
+                            <div class="main-items-icon">
+                                <i class="iconfont">&#xe746;</i>
+                            </div>
+                            <div class="main-items-displayName">名称</div>
+                            <div class="main-items-size" style="width:auto;min-width:160px;text-align:right;">操作</div>
+                        </div>
+                    </div>
+                    <div id="fileItems"></div>
                 </div>
-                <label class="setting-control">
-                    <span class="sr-only">开启动画</span>
-                    <input type="checkbox" id="animationSwitch" checked>
-                </label>
-            </section>
 
-            <section class="setting-card setting-card-action">
-                <div class="setting-card-icon">🎵</div>
-                <div class="setting-card-body">
-                    <h2>音乐播放器</h2>
-                    <p>打开独立音乐播放器</p>
-                </div>
-                <button id="musicSwitch" class="music-open-btn" type="button">
-                    <span class="music-open-icon">♪</span>
-                    <span>打开</span>
-                </button>
-            </section>
-        </div>
-    </div>
-
-    <!-- ===== 音乐播放器（精简版，无歌词） ===== -->
-    <div class="mp-mask" id="mpMask">
-        <div class="mp-player">
-            <!-- 顶部栏 -->
-            <div class="mp-header">
-                <div class="mp-leds">
-                    <span class="mp-led mp-led-red"></span>
-                    <span class="mp-led mp-led-yellow"></span>
-                    <span class="mp-led mp-led-green"></span>
-                </div>
-                <span class="mp-title">Music</span>
-                <button class="mp-close" id="mpClose" title="关闭">
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                </button>
-            </div>
-
-            <!-- 封面 -->
-            <div class="mp-cover-area">
-                <div class="mp-cover-inner" id="mpCover">
-                    <div class="mp-cover-placeholder">
-                        <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                <div class="main-item-list" id="readmeContainer" style="display:none;padding:20px;">
+                    <div class="readme">
+                        <div class="markdown-body" id="readmeContent"></div>
                     </div>
                 </div>
-            </div>
 
-            <!-- 歌曲信息 -->
-            <div class="mp-info">
-                <div class="mp-name" id="mpName">未选择歌曲</div>
-                <div class="mp-artist" id="mpArtist">选择音乐以开始播放</div>
-            </div>
-
-            <!-- 进度条 -->
-            <div class="mp-progress-row">
-                <span class="mp-time" id="mpCur">0:00</span>
-                <div class="mp-bar" id="mpBar">
-                    <div class="mp-bar-fill" id="mpFill"></div>
-                    <div class="mp-bar-thumb" id="mpThumb"></div>
+                <div style="text-align:center;margin-top:100px;">
+                    <div id="foot_info"></div>
                 </div>
-                <span class="mp-time" id="mpDur">0:00</span>
-            </div>
 
-            <!-- 控制按钮 -->
-            <div class="mp-controls">
-                <button class="mp-ctrl-btn" id="mpPrev" title="上一首">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
-                </button>
-                <button class="mp-ctrl-btn mp-ctrl-btn-play" id="mpPlay" title="播放/暂停">
-                    <svg id="mpPlayIcon" viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                </button>
-                <button class="mp-ctrl-btn" id="mpNext" title="下一首">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M6 18 14.5 12 6 6v12zM16 6h2v12h-2z"/></svg>
-                </button>
-            </div>
-
-            <!-- 音量 + 模式 -->
-            <div class="mp-sub-row">
-                <div class="mp-panel">
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>
-                    <input type="range" id="mpVol" min="0" max="100" value="75" class="mp-slider">
-                    <span class="mp-vol-val" id="mpVolVal">75</span>
-                </div>
-                <div class="mp-panel mp-mode-seg" id="mpModeSeg">
-                    <div class="mp-mode-ind" id="mpModeInd"></div>
-                    <button class="mp-mode-item active" data-mode="0">🔁 顺序</button>
-                    <button class="mp-mode-item" data-mode="1">🔂 单曲</button>
-                    <button class="mp-mode-item" data-mode="2">🔀 随机</button>
-                </div>
-            </div>
-
-            <!-- 操作按钮 -->
-            <div class="mp-actions">
-                <button class="mp-action-btn" id="mpLoadBtn">
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    <span>从 Music 目录加载</span>
-                </button>
-                <label class="mp-action-btn">
-                    <input type="file" id="mpFile" accept="audio/*" multiple hidden>
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
-                    <span>添加本地音乐</span>
-                </label>
-            </div>
-
-            <div class="mp-status" id="mpStatus"></div>
-
-            <div class="mp-playlist" id="mpList">
-                <div class="mp-empty">🎵 暂无音乐，点击上方按钮添加或从 Music 目录加载</div>
             </div>
         </div>
-    </div>
+    </main>
 
-    <!-- 主脚本 -->
-    <script src="script.js"></script>
+    <script>
+        // ============================================================
+        // 全局状态
+        // ============================================================
+        let allData = null;
+        let currentPath = [];
+        let currentCategory = null;
+        let flatItems = [];
+        let sidebarOpen = false;
+
+        // ============================================================
+        // Toast 提示
+        // ============================================================
+        let toastTimer = null;
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+
+        // ============================================================
+        // 侧边栏切换
+        // ============================================================
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const icon = document.getElementById('expand');
+            if (sidebarOpen) {
+                sidebar.style.transform = 'translateX(-240px)';
+                icon.className = 'pull-left expand';
+                sidebarOpen = false;
+            } else {
+                sidebar.style.transform = 'translateX(0px)';
+                icon.className = 'pull-left expand_on';
+                sidebarOpen = true;
+            }
+        }
+
+        // ============================================================
+        // 加载数据
+        // ============================================================
+        async function loadData() {
+            try {
+                const response = await fetch('resources.json');
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                allData = await response.json();
+
+                await loadAllLoaders(allData.categories);
+
+                flatItems = [];
+                buildFlatIndex(allData.categories, []);
+
+                const count = flatItems.filter(i => i.type === 'loader' || i.type === 'file').length;
+                document.getElementById('statsDisplay').textContent = `📦 ${count} 个资源`;
+
+                navigateTo(null);
+            } catch (error) {
+                document.getElementById('fileItems').innerHTML = `
+                    <div class="empty-state">
+                        <div class="icon">❌</div>
+                        <p>加载失败: ${error.message}</p>
+                        <p style="font-size:13px;color:#bbb;margin-top:8px;">请确保 resources.json 文件存在</p>
+                    </div>
+                `;
+                console.error('加载失败:', error);
+            }
+        }
+
+        async function loadAllLoaders(categories) {
+            for (const cat of categories) {
+                if (cat.type === 'loader' && cat.src) {
+                    try {
+                        const res = await fetch(cat.src);
+                        if (res.ok) {
+                            const data = await res.json();
+
+                            if (data.children && Array.isArray(data.children) && data.children.length > 0) {
+                                cat.type = 'folder';
+                                if (data.desc && !cat.desc) cat.desc = data.desc;
+                                if (data.readme && !cat.readme) cat.readme = data.readme;
+                                if (cat.children) {
+                                    cat.children = cat.children.concat(data.children);
+                                } else {
+                                    cat.children = data.children;
+                                }
+                                await loadAllLoaders(cat.children);
+                            } else {
+                                cat._loadedData = data;
+                                if (data.readme) {
+                                    try {
+                                        const rmRes = await fetch(data.readme);
+                                        if (rmRes.ok) {
+                                            cat._loadedReadme = await rmRes.text();
+                                        }
+                                    } catch (e) {}
+                                }
+                                if (data.url) cat._url = data.url;
+                                if (data.desc && !cat.desc) cat.desc = data.desc;
+                            }
+                        }
+                    } catch (e) {
+                        console.warn('加载子 JSON 失败:', cat.src, e);
+                    }
+                }
+                if (cat.children) {
+                    await loadAllLoaders(cat.children);
+                }
+            }
+        }
+
+        function buildFlatIndex(categories, parentPath = []) {
+            categories.forEach(cat => {
+                const fullPath = [...parentPath, cat.name];
+                cat._path = fullPath;
+                flatItems.push({ ...cat, _path: fullPath, _pathStr: fullPath.join(' / ') });
+                if (cat.children) {
+                    buildFlatIndex(cat.children, fullPath);
+                }
+            });
+        }
+
+        // ============================================================
+        // 导航
+        // ============================================================
+        function navigateToByPath(pathInput) {
+            if (!pathInput) {
+                navigateTo(null);
+                return;
+            }
+
+            let names;
+            if (Array.isArray(pathInput)) {
+                names = pathInput;
+            } else {
+                names = pathInput.split('|').filter(Boolean);
+            }
+
+            if (names.length === 0) {
+                navigateTo(null);
+                return;
+            }
+
+            let current = {
+                name: '根目录',
+                type: 'root',
+                children: allData.categories
+            };
+            let path = [];
+
+            for (const name of names) {
+                const next = (current.children || []).find(item => item.name === name);
+                if (!next) {
+                    console.warn('未找到路径:', name);
+                    return;
+                }
+                path.push(name);
+                current = next;
+            }
+
+            current._path = path;
+            navigateTo(current);
+        }
+
+        function navigateTo(category) {
+            const fileItems = document.getElementById('fileItems');
+            const readmeContainer = document.getElementById('readmeContainer');
+
+            fileItems.style.transition = 'opacity 0.15s ease';
+            fileItems.style.opacity = '0';
+
+            readmeContainer.classList.remove('fade-in');
+            readmeContainer.classList.add('fade-out');
+
+            setTimeout(() => {
+                if (category === null) {
+                    currentPath = [];
+                    currentCategory = {
+                        name: '根目录',
+                        type: 'root',
+                        children: allData.categories
+                    };
+                } else {
+                    currentPath = category._path || [category.name];
+                    currentCategory = category;
+                }
+
+                renderBreadcrumb();
+                renderList(currentCategory);
+                renderReadme(currentCategory);
+
+                requestAnimationFrame(() => {
+                    fileItems.style.opacity = '1';
+                });
+
+                setTimeout(() => {
+                    readmeContainer.classList.remove('fade-out');
+                    if (readmeContainer.style.display !== 'none') {
+                        readmeContainer.classList.add('fade-in');
+                    }
+                }, 50);
+
+                document.getElementById('mainScroll').scrollTo({ top: 0, behavior: 'smooth' });
+            }, 150);
+        }
+
+        // ============================================================
+        // 渲染面包屑
+        // ============================================================
+        function renderBreadcrumb() {
+            const container = document.getElementById('breadcrumbDisplay');
+            let html = `<a onclick="navigateTo(null)">📂 根目录</a>`;
+
+            if (currentPath.length > 0) {
+                let categories = allData.categories;
+                currentPath.forEach((name, index) => {
+                    const found = categories.find(c => c.name === name);
+                    if (found) {
+                        html += ` > `;
+                        if (index === currentPath.length - 1) {
+                            html += `<a style="font-weight:600;color:#333;">${name}</a>`;
+                        } else {
+                            const pathStr = currentPath.slice(0, index + 1).join('|');
+                            html += `<a onclick="navigateToByPath('${pathStr}')">${name}</a>`;
+                        }
+                        categories = found.children || [];
+                    }
+                });
+            }
+
+            container.innerHTML = html;
+        }
+
+        // ============================================================
+        // 复制链接
+        // ============================================================
+        function copyLink(src, name) {
+            if (!src) {
+                showToast('❌ 没有链接可复制');
+                return;
+            }
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(src).then(() => {
+                    showToast(`✅ 已复制: ${name || '链接'}`);
+                }).catch(() => {
+                    fallbackCopy(src);
+                });
+            } else {
+                fallbackCopy(src);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast('✅ 已复制链接');
+            } catch (e) {
+                showToast('❌ 复制失败，请手动复制');
+            }
+            document.body.removeChild(textarea);
+        }
+
+        // ============================================================
+        // 下载
+        // ============================================================
+        function downloadFile(src, name) {
+            if (!src) {
+                showToast('❌ 没有下载链接');
+                return;
+            }
+            const a = document.createElement('a');
+            a.href = src;
+            a.download = name || src.split('/').pop() || 'download';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            showToast(`⬇ 开始下载: ${name || '文件'}`);
+        }
+
+        // ============================================================
+        // 预览
+        // ============================================================
+        async function previewFile(src, name) {
+            if (!src) {
+                showToast('❌ 没有可预览的内容');
+                return;
+            }
+            const overlay = document.getElementById('previewOverlay');
+            const title = document.getElementById('previewTitle');
+            const body = document.getElementById('previewBody');
+            const downloadBtn = document.getElementById('previewDownloadBtn');
+
+            overlay.classList.add('active');
+            title.textContent = `📄 ${name}`;
+            downloadBtn.href = src;
+            downloadBtn.textContent = `⬇ 下载 ${name}`;
+            downloadBtn.style.display = '';
+
+            body.innerHTML = `<div class="loading">⏳ 加载中...</div>`;
+
+            try {
+                const response = await fetch(src);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const text = await response.text();
+                try {
+                    const json = JSON.parse(text);
+                    body.innerHTML = `<div class="json-view">${escapeHtml(JSON.stringify(json, null, 2))}</div>`;
+                } catch {
+                    body.innerHTML = `<div style="white-space:pre-wrap;word-break:break-all;">${escapeHtml(text)}</div>`;
+                }
+            } catch (error) {
+                body.innerHTML = `<div class="error">❌ 加载失败: ${error.message}</div>`;
+            }
+        }
+
+        function previewLoadedData(name, data) {
+            const overlay = document.getElementById('previewOverlay');
+            const title = document.getElementById('previewTitle');
+            const body = document.getElementById('previewBody');
+            const downloadBtn = document.getElementById('previewDownloadBtn');
+
+            overlay.classList.add('active');
+            title.textContent = `📄 ${name}`;
+            downloadBtn.style.display = 'none';
+
+            let displayData = data;
+            if (typeof data === 'string') {
+                try { displayData = JSON.parse(data); } catch (e) {}
+            }
+
+            let html = '';
+            if (displayData && typeof displayData === 'object') {
+                if (displayData.name) html += `<div><strong>名称：</strong>${escapeHtml(displayData.name)}</div>`;
+                if (displayData.desc) html += `<div><strong>描述：</strong>${escapeHtml(displayData.desc)}</div>`;
+                if (displayData.url) html += `<div><strong>链接：</strong><a href="${escapeHtml(displayData.url)}" target="_blank">${escapeHtml(displayData.url)}</a></div>`;
+                if (displayData.readme) html += `<div><strong>README：</strong>${escapeHtml(displayData.readme)}</div>`;
+                for (const key of Object.keys(displayData)) {
+                    if (!['name', 'desc', 'url', 'readme', 'type'].includes(key)) {
+                        const val = typeof displayData[key] === 'object' ? JSON.stringify(displayData[key], null, 2) : displayData[key];
+                        html += `<div><strong>${escapeHtml(key)}：</strong><pre style="display:inline;background:#f5f5f5;padding:2px 8px;border-radius:4px;font-size:13px;">${escapeHtml(val)}</pre></div>`;
+                    }
+                }
+                if (!html) {
+                    html = `<div class="json-view">${escapeHtml(JSON.stringify(displayData, null, 2))}</div>`;
+                }
+            } else {
+                html = `<div style="white-space:pre-wrap;">${escapeHtml(String(displayData))}</div>`;
+            }
+            body.innerHTML = html;
+        }
+
+        function escapeHtml(text) {
+            if (text === null || text === undefined) return '';
+            const div = document.createElement('div');
+            div.textContent = String(text);
+            return div.innerHTML;
+        }
+
+        function closePreview() {
+            const overlay = document.getElementById('previewOverlay');
+            overlay.classList.remove('active');
+            document.getElementById('previewDownloadBtn').style.display = '';
+        }
+
+        // ============================================================
+        // 渲染列表
+        // ============================================================
+        function renderList(category) {
+            const container = document.getElementById('fileItems');
+            const items = category.children || [];
+
+            if (items.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="icon">📭</div>
+                        <p>这个分类下还没有资源</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const sorted = [...items].sort((a, b) => {
+                if (a.type === 'folder' && b.type !== 'folder') return -1;
+                if (a.type !== 'folder' && b.type === 'folder') return 1;
+                return a.name.localeCompare(b.name, 'zh');
+            });
+
+            let html = '';
+            sorted.forEach(item => {
+                if (item.type === 'folder') {
+                    const pathArr = item._path || [...currentPath, item.name];
+                    const pathStr = pathArr.join('|');
+                    html += `
+                        <div class="main-items folder-item" onclick="navigateToByPath('${pathStr}')" data-path="${pathStr}">
+                            <div class="main-items-icon">
+                                <img src="https://spoprod-a.akamaihd.net/files/fabric/assets/item-types-fluent/20/folder.svg" alt="folder">
+                            </div>
+                            <div class="main-items-fileName" style="flex:1;">
+                                <a onclick="event.stopPropagation();navigateToByPath('${pathStr}')" style="font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${item.name}</a>
+                                ${item.desc ? `<span class="desc-text">${item.desc}</span>` : ''}
+                            </div>
+                            <div class="main-items-fileSize">
+                                <span class="folder-info">📁 ${item.children ? item.children.length : 0} 项</span>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    const icon = getFileIcon(item.src || item.url);
+                    const loadedData = item._loadedData;
+                    // 获取链接：优先 src，其次 url，再其次 loadedData 里的 url
+                    const linkUrl = item.src || item.url || (loadedData ? loadedData.url : null);
+
+                    let actionsHtml = '';
+                    if (linkUrl) {
+                        // 下载按钮 + 复制链接按钮（顺序：下载在前）
+                        actionsHtml += `<a class="btn-download" onclick="event.stopPropagation();downloadFile('${linkUrl}','${item.name}')">⬇ 下载</a>`;
+                        actionsHtml += `<a class="btn-copy" onclick="event.stopPropagation();copyLink('${linkUrl}','${item.name}')">📋 复制链接</a>`;
+                    } else {
+                        actionsHtml = `<span style="color:#999;font-size:12px;">无操作</span>`;
+                    }
+
+                    html += `
+                        <div class="main-items">
+                            <div class="main-items-icon">
+                                <span style="font-size:20px;line-height:1;">${icon}</span>
+                            </div>
+                            <div class="main-items-fileName" style="flex:1;min-width:0;">
+                                <span class="name-text">${item.name}</span>
+                                ${item.desc ? `<span class="desc-text">${item.desc}</span>` : ''}
+                                ${loadedData?.desc ? `<span class="desc-text" style="color:#666;">${loadedData.desc}</span>` : ''}
+                            </div>
+                            <div class="main-items-fileSize">
+                                <div class="file-actions">${actionsHtml}</div>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            container.innerHTML = html;
+        }
+
+        // ============================================================
+        // 渲染 README
+        // ============================================================
+        function renderReadme(category) {
+            const container = document.getElementById('readmeContainer');
+            const content = document.getElementById('readmeContent');
+
+            let readmePath = category ? category.readme : null;
+            let loadedReadme = category ? category._loadedReadme : null;
+
+            if (category && category.type === 'loader' && loadedReadme) {
+                container.style.display = 'block';
+                content.innerHTML = renderMarkdown(loadedReadme);
+                return;
+            }
+
+            if (readmePath) {
+                container.style.display = 'block';
+                fetch(readmePath)
+                    .then(res => {
+                        if (!res.ok) throw new Error('文件不存在');
+                        return res.text();
+                    })
+                    .then(text => {
+                        content.innerHTML = renderMarkdown(text);
+                    })
+                    .catch(() => {
+                        content.innerHTML = `<p style="color:#999;">📄 ${readmePath}</p>`;
+                    });
+            } else {
+                container.style.display = 'none';
+                container.classList.remove('fade-in');
+            }
+        }
+
+        function renderMarkdown(text) {
+            text = text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            return text
+                .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+                .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+                .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+                .replace(/^- (.*$)/gim, '<li>$1</li>')
+                .replace(/`([^`]+)`/g, '<code>$1</code>')
+                .replace(/\n/g, '<br>')
+                .replace(/<li>.*?<\/li>/g, match => `<ul>${match}</ul>`);
+        }
+
+        // ============================================================
+        // 工具函数
+        // ============================================================
+        function getFileIcon(src) {
+            if (!src) return '📄';
+            const ext = src.split('.').pop().toLowerCase();
+            const icons = {
+                'json': '📋',
+                'md': '📝',
+                'txt': '📄',
+                'pdf': '📕',
+                'zip': '📦',
+                '7z': '📦',
+                'rar': '📦',
+                'apk': '📱',
+                'exe': '⚙️',
+                'png': '🖼️',
+                'jpg': '🖼️',
+                'jpeg': '🖼️',
+                'gif': '🖼️',
+                'svg': '🖼️',
+                'mp3': '🎵',
+                'mp4': '🎬',
+                'avi': '🎬',
+                'mkv': '🎬',
+                'html': '🌐',
+                'css': '🎨',
+                'js': '⚡',
+                'py': '🐍'
+            };
+            return icons[ext] || '📄';
+        }
+
+        // ============================================================
+        // 页脚 & 启动
+        // ============================================================
+        document.getElementById('foot_info').innerHTML =
+            `Copyright © ${new Date().getFullYear()} | 纯本地资源列表 | 基于 JSON 驱动`;
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closePreview();
+        });
+
+        loadData();
+    </script>
+
 </body>
-
 </html>

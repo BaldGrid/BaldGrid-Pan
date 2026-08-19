@@ -4,19 +4,16 @@
     {
       "name": "Android",
       "type": "folder",
-      "desc": "Android 刷机相关资源",
       "readme": "data/rm/android.md",
       "children": [
         {
           "name": "欧珀 OPPO",
           "type": "folder",
-          "desc": "OPPO 相关资源",
           "readme": "data/rm/oppo.md",
           "children": [
             {
               "name": "高通骁龙处理器",
               "type": "folder",
-              "desc": "高通骁龙处理器机型",
               "readme": "data/rm/op_qc.md",
               "children": [
                 {
@@ -39,7 +36,6 @@
             {
               "name": "联发科处理器",
               "type": "folder",
-              "desc": "联发科处理器机型",
               "readme": "data/rm/op_mtk.md",
               "children": []
             },
@@ -53,13 +49,11 @@
         {
           "name": "小米 XiaoMi",
           "type": "folder",
-          "desc": "小米 相关资源",
           "readme": "data/rm/xiaomi.md",
           "children": [
             {
               "name": "高通骁龙处理器",
               "type": "folder",
-              "desc": "高通骁龙处理器机型",
               "readme": "data/rm/xm_qc.md",
               "children": [
                 {
@@ -87,7 +81,6 @@
             {
               "name": "联发科处理器",
               "type": "folder",
-              "desc": "联发科处理器机型",
               "readme": "data/rm/xm_mtk.md",
               "children": []
             }
@@ -96,7 +89,6 @@
         {
           "name": "通用工具",
           "type": "folder",
-          "desc": "刷机通用工具",
           "readme": "data/rm/tools.md",
           "children": [
             {
@@ -121,7 +113,6 @@
     {
       "name": "游戏开发",
       "type": "folder",
-      "desc": "游戏相关项目",
       "readme": "data/rm/game.md",
       "children": [
         {
@@ -134,19 +125,16 @@
     {
       "name": "音乐",
       "type": "folder",
-      "desc": "",
       "readme": "data/rm/musiced.md",
       "children": [
         {
           "name": "Baldi",
           "type": "folder",
-          "desc": "",
           "readme": "data/rm/baldi.md",
           "children": [
             {
               "name": "Schoolhouse Trouble",
               "type": "folder",
-              "desc": "",
               "readme": "data/rm/baldis/sht.md",
               "children": [
                 {
