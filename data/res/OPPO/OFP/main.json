@@ -2,7 +2,7 @@
   "name": "解包ofp方案合集",
   "type": "folder",
   "desc": "OPPO OFP 解包方案汇总",
-  "readme": "data/rm/file/OPPO/OFP/main.md",
+  "readme": "data/rm/file/OPPO/OFP/maim.md",
   "children": [
     {
       "name": "方案一(支持高通 & 联发科)",

@@ -337,21 +337,12 @@
             white-space: nowrap;
         }
 
-        .file-actions .btn-download {
-            color: #16a34a;
-            background: rgba(22, 163, 74, 0.08);
-        }
-
-        .file-actions .btn-download:hover {
-            background: rgba(22, 163, 74, 0.15);
-        }
-
-        .file-actions .btn-copy {
+        .file-actions .btn-detail {
             color: #0078d4;
             background: rgba(0, 120, 212, 0.08);
         }
 
-        .file-actions .btn-copy:hover {
+        .file-actions .btn-detail:hover {
             background: rgba(0, 120, 212, 0.15);
         }
 
@@ -538,27 +529,42 @@
             }
         }
 
-        .preview-overlay {
-            display: none;
+        /* ===== 详情弹窗（动画修复版） ===== */
+        .detail-overlay {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0);
+            backdrop-filter: blur(0px);
             z-index: 1000;
             justify-content: center;
             align-items: center;
             padding: 20px;
-        }
-
-        .preview-overlay.active {
+            transition: background 0.3s ease, backdrop-filter 0.3s ease;
             display: flex;
-            animation: fadeIn 0.2s ease;
+            pointer-events: none;
         }
 
-        .preview-modal {
+        .detail-overlay.active {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            pointer-events: auto;
+        }
+
+        .detail-overlay.closing {
+            background: rgba(0, 0, 0, 0);
+            backdrop-filter: blur(0px);
+            pointer-events: none;
+        }
+
+        .detail-overlay.closing .detail-modal {
+            transform: scale(0.92) translateY(30px);
+            opacity: 0;
+        }
+
+        .detail-modal {
             background: white;
             border-radius: 16px;
             max-width: 700px;
@@ -567,10 +573,17 @@
             display: flex;
             flex-direction: column;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            animation: slideUp 0.25s ease;
+            transform: scale(0.92) translateY(30px);
+            opacity: 0;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
         }
 
-        .preview-header {
+        .detail-overlay.active .detail-modal {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        .detail-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -579,7 +592,7 @@
             flex-shrink: 0;
         }
 
-        .preview-header h3 {
+        .detail-header h3 {
             font-size: 16px;
             font-weight: 600;
             overflow: hidden;
@@ -588,7 +601,7 @@
             max-width: 80%;
         }
 
-        .preview-close {
+        .detail-close {
             background: none;
             border: none;
             font-size: 24px;
@@ -599,94 +612,138 @@
             line-height: 1;
         }
 
-        .preview-close:hover {
+        .detail-close:hover {
             color: #333;
             transform: scale(1.1);
         }
 
-        .preview-body {
+        .detail-body {
             padding: 20px;
             overflow-y: auto;
             flex: 1;
             font-size: 14px;
             line-height: 1.8;
-            white-space: pre-wrap;
-            word-break: break-all;
         }
 
-        .preview-body .loading {
-            color: #999;
-            text-align: center;
-            padding: 40px 0;
+        .detail-body .detail-item {
+            margin-bottom: 14px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #f0f0f0;
         }
 
-        .preview-body .json-view {
-            background: #f8f8fa;
-            padding: 16px;
-            border-radius: 8px;
-            font-family: "JetBrains Mono", "Consolas", monospace;
+        .detail-body .detail-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .detail-body .detail-label {
+            font-weight: 600;
+            color: #555;
             font-size: 13px;
-            white-space: pre-wrap;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .detail-body .detail-value {
+            color: #333;
             word-break: break-all;
-            max-height: 50vh;
+        }
+
+        .detail-body .detail-value a {
+            color: #0078d4;
+        }
+
+        .detail-body .detail-value a:hover {
+            text-decoration: underline;
+        }
+
+        .detail-body .detail-readme {
+            background: #f8f8fa;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.8;
+            max-height: 250px;
             overflow-y: auto;
         }
 
-        .preview-body .error {
-            color: #dc2626;
-            text-align: center;
-            padding: 20px;
+        .detail-body .detail-readme h1,
+        .detail-body .detail-readme h2,
+        .detail-body .detail-readme h3 {
+            margin: 6px 0 4px 0;
+            font-size: 15px;
         }
 
-        .preview-footer {
+        .detail-body .detail-readme ul {
+            padding-left: 20px;
+        }
+
+        .detail-body .detail-readme code {
+            background: #e8e8e8;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .detail-body .loading-text {
+            color: #999;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .detail-body .error-text {
+            color: #dc2626;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .detail-footer {
             padding: 12px 20px;
             border-top: 1px solid #eee;
             display: flex;
             gap: 10px;
             justify-content: flex-end;
             flex-shrink: 0;
+            flex-wrap: wrap;
         }
 
-        .preview-footer a {
-            padding: 6px 20px;
+        .detail-footer a,
+        .detail-footer button {
+            padding: 8px 20px;
             border-radius: 8px;
             font-size: 14px;
             font-weight: 500;
             transition: 0.2s;
+            cursor: pointer;
+            border: none;
         }
 
-        .preview-footer .btn-download-preview {
+        .detail-footer .btn-download-detail {
             background: #16a34a;
             color: white;
         }
 
-        .preview-footer .btn-download-preview:hover {
+        .detail-footer .btn-download-detail:hover {
             background: #15803d;
         }
 
-        .preview-footer .btn-close-preview {
+        .detail-footer .btn-copy-detail {
             background: #f3f4f6;
             color: #333;
         }
 
-        .preview-footer .btn-close-preview:hover {
+        .detail-footer .btn-copy-detail:hover {
             background: #e5e7eb;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .detail-footer .btn-close-detail {
+            background: #f3f4f6;
+            color: #333;
         }
 
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .detail-footer .btn-close-detail:hover {
+            background: #e5e7eb;
         }
 
         .toast {
@@ -762,18 +819,20 @@
 
     <div class="toast" id="toast"></div>
 
-    <div class="preview-overlay" id="previewOverlay" onclick="if(event.target===this)closePreview()">
-        <div class="preview-modal">
-            <div class="preview-header">
-                <h3 id="previewTitle">加载中...</h3>
-                <button class="preview-close" onclick="closePreview()">✕</button>
+    <!-- ===== 详情弹窗 ===== -->
+    <div class="detail-overlay" id="detailOverlay" onclick="if(event.target===this)closeDetail()">
+        <div class="detail-modal">
+            <div class="detail-header">
+                <h3 id="detailTitle">文件详情</h3>
+                <button class="detail-close" onclick="closeDetail()">✕</button>
             </div>
-            <div class="preview-body" id="previewBody">
-                <div class="loading">⏳ 加载中...</div>
+            <div class="detail-body" id="detailBody">
+                <div class="loading-text">⏳ 加载中...</div>
             </div>
-            <div class="preview-footer">
-                <button class="btn-close-preview" onclick="closePreview()">关闭</button>
-                <a class="btn-download-preview" id="previewDownloadBtn" download>⬇ 下载文件</a>
+            <div class="detail-footer">
+                <button class="btn-close-detail" onclick="closeDetail()">关闭</button>
+                <button class="btn-copy-detail" id="detailCopyBtn" onclick="copyDetailLink()">📋 复制链接</button>
+                <a class="btn-download-detail" id="detailDownloadBtn" download>⬇ 点击下载</a>
             </div>
         </div>
     </div>
@@ -795,7 +854,7 @@
                                 <i class="iconfont">&#xe746;</i>
                             </div>
                             <div class="main-items-displayName">名称</div>
-                            <div class="main-items-size" style="width:auto;min-width:160px;text-align:right;">操作</div>
+                            <div class="main-items-size" style="width:auto;min-width:100px;text-align:right;">操作</div>
                         </div>
                     </div>
                     <div id="fileItems"></div>
@@ -824,6 +883,9 @@
         let currentCategory = null;
         let flatItems = [];
         let sidebarOpen = false;
+
+        let currentDetailItem = null;
+        let detailLink = '';
 
         // ============================================================
         // Toast 提示
@@ -1104,88 +1166,115 @@
         }
 
         // ============================================================
-        // 预览
+        // 详情弹窗（修复版）
         // ============================================================
-        async function previewFile(src, name) {
-            if (!src) {
-                showToast('❌ 没有可预览的内容');
-                return;
-            }
-            const overlay = document.getElementById('previewOverlay');
-            const title = document.getElementById('previewTitle');
-            const body = document.getElementById('previewBody');
-            const downloadBtn = document.getElementById('previewDownloadBtn');
+        function openDetail(item) {
+            currentDetailItem = item;
 
+            const overlay = document.getElementById('detailOverlay');
+            const title = document.getElementById('detailTitle');
+            const body = document.getElementById('detailBody');
+            const downloadBtn = document.getElementById('detailDownloadBtn');
+
+            const linkUrl = item.src || item.url || (item._loadedData ? item._loadedData.url : null) || null;
+            detailLink = linkUrl || '';
+
+            title.textContent = `📄 ${item.name}`;
+
+            // 重置状态：移除 closing 和 active，强制重绘后添加 active
+            overlay.classList.remove('closing', 'active');
+            void overlay.offsetWidth;
             overlay.classList.add('active');
-            title.textContent = `📄 ${name}`;
-            downloadBtn.href = src;
-            downloadBtn.textContent = `⬇ 下载 ${name}`;
-            downloadBtn.style.display = '';
 
-            body.innerHTML = `<div class="loading">⏳ 加载中...</div>`;
-
-            try {
-                const response = await fetch(src);
-                if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                const text = await response.text();
-                try {
-                    const json = JSON.parse(text);
-                    body.innerHTML = `<div class="json-view">${escapeHtml(JSON.stringify(json, null, 2))}</div>`;
-                } catch {
-                    body.innerHTML = `<div style="white-space:pre-wrap;word-break:break-all;">${escapeHtml(text)}</div>`;
-                }
-            } catch (error) {
-                body.innerHTML = `<div class="error">❌ 加载失败: ${error.message}</div>`;
-            }
-        }
-
-        function previewLoadedData(name, data) {
-            const overlay = document.getElementById('previewOverlay');
-            const title = document.getElementById('previewTitle');
-            const body = document.getElementById('previewBody');
-            const downloadBtn = document.getElementById('previewDownloadBtn');
-
-            overlay.classList.add('active');
-            title.textContent = `📄 ${name}`;
-            downloadBtn.style.display = 'none';
-
-            let displayData = data;
-            if (typeof data === 'string') {
-                try { displayData = JSON.parse(data); } catch (e) {}
+            if (linkUrl) {
+                downloadBtn.href = linkUrl;
+                downloadBtn.style.display = '';
+                downloadBtn.textContent = `⬇ 点击下载 (${item.name})`;
+            } else {
+                downloadBtn.style.display = 'none';
             }
 
             let html = '';
-            if (displayData && typeof displayData === 'object') {
-                if (displayData.name) html += `<div><strong>名称：</strong>${escapeHtml(displayData.name)}</div>`;
-                if (displayData.desc) html += `<div><strong>描述：</strong>${escapeHtml(displayData.desc)}</div>`;
-                if (displayData.url) html += `<div><strong>链接：</strong><a href="${escapeHtml(displayData.url)}" target="_blank">${escapeHtml(displayData.url)}</a></div>`;
-                if (displayData.readme) html += `<div><strong>README：</strong>${escapeHtml(displayData.readme)}</div>`;
-                for (const key of Object.keys(displayData)) {
-                    if (!['name', 'desc', 'url', 'readme', 'type'].includes(key)) {
-                        const val = typeof displayData[key] === 'object' ? JSON.stringify(displayData[key], null, 2) : displayData[key];
-                        html += `<div><strong>${escapeHtml(key)}：</strong><pre style="display:inline;background:#f5f5f5;padding:2px 8px;border-radius:4px;font-size:13px;">${escapeHtml(val)}</pre></div>`;
-                    }
-                }
-                if (!html) {
-                    html = `<div class="json-view">${escapeHtml(JSON.stringify(displayData, null, 2))}</div>`;
-                }
-            } else {
-                html = `<div style="white-space:pre-wrap;">${escapeHtml(String(displayData))}</div>`;
+
+            html += `<div class="detail-item">
+                <span class="detail-label">📌 名称</span>
+                <div class="detail-value">${escapeHtml(item.name)}</div>
+            </div>`;
+
+            const desc = item.desc || (item._loadedData ? item._loadedData.desc : '') || '';
+            if (desc) {
+                html += `<div class="detail-item">
+                    <span class="detail-label">📝 描述</span>
+                    <div class="detail-value">${escapeHtml(desc)}</div>
+                </div>`;
             }
-            body.innerHTML = html;
+
+            if (linkUrl) {
+                html += `<div class="detail-item">
+                    <span class="detail-label">🔗 下载链接</span>
+                    <div class="detail-value"><a href="${escapeHtml(linkUrl)}" target="_blank">${escapeHtml(linkUrl)}</a></div>
+                </div>`;
+            }
+
+            const readmeContent = item._loadedReadme || null;
+            const readmePath = item.readme || (item._loadedData ? item._loadedData.readme : null) || null;
+
+            if (readmeContent) {
+                html += `<div class="detail-item">
+                    <span class="detail-label">📖 说明</span>
+                    <div class="detail-readme">${renderMarkdown(readmeContent)}</div>
+                </div>`;
+                body.innerHTML = html;
+            } else if (readmePath) {
+                html += `<div class="detail-item">
+                    <span class="detail-label">📖 说明</span>
+                    <div class="detail-readme" id="detailReadmeLoading">⏳ 加载中...</div>
+                </div>`;
+                body.innerHTML = html;
+
+                fetch(readmePath)
+                    .then(res => {
+                        if (!res.ok) throw new Error('文件不存在');
+                        return res.text();
+                    })
+                    .then(text => {
+                        const readmeDiv = document.getElementById('detailReadmeLoading');
+                        if (readmeDiv) {
+                            readmeDiv.innerHTML = renderMarkdown(text);
+                        }
+                    })
+                    .catch(() => {
+                        const readmeDiv = document.getElementById('detailReadmeLoading');
+                        if (readmeDiv) {
+                            readmeDiv.innerHTML = `<span style="color:#999;">📄 无法加载说明文档</span>`;
+                        }
+                    });
+            } else {
+                html += `<div class="detail-item">
+                    <span class="detail-label">📖 说明</span>
+                    <div class="detail-value" style="color:#999;">暂无说明文档</div>
+                </div>`;
+                body.innerHTML = html;
+            }
         }
 
-        function escapeHtml(text) {
-            if (text === null || text === undefined) return '';
-            const div = document.createElement('div');
-            div.textContent = String(text);
-            return div.innerHTML;
-        }
-
-        function closePreview() {
-            const overlay = document.getElementById('previewOverlay');
+        function closeDetail() {
+            const overlay = document.getElementById('detailOverlay');
+            // 移除 active，添加 closing
             overlay.classList.remove('active');
-            document.getElementById('previewDownloadBtn').style.display = '';
+            overlay.classList.add('closing');
+            // 动画结束后移除 closing
+            setTimeout(() => {
+                overlay.classList.remove('closing');
+            }, 350);
+        }
+
+        function copyDetailLink() {
+            if (detailLink) {
+                copyLink(detailLink, '链接');
+            } else {
+                showToast('❌ 没有链接可复制');
+            }
         }
 
         // ============================================================
@@ -1210,7 +1299,7 @@
                 if (a.type !== 'folder' && b.type === 'folder') return 1;
                 return 0;
             });
-            
+
             let html = '';
             sorted.forEach(item => {
                 if (item.type === 'folder') {
@@ -1232,18 +1321,16 @@
                     `;
                 } else {
                     const icon = getFileIcon(item.src || item.url);
-                    const loadedData = item._loadedData;
-                    // 获取链接：优先 src，其次 url，再其次 loadedData 里的 url
-                    const linkUrl = item.src || item.url || (loadedData ? loadedData.url : null);
 
-                    let actionsHtml = '';
-                    if (linkUrl) {
-                        // 下载按钮 + 复制链接按钮（顺序：下载在前）
-                        actionsHtml += `<a class="btn-download" onclick="event.stopPropagation();downloadFile('${linkUrl}','${item.name}')">⬇ 下载</a>`;
-                        actionsHtml += `<a class="btn-copy" onclick="event.stopPropagation();copyLink('${linkUrl}','${item.name}')">📋 复制链接</a>`;
-                    } else {
-                        actionsHtml = `<span style="color:#999;font-size:12px;">无操作</span>`;
-                    }
+                    const itemData = {
+                        name: item.name,
+                        desc: item.desc || '',
+                        src: item.src || null,
+                        url: item.url || null,
+                        readme: item.readme || null,
+                        _loadedData: item._loadedData || null,
+                        _loadedReadme: item._loadedReadme || null
+                    };
 
                     html += `
                         <div class="main-items">
@@ -1253,10 +1340,12 @@
                             <div class="main-items-fileName" style="flex:1;min-width:0;">
                                 <span class="name-text">${item.name}</span>
                                 ${item.desc ? `<span class="desc-text">${item.desc}</span>` : ''}
-                                ${loadedData?.desc ? `<span class="desc-text" style="color:#666;">${loadedData.desc}</span>` : ''}
+                                ${item._loadedData?.desc ? `<span class="desc-text" style="color:#666;">${item._loadedData.desc}</span>` : ''}
                             </div>
                             <div class="main-items-fileSize">
-                                <div class="file-actions">${actionsHtml}</div>
+                                <div class="file-actions">
+                                    <a class="btn-detail" onclick="event.stopPropagation();openDetail({ name: '${escapeHtml(item.name)}', desc: '${escapeHtml(item.desc || '')}', src: '${item.src || ''}', url: '${item.url || ''}', readme: '${item.readme || ''}', _loadedData: ${JSON.stringify(item._loadedData || null)}, _loadedReadme: ${JSON.stringify(item._loadedReadme || null)} })">📄 查看详情</a>
+                                </div>
                             </div>
                         </div>
                     `;
@@ -1267,7 +1356,7 @@
         }
 
         // ============================================================
-        // 渲染 README
+        // 渲染 README（目录级别的 README）
         // ============================================================
         function renderReadme(category) {
             const container = document.getElementById('readmeContainer');
@@ -1293,7 +1382,7 @@
                         content.innerHTML = renderMarkdown(text);
                     })
                     .catch(() => {
-                        content.innerHTML = `<p style="color:#999;">📄 ${readmePath}</p>`;
+                        content.innerHTML = `<p style="color:#999;">📖 暂无说明文档</p>`;
                     });
             } else {
                 container.style.display = 'none';
@@ -1301,21 +1390,39 @@
             }
         }
 
+        // ============================================================
+        // Markdown 渲染
+        // ============================================================
         function renderMarkdown(text) {
+            if (!text) return '<span style="color:#999;">暂无内容</span>';
             text = text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-            return text
+            let html = text
                 .replace(/^# (.*$)/gim, '<h1>$1</h1>')
                 .replace(/^## (.*$)/gim, '<h2>$1</h2>')
                 .replace(/^### (.*$)/gim, '<h3>$1</h3>')
                 .replace(/^- (.*$)/gim, '<li>$1</li>')
-                .replace(/`([^`]+)`/g, '<code>$1</code>')
-                .replace(/\n/g, '<br>')
-                .replace(/<li>.*?<\/li>/g, match => `<ul>${match}</ul>`);
+                .replace(/`([^`]+)`/g, '<code>$1</code>');
+
+            html = html.replace(/(<li>.*<\/li>)/s, match => `<ul>${match}</ul>`);
+            html = html.replace(/\n/g, '<br>');
+            html = html.replace(/<br><li>/g, '<li>');
+            html = html.replace(/<\/li><br>/g, '</li>');
+            html = html.replace(/<\/ul><br>/g, '</ul>');
+            html = html.replace(/<br><\/ul>/g, '</ul>');
+
+            return html;
         }
 
         // ============================================================
         // 工具函数
         // ============================================================
+        function escapeHtml(text) {
+            if (text === null || text === undefined) return '';
+            const div = document.createElement('div');
+            div.textContent = String(text);
+            return div.innerHTML;
+        }
+
         function getFileIcon(src) {
             if (!src) return '📄';
             const ext = src.split('.').pop().toLowerCase();
@@ -1350,10 +1457,10 @@
         // 页脚 & 启动
         // ============================================================
         document.getElementById('foot_info').innerHTML =
-            `Copyright © ${new Date().getFullYear()} | 白叶の资源列表 | 主题来自于 雪中明月 大佬`;
+            `Copyright © ${new Date().getFullYear()} | 白叶114514の资源站 | 主题来自于 雪中明月 大佬`;
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closePreview();
+            if (e.key === 'Escape') closeDetail();
         });
 
         loadData();
