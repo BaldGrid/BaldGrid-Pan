@@ -419,13 +419,13 @@
             height: 100%;
             padding: 20px;
             padding-top: 60px;
-            width: 200px;
+            width: 220px;
             transition: 0.5s;
             display: flex;
             flex-direction: column;
             z-index: 1;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-            transform: translateX(-240px);
+            transform: translateX(-260px);
             overflow-y: auto;
         }
 
@@ -440,7 +440,7 @@
             font-size: 16px;
             padding: 10px;
             transition: 0.5s;
-            margin: 10px 0;
+            margin: 2px 0;
             align-items: center;
             justify-content: flex-start;
             border-radius: 8px;
@@ -529,7 +529,7 @@
             }
         }
 
-        /* ===== 详情弹窗（动画修复版） ===== */
+        /* ===== 详情弹窗 ===== */
         .detail-overlay {
             position: fixed;
             top: 0;
@@ -766,6 +766,495 @@
         .toast.show {
             opacity: 1;
         }
+
+        /* ===== 设置页面 ===== */
+        .settings-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .settings-item:last-child {
+            border-bottom: none;
+        }
+
+        .settings-item .settings-label {
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .settings-item .settings-desc {
+            font-size: 13px;
+            color: #888;
+            margin-top: 2px;
+        }
+
+        .settings-item .settings-control {
+            flex-shrink: 0;
+        }
+
+        .toggle-switch {
+            width: 48px;
+            height: 26px;
+            background: #ccc;
+            border-radius: 13px;
+            cursor: pointer;
+            position: relative;
+            transition: 0.3s;
+            flex-shrink: 0;
+        }
+
+        .toggle-switch.active {
+            background: #0078d4;
+        }
+
+        .toggle-switch .toggle-knob {
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: 0.3s;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+        }
+
+        .toggle-switch.active .toggle-knob {
+            left: 24px;
+        }
+
+        /* ===== 友情链接 ===== */
+        .friend-link-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 14px 20px;
+        }
+        .friend-link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 18px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 10px;
+            border: 1px solid #e8e8e8;
+            transition: 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+            text-decoration: none;
+            color: #333;
+            gap: 12px;
+        }
+        .friend-link-item:hover {
+            transform: translateX(4px);
+            border-color: #0078d4;
+            box-shadow: 0 2px 12px rgba(0,120,212,0.10);
+            background: rgba(0,120,212,0.04);
+        }
+        .friend-link-item .friend-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            min-width: 0;
+        }
+        .friend-link-item .friend-icon {
+            font-size: 22px;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+        .friend-link-item .friend-name {
+            font-weight: 600;
+            font-size: 15px;
+            white-space: nowrap;
+        }
+        .friend-link-item .friend-desc {
+            font-size: 13px;
+            color: #888;
+            margin-left: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .friend-link-item .friend-arrow {
+            color: #bbb;
+            font-size: 18px;
+            flex-shrink: 0;
+            transition: 0.2s;
+        }
+        .friend-link-item:hover .friend-arrow {
+            color: #0078d4;
+            transform: translateX(4px);
+        }
+        @media screen and (max-width: 600px) {
+            .friend-link-grid {
+                padding: 10px 14px;
+                gap: 6px;
+            }
+            .friend-link-item {
+                padding: 10px 14px;
+                border-radius: 8px;
+            }
+            .friend-link-item .friend-icon {
+                font-size: 18px;
+            }
+            .friend-link-item .friend-name {
+                font-size: 14px;
+            }
+            .friend-link-item .friend-desc {
+                font-size: 12px;
+                margin-left: 6px;
+                max-width: 80px;
+            }
+        }
+
+        /* ===== 联系作者 ===== */
+        .link-card {
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            gap: 14px;
+            transition: 0.2s;
+        }
+
+        .link-card:last-child {
+            border-bottom: none;
+        }
+
+        .link-card:hover {
+            background: #f8f8fa;
+        }
+
+        .link-card .link-icon {
+            font-size: 28px;
+            flex-shrink: 0;
+            width: 40px;
+            text-align: center;
+        }
+
+        .link-card .link-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .link-card .link-info .link-name {
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .link-card .link-info .link-desc {
+            font-size: 13px;
+            color: #888;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .link-card .link-info .link-role {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .link-card .link-action a {
+            padding: 6px 16px;
+            background: #0078d4;
+            color: white;
+            border-radius: 6px;
+            font-size: 13px;
+            transition: 0.2s;
+            display: inline-block;
+        }
+
+        .link-card .link-action a:hover {
+            background: #005fa3;
+            color: white;
+        }
+
+        .link-card .link-image {
+            flex-shrink: 0;
+        }
+
+        .link-card .link-image img {
+            width: 56px;
+            height: 56px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 1px solid #e0e0e0;
+        }
+
+        .link-card .link-badges {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: 4px;
+        }
+
+        .link-card .link-badges a {
+            padding: 2px 10px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #555;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        .link-card .link-badges a:hover {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .main-item-list.special-page .main-items.main-item-title .inner-container > div {
+            font-weight: 600;
+            color: #555;
+        }
+
+        .link-card .link-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+            margin-top: 4px;
+        }
+
+        .show-img-btn {
+            padding: 4px 14px;
+            border: none;
+            border-radius: 6px;
+            background: #0078d4;
+            color: white;
+            font-size: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-block;
+        }
+        .show-img-btn:hover {
+            background: #005fa3;
+        }
+
+        /* ===== 图片预览弹窗 ===== */
+        .img-preview-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0);
+            backdrop-filter: blur(0px);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            transition: background 0.35s ease, backdrop-filter 0.35s ease;
+            display: flex;
+            pointer-events: none;
+        }
+        .img-preview-overlay.active {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(12px);
+            pointer-events: auto;
+        }
+        .img-preview-overlay.closing {
+            background: rgba(0, 0, 0, 0);
+            backdrop-filter: blur(0px);
+            pointer-events: none;
+        }
+        .img-preview-overlay.closing .img-preview-modal {
+            transform: scale(0.88) translateY(30px);
+            opacity: 0;
+        }
+        .img-preview-modal {
+            background: white;
+            border-radius: 16px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+            transform: scale(0.88) translateY(30px);
+            opacity: 0;
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.35s ease;
+        }
+        .img-preview-overlay.active .img-preview-modal {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+        .img-preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 20px;
+            border-bottom: 1px solid #eee;
+            flex-shrink: 0;
+        }
+        .img-preview-header h3 {
+            font-size: 15px;
+            font-weight: 600;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 80%;
+        }
+        .img-preview-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+            padding: 0 8px;
+            transition: 0.2s;
+            line-height: 1;
+        }
+        .img-preview-close:hover {
+            color: #333;
+            transform: scale(1.1);
+        }
+        .img-preview-body {
+            padding: 20px;
+            overflow-y: auto;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f8f8fa;
+            border-radius: 0 0 16px 16px;
+            min-height: 200px;
+        }
+        .img-preview-body img {
+            max-width: 100%;
+            max-height: 60vh;
+            border-radius: 8px;
+            object-fit: contain;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .img-preview-body .no-img {
+            color: #999;
+            font-size: 14px;
+        }
+        .img-preview-footer {
+            padding: 12px 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            flex-shrink: 0;
+            background: white;
+            border-radius: 0 0 16px 16px;
+        }
+        .img-preview-footer button {
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.2s;
+            cursor: pointer;
+            border: none;
+            background: #f3f4f6;
+            color: #333;
+        }
+        .img-preview-footer button:hover {
+            background: #e5e7eb;
+        }
+
+        @media screen and (max-width: 600px) {
+            #sidebar {
+                width: 190px;
+                transform: translateX(-230px);
+                padding: 16px;
+                padding-top: 56px;
+            }
+            .link-card {
+                flex-wrap: wrap;
+            }
+            .link-card .link-action {
+                width: 100%;
+                text-align: right;
+            }
+            .settings-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .link-card .link-actions {
+                width: 100%;
+            }
+            .img-preview-modal {
+                max-width: 95%;
+            }
+        }
+
+        /* ================================================================
+           Tab 切换动画 - 细腻淡入淡出 + 位移
+           ================================================================ */
+        .page-content {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .page-content.page-exit {
+            opacity: 0;
+            transform: translateY(-10px) scale(0.98);
+            pointer-events: none;
+        }
+        .page-content.page-enter {
+            animation: pageEnter 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        @keyframes pageEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(16px) scale(0.96);
+            }
+            60% {
+                opacity: 1;
+                transform: translateY(-2px) scale(1.002);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* 资源列表切换动画 */
+        #fileList {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        #fileList.list-exit {
+            opacity: 0;
+            transform: translateY(-8px);
+            pointer-events: none;
+        }
+        #fileList.list-enter {
+            animation: listEnter 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        @keyframes listEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 无动画模式 */
+        .no-animation .page-content,
+        .no-animation .page-content.page-exit,
+        .no-animation .page-content.page-enter,
+        .no-animation #fileList,
+        .no-animation #fileList.list-exit,
+        .no-animation #fileList.list-enter {
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+            pointer-events: auto !important;
+        }
     </style>
 
     <style>
@@ -791,6 +1280,7 @@
 </head>
 <body>
 
+    <!-- ===== 侧边栏 ===== -->
     <div id="sidebar">
         <div class="multidisk curr-disk" onclick="navigateTo(null)">
             <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -798,7 +1288,19 @@
             </svg>
             <span>📂 根目录</span>
         </div>
-        <div id="sidebarCategories"></div>
+
+        <div class="multidisk" onclick="showSpecialPage('links')">
+            <span style="font-size:20px;margin-right:14px;">🔗</span>
+            <span>友情链接</span>
+        </div>
+        <div class="multidisk" onclick="showSpecialPage('author')">
+            <span style="font-size:20px;margin-right:14px;">👤</span>
+            <span>联系作者</span>
+        </div>
+        <div class="multidisk" onclick="showSpecialPage('settings')">
+            <span style="font-size:20px;margin-right:14px;">⚙️</span>
+            <span>设置</span>
+        </div>
     </div>
 
     <header>
@@ -837,6 +1339,22 @@
         </div>
     </div>
 
+    <!-- ===== 图片预览弹窗 ===== -->
+    <div class="img-preview-overlay" id="imgPreviewOverlay" onclick="if(event.target===this)closeImgPreview()">
+        <div class="img-preview-modal">
+            <div class="img-preview-header">
+                <h3 id="imgPreviewTitle">📷 图片预览</h3>
+                <button class="img-preview-close" onclick="closeImgPreview()">✕</button>
+            </div>
+            <div class="img-preview-body" id="imgPreviewBody">
+                <div class="no-img">加载中...</div>
+            </div>
+            <div class="img-preview-footer">
+                <button onclick="closeImgPreview()">关闭</button>
+            </div>
+        </div>
+    </div>
+
     <main>
         <div class="scroll" id="mainScroll">
             <div class="container">
@@ -847,6 +1365,7 @@
                     </h1>
                 </div>
 
+                <!-- 资源列表 -->
                 <div class="main-item-list" id="fileList">
                     <div class="main-items main-item-title">
                         <div class="inner-container">
@@ -858,6 +1377,11 @@
                         </div>
                     </div>
                     <div id="fileItems"></div>
+                </div>
+
+                <!-- 特殊页面容器 -->
+                <div class="main-item-list special-page" id="specialPageContainer" style="display:none;padding:0;overflow:hidden;">
+                    <div id="specialPageContent" class="page-content"></div>
                 </div>
 
                 <div class="main-item-list" id="readmeContainer" style="display:none;padding:20px;">
@@ -887,6 +1411,17 @@
         let currentDetailItem = null;
         let detailLink = '';
 
+        // 音乐播放相关 - 随机播放
+        let musicEnabled = false;
+        let musicList = [];
+        let audioPlayer = null;
+        let musicPlaying = false;
+        let musicPlayedIndices = []; // 已播放过的索引
+
+        // 特殊页面状态
+        let currentSpecialPage = null;
+        let isPageAnimating = false;
+
         // ============================================================
         // Toast 提示
         // ============================================================
@@ -909,7 +1444,7 @@
             const sidebar = document.getElementById('sidebar');
             const icon = document.getElementById('expand');
             if (sidebarOpen) {
-                sidebar.style.transform = 'translateX(-240px)';
+                sidebar.style.transform = 'translateX(-260px)';
                 icon.className = 'pull-left expand';
                 sidebarOpen = false;
             } else {
@@ -935,6 +1470,8 @@
 
                 const count = flatItems.filter(i => i.type === 'loader' || i.type === 'file').length;
                 document.getElementById('statsDisplay').textContent = `📦 ${count} 个资源`;
+
+                await loadMusicList();
 
                 navigateTo(null);
             } catch (error) {
@@ -1003,9 +1540,147 @@
         }
 
         // ============================================================
-        // 导航
+        // 加载音乐列表
+        // ============================================================
+        async function loadMusicList() {
+            try {
+                const response = await fetch('data/music.json');
+                if (response.ok) {
+                    musicList = await response.json();
+                } else {
+                    console.warn('音乐列表加载失败');
+                    musicList = [];
+                }
+            } catch (e) {
+                console.warn('音乐列表加载异常:', e);
+                musicList = [];
+            }
+        }
+
+        // ============================================================
+        // 音乐播放控制 - 随机播放
+        // ============================================================
+        function toggleMusic() {
+            if (!musicEnabled) {
+                if (audioPlayer) {
+                    audioPlayer.pause();
+                    audioPlayer = null;
+                }
+                musicPlaying = false;
+                showToast('🔇 音乐已关闭');
+                return;
+            }
+
+            if (musicList.length === 0) {
+                showToast('❌ 没有可播放的音乐');
+                return;
+            }
+
+            if (audioPlayer && musicPlaying) {
+                audioPlayer.pause();
+                musicPlaying = false;
+                showToast('⏸️ 已暂停');
+                if (currentSpecialPage === 'settings') {
+                    renderSettings(document.getElementById('specialPageContent'));
+                }
+                return;
+            }
+
+            if (audioPlayer && !musicPlaying) {
+                audioPlayer.play().catch(() => {});
+                musicPlaying = true;
+                showToast('▶️ 继续播放');
+                if (currentSpecialPage === 'settings') {
+                    renderSettings(document.getElementById('specialPageContent'));
+                }
+                return;
+            }
+
+            // 随机播放第一首
+            playRandomMusic();
+        }
+
+        function playRandomMusic() {
+            if (musicList.length === 0) return;
+
+            // 如果所有歌曲都已播放过，重置已播放列表
+            if (musicPlayedIndices.length >= musicList.length) {
+                musicPlayedIndices = [];
+            }
+
+            // 找出未播放的歌曲索引
+            const availableIndices = [];
+            for (let i = 0; i < musicList.length; i++) {
+                if (!musicPlayedIndices.includes(i)) {
+                    availableIndices.push(i);
+                }
+            }
+
+            if (availableIndices.length === 0) {
+                musicPlayedIndices = [];
+                playRandomMusic();
+                return;
+            }
+
+            // 随机选择一个未播放的歌曲
+            const randomIdx = availableIndices[Math.floor(Math.random() * availableIndices.length)];
+            musicPlayedIndices.push(randomIdx);
+
+            const item = musicList[randomIdx];
+            if (!item || !item.url) {
+                showToast('❌ 无法播放: ' + (item ? item.name : '未知'));
+                // 标记为已播放（跳过）
+                playRandomMusic();
+                return;
+            }
+
+            if (audioPlayer) {
+                audioPlayer.pause();
+                audioPlayer = null;
+            }
+
+            audioPlayer = new Audio(item.url);
+            audioPlayer.volume = 0.7;
+            audioPlayer.addEventListener('ended', () => {
+                if (musicEnabled) {
+                    playRandomMusic();
+                }
+            });
+            audioPlayer.addEventListener('error', () => {
+                showToast('❌ 播放失败: ' + item.name);
+                setTimeout(() => {
+                    if (musicEnabled) {
+                        playRandomMusic();
+                    }
+                }, 2000);
+            });
+
+            audioPlayer.play().then(() => {
+                musicPlaying = true;
+                showToast(`🎵 正在播放: ${item.name}`);
+                if (currentSpecialPage === 'settings') {
+                    renderSettings(document.getElementById('specialPageContent'));
+                }
+            }).catch(() => {
+                showToast('❌ 无法播放: ' + item.name);
+            });
+        }
+
+        function stopMusic() {
+            if (audioPlayer) {
+                audioPlayer.pause();
+                audioPlayer = null;
+            }
+            musicPlaying = false;
+            musicPlayedIndices = [];
+        }
+
+        // ============================================================
+        // 导航 - 带动画
         // ============================================================
         function navigateToByPath(pathInput) {
+            hideSpecialPage();
+
             if (!pathInput) {
                 navigateTo(null);
                 return;
@@ -1045,14 +1720,26 @@
         }
 
         function navigateTo(category) {
+            hideSpecialPage();
+
+            const fileList = document.getElementById('fileList');
             const fileItems = document.getElementById('fileItems');
             const readmeContainer = document.getElementById('readmeContainer');
+            const specialContainer = document.getElementById('specialPageContainer');
 
-            fileItems.style.transition = 'opacity 0.15s ease';
-            fileItems.style.opacity = '0';
+            specialContainer.style.display = 'none';
 
-            readmeContainer.classList.remove('fade-in');
-            readmeContainer.classList.add('fade-out');
+            // 列表切换动画
+            if (fileList.style.display !== 'none') {
+                fileList.classList.add('list-exit');
+                setTimeout(() => {
+                    fileList.classList.remove('list-exit');
+                    fileList.classList.add('list-enter');
+                    setTimeout(() => {
+                        fileList.classList.remove('list-enter');
+                    }, 400);
+                }, 300);
+            }
 
             setTimeout(() => {
                 if (category === null) {
@@ -1071,19 +1758,261 @@
                 renderList(currentCategory);
                 renderReadme(currentCategory);
 
-                requestAnimationFrame(() => {
-                    fileItems.style.opacity = '1';
+                document.querySelectorAll('#sidebar .multidisk').forEach(el => {
+                    el.classList.remove('curr-disk');
                 });
-
-                setTimeout(() => {
-                    readmeContainer.classList.remove('fade-out');
-                    if (readmeContainer.style.display !== 'none') {
-                        readmeContainer.classList.add('fade-in');
-                    }
-                }, 50);
+                document.querySelector('#sidebar .multidisk:first-child')?.classList.add('curr-disk');
 
                 document.getElementById('mainScroll').scrollTo({ top: 0, behavior: 'smooth' });
             }, 150);
+        }
+
+        // ============================================================
+        // 特殊页面 - 带动画
+        // ============================================================
+        function showSpecialPage(type) {
+            if (isPageAnimating) return;
+            currentSpecialPage = type;
+
+            const fileList = document.getElementById('fileList');
+            const specialContainer = document.getElementById('specialPageContainer');
+            const content = document.getElementById('specialPageContent');
+            const breadcrumb = document.getElementById('breadcrumbDisplay');
+            const readmeContainer = document.getElementById('readmeContainer');
+
+            // 隐藏 README
+            readmeContainer.style.display = 'none';
+
+            const labels = {
+                'links': '🔗 友情链接',
+                'author': '👤 联系作者',
+                'settings': '⚙️ 设置'
+            };
+            breadcrumb.innerHTML = `<a style="font-weight:600;color:#333;">${labels[type] || '页面'}</a>`;
+
+            // 如果文件列表可见，先退出动画
+            if (fileList.style.display !== 'none') {
+                fileList.classList.add('list-exit');
+                setTimeout(() => {
+                    fileList.style.display = 'none';
+                    fileList.classList.remove('list-exit');
+                    showSpecialPageContent(type, specialContainer, content);
+                }, 300);
+            } else {
+                showSpecialPageContent(type, specialContainer, content);
+            }
+
+            document.getElementById('mainScroll').scrollTo({ top: 0, behavior: 'smooth' });
+            if (sidebarOpen) toggleSidebar();
+        }
+
+        function showSpecialPageContent(type, specialContainer, content) {
+            specialContainer.style.display = '';
+
+            // 切换动画
+            if (content.className.includes('page-enter')) {
+                // 已经是进入状态，切换内容
+                content.className = 'page-content page-exit';
+                isPageAnimating = true;
+                setTimeout(() => {
+                    content.className = 'page-content page-enter';
+                    renderSpecialContent(type, content);
+                    setTimeout(() => {
+                        isPageAnimating = false;
+                    }, 400);
+                }, 350);
+            } else {
+                content.className = 'page-content page-enter';
+                renderSpecialContent(type, content);
+            }
+        }
+
+        function renderSpecialContent(type, content) {
+            if (type === 'links') renderLinks(content);
+            else if (type === 'author') renderAuthor(content);
+            else if (type === 'settings') renderSettings(content);
+        }
+
+        function hideSpecialPage() {
+            const specialContainer = document.getElementById('specialPageContainer');
+            const fileList = document.getElementById('fileList');
+            specialContainer.style.display = 'none';
+            fileList.style.display = '';
+            fileList.classList.remove('list-exit', 'list-enter');
+            document.getElementById('readmeContainer').style.display = '';
+            currentSpecialPage = null;
+            isPageAnimating = false;
+        }
+
+        // ===== 友情链接 - 美化版 =====
+        async function renderLinks(container) {
+            container.innerHTML = `<div class="empty-state"><div class="icon">⏳</div><p>加载中...</p></div>`;
+            try {
+                const response = await fetch('data/links.json');
+                if (!response.ok) throw new Error('文件不存在');
+                const data = await response.json();
+
+                if (!Array.isArray(data) || data.length === 0) {
+                    container.innerHTML = `<div class="empty-state"><div class="icon">🔗</div><p>暂无友情链接</p></div>`;
+                    return;
+                }
+
+                let html = `<div class="friend-link-grid">`;
+                data.forEach(item => {
+                    const icon = item.icon || '🔗';
+                    const name = escapeHtml(item.name || '未命名');
+                    const desc = item.desc ? escapeHtml(item.desc) : '';
+                    const url = escapeHtml(item.url || '#');
+                    html += `
+                        <a href="${url}" target="_blank" class="friend-link-item">
+                            <span class="friend-left">
+                                <span class="friend-icon">${icon}</span>
+                                <span class="friend-name">${name}</span>
+                                ${desc ? `<span class="friend-desc">${desc}</span>` : ''}
+                            </span>
+                            <span class="friend-arrow">→</span>
+                        </a>
+                    `;
+                });
+                html += `</div>`;
+                container.innerHTML = html;
+            } catch (e) {
+                container.innerHTML = `<div class="empty-state"><div class="icon">❌</div><p>加载失败: ${e.message}</p></div>`;
+                console.error('加载友情链接失败:', e);
+            }
+        }
+
+        // ===== 联系作者 =====
+        async function renderAuthor(container) {
+            container.innerHTML = `<div class="empty-state"><div class="icon">⏳</div><p>加载中...</p></div>`;
+            try {
+                const response = await fetch('data/zuozhe.json');
+                if (!response.ok) throw new Error('文件不存在');
+                const data = await response.json();
+
+                if (!Array.isArray(data) || data.length === 0) {
+                    container.innerHTML = `<div class="empty-state"><div class="icon">👤</div><p>暂无作者信息</p></div>`;
+                    return;
+                }
+
+                let html = `<div class="main-items main-item-title"><div class="inner-container"><div class="main-items-displayName">作者</div><div class="main-items-size" style="text-align:right;">联系</div></div></div>`;
+                data.forEach((item, idx) => {
+                    const hasImage = item.image && item.image.trim() !== '';
+                    html += `
+                        <div class="link-card">
+                            <div class="link-icon">${item.icon || '👤'}</div>
+                            <div class="link-info">
+                                <div class="link-name">${escapeHtml(item.name)}</div>
+                                <div class="link-role">${escapeHtml(item.role || '')}</div>
+                                ${item.desc ? `<div class="link-desc">${escapeHtml(item.desc)}</div>` : ''}
+                                <div class="link-actions">
+                                    ${item.links && item.links.length > 0 ? `
+                                        ${item.links.map(link => `<a href="${escapeHtml(link.url)}" target="_blank" style="padding:2px 10px;background:#f0f0f0;border-radius:4px;font-size:12px;color:#555;transition:0.2s;text-decoration:none;">${escapeHtml(link.label)}</a>`).join('')}
+                                    ` : ''}
+                                    ${hasImage ? `
+                                        <button class="show-img-btn" onclick="event.stopPropagation();openImgPreview('${escapeHtml(item.image)}', '${escapeHtml(item.name)}')">
+                                            🖼️ 显示图片
+                                        </button>
+                                    ` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
+            } catch (e) {
+                container.innerHTML = `<div class="empty-state"><div class="icon">❌</div><p>加载失败: ${e.message}</p></div>`;
+                console.error('加载作者信息失败:', e);
+            }
+        }
+
+        // ===== 图片预览弹窗 =====
+        function openImgPreview(src, name) {
+            const overlay = document.getElementById('imgPreviewOverlay');
+            const body = document.getElementById('imgPreviewBody');
+            const title = document.getElementById('imgPreviewTitle');
+
+            title.textContent = `📷 ${name || '图片预览'}`;
+            body.innerHTML = `<img src="${src}" alt="${name || '图片'}" onerror="this.parentElement.innerHTML='<div class=\\'no-img\\'>❌ 图片加载失败</div>'">`;
+
+            overlay.classList.remove('closing', 'active');
+            void overlay.offsetWidth;
+            overlay.classList.add('active');
+        }
+
+        function closeImgPreview() {
+            const overlay = document.getElementById('imgPreviewOverlay');
+            overlay.classList.remove('active');
+            overlay.classList.add('closing');
+            setTimeout(() => {
+                overlay.classList.remove('closing');
+            }, 350);
+        }
+
+        // ===== 设置 - 简化版，只显示开关和当前播放歌曲名（只显示一次） =====
+        function renderSettings(container) {
+            const isMusicOn = musicEnabled;
+            
+            // 获取当前播放的歌曲名（只取一个）
+            let currentSongName = '';
+            if (musicPlaying && musicPlayedIndices.length > 0) {
+                const lastIdx = musicPlayedIndices[musicPlayedIndices.length - 1];
+                if (lastIdx !== undefined && musicList[lastIdx]) {
+                    currentSongName = musicList[lastIdx].name || '';
+                }
+            }
+        
+            container.innerHTML = `
+                <div class="settings-item">
+                    <div>
+                        <div class="settings-label">🎵 音乐播放开关</div>
+                        <div class="settings-desc">开启后随机播放 data/music.json 中的音乐列表</div>
+                    </div>
+                    <div class="settings-control">
+                        <div class="toggle-switch ${isMusicOn ? 'active' : ''}" onclick="toggleMusicSetting(this)">
+                            <div class="toggle-knob"></div>
+                        </div>
+                    </div>
+                </div>
+                ${isMusicOn && musicPlaying && currentSongName ? `
+                    <div style="padding:10px 20px 14px 20px;font-size:13px;color:#0078d4;border-bottom:1px solid #f0f0f0;">
+                        ▶️ 正在播放: ${currentSongName}
+                    </div>
+                ` : ''}
+                ${isMusicOn && !musicPlaying && musicList.length > 0 ? `
+                    <div style="padding:10px 20px 14px 20px;font-size:13px;color:#999;border-bottom:1px solid #f0f0f0;">
+                        ⏸️ 已暂停
+                    </div>
+                ` : ''}
+                <div style="padding:14px 20px;font-size:12px;color:#bbb;text-align:center;">
+                    更多设置即将推出...
+                </div>
+            `;
+        }
+
+        // ===== 音乐设置切换 =====
+        function toggleMusicSetting(el) {
+            musicEnabled = !musicEnabled;
+            el.classList.toggle('active', musicEnabled);
+
+            if (musicEnabled) {
+                if (musicList.length > 0) {
+                    if (!audioPlayer || !musicPlaying) {
+                        playRandomMusic();
+                    }
+                } else {
+                    showToast('⚠️ 没有可播放的音乐');
+                }
+                if (currentSpecialPage === 'settings') {
+                    renderSettings(document.getElementById('specialPageContent'));
+                }
+            } else {
+                stopMusic();
+                showToast('🔇 音乐已关闭');
+                if (currentSpecialPage === 'settings') {
+                    renderSettings(document.getElementById('specialPageContent'));
+                }
+            }
         }
 
         // ============================================================
@@ -1166,7 +2095,7 @@
         }
 
         // ============================================================
-        // 详情弹窗（修复版）
+        // 详情弹窗
         // ============================================================
         function openDetail(item) {
             currentDetailItem = item;
@@ -1181,7 +2110,6 @@
 
             title.textContent = `📄 ${item.name}`;
 
-            // 重置状态：移除 closing 和 active，强制重绘后添加 active
             overlay.classList.remove('closing', 'active');
             void overlay.offsetWidth;
             overlay.classList.add('active');
@@ -1260,10 +2188,8 @@
 
         function closeDetail() {
             const overlay = document.getElementById('detailOverlay');
-            // 移除 active，添加 closing
             overlay.classList.remove('active');
             overlay.classList.add('closing');
-            // 动画结束后移除 closing
             setTimeout(() => {
                 overlay.classList.remove('closing');
             }, 350);
@@ -1322,16 +2248,6 @@
                 } else {
                     const icon = getFileIcon(item.src || item.url);
 
-                    const itemData = {
-                        name: item.name,
-                        desc: item.desc || '',
-                        src: item.src || null,
-                        url: item.url || null,
-                        readme: item.readme || null,
-                        _loadedData: item._loadedData || null,
-                        _loadedReadme: item._loadedReadme || null
-                    };
-
                     html += `
                         <div class="main-items">
                             <div class="main-items-icon">
@@ -1356,7 +2272,7 @@
         }
 
         // ============================================================
-        // 渲染 README（目录级别的 README）
+        // 渲染 README
         // ============================================================
         function renderReadme(category) {
             const container = document.getElementById('readmeContainer');
@@ -1386,7 +2302,6 @@
                     });
             } else {
                 container.style.display = 'none';
-                container.classList.remove('fade-in');
             }
         }
 
@@ -1460,7 +2375,10 @@
             `Copyright © ${new Date().getFullYear()} | 白叶114514の资源站 | 主题来自于 雪中明月 大佬`;
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeDetail();
+            if (e.key === 'Escape') {
+                closeDetail();
+                closeImgPreview();
+            }
         });
 
         loadData();
