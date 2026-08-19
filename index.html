@@ -1199,7 +1199,7 @@
                 container.innerHTML = `
                     <div class="empty-state">
                         <div class="icon">📭</div>
-                        <p>这个分类下还没有资源</p>
+                        <p>啥都目有</p>
                     </div>
                 `;
                 return;
@@ -1208,9 +1208,9 @@
             const sorted = [...items].sort((a, b) => {
                 if (a.type === 'folder' && b.type !== 'folder') return -1;
                 if (a.type !== 'folder' && b.type === 'folder') return 1;
-                return a.name.localeCompare(b.name, 'zh');
+                return 0;
             });
-
+            
             let html = '';
             sorted.forEach(item => {
                 if (item.type === 'folder') {
