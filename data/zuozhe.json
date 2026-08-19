@@ -11,7 +11,15 @@
         ]
     },
     {
-        "name": "赞助本喵",
+        "name": "加白叶微信喵",
+        "role": "欢迎加白叶好友喵",
+        "icon": "💬",
+        "image": "assets/wechat1.png",
+        "desc": "喵！",
+        "links": []
+    },
+    {
+        "name": "赞助白叶喵",
         "role": "喜欢就请我喝杯咖啡吧 ☕",
         "icon": "❤️",
         "image": "assets/wechat.png",
@@ -20,7 +28,7 @@
     },
     {
         "name": "电报账号",
-        "role": "欢迎加本喵好友喵",
+        "role": "欢迎加白叶好友喵",
         "icon": "✈️",
         "image": "assets/tg.jpg",
         "desc": "中国人能飞~",
