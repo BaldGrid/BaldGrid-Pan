@@ -14,6 +14,26 @@
 },
 
 {
+"name":"TWRP",
+"icon":"📱",
+"desc":"第三方RECOVERY",
+"url":"https://www.twrp.me/"
+},
+{
+"name":"欧真加ROM",
+"icon":"💻",
+"desc":"OPR",
+"url":"https://rom.oppo.help/"
+},
+
+{
+"name":"小/红米 POCO ROM",
+"icon":"💻",
+"desc":"XiaoMI",
+"url":"https://roms.miuier.com/"
+},
+
+{
 "name":"雪中明月资源站",
 "icon":"🔥",
 "desc":"安卓玩机资源",
