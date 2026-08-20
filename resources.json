@@ -30,6 +30,11 @@
                   "name": "OPPO A32/11s",
                   "type": "loader",
                   "src": "data/res/OPPO/QC/PDVM00/1.json"
+                },
+                {
+                  "name": "OPPO A52",
+                  "type": "loader",
+                  "src": "data/res/OPPO/QC/PDAM00/1.json"
                 }
               ]
             },
