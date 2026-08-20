@@ -10,7 +10,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         html,
         body {
             width: 100%;
@@ -21,7 +20,6 @@
             font-family: "Segoe UI", Tahoma, Arial, sans-serif;
             overflow: hidden;
         }
-
         a {
             text-decoration: none;
             font-weight: 400;
@@ -29,15 +27,12 @@
             transition: 0.5s;
             cursor: pointer;
         }
-
         a:hover {
             color: rgb(36, 36, 36);
         }
-
         ul {
             list-style: none;
         }
-
         body {
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -45,54 +40,45 @@
             user-select: none;
             position: relative;
         }
-
         .container {
             margin-left: auto;
             margin-right: auto;
             max-width: 1100px;
         }
-
         header {
             width: 100%;
             line-height: 48px;
             background-color: rgba(255, 255, 255, 0.5);
             position: fixed;
-            z-index: 1;
+            z-index: 10;
             backdrop-filter: blur(10px);
         }
-
         header nav a {
             color: rgb(36, 36, 36);
             font-weight: 600;
             transition: 0.5s;
         }
-
         nav svg {
             width: 20px;
             height: 20px;
         }
-
         nav div {
             min-width: 48px;
             height: 48px;
             transition: 0.5s;
         }
-
         .pull-left {
             float: left;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-
         .pull-right {
             float: right;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-
-        /* ===== 修复：按钮旋转圆形 ===== */
         .expand {
             transform: rotate(0deg);
             transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -104,20 +90,16 @@
             justify-content: center;
             cursor: pointer;
         }
-
         .expand_on {
             transform: rotate(-90deg);
             transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         nav a {
             padding: 0 20px;
         }
-
         nav div:hover {
             background: rgba(0, 0, 0, 0.1);
         }
-
         main {
             position: relative;
             height: 100%;
@@ -126,7 +108,6 @@
             background-size: cover;
             background-attachment: fixed;
         }
-
         .scroll {
             overflow-y: auto;
             position: absolute;
@@ -136,19 +117,15 @@
             left: 0;
             padding: 48px 0 100px 0;
         }
-
         .scroll::-webkit-scrollbar {
             width: 5px;
         }
-
         .scroll::-webkit-scrollbar-thumb {
             background: #a8a8a8;
         }
-
         .scroll::-webkit-scrollbar-button {
             display: none;
         }
-
         main .main-item-list {
             display: flex;
             flex-direction: column;
@@ -164,19 +141,16 @@
             backdrop-filter: blur(20px);
             transition: 0.3s;
         }
-
         main .main-title h1 {
             margin: 0;
             padding: 32px 32px 10px 32px;
             font-size: 19px;
             font-weight: 600;
         }
-
         div.main-title>h1>a:last-of-type {
             font-weight: 600;
             color: rgb(36, 36, 36);
         }
-
         main .main-item-list .inner-container {
             display: flex;
             justify-content: flex-start;
@@ -184,7 +158,6 @@
             height: auto;
             box-sizing: border-box;
         }
-
         main .main-item-list .inner-container>div {
             padding-left: 12px;
             padding-right: 8px;
@@ -192,15 +165,12 @@
             text-wrap: nowrap;
             font-weight: 600;
         }
-
         div.main-items.main-item-title>div>div.main-items-icon {
             display: none;
         }
-
         main .main-item-list .main-item-title {
             border-bottom: 1px solid #EAEAEA;
         }
-
         main .main-items {
             display: flex;
             justify-content: flex-start;
@@ -214,14 +184,12 @@
             cursor: default;
             min-height: 48px;
         }
-
         main .main-items:hover {
             background-color: #F4F4F4;
             transform: scale(0.980);
             border-radius: 10px;
             transition: 0.3s;
         }
-
         main .main-item-list .main-items-icon {
             min-width: 38px;
             height: 42px;
@@ -230,30 +198,25 @@
             justify-content: center;
             flex-shrink: 0;
         }
-
         main .main-item-list .main-items-icon img {
             display: block;
             width: 20px;
             height: 20px;
         }
-
         main .main-item-list .main-items-icon .iconfont {
             font-size: 20px;
             line-height: 1;
         }
-
         main .main-item-title .main-items-icon {
             height: 32px !important;
             line-height: 9px !important;
         }
-
         main .main-item-title .main-items-icon:hover,
         main .main-item-list .main-items-displayName:hover,
         main .main-item-list .main-items-dateModified:hover,
         main .main-item-list .main-items-size:hover {
             background-color: #EAEAEA;
         }
-
         main .main-item-list .main-items-displayName,
         main .main-item-list .main-items-fileName {
             flex: 1;
@@ -267,7 +230,6 @@
             align-items: center;
             min-width: 0;
         }
-
         main .main-item-list .main-items-fileName .name-text {
             font-weight: 500;
             overflow: hidden;
@@ -276,7 +238,6 @@
             flex-shrink: 1;
             min-width: 0;
         }
-
         main .main-item-list .main-items-fileName .desc-text {
             color: #999;
             font-size: 12px;
@@ -284,7 +245,6 @@
             flex-shrink: 0;
             white-space: nowrap;
         }
-
         main .main-item-list .main-items-fileName a {
             overflow: hidden;
             text-overflow: ellipsis;
@@ -294,11 +254,9 @@
             max-width: 100%;
             white-space: nowrap;
         }
-
         main .main-item-list .main-items-fileName a:hover {
             text-decoration: underline;
         }
-
         main .main-item-list .main-items-dateModified,
         main .main-item-list .main-items-dateTime {
             width: 140px;
@@ -313,7 +271,6 @@
             align-items: center;
             justify-content: center;
         }
-
         main .main-item-list .main-items-size,
         main .main-item-list .main-items-fileSize {
             padding: 11px 8px 11px 12px;
@@ -327,14 +284,12 @@
             flex-shrink: 0;
             gap: 6px;
         }
-
         .file-actions {
             display: flex;
             gap: 6px;
             align-items: center;
             flex-shrink: 0;
         }
-
         .file-actions a {
             padding: 4px 12px;
             border-radius: 6px;
@@ -344,23 +299,19 @@
             cursor: pointer;
             white-space: nowrap;
         }
-
         .file-actions .btn-detail {
             color: #0078d4;
             background: rgba(0, 120, 212, 0.08);
         }
-
         .file-actions .btn-detail:hover {
             background: rgba(0, 120, 212, 0.15);
         }
-
         .folder-info {
             color: #999;
             font-size: 13px;
             white-space: nowrap;
             flex-shrink: 0;
         }
-
         @media screen and (max-width: 600px) {
             .file-actions a {
                 padding: 2px 8px;
@@ -376,51 +327,58 @@
                 display: none !important;
             }
         }
-
         .empty-state {
             padding: 60px 20px;
             text-align: center;
             color: #999;
         }
-
         .empty-state .icon {
             font-size: 48px;
             margin-bottom: 10px;
         }
-
         .readme {
             padding: 10px 20px;
         }
-
         .markdown-body {
             font-size: 14px;
             line-height: 1.8;
         }
-
         .markdown-body h1,
         .markdown-body h2,
         .markdown-body h3 {
             margin: 16px 0 8px 0;
         }
-
         .markdown-body ul {
             padding-left: 20px;
         }
-
         .markdown-body code {
             background: #f4f4f4;
             padding: 2px 6px;
             border-radius: 4px;
             font-size: 13px;
         }
-
         #foot_info {
             text-align: center;
             padding: 20px;
             font-size: 13px;
             color: #888;
         }
-
+        #sidebarOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0);
+            z-index: 8;
+            transition: background 0.3s ease;
+            pointer-events: none;
+            display: none;
+        }
+        #sidebarOverlay.active {
+            background: rgba(0, 0, 0, 0.3);
+            pointer-events: auto;
+        }
         #sidebar {
             position: fixed;
             background: white;
@@ -431,18 +389,16 @@
             transition: 0.5s;
             display: flex;
             flex-direction: column;
-            z-index: 1;
+            z-index: 9;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
             transform: translateX(-260px);
             overflow-y: auto;
         }
-
         #sidebar svg {
             min-width: 24px;
             height: 24px;
             padding-right: 15px;
         }
-
         .multidisk {
             display: flex;
             font-size: 16px;
@@ -454,90 +410,110 @@
             border-radius: 8px;
             cursor: pointer;
         }
-
         .multidisk:hover {
             background: rgba(0, 0, 0, 0.1);
         }
-
         .curr-disk {
             background: rgba(0, 120, 212, 0.1);
             font-weight: 600;
             color: #0078d4;
         }
-
         .folder-item {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
         }
-
         .folder-item:active {
             transform: scale(0.95);
             background-color: #e8f0fe;
         }
-
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(12px);
+                transform: translateY(16px) scale(0.96);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
-
         #fileItems .main-items {
-            animation: fadeInUp 0.25s ease forwards;
+            animation: fadeInUp 0.3s ease forwards;
         }
-
         #fileItems .main-items:nth-child(1) { animation-delay: 0.00s; }
-        #fileItems .main-items:nth-child(2) { animation-delay: 0.02s; }
-        #fileItems .main-items:nth-child(3) { animation-delay: 0.04s; }
-        #fileItems .main-items:nth-child(4) { animation-delay: 0.06s; }
-        #fileItems .main-items:nth-child(5) { animation-delay: 0.08s; }
-        #fileItems .main-items:nth-child(6) { animation-delay: 0.10s; }
-        #fileItems .main-items:nth-child(7) { animation-delay: 0.12s; }
-        #fileItems .main-items:nth-child(8) { animation-delay: 0.14s; }
-        #fileItems .main-items:nth-child(9) { animation-delay: 0.16s; }
-        #fileItems .main-items:nth-child(10) { animation-delay: 0.18s; }
-        #fileItems .main-items:nth-child(11) { animation-delay: 0.20s; }
-        #fileItems .main-items:nth-child(12) { animation-delay: 0.22s; }
-        #fileItems .main-items:nth-child(13) { animation-delay: 0.24s; }
-        #fileItems .main-items:nth-child(14) { animation-delay: 0.26s; }
-        #fileItems .main-items:nth-child(15) { animation-delay: 0.28s; }
-        #fileItems .main-items:nth-child(16) { animation-delay: 0.30s; }
-        #fileItems .main-items:nth-child(17) { animation-delay: 0.32s; }
-        #fileItems .main-items:nth-child(18) { animation-delay: 0.34s; }
-        #fileItems .main-items:nth-child(19) { animation-delay: 0.36s; }
-        #fileItems .main-items:nth-child(20) { animation-delay: 0.38s; }
+        #fileItems .main-items:nth-child(2) { animation-delay: 0.03s; }
+        #fileItems .main-items:nth-child(3) { animation-delay: 0.06s; }
+        #fileItems .main-items:nth-child(4) { animation-delay: 0.09s; }
+        #fileItems .main-items:nth-child(5) { animation-delay: 0.12s; }
+        #fileItems .main-items:nth-child(6) { animation-delay: 0.15s; }
+        #fileItems .main-items:nth-child(7) { animation-delay: 0.18s; }
+        #fileItems .main-items:nth-child(8) { animation-delay: 0.21s; }
+        #fileItems .main-items:nth-child(9) { animation-delay: 0.24s; }
+        #fileItems .main-items:nth-child(10) { animation-delay: 0.27s; }
+        #fileItems .main-items:nth-child(11) { animation-delay: 0.30s; }
+        #fileItems .main-items:nth-child(12) { animation-delay: 0.33s; }
+        #fileItems .main-items:nth-child(13) { animation-delay: 0.36s; }
+        #fileItems .main-items:nth-child(14) { animation-delay: 0.39s; }
+        #fileItems .main-items:nth-child(15) { animation-delay: 0.42s; }
+        #fileItems .main-items:nth-child(16) { animation-delay: 0.45s; }
+        #fileItems .main-items:nth-child(17) { animation-delay: 0.48s; }
+        #fileItems .main-items:nth-child(18) { animation-delay: 0.51s; }
+        #fileItems .main-items:nth-child(19) { animation-delay: 0.54s; }
+        #fileItems .main-items:nth-child(20) { animation-delay: 0.57s; }
 
+        .readme-item {
+            opacity: 0;
+            animation: fadeInUp 0.3s ease forwards;
+        }
+        .readme-item:nth-child(1) { animation-delay: 0.00s; }
+        .readme-item:nth-child(2) { animation-delay: 0.03s; }
+        .readme-item:nth-child(3) { animation-delay: 0.06s; }
+        .readme-item:nth-child(4) { animation-delay: 0.09s; }
+        .readme-item:nth-child(5) { animation-delay: 0.12s; }
+        .readme-item:nth-child(6) { animation-delay: 0.15s; }
+        .readme-item:nth-child(7) { animation-delay: 0.18s; }
+        .readme-item:nth-child(8) { animation-delay: 0.21s; }
+        .readme-item:nth-child(9) { animation-delay: 0.24s; }
+        .readme-item:nth-child(10) { animation-delay: 0.27s; }
+        .readme-item:nth-child(11) { animation-delay: 0.30s; }
+        .readme-item:nth-child(12) { animation-delay: 0.33s; }
+        .readme-item:nth-child(13) { animation-delay: 0.36s; }
+        .readme-item:nth-child(14) { animation-delay: 0.39s; }
+        .readme-item:nth-child(15) { animation-delay: 0.42s; }
+        .readme-item:nth-child(16) { animation-delay: 0.45s; }
+        .readme-item:nth-child(17) { animation-delay: 0.48s; }
+        .readme-item:nth-child(18) { animation-delay: 0.51s; }
+        .readme-item:nth-child(19) { animation-delay: 0.54s; }
+        .readme-item:nth-child(20) { animation-delay: 0.57s; }
+        .readme-item:nth-child(21) { animation-delay: 0.60s; }
+        .readme-item:nth-child(22) { animation-delay: 0.63s; }
+        .readme-item:nth-child(23) { animation-delay: 0.66s; }
+        .readme-item:nth-child(24) { animation-delay: 0.69s; }
+        .readme-item:nth-child(25) { animation-delay: 0.72s; }
+        .readme-item:nth-child(26) { animation-delay: 0.75s; }
+        .readme-item:nth-child(27) { animation-delay: 0.78s; }
+        .readme-item:nth-child(28) { animation-delay: 0.81s; }
+        .readme-item:nth-child(29) { animation-delay: 0.84s; }
+        .readme-item:nth-child(30) { animation-delay: 0.87s; }
+
+        #introContainer,
         #readmeContainer {
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+        #introContainer.hidden,
+        #readmeContainer.hidden {
+            opacity: 0;
+            transform: translateY(-8px);
+            pointer-events: none;
+            display: none;
+        }
+        #introContainer.visible,
+        #readmeContainer.visible {
             opacity: 1;
             transform: translateY(0);
+            pointer-events: auto;
+            display: flex;
         }
 
-        #readmeContainer.fade-out {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-
-        #readmeContainer.fade-in {
-            animation: readmeFadeIn 0.35s ease forwards;
-        }
-
-        @keyframes readmeFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ===== 详情弹窗 ===== */
         .detail-overlay {
             position: fixed;
             top: 0;
@@ -550,28 +526,24 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
-            transition: background 0.3s ease, backdrop-filter 0.3s ease;
+            transition: background 0.2s ease, backdrop-filter 0.2s ease;
             display: flex;
             pointer-events: none;
         }
-
         .detail-overlay.active {
             background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(8px);
             pointer-events: auto;
         }
-
         .detail-overlay.closing {
             background: rgba(0, 0, 0, 0);
             backdrop-filter: blur(0px);
             pointer-events: none;
         }
-
         .detail-overlay.closing .detail-modal {
-            transform: scale(0.92) translateY(30px);
+            transform: scale(0.95) translateY(20px);
             opacity: 0;
         }
-
         .detail-modal {
             background: white;
             border-radius: 16px;
@@ -581,16 +553,14 @@
             display: flex;
             flex-direction: column;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            transform: scale(0.92) translateY(30px);
+            transform: scale(0.95) translateY(20px);
             opacity: 0;
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease;
         }
-
         .detail-overlay.active .detail-modal {
             transform: scale(1) translateY(0);
             opacity: 1;
         }
-
         .detail-header {
             display: flex;
             justify-content: space-between;
@@ -599,7 +569,6 @@
             border-bottom: 1px solid #eee;
             flex-shrink: 0;
         }
-
         .detail-header h3 {
             font-size: 16px;
             font-weight: 600;
@@ -608,7 +577,6 @@
             white-space: nowrap;
             max-width: 80%;
         }
-
         .detail-close {
             background: none;
             border: none;
@@ -619,12 +587,10 @@
             transition: 0.2s;
             line-height: 1;
         }
-
         .detail-close:hover {
             color: #333;
             transform: scale(1.1);
         }
-
         .detail-body {
             padding: 20px;
             overflow-y: auto;
@@ -632,19 +598,16 @@
             font-size: 14px;
             line-height: 1.8;
         }
-
         .detail-body .detail-item {
             margin-bottom: 14px;
             padding-bottom: 14px;
             border-bottom: 1px solid #f0f0f0;
         }
-
         .detail-body .detail-item:last-child {
             border-bottom: none;
             margin-bottom: 0;
             padding-bottom: 0;
         }
-
         .detail-body .detail-label {
             font-weight: 600;
             color: #555;
@@ -652,20 +615,16 @@
             display: block;
             margin-bottom: 4px;
         }
-
         .detail-body .detail-value {
             color: #333;
             word-break: break-all;
         }
-
         .detail-body .detail-value a {
             color: #0078d4;
         }
-
         .detail-body .detail-value a:hover {
             text-decoration: underline;
         }
-
         .detail-body .detail-readme {
             background: #f8f8fa;
             padding: 14px;
@@ -675,37 +634,31 @@
             max-height: 250px;
             overflow-y: auto;
         }
-
         .detail-body .detail-readme h1,
         .detail-body .detail-readme h2,
         .detail-body .detail-readme h3 {
             margin: 6px 0 4px 0;
             font-size: 15px;
         }
-
         .detail-body .detail-readme ul {
             padding-left: 20px;
         }
-
         .detail-body .detail-readme code {
             background: #e8e8e8;
             padding: 1px 6px;
             border-radius: 4px;
             font-size: 13px;
         }
-
         .detail-body .loading-text {
             color: #999;
             text-align: center;
             padding: 20px 0;
         }
-
         .detail-body .error-text {
             color: #dc2626;
             text-align: center;
             padding: 20px 0;
         }
-
         .detail-footer {
             padding: 12px 20px;
             border-top: 1px solid #eee;
@@ -715,7 +668,6 @@
             flex-shrink: 0;
             flex-wrap: wrap;
         }
-
         .detail-footer a,
         .detail-footer button {
             padding: 8px 20px;
@@ -726,34 +678,27 @@
             cursor: pointer;
             border: none;
         }
-
         .detail-footer .btn-download-detail {
             background: #16a34a;
             color: white;
         }
-
         .detail-footer .btn-download-detail:hover {
             background: #15803d;
         }
-
         .detail-footer .btn-copy-detail {
             background: #f3f4f6;
             color: #333;
         }
-
         .detail-footer .btn-copy-detail:hover {
             background: #e5e7eb;
         }
-
         .detail-footer .btn-close-detail {
             background: #f3f4f6;
             color: #333;
         }
-
         .detail-footer .btn-close-detail:hover {
             background: #e5e7eb;
         }
-
         .toast {
             position: fixed;
             bottom: 30px;
@@ -770,12 +715,9 @@
             pointer-events: none;
             backdrop-filter: blur(10px);
         }
-
         .toast.show {
             opacity: 1;
         }
-
-        /* ===== 设置页面 ===== */
         .settings-item {
             display: flex;
             align-items: center;
@@ -785,26 +727,21 @@
             flex-wrap: wrap;
             gap: 10px;
         }
-
         .settings-item:last-child {
             border-bottom: none;
         }
-
         .settings-item .settings-label {
             font-weight: 500;
             font-size: 15px;
         }
-
         .settings-item .settings-desc {
             font-size: 13px;
             color: #888;
             margin-top: 2px;
         }
-
         .settings-item .settings-control {
             flex-shrink: 0;
         }
-
         .toggle-switch {
             width: 48px;
             height: 26px;
@@ -815,11 +752,9 @@
             transition: 0.3s;
             flex-shrink: 0;
         }
-
         .toggle-switch.active {
             background: #0078d4;
         }
-
         .toggle-switch .toggle-knob {
             width: 22px;
             height: 22px;
@@ -831,12 +766,9 @@
             transition: 0.3s;
             box-shadow: 0 1px 4px rgba(0,0,0,0.2);
         }
-
         .toggle-switch.active .toggle-knob {
             left: 24px;
         }
-
-        /* ===== 友情链接 ===== */
         .friend-link-grid {
             display: flex;
             flex-direction: column;
@@ -918,8 +850,6 @@
                 max-width: 80px;
             }
         }
-
-        /* ===== 联系作者 ===== */
         .link-card {
             display: flex;
             align-items: center;
@@ -928,32 +858,26 @@
             gap: 14px;
             transition: 0.2s;
         }
-
         .link-card:last-child {
             border-bottom: none;
         }
-
         .link-card:hover {
             background: #f8f8fa;
         }
-
         .link-card .link-icon {
             font-size: 28px;
             flex-shrink: 0;
             width: 40px;
             text-align: center;
         }
-
         .link-card .link-info {
             flex: 1;
             min-width: 0;
         }
-
         .link-card .link-info .link-name {
             font-weight: 600;
             font-size: 15px;
         }
-
         .link-card .link-info .link-desc {
             font-size: 13px;
             color: #888;
@@ -961,12 +885,10 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-
         .link-card .link-info .link-role {
             font-size: 13px;
             color: #666;
         }
-
         .link-card .link-action a {
             padding: 6px 16px;
             background: #0078d4;
@@ -976,16 +898,13 @@
             transition: 0.2s;
             display: inline-block;
         }
-
         .link-card .link-action a:hover {
             background: #005fa3;
             color: white;
         }
-
         .link-card .link-image {
             flex-shrink: 0;
         }
-
         .link-card .link-image img {
             width: 56px;
             height: 56px;
@@ -993,14 +912,12 @@
             object-fit: cover;
             border: 1px solid #e0e0e0;
         }
-
         .link-card .link-badges {
             display: flex;
             gap: 6px;
             flex-wrap: wrap;
             margin-top: 4px;
         }
-
         .link-card .link-badges a {
             padding: 2px 10px;
             background: #f0f0f0;
@@ -1010,17 +927,14 @@
             transition: 0.2s;
             text-decoration: none;
         }
-
         .link-card .link-badges a:hover {
             background: #e0e0e0;
             color: #333;
         }
-
         .main-item-list.special-page .main-items.main-item-title .inner-container > div {
             font-weight: 600;
             color: #555;
         }
-
         .link-card .link-actions {
             display: flex;
             flex-wrap: wrap;
@@ -1028,7 +942,6 @@
             gap: 6px;
             margin-top: 4px;
         }
-
         .show-img-btn {
             padding: 4px 14px;
             border: none;
@@ -1043,8 +956,6 @@
         .show-img-btn:hover {
             background: #005fa3;
         }
-
-        /* ===== 图片预览弹窗 ===== */
         .img-preview-overlay {
             position: fixed;
             top: 0;
@@ -1057,7 +968,7 @@
             justify-content: center;
             align-items: center;
             padding: 30px;
-            transition: background 0.35s ease, backdrop-filter 0.35s ease;
+            transition: background 0.25s ease, backdrop-filter 0.25s ease;
             display: flex;
             pointer-events: none;
         }
@@ -1072,7 +983,7 @@
             pointer-events: none;
         }
         .img-preview-overlay.closing .img-preview-modal {
-            transform: scale(0.88) translateY(30px);
+            transform: scale(0.92) translateY(20px);
             opacity: 0;
         }
         .img-preview-modal {
@@ -1084,9 +995,9 @@
             display: flex;
             flex-direction: column;
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
-            transform: scale(0.88) translateY(30px);
+            transform: scale(0.92) translateY(20px);
             opacity: 0;
-            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.35s ease;
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease;
         }
         .img-preview-overlay.active .img-preview-modal {
             transform: scale(1) translateY(0);
@@ -1168,7 +1079,6 @@
         .img-preview-footer button:hover {
             background: #e5e7eb;
         }
-
         @media screen and (max-width: 600px) {
             #sidebar {
                 width: 190px;
@@ -1194,10 +1104,6 @@
                 max-width: 95%;
             }
         }
-
-        /* ================================================================
-           Tab 切换动画 - 细腻淡入淡出 + 位移
-           ================================================================ */
         .page-content {
             opacity: 1;
             transform: translateY(0);
@@ -1226,8 +1132,6 @@
                 transform: translateY(0) scale(1);
             }
         }
-
-        /* 资源列表切换动画 */
         #fileList {
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
@@ -1249,8 +1153,6 @@
                 transform: translateY(0);
             }
         }
-
-        /* 无动画模式 */
         .no-animation .page-content,
         .no-animation .page-content.page-exit,
         .no-animation .page-content.page-enter,
@@ -1264,7 +1166,6 @@
             pointer-events: auto !important;
         }
     </style>
-
     <style>
         @font-face {
             font-family: 'iconfont';
@@ -1275,7 +1176,6 @@
                 url('//at.alicdn.com/t/font_1634400_9yg8f5s278.ttf') format('truetype'),
                 url('//at.alicdn.com/t/font_1634400_9yg8f5s278.svg#iconfont') format('svg');
         }
-
         .iconfont {
             font-family: "iconfont" !important;
             font-size: 16px;
@@ -1287,8 +1187,7 @@
     </style>
 </head>
 <body>
-
-    <!-- ===== 侧边栏 ===== -->
+    <div id="sidebarOverlay" onclick="closeSidebar()"></div>
     <div id="sidebar">
         <div class="multidisk curr-disk" onclick="navigateTo(null)">
             <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1296,7 +1195,6 @@
             </svg>
             <span>📂 根目录</span>
         </div>
-
         <div class="multidisk" onclick="showSpecialPage('links')">
             <span style="font-size:20px;margin-right:14px;">🔗</span>
             <span>友情链接</span>
@@ -1310,7 +1208,6 @@
             <span>设置</span>
         </div>
     </div>
-
     <header>
         <nav class="header_container">
             <div class="pull-left expand" id="expand" onclick="toggleSidebar()">
@@ -1326,10 +1223,7 @@
             </div>
         </nav>
     </header>
-
     <div class="toast" id="toast"></div>
-
-    <!-- ===== 详情弹窗 ===== -->
     <div class="detail-overlay" id="detailOverlay" onclick="if(event.target===this)closeDetail()">
         <div class="detail-modal">
             <div class="detail-header">
@@ -1346,8 +1240,6 @@
             </div>
         </div>
     </div>
-
-    <!-- ===== 图片预览弹窗 ===== -->
     <div class="img-preview-overlay" id="imgPreviewOverlay" onclick="if(event.target===this)closeImgPreview()">
         <div class="img-preview-modal">
             <div class="img-preview-header">
@@ -1362,18 +1254,14 @@
             </div>
         </div>
     </div>
-
     <main>
         <div class="scroll" id="mainScroll">
             <div class="container">
-
                 <div class="main-title">
                     <h1 class="main-title-path" id="breadcrumbDisplay">
                         <a onclick="navigateTo(null)">📂 根目录</a>
                     </h1>
                 </div>
-
-                <!-- 资源列表 -->
                 <div class="main-item-list" id="fileList">
                     <div class="main-items main-item-title">
                         <div class="inner-container">
@@ -1386,61 +1274,38 @@
                     </div>
                     <div id="fileItems"></div>
                 </div>
-
-                <!-- 特殊页面容器 -->
                 <div class="main-item-list special-page" id="specialPageContainer" style="display:none;padding:0;overflow:hidden;">
                     <div id="specialPageContent" class="page-content"></div>
                 </div>
-
-                <!-- ===== 新增：资源介绍（类似 README） ===== -->
-                <div class="main-item-list" id="introContainer" style="display:none;padding:20px;">
-                    <div class="readme">
-                        <div class="markdown-body" id="introContent"></div>
-                    </div>
+                <div class="main-item-list" id="introContainer">
+                    <div class="readme markdown-body" id="introReadme"></div>
                 </div>
-
-                <div class="main-item-list" id="readmeContainer" style="display:none;padding:20px;">
-                    <div class="readme">
-                        <div class="markdown-body" id="readmeContent"></div>
-                    </div>
+                <div class="main-item-list" id="readmeContainer">
+                    <div class="readme markdown-body" id="folderReadme"></div>
                 </div>
-
                 <div style="text-align:center;margin-top:100px;">
                     <div id="foot_info"></div>
                 </div>
-
             </div>
         </div>
     </main>
-
     <script>
-        // ============================================================
-        // 全局状态
-        // ============================================================
         let allData = null;
         let currentPath = [];
         let currentCategory = null;
         let flatItems = [];
         let sidebarOpen = false;
-
         let currentDetailItem = null;
         let detailLink = '';
-
-        // 音乐播放相关 - 随机播放
         let musicEnabled = false;
         let musicList = [];
         let audioPlayer = null;
         let musicPlaying = false;
         let musicPlayedIndices = [];
-
-        // 特殊页面状态
         let currentSpecialPage = null;
         let isPageAnimating = false;
-
-        // ============================================================
-        // Toast 提示
-        // ============================================================
         let toastTimer = null;
+        let introLoaded = false;
 
         function showToast(message) {
             const toast = document.getElementById('toast');
@@ -1452,45 +1317,87 @@
             }, 2000);
         }
 
-        // ============================================================
-        // 侧边栏切换
-        // ============================================================
         function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const icon = document.getElementById('expand');
             if (sidebarOpen) {
-                sidebar.style.transform = 'translateX(-260px)';
-                icon.className = 'pull-left expand';
-                sidebarOpen = false;
+                closeSidebar();
             } else {
-                sidebar.style.transform = 'translateX(0px)';
-                icon.className = 'pull-left expand_on';
-                sidebarOpen = true;
+                openSidebar();
             }
         }
 
-        // ============================================================
-        // 加载数据
-        // ============================================================
+        function openSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            const icon = document.getElementById('expand');
+            sidebar.style.transform = 'translateX(0px)';
+            icon.className = 'pull-left expand_on';
+            overlay.style.display = 'block';
+            setTimeout(() => {
+                overlay.classList.add('active');
+            }, 10);
+            sidebarOpen = true;
+        }
+
+        function closeSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            const icon = document.getElementById('expand');
+            sidebar.style.transform = 'translateX(-260px)';
+            icon.className = 'pull-left expand';
+            overlay.classList.remove('active');
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 300);
+            sidebarOpen = false;
+        }
+
+        function showReadmeContainer(containerId) {
+            const intro = document.getElementById('introContainer');
+            const folder = document.getElementById('readmeContainer');
+            intro.classList.remove('visible');
+            folder.classList.remove('visible');
+            intro.classList.add('hidden');
+            folder.classList.add('hidden');
+            const target = document.getElementById(containerId);
+            target.classList.remove('hidden');
+            target.classList.add('visible');
+        }
+
+        function renderReadmeContent(containerId, html) {
+            const container = document.getElementById(containerId);
+            const readmeDiv = container.querySelector('.readme');
+            readmeDiv.innerHTML = html;
+            const items = readmeDiv.children;
+            for (let i = 0; i < items.length; i++) {
+                items[i].classList.add('readme-item');
+                items[i].style.animation = 'none';
+                void items[i].offsetWidth;
+                items[i].style.animation = '';
+            }
+            showReadmeContainer(containerId);
+        }
+
+        function hideAllReadme() {
+            const intro = document.getElementById('introContainer');
+            const folder = document.getElementById('readmeContainer');
+            intro.classList.remove('visible');
+            folder.classList.remove('visible');
+            intro.classList.add('hidden');
+            folder.classList.add('hidden');
+        }
+
         async function loadData() {
             try {
                 const response = await fetch('resources.json');
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 allData = await response.json();
-
                 await loadAllLoaders(allData.categories);
-
                 flatItems = [];
                 buildFlatIndex(allData.categories, []);
-
                 const count = flatItems.filter(i => i.type === 'loader' || i.type === 'file').length;
                 document.getElementById('statsDisplay').textContent = `📦 ${count} 个资源`;
-
                 await loadMusicList();
-
-                // 加载资源介绍（类似 README）
                 await loadIntro();
-
                 navigateTo(null);
             } catch (error) {
                 document.getElementById('fileItems').innerHTML = `
@@ -1504,21 +1411,19 @@
             }
         }
 
-        // ===== 新增：加载资源介绍 =====
         async function loadIntro() {
-            const container = document.getElementById('introContainer');
-            const content = document.getElementById('introContent');
             try {
                 const res = await fetch('data/main.md');
                 if (res.ok) {
                     const text = await res.text();
-                    container.style.display = 'block';
-                    content.innerHTML = renderMarkdown(text);
+                    const html = renderMarkdown(text);
+                    document.getElementById('introReadme').innerHTML = html;
+                    introLoaded = true;
                 } else {
-                    container.style.display = 'none';
+                    introLoaded = false;
                 }
             } catch (e) {
-                container.style.display = 'none';
+                introLoaded = false;
                 console.warn('资源介绍加载失败:', e);
             }
         }
@@ -1527,10 +1432,39 @@
             for (const cat of categories) {
                 if (cat.type === 'loader' && cat.src) {
                     try {
-                        const res = await fetch(cat.src);
+                        let src = cat.src;
+                        let anchor = null;
+                        if (src.includes('#')) {
+                            const parts = src.split('#');
+                            src = parts[0];
+                            anchor = parts[1];
+                        }
+                        console.log('📥 加载:', src, anchor ? `→ ${anchor}` : '');
+                        const res = await fetch(src);
                         if (res.ok) {
-                            const data = await res.json();
-
+                            let data = await res.json();
+                            if (anchor) {
+                                if (data[anchor]) {
+                                    data = data[anchor];
+                                    if (Array.isArray(data)) {
+                                        cat.children = data;
+                                        cat.type = 'folder';
+                                        await loadAllLoaders(cat.children);
+                                        continue;
+                                    }
+                                    if (data.children && Array.isArray(data.children)) {
+                                        cat.children = data.children;
+                                        cat.type = 'folder';
+                                        if (data.desc && !cat.desc) cat.desc = data.desc;
+                                        if (data.readme && !cat.readme) cat.readme = data.readme;
+                                        await loadAllLoaders(cat.children);
+                                        continue;
+                                    }
+                                } else {
+                                    console.warn('⚠️ 锚点不存在:', anchor);
+                                    continue;
+                                }
+                            }
                             if (data.children && Array.isArray(data.children) && data.children.length > 0) {
                                 cat.type = 'folder';
                                 if (data.desc && !cat.desc) cat.desc = data.desc;
@@ -1548,15 +1482,21 @@
                                         const rmRes = await fetch(data.readme);
                                         if (rmRes.ok) {
                                             cat._loadedReadme = await rmRes.text();
+                                        } else {
+                                            console.warn('📄 README 404:', data.readme);
                                         }
-                                    } catch (e) {}
+                                    } catch (e) {
+                                        console.warn('📄 README 加载失败:', data.readme);
+                                    }
                                 }
                                 if (data.url) cat._url = data.url;
                                 if (data.desc && !cat.desc) cat.desc = data.desc;
                             }
+                        } else {
+                            console.warn('❌ HTTP', res.status, ':', src);
                         }
                     } catch (e) {
-                        console.warn('加载子 JSON 失败:', cat.src, e);
+                        console.warn('❌ 加载失败:', cat.src, e);
                     }
                 }
                 if (cat.children) {
@@ -1576,9 +1516,6 @@
             });
         }
 
-        // ============================================================
-        // 加载音乐列表
-        // ============================================================
         async function loadMusicList() {
             try {
                 const response = await fetch('data/music.json');
@@ -1594,9 +1531,6 @@
             }
         }
 
-        // ============================================================
-        // 音乐播放控制 - 随机播放
-        // ============================================================
         function toggleMusic() {
             if (!musicEnabled) {
                 if (audioPlayer) {
@@ -1607,12 +1541,10 @@
                 showToast('🔇 音乐已关闭');
                 return;
             }
-
             if (musicList.length === 0) {
                 showToast('❌ 没有可播放的音乐');
                 return;
             }
-
             if (audioPlayer && musicPlaying) {
                 audioPlayer.pause();
                 musicPlaying = false;
@@ -1622,7 +1554,6 @@
                 }
                 return;
             }
-
             if (audioPlayer && !musicPlaying) {
                 audioPlayer.play().catch(() => {});
                 musicPlaying = true;
@@ -1632,45 +1563,37 @@
                 }
                 return;
             }
-
             playRandomMusic();
         }
 
         function playRandomMusic() {
             if (musicList.length === 0) return;
-
             if (musicPlayedIndices.length >= musicList.length) {
                 musicPlayedIndices = [];
             }
-
             const availableIndices = [];
             for (let i = 0; i < musicList.length; i++) {
                 if (!musicPlayedIndices.includes(i)) {
                     availableIndices.push(i);
                 }
             }
-
             if (availableIndices.length === 0) {
                 musicPlayedIndices = [];
                 playRandomMusic();
                 return;
             }
-
             const randomIdx = availableIndices[Math.floor(Math.random() * availableIndices.length)];
             musicPlayedIndices.push(randomIdx);
-
             const item = musicList[randomIdx];
             if (!item || !item.url) {
                 showToast('❌ 无法播放: ' + (item ? item.name : '未知'));
                 playRandomMusic();
                 return;
             }
-
             if (audioPlayer) {
                 audioPlayer.pause();
                 audioPlayer = null;
             }
-
             audioPlayer = new Audio(item.url);
             audioPlayer.volume = 0.7;
             audioPlayer.addEventListener('ended', () => {
@@ -1686,7 +1609,6 @@
                     }
                 }, 2000);
             });
-
             audioPlayer.play().then(() => {
                 musicPlaying = true;
                 showToast(`🎵 正在播放: ${item.name}`);
@@ -1707,36 +1629,28 @@
             musicPlayedIndices = [];
         }
 
-        // ============================================================
-        // 导航 - 带动画
-        // ============================================================
         function navigateToByPath(pathInput) {
             hideSpecialPage();
-
             if (!pathInput) {
                 navigateTo(null);
                 return;
             }
-
             let names;
             if (Array.isArray(pathInput)) {
                 names = pathInput;
             } else {
                 names = pathInput.split('|').filter(Boolean);
             }
-
             if (names.length === 0) {
                 navigateTo(null);
                 return;
             }
-
             let current = {
                 name: '根目录',
                 type: 'root',
                 children: allData.categories
             };
             let path = [];
-
             for (const name of names) {
                 const next = (current.children || []).find(item => item.name === name);
                 if (!next) {
@@ -1746,22 +1660,15 @@
                 path.push(name);
                 current = next;
             }
-
             current._path = path;
             navigateTo(current);
         }
 
         function navigateTo(category) {
             hideSpecialPage();
-
             const fileList = document.getElementById('fileList');
-            const fileItems = document.getElementById('fileItems');
-            const readmeContainer = document.getElementById('readmeContainer');
             const specialContainer = document.getElementById('specialPageContainer');
-
             specialContainer.style.display = 'none';
-
-            // 列表切换动画
             if (fileList.style.display !== 'none') {
                 fileList.classList.add('list-exit');
                 setTimeout(() => {
@@ -1772,7 +1679,6 @@
                     }, 400);
                 }, 300);
             }
-
             setTimeout(() => {
                 if (category === null) {
                     currentPath = [];
@@ -1781,49 +1687,49 @@
                         type: 'root',
                         children: allData.categories
                     };
+                    if (introLoaded) {
+                        const introContainer = document.getElementById('introContainer');
+                        const readmeDiv = introContainer.querySelector('.readme');
+                        const items = readmeDiv.children;
+                        for (let i = 0; i < items.length; i++) {
+                            items[i].classList.add('readme-item');
+                            items[i].style.animation = 'none';
+                            void items[i].offsetWidth;
+                            items[i].style.animation = '';
+                        }
+                        showReadmeContainer('introContainer');
+                    } else {
+                        hideAllReadme();
+                    }
                 } else {
                     currentPath = category._path || [category.name];
                     currentCategory = category;
+                    renderReadme(currentCategory);
                 }
-
                 renderBreadcrumb();
                 renderList(currentCategory);
-                renderReadme(currentCategory);
-
-                // ===== 修复：侧边栏高亮 =====
                 document.querySelectorAll('#sidebar .multidisk').forEach(el => {
                     el.classList.remove('curr-disk');
                 });
-                // 高亮 "根目录"
                 document.querySelector('#sidebar .multidisk:first-child')?.classList.add('curr-disk');
-
                 document.getElementById('mainScroll').scrollTo({ top: 0, behavior: 'smooth' });
             }, 150);
         }
 
-        // ============================================================
-        // 特殊页面 - 带动画
-        // ============================================================
         function showSpecialPage(type) {
             if (isPageAnimating) return;
             currentSpecialPage = type;
-
             const fileList = document.getElementById('fileList');
             const specialContainer = document.getElementById('specialPageContainer');
             const content = document.getElementById('specialPageContent');
             const breadcrumb = document.getElementById('breadcrumbDisplay');
-            const readmeContainer = document.getElementById('readmeContainer');
-
-            readmeContainer.style.display = 'none';
-            document.getElementById('introContainer').style.display = 'none'; // 隐藏资源介绍
-
+            hideAllReadme();
             const labels = {
                 'links': '🔗 友情链接',
                 'author': '👤 联系作者',
                 'settings': '⚙️ 设置'
             };
             breadcrumb.innerHTML = `<a style="font-weight:600;color:#333;">${labels[type] || '页面'}</a>`;
-
             if (fileList.style.display !== 'none') {
                 fileList.classList.add('list-exit');
                 setTimeout(() => {
@@ -1834,8 +1740,6 @@
             } else {
                 showSpecialPageContent(type, specialContainer, content);
             }
-
-            // ===== 修复：侧边栏高亮 =====
             document.querySelectorAll('#sidebar .multidisk').forEach(el => {
                 el.classList.remove('curr-disk');
             });
@@ -1845,14 +1749,12 @@
                 const items = document.querySelectorAll('#sidebar .multidisk');
                 if (items[idx]) items[idx].classList.add('curr-disk');
             }
-
             document.getElementById('mainScroll').scrollTo({ top: 0, behavior: 'smooth' });
             if (sidebarOpen) toggleSidebar();
         }
 
         function showSpecialPageContent(type, specialContainer, content) {
             specialContainer.style.display = '';
-
             if (content.className.includes('page-enter')) {
                 content.className = 'page-content page-exit';
                 isPageAnimating = true;
@@ -1881,25 +1783,36 @@
             specialContainer.style.display = 'none';
             fileList.style.display = '';
             fileList.classList.remove('list-exit', 'list-enter');
-            document.getElementById('readmeContainer').style.display = '';
-            document.getElementById('introContainer').style.display = ''; // 恢复介绍
             currentSpecialPage = null;
             isPageAnimating = false;
+            if (currentCategory && currentCategory.name === '根目录') {
+                if (introLoaded) {
+                    const introContainer = document.getElementById('introContainer');
+                    const readmeDiv = introContainer.querySelector('.readme');
+                    const items = readmeDiv.children;
+                    for (let i = 0; i < items.length; i++) {
+                        items[i].classList.add('readme-item');
+                        items[i].style.animation = 'none';
+                        void items[i].offsetWidth;
+                        items[i].style.animation = '';
+                    }
+                    showReadmeContainer('introContainer');
+                }
+            } else if (currentCategory) {
+                renderReadme(currentCategory);
+            }
         }
 
-        // ===== 友情链接 - 美化版 =====
         async function renderLinks(container) {
             container.innerHTML = `<div class="empty-state"><div class="icon">⏳</div><p>加载中...</p></div>`;
             try {
                 const response = await fetch('data/links.json');
                 if (!response.ok) throw new Error('文件不存在');
                 const data = await response.json();
-
                 if (!Array.isArray(data) || data.length === 0) {
                     container.innerHTML = `<div class="empty-state"><div class="icon">🔗</div><p>暂无友情链接</p></div>`;
                     return;
                 }
-
                 let html = `<div class="friend-link-grid">`;
                 data.forEach(item => {
                     const icon = item.icon || '🔗';
@@ -1925,19 +1838,16 @@
             }
         }
 
-        // ===== 联系作者 =====
         async function renderAuthor(container) {
             container.innerHTML = `<div class="empty-state"><div class="icon">⏳</div><p>加载中...</p></div>`;
             try {
                 const response = await fetch('data/zuozhe.json');
                 if (!response.ok) throw new Error('文件不存在');
                 const data = await response.json();
-
                 if (!Array.isArray(data) || data.length === 0) {
                     container.innerHTML = `<div class="empty-state"><div class="icon">👤</div><p>暂无作者信息</p></div>`;
                     return;
                 }
-
                 let html = `<div class="main-items main-item-title"><div class="inner-container"><div class="main-items-displayName">作者</div><div class="main-items-size" style="text-align:right;">联系</div></div></div>`;
                 data.forEach((item, idx) => {
                     const hasImage = item.image && item.image.trim() !== '';
@@ -1969,15 +1879,12 @@
             }
         }
 
-        // ===== 图片预览弹窗 =====
         function openImgPreview(src, name) {
             const overlay = document.getElementById('imgPreviewOverlay');
             const body = document.getElementById('imgPreviewBody');
             const title = document.getElementById('imgPreviewTitle');
-
             title.textContent = `📷 ${name || '图片预览'}`;
             body.innerHTML = `<img src="${src}" alt="${name || '图片'}" onerror="this.parentElement.innerHTML='<div class=\\'no-img\\'>❌ 图片加载失败</div>'">`;
-
             overlay.classList.remove('closing', 'active');
             void overlay.offsetWidth;
             overlay.classList.add('active');
@@ -1989,10 +1896,9 @@
             overlay.classList.add('closing');
             setTimeout(() => {
                 overlay.classList.remove('closing');
-            }, 350);
+            }, 250);
         }
 
-        // ===== 设置 - 简化版 =====
         function renderSettings(container) {
             const isMusicOn = musicEnabled;
             let currentSongName = '';
@@ -2002,7 +1908,6 @@
                     currentSongName = musicList[lastIdx].name || '';
                 }
             }
-
             container.innerHTML = `
                 <div class="settings-item">
                     <div>
@@ -2031,11 +1936,9 @@
             `;
         }
 
-        // ===== 音乐设置切换 =====
         function toggleMusicSetting(el) {
             musicEnabled = !musicEnabled;
             el.classList.toggle('active', musicEnabled);
-
             if (musicEnabled) {
                 if (musicList.length > 0) {
                     if (!audioPlayer || !musicPlaying) {
@@ -2056,13 +1959,9 @@
             }
         }
 
-        // ============================================================
-        // 渲染面包屑
-        // ============================================================
         function renderBreadcrumb() {
             const container = document.getElementById('breadcrumbDisplay');
             let html = `<a onclick="navigateTo(null)">📂 根目录</a>`;
-
             if (currentPath.length > 0) {
                 let categories = allData.categories;
                 currentPath.forEach((name, index) => {
@@ -2079,13 +1978,9 @@
                     }
                 });
             }
-
             container.innerHTML = html;
         }
 
-        // ============================================================
-        // 复制链接
-        // ============================================================
         function copyLink(src, name) {
             if (!src) {
                 showToast('❌ 没有链接可复制');
@@ -2118,9 +2013,6 @@
             document.body.removeChild(textarea);
         }
 
-        // ============================================================
-        // 下载
-        // ============================================================
         function downloadFile(src, name) {
             if (!src) {
                 showToast('❌ 没有下载链接');
@@ -2135,26 +2027,18 @@
             showToast(`⬇ 开始下载: ${name || '文件'}`);
         }
 
-        // ============================================================
-        // 详情弹窗
-        // ============================================================
         function openDetail(item) {
             currentDetailItem = item;
-
             const overlay = document.getElementById('detailOverlay');
             const title = document.getElementById('detailTitle');
             const body = document.getElementById('detailBody');
             const downloadBtn = document.getElementById('detailDownloadBtn');
-
             const linkUrl = item.src || item.url || (item._loadedData ? item._loadedData.url : null) || null;
             detailLink = linkUrl || '';
-
             title.textContent = `📄 ${item.name}`;
-
             overlay.classList.remove('closing', 'active');
             void overlay.offsetWidth;
             overlay.classList.add('active');
-
             if (linkUrl) {
                 downloadBtn.href = linkUrl;
                 downloadBtn.style.display = '';
@@ -2162,14 +2046,11 @@
             } else {
                 downloadBtn.style.display = 'none';
             }
-
             let html = '';
-
             html += `<div class="detail-item">
                 <span class="detail-label">📌 名称</span>
                 <div class="detail-value">${escapeHtml(item.name)}</div>
             </div>`;
-
             const desc = item.desc || (item._loadedData ? item._loadedData.desc : '') || '';
             if (desc) {
                 html += `<div class="detail-item">
@@ -2177,17 +2058,14 @@
                     <div class="detail-value">${escapeHtml(desc)}</div>
                 </div>`;
             }
-
             if (linkUrl) {
                 html += `<div class="detail-item">
                     <span class="detail-label">🔗 下载链接</span>
                     <div class="detail-value"><a href="${escapeHtml(linkUrl)}" target="_blank">${escapeHtml(linkUrl)}</a></div>
                 </div>`;
             }
-
             const readmeContent = item._loadedReadme || null;
             const readmePath = item.readme || (item._loadedData ? item._loadedData.readme : null) || null;
-
             if (readmeContent) {
                 html += `<div class="detail-item">
                     <span class="detail-label">📖 说明</span>
@@ -2200,7 +2078,6 @@
                     <div class="detail-readme" id="detailReadmeLoading">⏳ 加载中...</div>
                 </div>`;
                 body.innerHTML = html;
-
                 fetch(readmePath)
                     .then(res => {
                         if (!res.ok) throw new Error('文件不存在');
@@ -2233,7 +2110,7 @@
             overlay.classList.add('closing');
             setTimeout(() => {
                 overlay.classList.remove('closing');
-            }, 350);
+            }, 200);
         }
 
         function copyDetailLink() {
@@ -2244,13 +2121,9 @@
             }
         }
 
-        // ============================================================
-        // 渲染列表 - 优化：使用内联 SVG 文件夹图标，避免加载延迟
-        // ============================================================
         function renderList(category) {
             const container = document.getElementById('fileItems');
             const items = category.children || [];
-
             if (items.length === 0) {
                 container.innerHTML = `
                     <div class="empty-state">
@@ -2260,13 +2133,11 @@
                 `;
                 return;
             }
-
             const sorted = [...items].sort((a, b) => {
                 if (a.type === 'folder' && b.type !== 'folder') return -1;
                 if (a.type !== 'folder' && b.type === 'folder') return 1;
                 return 0;
             });
-
             let html = '';
             sorted.forEach(item => {
                 if (item.type === 'folder') {
@@ -2275,7 +2146,6 @@
                     html += `
                         <div class="main-items folder-item" onclick="navigateToByPath('${pathStr}')" data-path="${pathStr}">
                             <div class="main-items-icon">
-                                <!-- 内联 SVG 文件夹图标，避免外部加载延迟 -->
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M2 4.5C2 3.67157 2.67157 3 3.5 3H7.5C8.32843 3 9 3.67157 9 4.5V5H16.5C17.3284 5 18 5.67157 18 6.5V15.5C18 16.3284 17.3284 17 16.5 17H3.5C2.67157 17 2 16.3284 2 15.5V4.5Z" fill="#FFCE5C" stroke="#E6A800" stroke-width="1.2"/>
                                     <path d="M9 5V4.5C9 4.22386 8.77614 4 8.5 4H3.5C3.22386 4 3 4.22386 3 4.5V15.5C3 15.7761 3.22386 16 3.5 16H16.5C16.7761 16 17 15.7761 17 15.5V6.5C17 6.22386 16.7761 6 16.5 6H9V5Z" fill="#FFE08A" stroke="#E6A800" stroke-width="0.8"/>
@@ -2292,7 +2162,6 @@
                     `;
                 } else {
                     const icon = getFileIcon(item.src || item.url);
-
                     html += `
                         <div class="main-items">
                             <div class="main-items-icon">
@@ -2312,70 +2181,91 @@
                     `;
                 }
             });
-
             container.innerHTML = html;
         }
 
-        // ============================================================
-        // 渲染 README
-        // ============================================================
         function renderReadme(category) {
-            const container = document.getElementById('readmeContainer');
-            const content = document.getElementById('readmeContent');
-
             let readmePath = category ? category.readme : null;
             let loadedReadme = category ? category._loadedReadme : null;
-
             if (category && category.type === 'loader' && loadedReadme) {
-                container.style.display = 'block';
-                content.innerHTML = renderMarkdown(loadedReadme);
+                const html = renderMarkdown(loadedReadme);
+                renderReadmeContent('readmeContainer', html);
                 return;
             }
-
             if (readmePath) {
-                container.style.display = 'block';
                 fetch(readmePath)
                     .then(res => {
                         if (!res.ok) throw new Error('文件不存在');
                         return res.text();
                     })
                     .then(text => {
-                        content.innerHTML = renderMarkdown(text);
+                        const html = renderMarkdown(text);
+                        renderReadmeContent('readmeContainer', html);
                     })
                     .catch(() => {
-                        content.innerHTML = `<p style="color:#999;">📖 暂无说明文档</p>`;
+                        const html = `<p style="color:#999;">📖 暂无说明文档</p>`;
+                        renderReadmeContent('readmeContainer', html);
                     });
             } else {
-                container.style.display = 'none';
+                hideAllReadme();
             }
         }
 
-        // ============================================================
-        // Markdown 渲染
-        // ============================================================
         function renderMarkdown(text) {
             if (!text) return '<span style="color:#999;">暂无内容</span>';
-            text = text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-            let html = text
-                .replace(/^# (.*$)/gim, '<h1>$1</h1>')
-                .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-                .replace(/^### (.*$)/gim, '<h3>$1</h3>')
-                .replace(/^- (.*$)/gim, '<li>$1</li>')
-                .replace(/`([^`]+)`/g, '<code>$1</code>');
-
-            html = html.replace(/(<li>.*<\/li>)/s, match => `<ul>${match}</ul>`);
-            html = html.replace(/\n/g, '<br>');
-            html = html.replace(/<br><li>/g, '<li>');
-            html = html.replace(/<\/li><br>/g, '</li>');
-            html = html.replace(/<\/ul><br>/g, '</ul>');
-            html = html.replace(/<br><\/ul>/g, '</ul>');
-
+            
+            const lines = text.split('\n');
+            let html = '';
+            let i = 0;
+            
+            while (i < lines.length) {
+                let line = lines[i];
+                let trimmed = line.trim();
+                
+                if (!trimmed) {
+                    html += '<br>';
+                    i++;
+                    continue;
+                }
+                
+                if (trimmed.startsWith('# ')) {
+                    html += `<h1>${trimmed.replace('# ', '').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</h1>`;
+                    i++;
+                    continue;
+                }
+                if (trimmed.startsWith('## ')) {
+                    html += `<h2>${trimmed.replace('## ', '').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</h2>`;
+                    i++;
+                    continue;
+                }
+                if (trimmed.startsWith('### ')) {
+                    html += `<h3>${trimmed.replace('### ', '').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</h3>`;
+                    i++;
+                    continue;
+                }
+                
+                if (trimmed.startsWith('- ')) {
+                    let items = [];
+                    while (i < lines.length && lines[i].trim().startsWith('- ')) {
+                        let item = lines[i].trim().replace('- ', '');
+                        item = item.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                        item = item.replace(/`([^`]+)`/g, '<code>$1</code>');
+                        items.push(`<li>${item}</li>`);
+                        i++;
+                    }
+                    html += `<ul>${items.join('')}</ul>`;
+                    continue;
+                }
+                
+                let escaped = trimmed.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                escaped = escaped.replace(/`([^`]+)`/g, '<code>$1</code>');
+                html += `<p>${escaped}</p>`;
+                i++;
+            }
+            
             return html;
         }
 
-        // ============================================================
-        // 工具函数
-        // ============================================================
         function escapeHtml(text) {
             if (text === null || text === undefined) return '';
             const div = document.createElement('div');
@@ -2413,9 +2303,6 @@
             return icons[ext] || '📄';
         }
 
-        // ============================================================
-        // 页脚 & 启动
-        // ============================================================
         document.getElementById('foot_info').innerHTML =
             `Copyright © ${new Date().getFullYear()} | 白叶114514の资源站 | 主题来自于 雪中明月 大佬`;
 
@@ -2423,11 +2310,14 @@
             if (e.key === 'Escape') {
                 closeDetail();
                 closeImgPreview();
+                if (sidebarOpen) closeSidebar();
             }
         });
 
+        document.getElementById('introContainer').classList.add('hidden');
+        document.getElementById('readmeContainer').classList.add('hidden');
+
         loadData();
     </script>
-
 </body>
 </html>
