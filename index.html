@@ -1165,6 +1165,187 @@
             transition: none !important;
             pointer-events: auto !important;
         }
+
+        /* ===== 感谢名单样式 ===== */
+        .thanks-container {
+            padding: 10px 20px 20px 20px;
+        }
+        .thanks-header {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 16px 0 8px 0;
+            color: #333;
+            letter-spacing: 0.5px;
+        }
+        .thanks-header .heart {
+            color: #e74c3c;
+            display: inline-block;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            14% { transform: scale(1.15); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.1); }
+            70% { transform: scale(1); }
+        }
+        .thanks-box {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
+            border: 1px solid #e8e8e8;
+            padding: 6px 0;
+            margin-top: 4px;
+            backdrop-filter: blur(4px);
+        }
+        .thanks-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 18px;
+            border-bottom: 1px solid #f0f0f0;
+            gap: 14px;
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            opacity: 0;
+            animation: thanksFadeIn 0.4s ease forwards;
+        }
+        .thanks-item:last-child {
+            border-bottom: none;
+        }
+        .thanks-item:hover {
+            background: rgba(0, 120, 212, 0.04);
+            transform: translateX(4px);
+            border-radius: 6px;
+        }
+        .thanks-item .thanks-avatar {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #f0f0f0;
+            border: 2px solid #e8e8e8;
+            transition: 0.3s;
+        }
+        .thanks-item .thanks-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .thanks-item .thanks-avatar .avatar-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #bbb;
+            background: #f5f5f5;
+        }
+        .thanks-item:hover .thanks-avatar {
+            border-color: #0078d4;
+            box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.15);
+        }
+        .thanks-item .thanks-name {
+            flex: 1;
+            font-weight: 500;
+            font-size: 15px;
+            color: #333;
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .thanks-item .thanks-role {
+            font-size: 13px;
+            color: #888;
+            margin-left: 6px;
+            font-weight: 400;
+            white-space: nowrap;
+        }
+        .thanks-item .thanks-action {
+            flex-shrink: 0;
+        }
+        .thanks-item .thanks-action a {
+            display: inline-block;
+            padding: 5px 16px;
+            background: #0078d4;
+            color: white;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .thanks-item .thanks-action a:hover {
+            background: #005fa3;
+            transform: translateY(-1px) scale(1.03);
+            box-shadow: 0 4px 12px rgba(0, 120, 212, 0.25);
+        }
+        .thanks-item .thanks-action a:active {
+            transform: scale(0.95);
+        }
+        @keyframes thanksFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .thanks-item:nth-child(1) { animation-delay: 0.02s; }
+        .thanks-item:nth-child(2) { animation-delay: 0.05s; }
+        .thanks-item:nth-child(3) { animation-delay: 0.08s; }
+        .thanks-item:nth-child(4) { animation-delay: 0.11s; }
+        .thanks-item:nth-child(5) { animation-delay: 0.14s; }
+        .thanks-item:nth-child(6) { animation-delay: 0.17s; }
+        .thanks-item:nth-child(7) { animation-delay: 0.20s; }
+        .thanks-item:nth-child(8) { animation-delay: 0.23s; }
+        .thanks-item:nth-child(9) { animation-delay: 0.26s; }
+        .thanks-item:nth-child(10) { animation-delay: 0.29s; }
+        .thanks-item:nth-child(11) { animation-delay: 0.32s; }
+        .thanks-item:nth-child(12) { animation-delay: 0.35s; }
+        .thanks-item:nth-child(13) { animation-delay: 0.38s; }
+        .thanks-item:nth-child(14) { animation-delay: 0.41s; }
+        .thanks-item:nth-child(15) { animation-delay: 0.44s; }
+        .thanks-item:nth-child(16) { animation-delay: 0.47s; }
+        .thanks-item:nth-child(17) { animation-delay: 0.50s; }
+        .thanks-item:nth-child(18) { animation-delay: 0.53s; }
+        .thanks-item:nth-child(19) { animation-delay: 0.56s; }
+        .thanks-item:nth-child(20) { animation-delay: 0.59s; }
+
+        @media screen and (max-width: 600px) {
+            .thanks-item {
+                padding: 8px 12px;
+                gap: 10px;
+            }
+            .thanks-item .thanks-avatar {
+                width: 36px;
+                height: 36px;
+            }
+            .thanks-item .thanks-name {
+                font-size: 14px;
+            }
+            .thanks-item .thanks-role {
+                font-size: 11px;
+                margin-left: 4px;
+                display: none;
+            }
+            .thanks-item .thanks-action a {
+                padding: 4px 12px;
+                font-size: 12px;
+            }
+            .thanks-header {
+                font-size: 16px;
+                padding: 12px 0 4px 0;
+            }
+            .thanks-container {
+                padding: 6px 12px 12px 12px;
+            }
+        }
     </style>
     <style>
         @font-face {
@@ -1202,6 +1383,11 @@
         <div class="multidisk" onclick="showSpecialPage('author')">
             <span style="font-size:20px;margin-right:14px;">👤</span>
             <span>联系作者</span>
+        </div>
+        <!-- ====== 新增：感谢名单 ====== -->
+        <div class="multidisk" onclick="showSpecialPage('thanks')">
+            <span style="font-size:20px;margin-right:14px;">❤️</span>
+            <span>感谢名单</span>
         </div>
         <div class="multidisk" onclick="showSpecialPage('settings')">
             <span style="font-size:20px;margin-right:14px;">⚙️</span>
@@ -1727,6 +1913,7 @@
             const labels = {
                 'links': '🔗 友情链接',
                 'author': '👤 联系作者',
+                'thanks': '❤️ 感谢名单',
                 'settings': '⚙️ 设置'
             };
             breadcrumb.innerHTML = `<a style="font-weight:600;color:#333;">${labels[type] || '页面'}</a>`;
@@ -1743,7 +1930,7 @@
             document.querySelectorAll('#sidebar .multidisk').forEach(el => {
                 el.classList.remove('curr-disk');
             });
-            const map = { 'links': 1, 'author': 2, 'settings': 3 };
+            const map = { 'links': 1, 'author': 2, 'thanks': 3, 'settings': 4 };
             const idx = map[type];
             if (idx !== undefined) {
                 const items = document.querySelectorAll('#sidebar .multidisk');
@@ -1774,6 +1961,7 @@
         function renderSpecialContent(type, content) {
             if (type === 'links') renderLinks(content);
             else if (type === 'author') renderAuthor(content);
+            else if (type === 'thanks') renderThanks(content);
             else if (type === 'settings') renderSettings(content);
         }
 
@@ -1876,6 +2064,67 @@
             } catch (e) {
                 container.innerHTML = `<div class="empty-state"><div class="icon">❌</div><p>加载失败: ${e.message}</p></div>`;
                 console.error('加载作者信息失败:', e);
+            }
+        }
+
+        // ====== 新增：渲染感谢名单 ======
+        async function renderThanks(container) {
+            container.innerHTML = `
+                <div class="thanks-container">
+                    <div class="thanks-header">
+                        <span class="heart">❤️</span> 感谢您提供的帮助 <span class="heart">❤️</span>
+                    </div>
+                    <div class="thanks-box" id="thanksList">
+                        <div style="text-align:center;padding:30px 0;color:#999;">⏳ 加载中...</div>
+                    </div>
+                </div>
+            `;
+            try {
+                const response = await fetch('data/thanks.json');
+                if (!response.ok) throw new Error('文件不存在');
+                const data = await response.json();
+                const listContainer = document.getElementById('thanksList');
+                if (!Array.isArray(data) || data.length === 0) {
+                    listContainer.innerHTML = `
+                        <div style="text-align:center;padding:30px 0;color:#999;">
+                            <div style="font-size:32px;margin-bottom:8px;">🙏</div>
+                            暂无感谢名单
+                        </div>
+                    `;
+                    return;
+                }
+                let html = '';
+                data.forEach(item => {
+                    const name = escapeHtml(item.name || '未命名');
+                    const role = item.role ? escapeHtml(item.role) : '';
+                    const homepage = item.homepage ? escapeHtml(item.homepage) : '';
+                    const avatar = item.avatar ? escapeHtml(item.avatar) : '';
+                    const avatarSrc = avatar ? `/assets/tx/${avatar}` : '';
+                    html += `
+                        <div class="thanks-item">
+                            <div class="thanks-avatar">
+                                ${avatarSrc ? `<img src="${avatarSrc}" alt="${name}" onerror="this.parentElement.innerHTML='<div class=\\'avatar-placeholder\\'>👤</div>'">` : `<div class="avatar-placeholder">👤</div>`}
+                            </div>
+                            <div class="thanks-name">
+                                ${name}
+                                ${role ? `<span class="thanks-role">${role}</span>` : ''}
+                            </div>
+                            <div class="thanks-action">
+                                ${homepage ? `<a href="${homepage}" target="_blank">访问主页</a>` : `<span style="color:#ccc;font-size:13px;">暂无主页</span>`}
+                            </div>
+                        </div>
+                    `;
+                });
+                listContainer.innerHTML = html;
+            } catch (e) {
+                const listContainer = document.getElementById('thanksList');
+                listContainer.innerHTML = `
+                    <div style="text-align:center;padding:30px 0;color:#dc2626;">
+                        <div style="font-size:32px;margin-bottom:8px;">❌</div>
+                        加载失败: ${e.message}
+                    </div>
+                `;
+                console.error('加载感谢名单失败:', e);
             }
         }
 

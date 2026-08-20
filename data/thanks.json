@@ -1,0 +1,32 @@
+[
+  {
+    "name": "雪中明月",
+    "role": "主题作者",
+    "avatar": "xzmy.jpg",
+    "homepage": "https://xn--fiqz59cpva341l.top/"
+  },
+  {
+    "name": "AIPC_BIOS",
+    "role": "提供OneDrive直链转换方法",
+    "avatar": "aipc.jpg",
+    "homepage": "https://github.com/baiye141"
+  },
+  {
+    "name": "DeepSeek",
+    "role": "提供帮助",
+    "avatar": "ai1.png",
+    "homepage": "https://www.deepseek.com/"
+  },
+  {
+    "name": "ChatGPT",
+    "role": "提供帮助",
+    "avatar": "ai2.png",
+    "homepage": "https://chatgpt.com/"
+  },
+  {
+    "name": "Gemini",
+    "role": "提供帮助",
+    "avatar": "ai3.png",
+    "homepage": "https://gemini.google.com/"
+  }
+]
