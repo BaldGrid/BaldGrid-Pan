@@ -3,7 +3,7 @@
   "type": "folder",
   "desc": "OPPO A52 系列资源",
   "readme": "data/rm/pdam00.md",
-  "children": [,
+  "children": [
     {
       "name": "工程abl",
       "type": "file",
