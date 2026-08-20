@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>资源列表</title>
+    <title>资源列表 · 优化</title>
     <style>
         * {
             margin: 0;
@@ -92,14 +92,22 @@
             justify-content: center;
         }
 
+        /* ===== 修复：按钮旋转圆形 ===== */
         .expand {
             transform: rotate(0deg);
-            transition: 0.5s;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
         }
 
         .expand_on {
             transform: rotate(-90deg);
-            transition: 0.5s;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         nav a {
@@ -1384,6 +1392,13 @@
                     <div id="specialPageContent" class="page-content"></div>
                 </div>
 
+                <!-- ===== 新增：资源介绍（类似 README） ===== -->
+                <div class="main-item-list" id="introContainer" style="display:none;padding:20px;">
+                    <div class="readme">
+                        <div class="markdown-body" id="introContent"></div>
+                    </div>
+                </div>
+
                 <div class="main-item-list" id="readmeContainer" style="display:none;padding:20px;">
                     <div class="readme">
                         <div class="markdown-body" id="readmeContent"></div>
@@ -1416,7 +1431,7 @@
         let musicList = [];
         let audioPlayer = null;
         let musicPlaying = false;
-        let musicPlayedIndices = []; // 已播放过的索引
+        let musicPlayedIndices = [];
 
         // 特殊页面状态
         let currentSpecialPage = null;
@@ -1473,6 +1488,9 @@
 
                 await loadMusicList();
 
+                // 加载资源介绍（类似 README）
+                await loadIntro();
+
                 navigateTo(null);
             } catch (error) {
                 document.getElementById('fileItems').innerHTML = `
@@ -1483,6 +1501,25 @@
                     </div>
                 `;
                 console.error('加载失败:', error);
+            }
+        }
+
+        // ===== 新增：加载资源介绍 =====
+        async function loadIntro() {
+            const container = document.getElementById('introContainer');
+            const content = document.getElementById('introContent');
+            try {
+                const res = await fetch('data/main.md');
+                if (res.ok) {
+                    const text = await res.text();
+                    container.style.display = 'block';
+                    content.innerHTML = renderMarkdown(text);
+                } else {
+                    container.style.display = 'none';
+                }
+            } catch (e) {
+                container.style.display = 'none';
+                console.warn('资源介绍加载失败:', e);
             }
         }
 
@@ -1596,19 +1633,16 @@
                 return;
             }
 
-            // 随机播放第一首
             playRandomMusic();
         }
 
         function playRandomMusic() {
             if (musicList.length === 0) return;
 
-            // 如果所有歌曲都已播放过，重置已播放列表
             if (musicPlayedIndices.length >= musicList.length) {
                 musicPlayedIndices = [];
             }
 
-            // 找出未播放的歌曲索引
             const availableIndices = [];
             for (let i = 0; i < musicList.length; i++) {
                 if (!musicPlayedIndices.includes(i)) {
@@ -1622,14 +1656,12 @@
                 return;
             }
 
-            // 随机选择一个未播放的歌曲
             const randomIdx = availableIndices[Math.floor(Math.random() * availableIndices.length)];
             musicPlayedIndices.push(randomIdx);
 
             const item = musicList[randomIdx];
             if (!item || !item.url) {
                 showToast('❌ 无法播放: ' + (item ? item.name : '未知'));
-                // 标记为已播放（跳过）
                 playRandomMusic();
                 return;
             }
@@ -1758,9 +1790,11 @@
                 renderList(currentCategory);
                 renderReadme(currentCategory);
 
+                // ===== 修复：侧边栏高亮 =====
                 document.querySelectorAll('#sidebar .multidisk').forEach(el => {
                     el.classList.remove('curr-disk');
                 });
+                // 高亮 "根目录"
                 document.querySelector('#sidebar .multidisk:first-child')?.classList.add('curr-disk');
 
                 document.getElementById('mainScroll').scrollTo({ top: 0, behavior: 'smooth' });
@@ -1780,8 +1814,8 @@
             const breadcrumb = document.getElementById('breadcrumbDisplay');
             const readmeContainer = document.getElementById('readmeContainer');
 
-            // 隐藏 README
             readmeContainer.style.display = 'none';
+            document.getElementById('introContainer').style.display = 'none'; // 隐藏资源介绍
 
             const labels = {
                 'links': '🔗 友情链接',
@@ -1790,7 +1824,6 @@
             };
             breadcrumb.innerHTML = `<a style="font-weight:600;color:#333;">${labels[type] || '页面'}</a>`;
 
-            // 如果文件列表可见，先退出动画
             if (fileList.style.display !== 'none') {
                 fileList.classList.add('list-exit');
                 setTimeout(() => {
@@ -1802,6 +1835,17 @@
                 showSpecialPageContent(type, specialContainer, content);
             }
 
+            // ===== 修复：侧边栏高亮 =====
+            document.querySelectorAll('#sidebar .multidisk').forEach(el => {
+                el.classList.remove('curr-disk');
+            });
+            const map = { 'links': 1, 'author': 2, 'settings': 3 };
+            const idx = map[type];
+            if (idx !== undefined) {
+                const items = document.querySelectorAll('#sidebar .multidisk');
+                if (items[idx]) items[idx].classList.add('curr-disk');
+            }
+
             document.getElementById('mainScroll').scrollTo({ top: 0, behavior: 'smooth' });
             if (sidebarOpen) toggleSidebar();
         }
@@ -1809,9 +1853,7 @@
         function showSpecialPageContent(type, specialContainer, content) {
             specialContainer.style.display = '';
 
-            // 切换动画
             if (content.className.includes('page-enter')) {
-                // 已经是进入状态，切换内容
                 content.className = 'page-content page-exit';
                 isPageAnimating = true;
                 setTimeout(() => {
@@ -1840,6 +1882,7 @@
             fileList.style.display = '';
             fileList.classList.remove('list-exit', 'list-enter');
             document.getElementById('readmeContainer').style.display = '';
+            document.getElementById('introContainer').style.display = ''; // 恢复介绍
             currentSpecialPage = null;
             isPageAnimating = false;
         }
@@ -1949,11 +1992,9 @@
             }, 350);
         }
 
-        // ===== 设置 - 简化版，只显示开关和当前播放歌曲名（只显示一次） =====
+        // ===== 设置 - 简化版 =====
         function renderSettings(container) {
             const isMusicOn = musicEnabled;
-            
-            // 获取当前播放的歌曲名（只取一个）
             let currentSongName = '';
             if (musicPlaying && musicPlayedIndices.length > 0) {
                 const lastIdx = musicPlayedIndices[musicPlayedIndices.length - 1];
@@ -1961,7 +2002,7 @@
                     currentSongName = musicList[lastIdx].name || '';
                 }
             }
-        
+
             container.innerHTML = `
                 <div class="settings-item">
                     <div>
@@ -2204,7 +2245,7 @@
         }
 
         // ============================================================
-        // 渲染列表
+        // 渲染列表 - 优化：使用内联 SVG 文件夹图标，避免加载延迟
         // ============================================================
         function renderList(category) {
             const container = document.getElementById('fileItems');
@@ -2234,7 +2275,11 @@
                     html += `
                         <div class="main-items folder-item" onclick="navigateToByPath('${pathStr}')" data-path="${pathStr}">
                             <div class="main-items-icon">
-                                <img src="https://spoprod-a.akamaihd.net/files/fabric/assets/item-types-fluent/20/folder.svg" alt="folder">
+                                <!-- 内联 SVG 文件夹图标，避免外部加载延迟 -->
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 4.5C2 3.67157 2.67157 3 3.5 3H7.5C8.32843 3 9 3.67157 9 4.5V5H16.5C17.3284 5 18 5.67157 18 6.5V15.5C18 16.3284 17.3284 17 16.5 17H3.5C2.67157 17 2 16.3284 2 15.5V4.5Z" fill="#FFCE5C" stroke="#E6A800" stroke-width="1.2"/>
+                                    <path d="M9 5V4.5C9 4.22386 8.77614 4 8.5 4H3.5C3.22386 4 3 4.22386 3 4.5V15.5C3 15.7761 3.22386 16 3.5 16H16.5C16.7761 16 17 15.7761 17 15.5V6.5C17 6.22386 16.7761 6 16.5 6H9V5Z" fill="#FFE08A" stroke="#E6A800" stroke-width="0.8"/>
+                                </svg>
                             </div>
                             <div class="main-items-fileName" style="flex:1;">
                                 <a onclick="event.stopPropagation();navigateToByPath('${pathStr}')" style="font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${item.name}</a>
