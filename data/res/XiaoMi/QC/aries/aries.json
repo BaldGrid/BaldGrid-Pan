@@ -13,7 +13,7 @@
         {
           "name": "线刷包",
           "type": "folder",
-          "desc": "",
+          "desc": "官方线刷固件",
           "readme": "",
           "children": [
             {
@@ -133,19 +133,19 @@
         {
           "name": "类原生",
           "type": "folder",
-          "desc": "",
+          "desc": "类原生系统（AOSP/LineageOS）",
           "readme": "",
           "children": [
             {
               "name": "Lineage OS",
               "type": "folder",
-              "desc": "",
+              "desc": "LineageOS 各版本",
               "readme": "",
               "children": [
                 {
                   "name": "安卓16",
                   "type": "folder",
-                  "desc": "",
+                  "desc": "Android 16 (LineageOS 23.1)",
                   "readme": "",
                   "children": [
                     {
@@ -173,7 +173,7 @@
     {
       "name": "扩容包",
       "type": "folder",
-      "desc": "",
+      "desc": "系统分区扩容工具",
       "readme": "",
       "children": [
         {
