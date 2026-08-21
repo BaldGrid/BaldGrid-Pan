@@ -129,40 +129,40 @@
               "url": "https://bigota.d.miui.com/JLB50.0/aries_images_JLB50.0_4.1_cn_chinaunicom_161132cdf3.tgz"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "name": "类原生",
+      "type": "folder",
+      "desc": "类原生系统（AOSP/LineageOS）",
+      "readme": "",
+      "children": [
         {
-          "name": "类原生",
+          "name": "Lineage OS",
           "type": "folder",
-          "desc": "类原生系统（AOSP/LineageOS）",
+          "desc": "LineageOS 各版本",
           "readme": "",
           "children": [
             {
-              "name": "Lineage OS",
+              "name": "安卓16",
               "type": "folder",
-              "desc": "LineageOS 各版本",
+              "desc": "Android 16 (LineageOS 23.1)",
               "readme": "",
               "children": [
                 {
-                  "name": "安卓16",
-                  "type": "folder",
-                  "desc": "Android 16 (LineageOS 23.1)",
-                  "readme": "",
-                  "children": [
-                    {
-                      "name": "Lineage OS 23.1",
-                      "type": "file",
-                      "desc": "",
-                      "readme": "data/rm/file/XiaoMi/aries/GSI/LOS/23/1.md",
-                      "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRGszQ1JEdDYxVFE3OW1UTDMxVTVpQ0FiaUtHTzVUX0QzV0FYMzdnU1U3TlVN"
-                    },
-                    {
-                      "name": "TWRP",
-                      "type": "file",
-                      "desc": "",
-                      "readme": "data/rm/file/XiaoMi/aries/GSI/LOS/23/2.md",
-                      "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQmxTVGtCM1RyMFRLQWVwNkRabXR5WUFZOFBVNnYxaG1HRW1RUC1YbTBMMjZN"
-                    }
-                  ]
+                  "name": "Lineage OS 23.1",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "data/rm/file/XiaoMi/aries/GSI/LOS/23/1.md",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRGszQ1JEdDYxVFE3OW1UTDMxVTVpQ0FiaUtHTzVUX0QzV0FYMzdnU1U3TlVN"
+                },
+                {
+                  "name": "TWRP",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "data/rm/file/XiaoMi/aries/GSI/LOS/23/2.md",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQmxTVGtCM1RyMFRLQWVwNkRabXR5WUFZOFBVNnYxaG1HRW1RUC1YbTBMMjZN"
                 }
               ]
             }
