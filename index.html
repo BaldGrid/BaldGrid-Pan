@@ -1629,18 +1629,21 @@
                         const res = await fetch(src);
                         if (res.ok) {
                             let data = await res.json();
+                            
+                            // 🔧 关键修复：将 loader 节点转换为 folder 类型
+                            cat.type = 'folder';
+                            
+                            // 处理锚点
                             if (anchor) {
                                 if (data[anchor]) {
                                     data = data[anchor];
                                     if (Array.isArray(data)) {
                                         cat.children = data;
-                                        cat.type = 'folder';
                                         await loadAllLoaders(cat.children);
                                         continue;
                                     }
                                     if (data.children && Array.isArray(data.children)) {
                                         cat.children = data.children;
-                                        cat.type = 'folder';
                                         if (data.desc && !cat.desc) cat.desc = data.desc;
                                         if (data.readme && !cat.readme) cat.readme = data.readme;
                                         await loadAllLoaders(cat.children);
@@ -1651,17 +1654,15 @@
                                     continue;
                                 }
                             }
+                            
+                            // 处理普通的 JSON 结构
                             if (data.children && Array.isArray(data.children) && data.children.length > 0) {
-                                cat.type = 'folder';
+                                cat.children = data.children;
                                 if (data.desc && !cat.desc) cat.desc = data.desc;
                                 if (data.readme && !cat.readme) cat.readme = data.readme;
-                                if (cat.children) {
-                                    cat.children = cat.children.concat(data.children);
-                                } else {
-                                    cat.children = data.children;
-                                }
                                 await loadAllLoaders(cat.children);
                             } else {
+                                // 如果是单个文件节点
                                 cat._loadedData = data;
                                 if (data.readme) {
                                     try {
@@ -1690,7 +1691,7 @@
                 }
             }
         }
-
+        
         function buildFlatIndex(categories, parentPath = []) {
             categories.forEach(cat => {
                 const fullPath = [...parentPath, cat.name];
