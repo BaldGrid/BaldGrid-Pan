@@ -58,6 +58,21 @@
       ]
     },
     {
+      "name": "PDVM00通用内核",
+      "type": "folder",
+      "desc": "",
+      "readme": "data/rm/file/OPPO/QC/PDVM00/Kernel/main.md",
+      "children": [
+        {
+          "name": "Color OS12 Resukisu内核",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/OPPO/QC/PDVM00/Kernel/cos12.md",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRDlUaW1aTXF4M1FwSk5qVV9ncE9RMUFmdE43d0JWSTdYSVM4d1p5cjY5YjBN"
+        }
+      ]
+    },
+    {
       "name": "类原生",
       "type": "folder",
       "desc": "",
