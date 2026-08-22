@@ -177,6 +177,20 @@
       "readme": "",
       "children": [
         {
+          "name": "扩容2GB",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/aries/system/1.md",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRDBoZUJnTXROalE1aU9VSk14cG1BbUFUajN0Zndsa3RydDhXb1h2WHJ2a0x3"
+        },
+        {
+          "name": "还原分区表",
+          "type": "file",
+          "desc": "",
+          "readme": "data/rm/file/XiaoMi/aries/system/2.md",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRGh0eURKdEJDaFJyYXo2TG5Sb29xVUFULWcwOXBfb25UbHVJVE0xWnVwVjRz"
+        },
+        {
           "name": "修复版扩容包（推荐）",
           "type": "folder",
           "desc": "",
@@ -188,20 +202,6 @@
               "desc": "",
               "readme": "",
               "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQUV3Q2E4bHZ3SFFaOHFtR00zUE41QUFYZ0RiYy1XTERNRzBJc2JlMzFoTjRZ"
-            },
-            {
-              "name": "扩容2GB",
-              "type": "file",
-              "desc": "",
-              "readme": "data/rm/file/XiaoMi/aries/system/1.md",
-              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRDBoZUJnTXROalE1aU9VSk14cG1BbUFUajN0Zndsa3RydDhXb1h2WHJ2a0x3"
-            },
-            {
-              "name": "还原分区表",
-              "type": "file",
-              "desc": "",
-              "readme": "data/rm/file/XiaoMi/aries/system/2.md",
-              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRGh0eURKdEJDaFJyYXo2TG5Sb29xVUFULWcwOXBfb25UbHVJVE0xWnVwVjRz"
             }
           ]
         }
