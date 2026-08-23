@@ -14,7 +14,7 @@
           "name": "A11通用杂鱼内核",
           "type": "file",
           "desc": "Sukisu Ultra",
-          "readme": "data/rm/file/OPPO/PCHM10/sksu.md",
+          "readme": "data/rm/file/OPPO/QC/PCHM10/sksu.md",
           "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRG5MYnJlXzVaSlE2bExhV1ZkbGlLeEFXNGxQdjh6bFg5djZLeEE3X01XYzFJ"
         }
       ]
@@ -29,7 +29,7 @@
           "name": "橙狐recovery",
           "type": "file",
           "desc": "OFRP",
-          "readme": "data/rm/file/OPPO/PCHM10/ofrp.md",
+          "readme": "data/rm/file/OPPO/QC/PCHM10/ofrp.md",
           "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQjZUbnJ0ZVV3SlRJQUtLZDk0TXg2bEFjTWlKQkdub2dETnUtMXloMWFGeS04"
         }
       ]
@@ -50,21 +50,21 @@
               "name": "f.12",
               "type": "file",
               "desc": "",
-              "readme": "data/rm/file/OPPO/PCHM10/f12.md",
+              "readme": "data/rm/file/OPPO/QC/PCHM10/f12.md",
               "url": "https://dfs-serverauto-cn.allawnfs.com/dfs/24/02/01/ae3ade3c2c80422b95126f683af68849.zip"
             },
             {
               "name": "c.78",
               "type": "file",
               "desc": "",
-              "readme": "data/rm/file/OPPO/PCHM10/c78.md",
+              "readme": "data/rm/file/OPPO/QC/PCHM10/c78.md",
               "url": "https://dfs-serverauto-cn.allawnfs.com/dfs/23/12/05/5159ea34a0db4e4c987eaaac6491f31e.zip"
             },
             {
               "name": "a.55",
               "type": "file",
               "desc": "",
-              "readme": "data/rm/file/OPPO/PCHM10/a55.md",
+              "readme": "data/rm/file/OPPO/QC/PCHM10/a55.md",
               "url": "https://dfs-serverauto-cn.allawnfs.com/dfs/24/02/02/e8822ec2753a4d5bae9cbadb902d2b35.zip"
             }
           ]
@@ -82,13 +82,13 @@
       "name": "全分区回读",
       "type": "folder",
       "desc": "",
-      "readme": "data/rm/file/OPPO/PCHM10/qfq1.md",
+      "readme": "data/rm/file/OPPO/QC/PCHM10/qfq1.md",
       "children": [
         {
           "name": "A11全分区回读",
           "type": "file",
           "desc": "",
-          "readme": "data/rm/file/OPPO/PCHM10/qfq.md",
+          "readme": "data/rm/file/OPPO/QC/PCHM10/qfq.md",
           "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQXRLMGFJOVFNSVFxWGV4ZTRmemhRY0FYM2k0bnZ2LVAzbFNoWTFyS1AxRF9r"
         }
       ]
@@ -97,20 +97,20 @@
       "name": "OPPO A11/X 通用模块",
       "type": "folder",
       "desc": "",
-      "readme": "data/rm/file/OPPO/PCHM10/comMK.md",
+      "readme": "data/rm/file/OPPO/QC/PCHM10/comMK.md",
       "children": [
         {
           "name": "gsi强制适应水滴屏模块",
           "type": "file",
           "desc": "",
-          "readme": "data/rm/file/OPPO/PCHM10/MK/display.md",
+          "readme": "data/rm/file/OPPO/QC/PCHM10/MK/display.md",
           "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQmZQNmlmZXhOYlNwbmV0Mnc3RXNqQUFVMklsWHhZSUgwZ2U1M3hSQWdnV2tj"
         },
         {
           "name": "屏幕超频模块（仅限原装屏幕）",
           "type": "file",
           "desc": "",
-          "readme": "data/rm/file/OPPO/PCHM10/MK/sxl.md",
+          "readme": "data/rm/file/OPPO/QC/PCHM10/MK/sxl.md",
           "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRHE1Q3ZTRmx6M1NKaGdZWmRBdkVITUFRV0t1SlZ1TTlNczF4ZmxGT1NUallj"
         }
       ]
@@ -126,7 +126,7 @@
       "name": "工程abl",
       "type": "file",
       "desc": "OPPO A11 工程abl文件",
-      "readme": "data/rm/file/OPPO/PCHM10/abl.md",
+      "readme": "data/rm/file/OPPO/QC/PCHM10/abl.md",
       "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQmh5cTlKbnpyN1JaMHA0MXJnZWFHeUFkVHBub0pKdVlvUG50eUI1blNnQ3I4"
     }
   ]
