@@ -166,6 +166,81 @@
                 }
               ]
             }
+            {
+              "name": "安卓15",
+              "type": "folder",
+              "desc": "Android 15 (LineageOS 22)",
+              "readme": "",
+              "children": [
+                {
+                  "name": "Lineage OS 22",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "data/rm/file/XiaoMi/aries/GSI/LOS/22/1.md",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQzlYR3JfUEswSFRaalJkV1REQ3V6QkFmTG8wRnFxa1FlempYVVY2clpIWHdj"
+                }
+              ]
+            }
+            {
+              "name": "安卓14",
+              "type": "folder",
+              "desc": "Android 14 (LineageOS 21)",
+              "readme": "",
+              "children": [
+                {
+                  "name": "Lineage OS 21",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "data/rm/file/XiaoMi/aries/GSI/LOS/21/1.md",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRHh4OFhlcmNSa1JMUjVFN0lkNnI0cUFldVhPOXRGTE9HMTRzZGQ5ckZmSEZz"
+                }
+              ]
+            }
+            {
+              "name": "安卓13",
+              "type": "folder",
+              "desc": "Android 13 (LineageOS 20)",
+              "readme": "",
+              "children": [
+                {
+                  "name": "Lineage OS 20",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "data/rm/file/XiaoMi/aries/GSI/LOS/20/1.md",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQW9iRjFxNDludVI2NTA0YVV4T1VjV0FkQUpuYlY5MmVyOGZtaHZMbmNJNVc4"
+                }
+              ]
+            }
+            {
+              "name": "安卓12",
+              "type": "folder",
+              "desc": "Android 12 (LineageOS 19)",
+              "readme": "",
+              "children": [
+                {
+                  "name": "Lineage OS 19",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "data/rm/file/XiaoMi/aries/GSI/LOS/19/1.md",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQlQtVU42N24zaFE0amFQVUNkT1ZqdkFhclA2S0hCSFdja0J4ekZuNzR1VnNn"
+                }
+              ]
+            }
+            {
+              "name": "安卓11",
+              "type": "folder",
+              "desc": "Android 11 (LineageOS 18)",
+              "readme": "",
+              "children": [
+                {
+                  "name": "Lineage OS 18",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "data/rm/file/XiaoMi/aries/GSI/LOS/18/1.md",
+                  "url": "https://1drv.ms/u/c/6ed1c23368a7eb3a/IQDgL3wFVg05SpfanBglJe_qAZqLWBtvBfq8Bqx0NzlBwf8"
+                }
+              ]
+            }
           ]
         }
       ]
