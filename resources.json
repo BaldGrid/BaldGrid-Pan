@@ -90,28 +90,6 @@
               "children": []
             }
           ]
-        },
-        {
-          "name": "通用工具",
-          "type": "folder",
-          "readme": "data/rm/tools.md",
-          "children": [
-            {
-              "name": "Magisk",
-              "type": "loader",
-              "src": "tools/tools.json#magisk"
-            },
-            {
-              "name": "OrangeFox Recovery",
-              "type": "loader",
-              "src": "tools/tools.json#orangefox"
-            },
-            {
-              "name": "白叶刷机工具",
-              "type": "loader",
-              "src": "tools/tools.json#baiye"
-            }
-          ]
         }
       ]
     },
@@ -148,6 +126,18 @@
                   "src": "data/rm/baldis/demo_midi.json"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "name": "工具",
+          "type": "folder",
+          "readme": "data/rm/tool.md",
+          "children": [
+            {
+              "name": "main",
+              "type": "loader",
+              "src": "data/res/tool/main.json"
             }
           ]
         }

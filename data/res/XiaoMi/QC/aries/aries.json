@@ -9,7 +9,23 @@
       "type": "folder",
       "desc": "MIUI操作系统",
       "readme": "",
-      "children": []
+      "children": [
+        {
+          "name": "MIUI v5合并分区",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "文件 + 教程.zip",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQnVZaHk5WkM3R1NMNmNjcHJCdi1MZUFiREJYRFk2NjVzejQweWkwVlRpZWRB"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "类原生",
@@ -487,6 +503,108 @@
           "desc": "",
           "readme": "",
           "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQXB5Z3ZYWXZFa1RvOHNiXy1pSzcwekFhZDhVVEpsNXcxSC02QkZET3VuSXpF"
+        }
+      ]
+    },
+    {
+      "name": "第三方recovery",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "TWRP",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "TWRP_2.8.1_Mi2S_miuies-Juliusssss_20141126_signed",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRHZvams4YTVrbVRyM0RZeEd1QnhFVEFjMzY1NUpIbHhFOXFucTJsckxoN3U4"
+            },
+            {
+              "name": "TWRP-3.3.1-0-GuaiYiHu-aries",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRREpkdGx3VUFDM1NKSXZUMktubUFLTUFkLUtrYV9EV0kyQVMtRHBuV2EwWlRv"
+            },
+            {
+              "name": "TWRP-3.4.0-0-JackPan-aries_zh_CN",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQjZab005S01QY1Q3SEhxWTdqMV9aYkFkWjNjUmx4X3Z1ek5JZEs0STBYVE9j"
+            },
+            {
+              "name": "TWRP-3.5.2-20210621-aries",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRHdxYU9qVnhzR1I0ZVdicWZyZWhKeEFYc3NrTXVBbmxSZkNfNmphOTVPMXJj"
+            },
+            {
+              "name": "TWRP-3.5.2_9-0-20211015-aries",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQmV1czctZVVBeFRLRG9TNWtqdHB5N0FWQl9Da2xPV3Y2ci1kdXdxUENfTlRZ"
+            },
+            {
+              "name": "TWRP-3.6.0_9-0-JackPan-aries_zh_CN",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ2ZiVzZCS0FTVVRZQ3QzRHN3SmxibUFaWERMUEdwMU5xWEQ2TlRJaTFzLXhz"
+            },
+            {
+              "name": "recovery-TWRP-aries-20260818",
+              "type": "file",
+              "desc": "",
+              "readme": "data/rm/file/XiaoMi/aries/GSI/LOS/23/2.md",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQmxTVGtCM1RyMFRLQWVwNkRabXR5WUFZOFBVNnYxaG1HRW1RUC1YbTBMMjZN"
+            }
+          ]
+        },
+        {
+          "name": "橙狐",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "OrangeFox-R11-Unofficial-aries",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQnFPcmtjZ3NWd1NMc3Nrcko0NG1mSEFVMkdWV21jOENUcUJRTlVNaXE5Zm04"
+            }
+          ]
+        },
+        {
+          "name": "CWM",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "MIUI6_MI2_Recovery",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQmNSUUE0YkN1Z1E0VHFieHFMSms5RkFYM0tpVzdGdmJoYzItdEgxZlRXdHBr"
+            }
+          ]
+        },
+        {
+          "name": "小米2s 一键刷入recovery",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQTdzVUdoOE9TWlFZVHR3NWllRmtVUkFmYUJDaXd2TWZSQlZfZ3pBM1h4WlZr"
         }
       ]
     }

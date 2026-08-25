@@ -1,0 +1,68 @@
+{
+  "name": "工具合集",
+  "type": "folder",
+  "desc": "常用工具汇总",
+  "readme": "",
+  "children": [
+    {
+      "name": "下载器",
+      "type": "folder",
+      "desc": "多平台下载工具",
+      "readme": "",
+      "children": [
+        {
+          "name": "Windows",
+          "type": "folder",
+          "desc": "Windows 平台下载器",
+          "readme": "",
+          "children": [
+            {
+              "name": "NDM下载器",
+              "type": "file",
+              "desc": "Windows 版下载器",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRE4ybmdGd2lMS1M3eDBOM1p4WDMyMEFTVHhGdEx4TkhFYTROYVNzTEdoMTJv"
+            }
+          ]
+        },
+        {
+          "name": "Android",
+          "type": "folder",
+          "desc": "Android 平台下载器",
+          "readme": "",
+          "children": [
+            {
+              "name": "1DM+下载器",
+              "type": "file",
+              "desc": "Android 版下载器",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQWJ4WHJSTjJ3TFJiaHV1ZzJVXzE0WEFkUDdWX0FXUmJDTTVzU1ctM2NmOXdV"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "运行库",
+      "type": "folder",
+      "desc": "系统运行库组件",
+      "readme": "",
+      "children": [
+        {
+          "name": "运行库安装程序",
+          "type": "file",
+          "desc": "运行库",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQlNFRjQ0UTUtSVI2ME0tN1VoRHQtYUFjRkNoZE5qMWJYbVd2Y19RQjVJVkZB"
+        }
+      ]
+    }
+    {
+      "name": "管理员取得所有权",
+      "type": "file",
+      "desc": "管理员取得所有权",
+      "readme": "",
+      "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQU9fTDZ2bmdweFFJeEFKSjVYVGd2X0FVZWNZcndReXJYSEFGUXc4WnZUOUpj"
+    }
+  ]
+}
