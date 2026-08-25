@@ -1,0 +1,1214 @@
+{
+  "name": "OPPO A57(t)",
+  "type": "folder",
+  "desc": "",
+  "readme": "",
+  "children": [
+    {
+      "name": "9008引导文件",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "prog_emmc_firehose_8937_ddr",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ2I2N3dONHF3WlJwR0FKdDQwVzlwYUFUQklfalJvam43TFo0Y2dxZXBLdFFv"
+        }
+      ]
+    },
+    {
+      "name": "A57T改全网通",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "A57T UnLockTool_6.0",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQnh1TDZQdXk2d1NMSkt2M3F2UDVsLUFVY3hwZDBRd3VLOGF6RmtDM1NtUG1v"
+        }
+      ]
+    },
+    {
+      "name": "kernel源码",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "kernel-a57-16061-open",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQjgyT3AtWElFVVE2WnFSbXVNM2NUX0FSaW11b1NfbEVlUlBtekNxeEhuMFBV"
+        }
+      ]
+    },
+    {
+      "name": "lk2nd（跟fastboot差不多）",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "9008版",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ21qTEpJME1pd1E1Nm5YNlNPc05ZNkFmLVBrU1FmZVNpRW13c1Z3VENDU2lB"
+        },
+        {
+          "name": "刷了lk2nd不开机的解决方法",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQVpEc0FpVjR5OFJiUFRScFJFYzI2RUFVRVU1N0ZMMmFrcXhEMFZtUkN2M3JZ"
+        },
+        {
+          "name": "单镜像版",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQk9kLXBDWGFMRVJLdVBObW5jTnl0MEFXM08zSi1oaWN5N0JYYzFaRkZlZV9N"
+        }
+      ]
+    },
+    {
+      "name": "Logo修改工具",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "LOGOTOOL",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRENsVlQxNUYwOFRhVG1WOFFoa24wS0FTTHZvems0U0J3VEJ6ZDlEcXVMQ3VR"
+        }
+      ]
+    },
+    {
+      "name": "oppo a57 4g一键刷入系统脚本 by KirinNova",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "bat版",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQkhtS2htZTdpOFQ2OXMxWHRwdlh1dkFkLWk3MHFVbE1FN3BYZXZxa3hpTjB3"
+        },
+        {
+          "name": "exe版",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRFNDLUxWV1BaOVNaQ2pVWTRGSVVBWUFVWDFtSmhRS3V1OF9GV0xCTlBpMlo0"
+        }
+      ]
+    },
+    {
+      "name": "OPPO_A57_4G一键刷机工具 by KirinNova",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "OPPO A57 刷机工具 V3.1",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQWw5bG1DQ1lIalFKc0JpWUFwYWZWT0FRaHplTWhxQ0lxSVBFWGJySXlnVkFz"
+        }
+      ]
+    },
+    {
+      "name": "Recovery",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "OrangeFox",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "OrangeFox-R11.1_EXPEREMENTAL-Unofficial-A57",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRG95bGozc1hqUFE3N2ZmelFNUzZ0MkFabFpoMldWaEY2N1daUFdhUHFGZkhJ"
+            },
+            {
+              "name": "OrangeFox-R11.3-Unofficial-A57",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQUl5WmUzVjNhOFJxaGtBTkk4LVZlQUFTWTh1QWhWa09fakpPMklHN0t5WmNN"
+            },
+            {
+              "name": "OrangeFox-Unofficial-z2x",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQnItcF9oLWdLZVJiUGg1MkV3Z2RJU0FSUWpGVTJhTEZjNTllTFMzX285dmxF"
+            }
+          ]
+        },
+        {
+          "name": "PBRP",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "PBRP-A57-4.0-20240615-1341-UNOFFICIAL",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ1ZqWGw3OU53SVJLajVTc3o5blVhRkFXWUZLLW5ISW14d21PbXBUbHRLVVA4"
+            }
+          ]
+        },
+        {
+          "name": "SHRP",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "SHRP线刷",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRGh1dzlmcWRuY1RZdGk4OXlBNmJJNkFVcG5MR3ctV0JzV0RBXzg5VG5NZTVr"
+            }
+          ]
+        },
+        {
+          "name": "TWRP（一般都用这个）",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "IMG版TWRP（单镜像）",
+              "type": "folder",
+              "desc": "",
+              "readme": "",
+              "children": [
+                {
+                  "name": "动态分区版",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": ""
+                },
+                {
+                  "name": "TWRP_3.1.0",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRHRrRDVPREd3blFaOEdWT2l1UlFtQUFlYWxKaWtNM2E2cHRPSlZQa1ZxSUlJ"
+                },
+                {
+                  "name": "TWRP_3.5.2-9-0",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRGsteTlwOWR6ZVQ2M3BoTXRraDFiaEFRX3lBVDh0Ymd2T2VoeUtrOVJvUVFV"
+                },
+                {
+                  "name": "TWRP_3.7.1-12-2",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ1kzTXE5dlp3cVNyTE5YWVdsdWcwYkFaaWJpTVJyVVpHNzFGTkxhVmVVWDEw"
+                },
+                {
+                  "name": "TWRP_3.7.1-12-3",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQnFwR1FPZXBoU1I0VEJBTGl6Qzh1MEFXT1lwV2tjZnUxUVlra0xhT2JqQ244"
+                },
+                {
+                  "name": "TWRP_3.7.1-12-4",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRFplOW5BdENQaVNxeHRYR181djJQX0FRTVJHZjRhUHNuZU1kUXBUdU1QZkJv"
+                }
+              ]
+            },
+            {
+              "name": "ZIP版TWRP（9008线刷）",
+              "type": "folder",
+              "desc": "",
+              "readme": "",
+              "children": [
+                {
+                  "name": "twrp-3.7.1-12-4_retrofit_dynamic_v3",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": ""
+                },
+                {
+                  "name": "twrp-3.7.1_12-2",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": ""
+                },
+                {
+                  "name": "twrp-3.7.1_12-4（推荐）",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": ""
+                },
+                {
+                  "name": "TWRP-3.1.0(用于安卓6.0.1)",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQmRUS3J0bU9kMVM2ZXRVeVdPX0I2X0FYNG00MjFUM29ac3FDTjJKVjNrWFdZ"
+                },
+                {
+                  "name": "twrp-3.5.2_9-0-A57",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQm9zQklWYjBwd1I3UU02SFZuNzY5bUFXVU5Ga2ZtMWgzb290aXRRbEhXWDBv"
+                },
+                {
+                  "name": "twrp-3.6.0_9-2-A57",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQXlvNW1tcnNnb1FxOW1ldVdvVVd5X0FlN1RCZ3RwaTh4VmpBT21RSGlESko0"
+                },
+                {
+                  "name": "twrp-3.7.1_12-3-A57",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQmxaY2pYcFpXRVFZX1VTVU44SFFHZEFhZFNtN3dOb2tuR1lLaks5bngwaGZ3"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "奇兔TWRP",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "IMG版TWRP（单镜像）",
+              "type": "folder",
+              "desc": "",
+              "readme": "",
+              "children": [
+                {
+                  "name": "奇兔TWRP3.1.0",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQi1zTms4X0hubFI1YXdOTHl1TGk5VEFkc3lSaUl6Um8zRTQyRlI5ZUJOdnpN"
+                }
+              ]
+            },
+            {
+              "name": "ZIP版TWRP（9008线刷）",
+              "type": "folder",
+              "desc": "",
+              "readme": "",
+              "children": [
+                {
+                  "name": "奇兔TWRP线刷",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ2NvUzhhZjhJVlQ2NXJFc3cydEJGRkFjU1FpaHhwTDdTdWdacHNlRUl5Y193"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "官方ColorOSRecovery",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "recovery-20170112",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRGExUzZrck9qM1FxNGt2aG5KNWdRZEFaNmRKZGszNzlfNnFQcUsyQjlfXzRF"
+            },
+            {
+              "name": "recovery-20191205",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ25xdjhSMGZKWFJia3hJRDNxc0xTR0FkdFdaQ1NCMExMS1M5VnUwdG03OHRj"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Recovery刷入工具",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "9008刷入Recovery工具",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ1FmdDhfbS1IN1NZbC1MUkw1M3F4WEFWTnFpOV9MRFNpRGVSb2lwYXlSY2dR"
+        },
+        {
+          "name": "MiFlash2020-1-17-0",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQTg4RWc0Ukk0TlE3MXFtV3F0Ty1EUUFVN2RLQ2xfdWxUVzlFSU1yc3pwWWZZ"
+        },
+        {
+          "name": "搞机助手V4.9.1",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ3RmZ1M5UDM2aFRyczRWOEpaWWp4bUFVUWpOZjV2ZHNOUTdrdUVHZWdHbFFz"
+        }
+      ]
+    },
+    {
+      "name": "全部补丁文件汇总",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "Flyme6所需补丁",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "Flyme6Magisk补丁",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQXpFTlZpY1VrZ1NiSXZBclg0clNycEFmcUlIXzVtS1FoXzhhaldVTzNxczJn"
+            },
+            {
+              "name": "修复flyme的主题商店和应用商店",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ2NHaDRrYjVxYVRLcC1xVVhWb1NwakFVdjdER2Ewem02MGJ0TFcwY2lfYWhn"
+            }
+          ]
+        },
+        {
+          "name": "MIUI8所需补丁",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "亮度修复包",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQWd6cWZpUFdHdVM1YnZOd29WZkRiMEFWV3dmU2hKbFpGenIyT21oUUM1VjVN"
+            },
+            {
+              "name": "修复除扬声器的声音",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQWVYdVFFSDUwcFQ3cldxLWFNRnFMNkFmTmY2djJnU0pTRkJTZ1RacGlIY1BN"
+            },
+            {
+              "name": "指纹修复补丁",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQmxBX05iUXpfb1NLaDZiZHJuUHJNU0FjY3ZrVXRnOUIteVBCdEs4TVJOXzRV"
+            },
+            {
+              "name": "相机修复包",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQUZ4aEkxM0FBeFM0NHVJdGxvWUtIR0FZanROVUozYU5ETGJkWlR0M2pMNndR"
+            }
+          ]
+        },
+        {
+          "name": "MIUI9所需补丁",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "MIUI 9bug修复包",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ1loalRsWjYwWlJJVGpWRXJxT25POEFhSFYxdFRFeHluTVVjSGt4dU1EOVNn"
+            }
+          ]
+        },
+        {
+          "name": "伪装脚本",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "Win版伪装脚本",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQklmZlBxRzV5U1RJZHRnMXRLdG81T0FRckx1RVJJSjU2ZjN3N2ZNS1Bad01F"
+            },
+            {
+              "name": "新版伪装脚本",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ1dHNm5WZHVGVFFyVlhNdDRTeHBWREFVZDJFSmhqRkkyWnFrWm1iLWQ4VWdB"
+            },
+            {
+              "name": "旧版伪装脚本",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRFJxNkVkS1dMOVFLSTJEUHQxck1ib0Fkd3FYa1hvckhoYjZ4a21EdGwwanZJ"
+            }
+          ]
+        },
+        {
+          "name": "分区补丁",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "perisit分区补丁",
+              "type": "folder",
+              "desc": "",
+              "readme": "",
+              "children": [
+                {
+                  "name": "1.zip",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRDh6UFFTY2xGdFRMZk1vNGt4NkI5NkFmNFVSZjJDelhvbVhadjhJNjZBcGg4"
+                }
+              ]
+            },
+            {
+              "name": "内部存储修复补丁",
+              "type": "folder",
+              "desc": "",
+              "readme": "",
+              "children": [
+                {
+                  "name": "1.zip",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQURMeWFaaGxQQlFxZEQyNHVBNUp3aEFibzZJVjhqZl9uQzhNVFUzSzc4S3dF"
+                }
+              ]
+            },
+            {
+              "name": "解锁system分区补丁",
+              "type": "folder",
+              "desc": "",
+              "readme": "",
+              "children": [
+                {
+                  "name": "1.zip",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQWxva285d3BPTlRLUXE4UVdWU3padUFmUmpleFNtUEpZRVNvOW9qR1EyMDBv"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "屏幕超频补丁",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "屏幕补丁",
+              "type": "folder",
+              "desc": "",
+              "readme": "",
+              "children": [
+                {
+                  "name": "70HZ",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQmhnT1A2dDQxdVJwOHBCS2c0c0FuQ0FZcTZWTjNqTTl3Z245d0JHOFRFY2tV"
+                },
+                {
+                  "name": "72HZ",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ0ljMjJlTFdodVJJM3NOempUZlNockFldkpzdDV3bkQ4NE9KWE8wWE1tRWlR"
+                },
+                {
+                  "name": "75HZ",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ3NUNmtYZ3VCaFNidG1nTnR0WFp0dEFUY18wYl9aRmhWbU83Q2pWT3pfS0sw"
+                },
+                {
+                  "name": "80HZ",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQmJ4ckNKUjFDNlNMMFJPVlJvSWRzTkFTc0tfem4wY05SeEE1UGFqX0F2YXFn"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "A57_STATIC_TO_DYNAMIC_16G_DESTRUCTIVE",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQnc4SXBDT0s4UVQ0bUpBQ1g2ZnZRQkFaeVRCMy1YTTRUcnVlcjl0YmJnVnM0"
+        },
+        {
+          "name": "Magisk模块-SELinux强制严格",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRDU0MDJ0TjRvblM0UEVEMEtmWW0ySUFTTVJhU0JRUjlLSmZVX0dZUlZQSmZZ"
+        },
+        {
+          "name": "Permissiver_v5（闪退-卡二-软重启刷）",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQy16QUVTcHU0dlQ3YVNqc1BYSFg3TkFheGtfTnYtdW00RFZWWHJ1a0hOMXBv"
+        },
+        {
+          "name": "亮度补丁",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ21PUVNRTmhzd1RwVHFlamVhNVZzd0FhWEdZamJaS2IzdUN0b0t0MjgzeVVn"
+        },
+        {
+          "name": "倒屏修复补丁",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQTZXUE40MjNHSVM3UEhKTnc4MzFORkFkU1Y0NzdUY3VuMm1rNzRlbmM3TC1v"
+        },
+        {
+          "name": "去除ColorOS3.0第三方软件",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRDBoZHhHM1RmcFFaV3dndEVHZXpjR0FVUjl2d0dfSU5OTXVYVjF1aDZVbnVB"
+        },
+        {
+          "name": "宽容补丁Patch3",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQXpYVmd5MC1qbVQ0bF9aUGVaV0VDTkFWa3JVRm5tN0VOb1ladFIxV2xXRTU4"
+        },
+        {
+          "name": "跳过开机引导(通用不论系统rec直接刷)",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQjJhc09rZm1mZ1FyNTNFOVI5aHN1NUFVaHhTYnRxZUcza0RLZmdMT1NfVUR3"
+        }
+      ]
+    },
+    {
+      "name": "内核",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "BPF内核",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "OPPOA57-LineageKernel-BPFKernel-26.01.10",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQjIzZ0ZqM3RHUVM1UWtoSy1TMlZvQ0FUTHFaellEWi1zS0llYkVsa3BMaWlr"
+            }
+          ]
+        },
+        {
+          "name": "KernelSU",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "KernelSU-v3.2.2_A57-AnyKernel3",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQVp4bU0xZGxBelJiQTZsUk5HX0NqdEFYdEZmQVpWbThaN1pLdS14TzlIdmVv"
+            },
+            {
+              "name": "KernelSU_v3.2.2-10-legacy-50-g648e5988_32498-release",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQXE1ZEEwSW94VFNvc29yUnhaN18ta0FSYWVMek1YVzc0SzlVcTNYTFhValdn"
+            }
+          ]
+        },
+        {
+          "name": "MakoSU",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "MakoSU-v4.1.8-compat-SUSFS-v2.2.0-OPPO-A57",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ1JVZGh0ZXhRa1Jadk9KdFZpUWNzN0FmVmZmcTNsclVabllOSVhnOXA2N25j"
+            },
+            {
+              "name": "base.apk",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQnM5d0p0WHhtTFNMR0dJLVRYU2dlRkFiNnRkRmd3NkV5anQ3SWlKZUo2bERr"
+            }
+          ]
+        },
+        {
+          "name": "ReSukiSU",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "新",
+              "type": "folder",
+              "desc": "",
+              "readme": "",
+              "children": [
+                {
+                  "name": "SukiSU-v4.1.2-SUSFS-v2.2.0-OPPO-A57",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ3hReXVCeHhRV1Q1anFZSV90V0YyRUFUQlR6dDE5ckVKdFNrMlN1NUN2bHpR"
+                }
+              ]
+            },
+            {
+              "name": "旧",
+              "type": "folder",
+              "desc": "",
+              "readme": "",
+              "children": [
+                {
+                  "name": "A57-ReSukiSU-ayin-AK3",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQm5EQ3ZMa1NFelE1YlpPMTFXRFRzX0FTZm52LW43MEpCZmJEQlBRaWxQRzBV"
+                },
+                {
+                  "name": "Droidspaces",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQkNLMk1pZGt1MFFxZnlrdV9tZm9zbEFmVzlyZFl5c19ZMklodTNnRDlWUmpZ"
+                },
+                {
+                  "name": "Droidspaces-Docker-KSU-Bump-ReSukiSU-lineageos_A57-AnyKernel3-20260430-213222",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQUhiMGp5X0RtTlQ3Smc0Yk0xUEwyYUFkVjNHdHU1cWtLR1FheDNtZE55SlZZ"
+                },
+                {
+                  "name": "ReSukiSU-SUSFS-v1.5.5-OPPO-A57",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ2E3QXoxU045Y1NaUGVHWnVxa3lYa0FiMUZhSmQwd3M2dHFGVDhqWDJfUGM0"
+                },
+                {
+                  "name": "ReSukiSU-SUSFS-v2.1.0-OPPO-A57",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ2E3QXoxU045Y1NaUGVHWnVxa3lYa0FiMUZhSmQwd3M2dHFGVDhqWDJfUGM0"
+                },
+                {
+                  "name": "UPDATE-AnyKernel3(1)(1)",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ3pGV3VkUWhSZVJwRWRWZXFVOVFVRkFSZWdNYXNUZ3F6UUhUam1oWi1SYkJv"
+                },
+                {
+                  "name": "UPDATE-AnyKernel3(17)",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ29iZXRDZFlyNFRJS2pNaEo5ZE9zSkFUZ21sSVlPWHI4M3VjVVNycHRaejI4"
+                },
+                {
+                  "name": "UPDATE-AnyKernel3(3)",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQzNvNmk5Z0NmZFNiUWJGRFVnUHNpb0FYLWt2clNaNlpxcGZudjBWOTl0MElJ"
+                },
+                {
+                  "name": "UPDATE-AnyKernel3(4)",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRFBzQ2dFdXowOVM0bkRjUWVZd0JpWkFYYkJKbkxDdldGdnA1VEo0bXZzcENJ"
+                }
+              ]
+            },
+            {
+              "name": "安装包",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ1VIaGlfdWFmWlI0d3oxUXhDVXdxd0FWU1pUS2tGMUU1eXZ1UGE1dzlyVFpZ"
+            }
+          ]
+        },
+        {
+          "name": "SukiSUUltra",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "新版",
+              "type": "folder",
+              "desc": "",
+              "readme": "",
+              "children": [
+                {
+                  "name": "",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": ""
+                }
+              ]
+            },
+            {
+              "name": "旧版",
+              "type": "folder",
+              "desc": "",
+              "readme": "",
+              "children": [
+                {
+                  "name": "",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "基带",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "基带",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRDRVNW5mWXFZUFI0QS1VSlg0ajJLckFmUUZSREZrTENSelBrenNtOTdOYmRv"
+        }
+      ]
+    },
+    {
+      "name": "屏幕检测",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "判断方法",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/t/c/6ed1c23368a7eb3a/IQACtJS8ij1hQYrhaxeEZ1qfASYzulxXBrh5mT0ND2TM--0"
+        },
+        {
+          "name": "屏幕检测",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQnpQRmczRWgyUFRiUjgyUDM2ejBwNUFYOElvZDYzVnU0QU1lajNfOVotSlR3"
+        }
+      ]
+    },
+    {
+      "name": "底包",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "HyperOS1.0底包",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "HyperOS1.0T-A57-Patch1",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQW1fLXVaTW5HZ1NKVWhXdUpGekdnekFmYW56SlhOOXk4LVFheTdtMVp4S3Bv"
+            },
+            {
+              "name": "HyperOS1.0T-A57-Patch2",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQi03Z0tLRndnS1JKVGRtUEltVGV4c0FSa1YzQ0xPRzRPMGJFOGlFWmY0dW1B"
+            }
+          ]
+        },
+        {
+          "name": "HyperOS2.0底包",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "HyperOS2.0U-A57-Patch1",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRGl6S3FsR1IzYlNLWk8yNzhrZkpsZUFZRGs5eWF6dHVEc1dxNzhiUWtPZk5r"
+            },
+            {
+              "name": "HyperOS2.0U-A57-Patch2",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQmJjSVNZaWd1Y1NLRDFDLThJQVJNekFaYmpGQlNBbWZ3Q1M1R3AxWFhYY3pn"
+            }
+          ]
+        },
+        {
+          "name": "LineageOS底包（常用）",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "LineageOS-22.0-20260715-A15底包",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRDMzU3U1RklKWlNid0xoWE9wUWVVVEFRSTNEYUVjcUlKNzRKUDMyVkdvdUpR"
+            },
+            {
+              "name": "LineageOS-22.1-20260715-A15底包",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQkEtTUxQc0s0NFNJb1NEOV9HREplZkFmc196eG9aSHlSUFZIYl9zX1VqSFNB"
+            },
+            {
+              "name": "LineageOS18-20250523-A11底包-V1",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ0wyVnRtVkJValRZMmFJVkM2bm1ncUFkWHZSdEpTa3NuMWppd2I3MktnUmE0"
+            },
+            {
+              "name": "LineageOS18-20250523-A11底包-V2",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRGdjVXpfdUtLVVFZSW9aX2VzMDAydEFaWmNBZ0hnR09iSlVSNHUwbVBGNndR"
+            },
+            {
+              "name": "LineageOS19-20250523-A12底包",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ3c5bExtQXlkbVFvdE94V0k2dGlfQkFUbTNsQzdfcUlEYnRGMjVlSENCZUcw"
+            },
+            {
+              "name": "LineageOS20-20250522-A13底包",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQVBTUTN1cGtSeVNxdmxJVjVoOHlOMUFkemRUS29jLWVQUF93ZC1hVzkyQkw4"
+            },
+            {
+              "name": "LineageOS21-20260201-A14底包",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQmtsa3ctMWRnYVRZdkFHQVJ1V0V4dUFUcUV5Ql85RlNTZWUzYnEyel9QWTNv"
+            }
+          ]
+        },
+        {
+          "name": "A13 vendor+sukisu宽容卡刷",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQm03WjdUWVlIVlFiWTNfQ0x6Ul9paEFZV2QyM2tlTU5sVGhvTWpFS1J5R1g0"
+        },
+        {
+          "name": "A57-firmware",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRFYzQTZjMWkwaFRha2R4RGExbmFzRkFmLUFfbDN3RGdheU9BWU1BcFVuLTlV"
+        },
+        {
+          "name": "OPPO-A57-firmware-20240629",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRDRUc0lxeDBtSlFJaG9PY2pUeHBLTEFXQkNEVENvbUx4UElsYktLdXNIVmVB"
+        }
+      ]
+    },
+    {
+      "name": "扩容System分区",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "Recovery版",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "第一版(基于国际版分区表)",
+              "type": "folder",
+              "desc": "",
+              "readme": "",
+              "children": [
+                {
+                  "name": "",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": ""
+                }
+              ]
+            },
+            {
+              "name": "第二版(基于原版分区表)",
+              "type": "folder",
+              "desc": "",
+              "readme": "",
+              "children": [
+                {
+                  "name": "",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": ""
+                }
+              ]
+            },
+            {
+              "name": "选择方法（默认推荐第二版）",
+              "type": "folder",
+              "desc": "",
+              "readme": "",
+              "children": [
+                {
+                  "name": "",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Windows版",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "国行版分区表",
+              "type": "folder",
+              "desc": "",
+              "readme": "",
+              "children": [
+                {
+                  "name": "",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": ""
+                }
+              ]
+            },
+            {
+              "name": "国际版分区表",
+              "type": "folder",
+              "desc": "",
+              "readme": "",
+              "children": [
+                {
+                  "name": "",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "改动态分区",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "OPPO_A57_通用ROM动态分区转换器_v2 by Anyin",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "OPPO_A57_通用ROM动态分区转换器_v2",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQkp0Rjc1S0lvaVRZTXJIaEVxOEZvSEFXNFNJNTlybng4Y1VSM1U2WnJLY3lZ"
+            }
+          ]
+        },
+        {
+          "name": "9008刷入Recovery-TWRP-3.7.1-12-4_retrofit_dynamic_v3",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRFA1bVROUm41NFRwYzllNFB1S1ZHN0FWUzltUzZKSEluUjVXSS05NnNCVDVR"
+        },
+        {
+          "name": "A57_BEFORE_FIX-Beta3",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQmxfX2JCUWVQaVQ1d0pLLVlSR0pGOUFiZGhVOWlOeTlFR0tWRUhqUEJValcw"
+        },
+        {
+          "name": "A57_STATIC_TO_DYNAMIC_AUTO_4G-16G_DESTRUCTIVE",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRFo4bWQyM3dkUVE0cGhpXzE5RGpfNUFSX3pCMm1yLWR0QW1hY1JpcTBYMC04"
+        }
+      ]
+    },
+    {
+      "name": "清除锁屏和应用密码（ColorOS3.0系统可用）",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "A57-清除锁屏和应用密码-ColorOS3.0系统通用版本-Beta4",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQnI0Tm9iR1FSclFZOHQ5b21yWFJxcEFROFIwOFVWd2xFZ0szN2luMVliX1dV"
+        }
+      ]
+    },
+    {
+      "name": "花屏机器刷了rec后花屏解决方法",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "A57-191205原rec和aboot-Beta3版",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRGQwWG8xcTBDblRLV2xrTXlMRjdqQUFRZVpBSHpBbG5TNUpzcm5TaE9iNDdr"
+        }
+      ]
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 [
   {
     "name": "雪中明月",
-    "role": "主题作者",
+    "role": "主题作者 & 提供部分资源",
     "avatar": "xzmy.jpg",
     "homepage": "https://xn--fiqz59cpva341l.top/"
   },
@@ -12,7 +12,13 @@
     "homepage": "https://www.coolapk.com/u/37611827"
   },
   {
-    "name": "DeepSeek",
+    "name": "Max193",
+    "role": "提供部分资源",
+    "avatar": "max193.jpg",
+    "homepage": "https://m.bilibili.com/space/3546643299306105"
+  },
+  {
+    "name": "大肥鱼",
     "role": "提供帮助",
     "avatar": "ai1.png",
     "homepage": "https://www.deepseek.com/"
@@ -24,7 +30,7 @@
     "homepage": "https://chatgpt.com/"
   },
   {
-    "name": "Gemini",
+    "name": "哈基米",
     "role": "提供帮助",
     "avatar": "ai3.png",
     "homepage": "https://gemini.google.com/"
