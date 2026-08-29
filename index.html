@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>白叶141の资源站 · 转圈圈加载</title>
+    <title>白叶141の资源站</title>
     <style>
         * {
             margin: 0;
@@ -1612,222 +1612,74 @@
         let readmeTimer = null;
 
         // ===== Android 返回键 / 浏览器历史记录 =====
-        // 用 History API 保存站内目录状态，这样 Android 系统返回键会先返回上一级目录，
-        // 只有已经回到根目录后，下一次返回才会退出页面。
-        let historyReady = false;
-        let restoringHistory = false;
+        let bgHistoryReady = false;
+        let bgRestoring = false;
 
-        function getHistoryState() {
+        function bgMakeState(path, special, depth) {
             return {
-                baldgrid: true,
-                path: Array.isArray(currentPath) ? [...currentPath] : [],
-                special: currentSpecialPage || null
+                __baldgrid: true,
+                depth: depth,
+                path: Array.isArray(path) ? path.slice() : [],
+                special: special || null
             };
         }
 
-        function pushSiteHistory() {
-            if (!historyReady || restoringHistory) return;
-
-            const nextState = getHistoryState();
-            const currentState = history.state;
-
-            // 同一页面状态不重复压入历史记录。
-            if (currentState &&
-                currentState.baldgrid &&
-                JSON.stringify(currentState.path || []) === JSON.stringify(nextState.path || []) &&
-                (currentState.special || null) === (nextState.special || null)) {
-                return;
-            }
-
-            history.pushState(nextState, '', window.location.href);
+        function bgPushCurrent() {
+            if (!bgHistoryReady || bgRestoring) return;
+            const old = history.state;
+            const depth = old && old.__baldgrid ? (Number(old.depth) || 0) + 1 : 1;
+            history.pushState(
+                bgMakeState(currentPath, currentSpecialPage, depth),
+                '',
+                window.location.href
+            );
         }
 
-        function replaceSiteHistory() {
-            history.replaceState(getHistoryState(), '', window.location.href);
+        function bgGoRoot() {
+            if (!bgHistoryReady || bgRestoring) return;
+            const state = history.state;
+            if (!state || !state.__baldgrid || Number(state.depth) <= 0) return;
+            history.go(-Number(state.depth));
         }
 
-        function restoreHistoryState(state) {
-            if (!state || !state.baldgrid || !allData) return;
+        function bgRestore(state) {
+            if (!state || !state.__baldgrid || !allData) return;
+            bgRestoring = true;
 
-            restoringHistory = true;
-            try {
-                if (state.special) {
-                    showSpecialPage(state.special, true);
-                } else if (Array.isArray(state.path) && state.path.length > 0) {
-                    navigateToByPath(state.path, true);
-                } else {
-                    navigateTo(null, true);
-                }
-            } finally {
-                // navigateTo/showSpecialPage 内部有动画延迟，所以不能立即解除，
-                // 否则异步渲染完成后可能再次写入 history。
-                setTimeout(() => {
-                    restoringHistory = false;
-                }, 450);
-            }
-        }
-
-        window.addEventListener('popstate', (event) => {
-            if (!historyReady) return;
-
-            // 有弹窗时，返回键优先关闭弹窗，而不是离开当前目录。
-            const detailOverlay = document.getElementById('detailOverlay');
-            const imgOverlay = document.getElementById('imgPreviewOverlay');
-
-            if (detailOverlay && detailOverlay.classList.contains('active')) {
-                closeDetail();
-                history.pushState(getHistoryState(), '', window.location.href);
-                return;
-            }
-
-            if (imgOverlay && imgOverlay.classList.contains('active')) {
-                closeImgPreview();
-                history.pushState(getHistoryState(), '', window.location.href);
-                return;
-            }
-
-            restoreHistoryState(event.state);
-        });
-
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.classList.add('show');
-            clearTimeout(toastTimer);
-            toastTimer = setTimeout(() => {
-                toast.classList.remove('show');
-            }, 2000);
-        }
-
-        function toggleSidebar() {
-            if (sidebarOpen) {
-                closeSidebar();
+            if (state.special) {
+                showSpecialPage(state.special, true);
+            } else if (Array.isArray(state.path) && state.path.length) {
+                navigateToByPath(state.path, true);
             } else {
-                openSidebar();
-            }
-        }
-
-        function openSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebarOverlay');
-            const icon = document.getElementById('expand');
-            sidebar.style.transform = 'translateX(0px)';
-            icon.className = 'pull-left expand_on';
-            overlay.style.display = 'block';
-            setTimeout(() => {
-                overlay.classList.add('active');
-            }, 10);
-            sidebarOpen = true;
-        }
-
-        function closeSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebarOverlay');
-            const icon = document.getElementById('expand');
-            sidebar.style.transform = 'translateX(-260px)';
-            icon.className = 'pull-left expand';
-            overlay.classList.remove('active');
-            setTimeout(() => {
-                overlay.style.display = 'none';
-            }, 300);
-            sidebarOpen = false;
-        }
-
-        function showReadmeContainer(containerId) {
-            const intro = document.getElementById('introContainer');
-            const folder = document.getElementById('readmeContainer');
-            const target = document.getElementById(containerId);
-            if (!target) return;
-
-            if (readmeTimer) {
-                clearTimeout(readmeTimer);
-                readmeTimer = null;
+                navigateTo(null, true);
             }
 
-            [intro, folder].forEach(el => {
-                if (!el) return;
-                el.classList.remove('visible');
-                el.classList.add('hidden');
-                const wrapper = el.querySelector('.readme-content-wrapper');
-                if (wrapper) {
-                    wrapper.classList.remove('entering');
-                    wrapper.classList.add('exiting');
-                }
-            });
+            setTimeout(() => { bgRestoring = false; }, 800);
+        }
 
-            target.classList.remove('hidden');
-            target.classList.add('visible');
-
-            const wrapper = target.querySelector('.readme-content-wrapper');
-            if (wrapper) {
-                if (!wrapper.innerHTML || wrapper.innerHTML.trim() === '' || wrapper.innerHTML === '<br>') {
-                    wrapper.style.opacity = '1';
-                    wrapper.style.transform = 'none';
-                    wrapper.classList.remove('entering', 'exiting');
-                    return;
-                }
-
-                wrapper.classList.remove('exiting', 'entering');
-                void wrapper.offsetWidth;
-                wrapper.classList.add('entering');
-                readmeTimer = setTimeout(() => {
-                    wrapper.classList.remove('entering');
-                    wrapper.style.opacity = '1';
-                    wrapper.style.transform = 'none';
-                    readmeTimer = null;
-                }, 500);
+        window.addEventListener('popstate', function(event) {
+            if (!bgHistoryReady) return;
+            if (event.state && event.state.__baldgrid) {
+                bgRestore(event.state);
             }
-        }
-
-        function renderReadmeContent(containerId, html) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
-            const readmeDiv = container.querySelector('.readme-content-wrapper');
-            if (!readmeDiv) return;
-
-            if (readmeTimer) {
-                clearTimeout(readmeTimer);
-                readmeTimer = null;
-            }
-
-            readmeDiv.classList.remove('entering', 'exiting');
-            readmeDiv.style.opacity = '0';
-            readmeDiv.style.transform = 'translateY(18px) scale(0.95)';
-
-            readmeDiv.innerHTML = html;
-            showReadmeContainer(containerId);
-        }
-
-        function hideAllReadme() {
-            ['introContainer', 'readmeContainer'].forEach(id => {
-                const el = document.getElementById(id);
-                if (el) {
-                    el.classList.remove('visible');
-                    el.classList.add('hidden');
-                    const wrapper = el.querySelector('.readme-content-wrapper');
-                    if (wrapper) {
-                        wrapper.classList.remove('entering');
-                        wrapper.classList.add('exiting');
-                    }
-                }
-            });
-        }
+        });
 
         async function loadData() {
             try {
                 const response = await fetch('resources.json');
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 allData = await response.json();
+                // 递归加载所有 loader
                 await loadAllLoaders(allData.categories);
+                // 建立扁平索引
                 flatItems = [];
                 buildFlatIndex(allData.categories, []);
-                const count = flatItems.filter(i => i.type === 'loader' || i.type === 'file').length;
+                const count = flatItems.filter(i => i.type === 'loader' || i.type === 'file' || i.type === 'folder').length;
                 document.getElementById('statsDisplay').innerHTML = `📦 ${count} 个资源`;
                 await loadMusicList();
                 await loadIntro();
 
-                // 当前页面作为历史栈中的“根目录”基准点。
-                // 不新增一层，避免第一次返回键直接退出网页。
+                // 当前网页入口固定为唯一的 root History entry。
                 currentPath = [];
                 currentSpecialPage = null;
                 currentCategory = {
@@ -1835,8 +1687,14 @@
                     type: 'root',
                     children: allData.categories
                 };
-                replaceSiteHistory();
-                historyReady = true;
+
+                history.replaceState(
+                    bgMakeState([], null, 0),
+                    '',
+                    window.location.href
+                );
+
+                bgHistoryReady = true;
                 navigateTo(null, true);
             } catch (error) {
                 document.getElementById('fileItems').innerHTML = `
@@ -1851,6 +1709,7 @@
             }
         }
 
+        // ===== 加载资源介绍 (data/main.md) =====
         async function loadIntro() {
             try {
                 const res = await fetch('data/main.md');
@@ -1864,6 +1723,7 @@
                         wrapper.style.transform = 'translateY(18px) scale(0.95)';
                     }
                     introLoaded = true;
+                    // 如果当前在根目录，显示介绍
                     if (currentCategory && currentCategory.name === '根目录') {
                         showReadmeContainer('introContainer');
                     }
@@ -1876,8 +1736,11 @@
             }
         }
 
+        // ========== 核心：递归加载 loader ==========
         async function loadAllLoaders(categories) {
+            if (!categories || !Array.isArray(categories)) return;
             for (const cat of categories) {
+                // 如果当前节点是 loader，加载它
                 if (cat.type === 'loader' && cat.src) {
                     try {
                         let src = cat.src;
@@ -1889,73 +1752,75 @@
                         }
                         console.log('📥 加载:', src, anchor ? `→ ${anchor}` : '');
                         const res = await fetch(src);
-                        if (res.ok) {
-                            let data = await res.json();
-                            
-                            cat.type = 'folder';
-                            
-                            if (anchor) {
-                                if (data[anchor]) {
-                                    data = data[anchor];
-                                    if (Array.isArray(data)) {
-                                        cat.children = data;
-                                        await loadAllLoaders(cat.children);
-                                        continue;
-                                    }
-                                    if (data.children && Array.isArray(data.children)) {
-                                        cat.children = data.children;
-                                        if (data.desc && !cat.desc) cat.desc = data.desc;
-                                        if (data.readme && !cat.readme) cat.readme = data.readme;
-                                        await loadAllLoaders(cat.children);
-                                        continue;
-                                    }
-                                } else {
-                                    console.warn('⚠️ 锚点不存在:', anchor);
-                                    continue;
-                                }
-                            }
-                            
-                            if (data.children && Array.isArray(data.children) && data.children.length > 0) {
-                                cat.children = data.children;
-                                if (data.desc && !cat.desc) cat.desc = data.desc;
-                                if (data.readme && !cat.readme) cat.readme = data.readme;
-                                await loadAllLoaders(cat.children);
-                            } else {
-                                cat._loadedData = data;
-                                if (data.readme) {
-                                    try {
-                                        const rmRes = await fetch(data.readme);
-                                        if (rmRes.ok) {
-                                            cat._loadedReadme = await rmRes.text();
-                                        } else {
-                                            console.warn('📄 README 404:', data.readme);
-                                        }
-                                    } catch (e) {
-                                        console.warn('📄 README 加载失败:', data.readme);
-                                    }
-                                }
-                                if (data.url) cat._url = data.url;
-                                if (data.desc && !cat.desc) cat.desc = data.desc;
-                            }
-                        } else {
+                        if (!res.ok) {
                             console.warn('❌ HTTP', res.status, ':', src);
+                            continue;
+                        }
+                        let data = await res.json();
+
+                        // 如果指定了锚点，取锚点内容
+                        if (anchor) {
+                            if (data[anchor]) {
+                                data = data[anchor];
+                            } else {
+                                console.warn('⚠️ 锚点不存在:', anchor);
+                                continue;
+                            }
+                        }
+
+                        // 转换 loader 为 folder
+                        cat.type = 'folder';
+                        
+                        // 处理数据：可能是 { children: [...] } 或数组或单个对象
+                        if (data.children && Array.isArray(data.children)) {
+                            cat.children = data.children;
+                            // 如果 data 本身有 desc/readme，继承到 cat
+                            if (data.desc && !cat.desc) cat.desc = data.desc;
+                            if (data.readme) cat.readme = data.readme;
+                        } else if (Array.isArray(data)) {
+                            cat.children = data;
+                        } else {
+                            // 单个资源对象
+                            cat.children = [];
+                            cat._loadedData = data;
+                            if (data.desc && !cat.desc) cat.desc = data.desc;
+                            if (data.url) cat._url = data.url;
+                            // 加载 readme（如果有）
+                            if (data.readme) {
+                                try {
+                                    const rmRes = await fetch(data.readme);
+                                    if (rmRes.ok) {
+                                        cat._loadedReadme = await rmRes.text();
+                                    } else {
+                                        console.warn('📄 README 404:', data.readme);
+                                    }
+                                } catch (e) {
+                                    console.warn('📄 README 加载失败:', data.readme);
+                                }
+                            }
+                        }
+
+                        // 递归加载 children 中的 loader
+                        if (cat.children && Array.isArray(cat.children)) {
+                            await loadAllLoaders(cat.children);
                         }
                     } catch (e) {
                         console.warn('❌ 加载失败:', cat.src, e);
                     }
-                }
-                if (cat.children) {
+                } else if (cat.children && Array.isArray(cat.children)) {
+                    // 普通 folder，递归处理子项
                     await loadAllLoaders(cat.children);
                 }
             }
         }
-        
+
         function buildFlatIndex(categories, parentPath = []) {
+            if (!categories || !Array.isArray(categories)) return;
             categories.forEach(cat => {
                 const fullPath = [...parentPath, cat.name];
                 cat._path = fullPath;
                 flatItems.push({ ...cat, _path: fullPath, _pathStr: fullPath.join(' / ') });
-                if (cat.children) {
+                if (cat.children && Array.isArray(cat.children)) {
                     buildFlatIndex(cat.children, fullPath);
                 }
             });
@@ -2077,7 +1942,7 @@
         function navigateToByPath(pathInput, fromHistory = false) {
             hideSpecialPage(true);
             if (!pathInput) {
-                navigateTo(null);
+                navigateTo(null, fromHistory);
                 return;
             }
             let names;
@@ -2087,7 +1952,7 @@
                 names = pathInput.split('|').filter(Boolean);
             }
             if (names.length === 0) {
-                navigateTo(null);
+                navigateTo(null, fromHistory);
                 return;
             }
             let current = {
@@ -2106,17 +1971,13 @@
                 current = next;
             }
             current._path = path;
-
-            if (!fromHistory && historyReady && !restoringHistory) {
-                pushSiteHistory();
-            }
-
             navigateTo(current, fromHistory);
         }
 
         function navigateTo(category, fromHistory = false) {
-            if (!fromHistory && historyReady && !restoringHistory) {
-                pushSiteHistory();
+            if (category === null && !fromHistory && bgHistoryReady && !bgRestoring) {
+                bgGoRoot();
+                return;
             }
 
             hideSpecialPage(true);
@@ -2144,30 +2005,27 @@
                         children: allData.categories
                     };
                     
-                    const wrapper = document.querySelector('#introContainer .readme-content-wrapper');
-                    if (introLoaded && wrapper && wrapper.innerHTML && wrapper.innerHTML.trim() !== '' && wrapper.innerHTML !== '<br>') {
-                        showReadmeContainer('introContainer');
-                    } else {
-                        hideAllReadme();
-                        if (!introLoaded) {
-                            const introContainer = document.getElementById('introContainer');
-                            const wrapper2 = introContainer.querySelector('.readme-content-wrapper');
-                            if (wrapper2) {
-                                wrapper2.innerHTML = '<span style="color:#999;">⏳ 加载资源介绍...</span>';
-                                wrapper2.style.opacity = '1';
-                                wrapper2.style.transform = 'none';
-                            }
-                            introContainer.classList.remove('hidden');
-                            introContainer.classList.add('visible');
+                    // 显示资源介绍
+                    if (introLoaded) {
+                        const wrapper = document.querySelector('#introContainer .readme-content-wrapper');
+                        if (wrapper && wrapper.innerHTML && wrapper.innerHTML.trim() !== '' && wrapper.innerHTML !== '<br>') {
+                            showReadmeContainer('introContainer');
                         }
+                    } else {
+                        // 尝试加载
+                        loadIntro();
                     }
                 } else {
                     currentPath = category._path || [category.name];
                     currentCategory = category;
+                    // 显示文件夹的 readme
                     renderReadme(currentCategory);
                 }
                 renderBreadcrumb();
                 renderList(currentCategory);
+                if (!fromHistory && bgHistoryReady && !bgRestoring) {
+                    bgPushCurrent();
+                }
                 document.querySelectorAll('#sidebar .multidisk').forEach(el => {
                     el.classList.remove('curr-disk');
                 });
@@ -2179,12 +2037,11 @@
         function showSpecialPage(type, fromHistory = false) {
             if (isPageAnimating) return;
 
-            if (!fromHistory && historyReady && !restoringHistory) {
-                currentSpecialPage = type;
-                pushSiteHistory();
-            }
-
             currentSpecialPage = type;
+
+            if (!fromHistory && bgHistoryReady && !bgRestoring) {
+                bgPushCurrent();
+            }
             const fileList = document.getElementById('fileList');
             const specialContainer = document.getElementById('specialPageContainer');
             const content = document.getElementById('specialPageContent');
@@ -2712,16 +2569,17 @@
             container.innerHTML = html;
         }
 
+        // ===== 渲染文件夹 README =====
         function renderReadme(category) {
-            let readmePath = category ? category.readme : null;
-            let loadedReadme = category ? category._loadedReadme : null;
-
-            if (loadedReadme) {
-                const html = renderMarkdown(loadedReadme);
+            // 优先使用已加载的 _loadedReadme
+            if (category._loadedReadme) {
+                const html = renderMarkdown(category._loadedReadme);
                 renderReadmeContent('readmeContainer', html);
                 return;
             }
 
+            // 其次使用 readme 路径
+            let readmePath = category.readme || null;
             if (readmePath) {
                 fetch(readmePath)
                     .then(res => {
@@ -2731,12 +2589,15 @@
                     .then(text => {
                         const html = renderMarkdown(text);
                         renderReadmeContent('readmeContainer', html);
+                        // 缓存起来
+                        category._loadedReadme = text;
                     })
                     .catch(() => {
                         const html = `<p style="color:#999;">📖 暂无说明文档</p>`;
                         renderReadmeContent('readmeContainer', html);
                     });
             } else {
+                // 没有 readme，隐藏容器
                 hideAllReadme();
             }
         }
@@ -2833,6 +2694,86 @@
             return icons[ext] || '📄';
         }
 
+        // ========== 辅助函数 ==========
+        function showReadmeContainer(id) {
+            const container = document.getElementById(id);
+            if (!container) return;
+            // 隐藏另一个容器
+            const otherId = id === 'introContainer' ? 'readmeContainer' : 'introContainer';
+            const other = document.getElementById(otherId);
+            if (other) {
+                other.classList.remove('visible');
+                other.classList.add('hidden');
+            }
+            container.classList.remove('hidden');
+            container.classList.add('visible');
+            
+            // 触发进入动画
+            const wrapper = container.querySelector('.readme-content-wrapper');
+            if (wrapper) {
+                wrapper.classList.remove('entering');
+                // 强制重排
+                void wrapper.offsetWidth;
+                wrapper.classList.add('entering');
+            }
+        }
+
+        function hideAllReadme() {
+            ['introContainer', 'readmeContainer'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.classList.remove('visible');
+                    el.classList.add('hidden');
+                    const wrapper = el.querySelector('.readme-content-wrapper');
+                    if (wrapper) {
+                        wrapper.classList.remove('entering');
+                    }
+                }
+            });
+        }
+
+        function renderReadmeContent(containerId, html) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            const wrapper = container.querySelector('.readme-content-wrapper');
+            if (!wrapper) return;
+            wrapper.innerHTML = html;
+            // 显示容器
+            showReadmeContainer(containerId);
+        }
+
+        function toggleSidebar() {
+            sidebarOpen = !sidebarOpen;
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            if (sidebarOpen) {
+                sidebar.style.transform = 'translateX(0)';
+                overlay.style.display = 'block';
+                overlay.classList.add('active');
+            } else {
+                sidebar.style.transform = 'translateX(-260px)';
+                overlay.classList.remove('active');
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 300);
+            }
+        }
+
+        function closeSidebar() {
+            if (sidebarOpen) toggleSidebar();
+        }
+
+        function showToast(msg) {
+            const el = document.getElementById('toast');
+            if (!el) return;
+            el.textContent = msg;
+            el.classList.add('show');
+            if (toastTimer) clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                el.classList.remove('show');
+            }, 3000);
+        }
+
         document.getElementById('foot_info').innerHTML =
             `Copyright © ${new Date().getFullYear()} | 白叶114514の资源站 | 主题来自于 雪中明月 大佬`;
 
@@ -2844,21 +2785,11 @@
             }
         });
 
+        // 初始隐藏
         document.getElementById('introContainer').classList.add('hidden');
         document.getElementById('readmeContainer').classList.add('hidden');
 
         loadData();
-    
-        function restartContentAnimations() {
-            const list = document.getElementById('fileList');
-            if (list) {
-                list.classList.remove('list-enter');
-                void list.offsetWidth;
-                list.classList.add('list-enter');
-                setTimeout(() => list.classList.remove('list-enter'), 450);
-            }
-        }
-
     </script>
 </body>
 </html>
