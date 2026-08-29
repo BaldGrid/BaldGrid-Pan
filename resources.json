@@ -57,6 +57,11 @@
           ]
         },
         {
+          "name": "华为 Huawei",
+          "type": "loader",
+          "src": "data/res/Huawei/main.json"
+        },
+        {
           "name": "小米 XiaoMi",
           "type": "folder",
           "readme": "data/rm/xiaomi.md",
@@ -128,15 +133,8 @@
     },
     {
       "name": "工具",
-      "type": "folder",
-      "readme": "data/rm/tool.md",
-      "children": [
-        {
-          "name": "main",
-          "type": "loader",
-          "src": "data/res/tool/main.json"
-        }
-      ]
+      "type": "loader",
+      "src": "data/res/tool/main.json"
     }
   ]
 }

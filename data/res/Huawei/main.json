@@ -1,0 +1,68 @@
+{
+  "name": "华为 Huawei",
+  "type": "folder",
+  "desc": "",
+  "readme": "",
+  "children": [
+    {
+      "name": "鸿蒙处理器",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "鸿蒙4.2及以下通用谷歌方案",
+          "type": "folder",
+          "desc": "",
+          "readme": "",
+          "children": [
+            {
+              "name": "通用方案",
+              "type": "folder",
+              "desc": "",
+              "readme": "",
+              "children": [
+                {
+                  "name": "方案",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ3RCdXdhOWZvVVFyMHlmdTNQMXJlbUFRaVc1elMxQ1JsWUVVODByeTNKUXhj"
+                }
+              ]
+            },
+            {
+              "name": "解决谷歌认证",
+              "type": "folder",
+              "desc": "",
+              "readme": "",
+              "children": [
+                {
+                  "name": "华为谷歌",
+                  "type": "file",
+                  "desc": "",
+                  "readme": "",
+                  "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQUFaZW9SSTlXdVI2dVRmNHROdTVDb0FScDRrTy14SXRnSndNcDVpd3FhSk9j"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "高通处理器",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": []
+    },
+    {
+      "name": "联发科处理器",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": []
+    }
+  ]
+}

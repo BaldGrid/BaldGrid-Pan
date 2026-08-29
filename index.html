@@ -1611,6 +1611,84 @@
         let introLoaded = false;
         let readmeTimer = null;
 
+        // ===== Android 返回键 / 浏览器历史记录 =====
+        // 用 History API 保存站内目录状态，这样 Android 系统返回键会先返回上一级目录，
+        // 只有已经回到根目录后，下一次返回才会退出页面。
+        let historyReady = false;
+        let restoringHistory = false;
+
+        function getHistoryState() {
+            return {
+                baldgrid: true,
+                path: Array.isArray(currentPath) ? [...currentPath] : [],
+                special: currentSpecialPage || null
+            };
+        }
+
+        function pushSiteHistory() {
+            if (!historyReady || restoringHistory) return;
+
+            const nextState = getHistoryState();
+            const currentState = history.state;
+
+            // 同一页面状态不重复压入历史记录。
+            if (currentState &&
+                currentState.baldgrid &&
+                JSON.stringify(currentState.path || []) === JSON.stringify(nextState.path || []) &&
+                (currentState.special || null) === (nextState.special || null)) {
+                return;
+            }
+
+            history.pushState(nextState, '', window.location.href);
+        }
+
+        function replaceSiteHistory() {
+            history.replaceState(getHistoryState(), '', window.location.href);
+        }
+
+        function restoreHistoryState(state) {
+            if (!state || !state.baldgrid || !allData) return;
+
+            restoringHistory = true;
+            try {
+                if (state.special) {
+                    showSpecialPage(state.special, true);
+                } else if (Array.isArray(state.path) && state.path.length > 0) {
+                    navigateToByPath(state.path, true);
+                } else {
+                    navigateTo(null, true);
+                }
+            } finally {
+                // navigateTo/showSpecialPage 内部有动画延迟，所以不能立即解除，
+                // 否则异步渲染完成后可能再次写入 history。
+                setTimeout(() => {
+                    restoringHistory = false;
+                }, 450);
+            }
+        }
+
+        window.addEventListener('popstate', (event) => {
+            if (!historyReady) return;
+
+            // 有弹窗时，返回键优先关闭弹窗，而不是离开当前目录。
+            const detailOverlay = document.getElementById('detailOverlay');
+            const imgOverlay = document.getElementById('imgPreviewOverlay');
+
+            if (detailOverlay && detailOverlay.classList.contains('active')) {
+                closeDetail();
+                history.pushState(getHistoryState(), '', window.location.href);
+                return;
+            }
+
+            if (imgOverlay && imgOverlay.classList.contains('active')) {
+                closeImgPreview();
+                history.pushState(getHistoryState(), '', window.location.href);
+                return;
+            }
+
+            restoreHistoryState(event.state);
+        });
+
         function showToast(message) {
             const toast = document.getElementById('toast');
             toast.textContent = message;
@@ -1747,7 +1825,19 @@
                 document.getElementById('statsDisplay').innerHTML = `📦 ${count} 个资源`;
                 await loadMusicList();
                 await loadIntro();
-                navigateTo(null);
+
+                // 当前页面作为历史栈中的“根目录”基准点。
+                // 不新增一层，避免第一次返回键直接退出网页。
+                currentPath = [];
+                currentSpecialPage = null;
+                currentCategory = {
+                    name: '根目录',
+                    type: 'root',
+                    children: allData.categories
+                };
+                replaceSiteHistory();
+                historyReady = true;
+                navigateTo(null, true);
             } catch (error) {
                 document.getElementById('fileItems').innerHTML = `
                     <div class="empty-state">
@@ -1984,7 +2074,7 @@
             musicPlayedIndices = [];
         }
 
-        function navigateToByPath(pathInput) {
+        function navigateToByPath(pathInput, fromHistory = false) {
             hideSpecialPage(true);
             if (!pathInput) {
                 navigateTo(null);
@@ -2016,10 +2106,19 @@
                 current = next;
             }
             current._path = path;
-            navigateTo(current);
+
+            if (!fromHistory && historyReady && !restoringHistory) {
+                pushSiteHistory();
+            }
+
+            navigateTo(current, fromHistory);
         }
 
-        function navigateTo(category) {
+        function navigateTo(category, fromHistory = false) {
+            if (!fromHistory && historyReady && !restoringHistory) {
+                pushSiteHistory();
+            }
+
             hideSpecialPage(true);
             const fileList = document.getElementById('fileList');
             const specialContainer = document.getElementById('specialPageContainer');
@@ -2077,8 +2176,14 @@
             }, 150);
         }
 
-        function showSpecialPage(type) {
+        function showSpecialPage(type, fromHistory = false) {
             if (isPageAnimating) return;
+
+            if (!fromHistory && historyReady && !restoringHistory) {
+                currentSpecialPage = type;
+                pushSiteHistory();
+            }
+
             currentSpecialPage = type;
             const fileList = document.getElementById('fileList');
             const specialContainer = document.getElementById('specialPageContainer');
