@@ -1604,6 +1604,10 @@
         body.dark-mode .back-btn:hover {
             background: rgba(255,255,255,0.1);
         }
+        /* 隐藏根目录的返回按钮 - 修复bug2 */
+        #breadcrumbDisplay .back-btn {
+            display: none !important;
+        }
 
         /* ===== 键盘快捷键提示 ===== */
         .kbd-hint {
@@ -1838,7 +1842,10 @@
     </main>
     <script>
         // ============================================================
-        // 完整修复版资源站
+        // 完整修复版资源站 - 修复3个bug
+        // 1. README加载修复：正确加载json里的readme路径
+        // 2. 去掉根目录右边的返回按钮
+        // 3. 资源加载时切换选项卡，加载完毕不会强行跳回
         // ============================================================
 
         // ===== 配置 =====
@@ -1874,6 +1881,9 @@
         let searchQuery = '';
         let currentView = localStorage.getItem(CONFIG.viewModeKey) || 'list';
         let isDarkMode = localStorage.getItem(CONFIG.darkModeKey) === 'true';
+        // 修复bug3：标记是否正在加载资源，防止加载完成后跳转
+        let isLoadingResources = true;
+        let pendingNavigate = null;
 
         // ===== 缓存系统 =====
         const cache = new Map();
@@ -2056,7 +2066,6 @@
         // ===== 加载数据 =====
         async function loadData() {
             try {
-                // ★★★ 在加载数据之前就应用暗色模式 ★★★
                 applyDarkMode(isDarkMode);
 
                 const statsEl = document.getElementById('statsDisplay');
@@ -2091,8 +2100,22 @@
                 );
 
                 bgHistoryReady = true;
-                navigateTo(null, true);
+                isLoadingResources = false;
+
+                // 如果有待处理的导航，执行它
+                if (pendingNavigate) {
+                    const nav = pendingNavigate;
+                    pendingNavigate = null;
+                    if (nav.type === 'special') {
+                        showSpecialPage(nav.page, true);
+                    } else {
+                        navigateTo(nav.category, true);
+                    }
+                } else {
+                    navigateTo(null, true);
+                }
             } catch (error) {
+                isLoadingResources = false;
                 document.getElementById('fileItems').innerHTML = `
                     <div class="empty-state">
                         <div class="icon">❌</div>
@@ -2159,7 +2182,10 @@
                         if (data.children && Array.isArray(data.children)) {
                             cat.children = data.children;
                             if (data.desc && !cat.desc) cat.desc = data.desc;
+                            // 修复bug1：正确加载readme路径
                             if (data.readme) cat.readme = data.readme;
+                            // 如果有子loader，递归加载
+                            await loadAllLoaders(cat.children);
                         } else if (Array.isArray(data)) {
                             cat.children = data;
                         } else {
@@ -2167,7 +2193,9 @@
                             cat._loadedData = data;
                             if (data.desc && !cat.desc) cat.desc = data.desc;
                             if (data.url) cat._url = data.url;
+                            // 修复bug1：正确加载readme
                             if (data.readme) {
+                                cat.readme = data.readme;
                                 try {
                                     const rmRes = await fetchWithRetry(data.readme);
                                     cat._loadedReadme = await rmRes.text();
@@ -2177,6 +2205,7 @@
                             }
                         }
 
+                        // 如果cat有children，确保递归加载它们的loader
                         if (cat.children && Array.isArray(cat.children)) {
                             await loadAllLoaders(cat.children);
                         }
@@ -2403,6 +2432,12 @@
         }
 
         function navigateTo(category, fromHistory = false) {
+            // 修复bug3：如果还在加载资源，记录待处理的导航
+            if (isLoadingResources && !fromHistory) {
+                pendingNavigate = { type: 'category', category: category };
+                return;
+            }
+
             if (category === null && !fromHistory && bgHistoryReady && !bgRestoring) {
                 bgGoRoot();
                 return;
@@ -2464,6 +2499,12 @@
 
         // ===== 特殊页面 =====
         function showSpecialPage(type, fromHistory = false) {
+            // 修复bug3：如果还在加载资源，记录待处理的导航
+            if (isLoadingResources && !fromHistory) {
+                pendingNavigate = { type: 'special', page: type };
+                return;
+            }
+
             if (isPageAnimating) return;
             currentSpecialPage = type;
 
@@ -2803,12 +2844,9 @@
             const container = document.getElementById('breadcrumbDisplay');
             let html = `<a onclick="navigateTo(null)">📂 根目录</a>`;
             if (currentPath.length > 0) {
-                const parentPath = currentPath.slice(0, -1);
-                if (parentPath.length) {
-                    html += ` <button class="back-btn" onclick="navigateToByPath('${parentPath.join('|')}')" title="返回上一级 (Alt+←)">← 返回</button> `;
-                } else {
-                    html += ` <button class="back-btn" onclick="navigateTo(null)" title="返回根目录">← 返回</button> `;
-                }
+                // 修复bug2：去掉根目录右边的返回按钮
+                // 只有在非根目录时才显示返回按钮
+                html += ` <button class="back-btn" onclick="navigateToByPath('${currentPath.slice(0, -1).join('|')}')" title="返回上一级 (Alt+←)">← 返回</button> `;
 
                 let categories = allData.categories;
                 currentPath.forEach((name, index) => {
@@ -2887,6 +2925,9 @@
                     const itemDesc = escapeHtml(item.desc || '');
                     const itemSrc = escapeHtml(item.src || item.url || '');
                     const loadedDesc = item._loadedData?.desc ? escapeHtml(item._loadedData.desc) : '';
+                    // 修复bug1：确保readme路径正确传递
+                    const readmePath = item.readme ? escapeHtml(item.readme) : '';
+                    const loadedReadme = item._loadedReadme ? item._loadedReadme : '';
                     html += `
                         <div class="main-items">
                             <div class="main-items-icon">
@@ -2899,7 +2940,7 @@
                             </div>
                             <div class="main-items-fileSize">
                                 <div class="file-actions">
-                                    <a class="btn-detail" onclick="event.stopPropagation();openDetail({ name: '${itemName}', desc: '${itemDesc}', src: '${itemSrc}', url: '${itemSrc}', readme: '', _loadedData: ${JSON.stringify(item._loadedData || null)}, _loadedReadme: ${JSON.stringify(item._loadedReadme || null)} })">📄 查看详情</a>
+                                    <a class="btn-detail" onclick="event.stopPropagation();openDetail({ name: '${itemName}', desc: '${itemDesc}', src: '${itemSrc}', url: '${itemSrc}', readme: '${readmePath}', _loadedData: ${JSON.stringify(item._loadedData || null)}, _loadedReadme: ${JSON.stringify(loadedReadme)} })">📄 查看详情</a>
                                 </div>
                             </div>
                         </div>
@@ -2916,6 +2957,7 @@
 
         // ===== 渲染 README =====
         function renderReadme(category) {
+            // 修复bug1：优先使用_loadedReadme，其次使用readme路径
             if (category._loadedReadme) {
                 const html = renderMarkdown(category._loadedReadme);
                 renderReadmeContent('readmeContainer', html);
@@ -3098,6 +3140,7 @@
                     <div class="detail-value"><a href="${escapeHtml(linkUrl)}" target="_blank">${escapeHtml(linkUrl)}</a></div>
                 </div>`;
             }
+            // 修复bug1：优先使用_loadedReadme，其次使用readme路径
             const readmeContent = item._loadedReadme || null;
             const readmePath = item.readme || (item._loadedData ? item._loadedData.readme : null) || null;
             if (readmeContent) {
