@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>白叶141の资源站</title>
     <style>
+        /* ===== 基础样式 ===== */
         * {
             margin: 0;
             padding: 0;
@@ -19,9 +20,113 @@
             color: #333;
             font-family: "Segoe UI", Tahoma, Arial, sans-serif;
             overflow: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
+        body.dark-mode {
+            background: #1a1a2e;
+            color: #e0e0e0;
+        }
+        body.dark-mode header {
+            background: rgba(26, 26, 46, 0.85);
+        }
+        body.dark-mode .main-item-list {
+            background: rgba(30, 30, 50, 0.85);
+            border-color: #333;
+        }
+        body.dark-mode .main-items:hover {
+            background: rgba(255,255,255,0.05);
+        }
+        body.dark-mode a {
+            color: #8ab4f8;
+        }
+        body.dark-mode a:hover {
+            color: #bbd9ff;
+        }
+        body.dark-mode .toggle-switch {
+            background: #444;
+        }
+        body.dark-mode .toggle-switch.active {
+            background: #1a73e8;
+        }
+        body.dark-mode .detail-modal {
+            background: #2a2a3e;
+            color: #e0e0e0;
+        }
+        body.dark-mode .detail-header,
+        body.dark-mode .detail-footer {
+            border-color: #444;
+        }
+        body.dark-mode .detail-body .detail-item {
+            border-color: #444;
+        }
+        body.dark-mode .detail-body .detail-readme {
+            background: #1a1a2e;
+        }
+        body.dark-mode .friend-link-item {
+            background: rgba(255,255,255,0.05);
+            border-color: #444;
+        }
+        body.dark-mode .friend-link-item:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        body.dark-mode .link-card:hover {
+            background: rgba(255,255,255,0.05);
+        }
+        body.dark-mode .settings-item {
+            border-color: #444;
+        }
+        body.dark-mode .thanks-box {
+            background: rgba(255,255,255,0.05);
+            border-color: #444;
+        }
+        body.dark-mode .thanks-item {
+            border-color: #444;
+        }
+        body.dark-mode .thanks-item:hover {
+            background: rgba(255,255,255,0.05);
+        }
+        body.dark-mode .img-preview-modal {
+            background: #2a2a3e;
+        }
+        body.dark-mode .img-preview-body {
+            background: #1a1a2e;
+        }
+        body.dark-mode .img-preview-footer {
+            background: #2a2a3e;
+            border-color: #444;
+        }
+        body.dark-mode .spinner {
+            border-color: #444;
+            border-top-color: #1a73e8;
+        }
+        body.dark-mode .search-bar {
+            background: rgba(255,255,255,0.05);
+            border-color: #444;
+            color: #e0e0e0;
+        }
+        body.dark-mode .search-bar::placeholder {
+            color: #888;
+        }
+        body.dark-mode .view-toggle-btn {
+            background: rgba(255,255,255,0.05);
+            color: #aaa;
+        }
+        body.dark-mode .view-toggle-btn.active {
+            background: rgba(255,255,255,0.15);
+            color: #e0e0e0;
+        }
+        body.dark-mode .back-btn {
+            background: rgba(255,255,255,0.08);
+            color: #aaa;
+        }
+        body.dark-mode .back-btn:hover {
+            background: rgba(255,255,255,0.15);
         }
         #statsDisplay {
-        display: none !important;
+            font-size: 13px;
+            color: #888;
+            padding: 0 8px;
+            white-space: nowrap;
         }
         a {
             text-decoration: none;
@@ -55,11 +160,22 @@
             position: fixed;
             z-index: 10;
             backdrop-filter: blur(10px);
+            transition: background 0.3s;
+        }
+        header nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8px;
+            height: 48px;
         }
         header nav a {
             color: rgb(36, 36, 36);
             font-weight: 600;
             transition: 0.5s;
+        }
+        body.dark-mode header nav a {
+            color: #e0e0e0;
         }
         nav svg {
             width: 20px;
@@ -69,39 +185,55 @@
             min-width: 48px;
             height: 48px;
             transition: 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .pull-left {
-            float: left;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
         .pull-right {
-            float: right;
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 4px;
+            flex-shrink: 0;
         }
         .expand {
             transform: rotate(0deg);
             transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             border-radius: 50%;
-            width: 48px;
-            height: 48px;
+            width: 42px;
+            height: 42px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            background: rgba(255,255,255,0.65);
+            box-shadow: 0 2px 10px rgba(0,0,0,.12);
+            margin: 3px 4px;
         }
-        .expand_on {
-            transform: rotate(-90deg);
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        .expand:hover {
+            background: rgba(0,0,0,.08);
+        }
+        body.dark-mode .expand {
+            background: rgba(255,255,255,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,.3);
+        }
+        body.dark-mode .expand:hover {
+            background: rgba(255,255,255,0.15);
         }
         nav a {
-            padding: 0 20px;
+            padding: 0 12px;
         }
         nav div:hover {
             background: rgba(0, 0, 0, 0.1);
+        }
+        body.dark-mode nav div:hover {
+            background: rgba(255, 255, 255, 0.1);
         }
         main {
             position: relative;
@@ -110,6 +242,10 @@
             background-repeat: no-repeat;
             background-size: cover;
             background-attachment: fixed;
+            transition: background 0.3s;
+        }
+        body.dark-mode main {
+            background: #1a1a2e;
         }
         .scroll {
             overflow-y: auto;
@@ -129,6 +265,9 @@
         .scroll::-webkit-scrollbar-button {
             display: none;
         }
+        body.dark-mode .scroll::-webkit-scrollbar-thumb {
+            background: #555;
+        }
         main .main-item-list {
             display: flex;
             flex-direction: column;
@@ -142,17 +281,24 @@
             border: #e0e0e0 solid 1px;
             padding: 12px 0;
             backdrop-filter: blur(20px);
-            transition: 0.3s;
+            transition: 0.3s, background 0.3s, border-color 0.3s;
         }
         main .main-title h1 {
             margin: 0;
             padding: 32px 32px 10px 32px;
             font-size: 19px;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
         }
         div.main-title>h1>a:last-of-type {
             font-weight: 600;
             color: rgb(36, 36, 36);
+        }
+        body.dark-mode div.main-title>h1>a:last-of-type {
+            color: #e0e0e0;
         }
         main .main-item-list .inner-container {
             display: flex;
@@ -174,6 +320,9 @@
         main .main-item-list .main-item-title {
             border-bottom: 1px solid #EAEAEA;
         }
+        body.dark-mode main .main-item-list .main-item-title {
+            border-color: #444;
+        }
         main .main-items {
             display: flex;
             justify-content: flex-start;
@@ -181,17 +330,22 @@
             box-sizing: border-box;
             padding: 0 20px;
             overflow: hidden;
-            transition: 0.5s;
+            transition: 0.3s;
             margin-top: 2.5px;
             margin-bottom: 2.5px;
             cursor: default;
             min-height: 48px;
+            transform: translateZ(0);
+            will-change: transform, opacity;
         }
         main .main-items:hover {
             background-color: #F4F4F4;
             transform: scale(0.980);
             border-radius: 10px;
             transition: 0.3s;
+        }
+        body.dark-mode main .main-items:hover {
+            background: rgba(255,255,255,0.05);
         }
         main .main-item-list .main-items-icon {
             min-width: 38px;
@@ -219,6 +373,12 @@
         main .main-item-list .main-items-dateModified:hover,
         main .main-item-list .main-items-size:hover {
             background-color: #EAEAEA;
+        }
+        body.dark-mode main .main-item-title .main-items-icon:hover,
+        body.dark-mode main .main-item-list .main-items-displayName:hover,
+        body.dark-mode main .main-item-list .main-items-dateModified:hover,
+        body.dark-mode main .main-item-list .main-items-size:hover {
+            background-color: rgba(255,255,255,0.05);
         }
         main .main-item-list .main-items-displayName,
         main .main-item-list .main-items-fileName {
@@ -360,6 +520,9 @@
             border-radius: 4px;
             font-size: 13px;
         }
+        body.dark-mode .markdown-body code {
+            background: #333;
+        }
         #foot_info {
             text-align: center;
             padding: 20px;
@@ -397,6 +560,9 @@
             transform: translateX(-260px);
             overflow-y: auto;
         }
+        body.dark-mode #sidebar {
+            background: #2a2a3e;
+        }
         #sidebar svg {
             min-width: 24px;
             height: 24px;
@@ -416,10 +582,17 @@
         .multidisk:hover {
             background: rgba(0, 0, 0, 0.1);
         }
+        body.dark-mode .multidisk:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
         .curr-disk {
             background: rgba(0, 120, 212, 0.1);
             font-weight: 600;
             color: #0078d4;
+        }
+        body.dark-mode .curr-disk {
+            background: rgba(26, 115, 232, 0.2);
+            color: #8ab4f8;
         }
         .folder-item {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -428,6 +601,9 @@
         .folder-item:active {
             transform: scale(0.95);
             background-color: #e8f0fe;
+        }
+        body.dark-mode .folder-item:active {
+            background-color: rgba(26, 115, 232, 0.2);
         }
         @keyframes fadeInUp {
             from {
@@ -439,84 +615,70 @@
                 transform: translateY(0) scale(1);
             }
         }
-        #fileItems.list-enter .main-items {
+        #fileItems .main-items {
             animation: fadeInUp 0.3s ease forwards;
         }
-        #fileItems .main-items:nth-child(1) { animation-delay: 0.00s; }
-        #fileItems .main-items:nth-child(2) { animation-delay: 0.03s; }
-        #fileItems .main-items:nth-child(3) { animation-delay: 0.06s; }
-        #fileItems .main-items:nth-child(4) { animation-delay: 0.09s; }
-        #fileItems .main-items:nth-child(5) { animation-delay: 0.12s; }
-        #fileItems .main-items:nth-child(6) { animation-delay: 0.15s; }
-        #fileItems .main-items:nth-child(7) { animation-delay: 0.18s; }
-        #fileItems .main-items:nth-child(8) { animation-delay: 0.21s; }
-        #fileItems .main-items:nth-child(9) { animation-delay: 0.24s; }
-        #fileItems .main-items:nth-child(10) { animation-delay: 0.27s; }
-        #fileItems .main-items:nth-child(11) { animation-delay: 0.30s; }
-        #fileItems .main-items:nth-child(12) { animation-delay: 0.33s; }
-        #fileItems .main-items:nth-child(13) { animation-delay: 0.36s; }
-        #fileItems .main-items:nth-child(14) { animation-delay: 0.39s; }
-        #fileItems .main-items:nth-child(15) { animation-delay: 0.42s; }
-        #fileItems .main-items:nth-child(16) { animation-delay: 0.45s; }
-        #fileItems .main-items:nth-child(17) { animation-delay: 0.48s; }
-        #fileItems .main-items:nth-child(18) { animation-delay: 0.51s; }
-        #fileItems .main-items:nth-child(19) { animation-delay: 0.54s; }
-        #fileItems .main-items:nth-child(20) { animation-delay: 0.57s; }
-
         .readme-item {
-            opacity: 0;
-            animation: fadeInUp 0.3s ease forwards;
+            opacity: 1 !important;
+            animation: none !important;
         }
-        .readme-item:nth-child(1) { animation-delay: 0.00s; }
-        .readme-item:nth-child(2) { animation-delay: 0.03s; }
-        .readme-item:nth-child(3) { animation-delay: 0.06s; }
-        .readme-item:nth-child(4) { animation-delay: 0.09s; }
-        .readme-item:nth-child(5) { animation-delay: 0.12s; }
-        .readme-item:nth-child(6) { animation-delay: 0.15s; }
-        .readme-item:nth-child(7) { animation-delay: 0.18s; }
-        .readme-item:nth-child(8) { animation-delay: 0.21s; }
-        .readme-item:nth-child(9) { animation-delay: 0.24s; }
-        .readme-item:nth-child(10) { animation-delay: 0.27s; }
-        .readme-item:nth-child(11) { animation-delay: 0.30s; }
-        .readme-item:nth-child(12) { animation-delay: 0.33s; }
-        .readme-item:nth-child(13) { animation-delay: 0.36s; }
-        .readme-item:nth-child(14) { animation-delay: 0.39s; }
-        .readme-item:nth-child(15) { animation-delay: 0.42s; }
-        .readme-item:nth-child(16) { animation-delay: 0.45s; }
-        .readme-item:nth-child(17) { animation-delay: 0.48s; }
-        .readme-item:nth-child(18) { animation-delay: 0.51s; }
-        .readme-item:nth-child(19) { animation-delay: 0.54s; }
-        .readme-item:nth-child(20) { animation-delay: 0.57s; }
-        .readme-item:nth-child(21) { animation-delay: 0.60s; }
-        .readme-item:nth-child(22) { animation-delay: 0.63s; }
-        .readme-item:nth-child(23) { animation-delay: 0.66s; }
-        .readme-item:nth-child(24) { animation-delay: 0.69s; }
-        .readme-item:nth-child(25) { animation-delay: 0.72s; }
-        .readme-item:nth-child(26) { animation-delay: 0.75s; }
-        .readme-item:nth-child(27) { animation-delay: 0.78s; }
-        .readme-item:nth-child(28) { animation-delay: 0.81s; }
-        .readme-item:nth-child(29) { animation-delay: 0.84s; }
-        .readme-item:nth-child(30) { animation-delay: 0.87s; }
-
+        .readme-content-wrapper {
+            transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .readme-content-wrapper.entering {
+            animation: readmeEnter 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .readme-content-wrapper.exiting {
+            opacity: 0;
+            transform: translateY(-10px) scale(0.97);
+            pointer-events: none;
+        }
+        @keyframes readmeEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(18px) scale(0.95);
+            }
+            60% {
+                opacity: 1;
+                transform: translateY(-3px) scale(1.005);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        #fileList,
+        #specialPageContainer,
         #introContainer,
         #readmeContainer {
-            transition: opacity 0.25s ease, transform 0.25s ease;
+            will-change: opacity, transform;
+            backface-visibility: hidden;
         }
-        #introContainer.hidden,
-        #readmeContainer.hidden {
-            opacity: 0;
-            transform: translateY(-8px);
-            pointer-events: none;
-            display: none;
-        }
-        #introContainer.visible,
-        #readmeContainer.visible {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
+        .spinner-wrapper {
             display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            gap: 20px;
         }
-
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid #e0e0e0;
+            border-top-color: #0078d4;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .spinner-text {
+            color: #999;
+            font-size: 15px;
+            letter-spacing: 0.3px;
+        }
         .detail-overlay {
             position: fixed;
             top: 0;
@@ -832,27 +994,6 @@
             color: #0078d4;
             transform: translateX(4px);
         }
-        @media screen and (max-width: 600px) {
-            .friend-link-grid {
-                padding: 10px 14px;
-                gap: 6px;
-            }
-            .friend-link-item {
-                padding: 10px 14px;
-                border-radius: 8px;
-            }
-            .friend-link-item .friend-icon {
-                font-size: 18px;
-            }
-            .friend-link-item .friend-name {
-                font-size: 14px;
-            }
-            .friend-link-item .friend-desc {
-                font-size: 12px;
-                margin-left: 6px;
-                max-width: 80px;
-            }
-        }
         .link-card {
             display: flex;
             align-items: center;
@@ -1143,19 +1284,6 @@
             transform: translateY(-8px);
             pointer-events: none;
         }
-        #fileList.list-enter {
-            /* 只控制列表切换状态，不再给整个列表播放动画 */
-        }
-        @keyframes listEnter {
-            0% {
-                opacity: 0;
-                transform: translateY(12px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
         .no-animation .page-content,
         .no-animation .page-content.page-exit,
         .no-animation .page-content.page-enter,
@@ -1169,7 +1297,6 @@
             pointer-events: auto !important;
         }
 
-        /* ===== 感谢名单样式 ===== */
         .thanks-container {
             padding: 10px 20px 20px 20px;
         }
@@ -1350,7 +1477,6 @@
             }
         }
 
-        /* 修复动画重复播放导致闪烁 */
         #fileItems .main-items,
         .readme-item {
             animation: none !important;
@@ -1358,109 +1484,141 @@
             transform: none !important;
         }
 
-        /* 顶部菜单按钮改为圆形 */
-        #expand {
-            width: 42px;
-            height: 42px;
-            margin: 3px 8px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.65);
-            box-shadow: 0 2px 10px rgba(0,0,0,.12);
+        /* ===== 搜索框样式 ===== */
+        .search-bar {
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            background: rgba(255,255,255,0.8);
+            font-size: 13px;
+            outline: none;
+            width: 180px;
+            transition: 0.3s;
+            color: #333;
         }
-
-        #expand:hover {
-            background: rgba(0,0,0,.08);
+        .search-bar:focus {
+            border-color: #0078d4;
+            box-shadow: 0 0 0 3px rgba(0,120,212,0.15);
+            width: 220px;
         }
-
-        /* ===== BaldGrid 动画/按钮修复 ===== */
-        /* 资源列表保留进入动画，但避免初始化重复闪烁 */
-        #fileItems .main-items {
-            animation: fadeInUp 0.3s ease forwards;
-        }
-
-        /* README 不单独播放动画，避免内容先出现再消失 */
-        .readme-item {
-            opacity: 1 !important;
-            animation: none !important;
-        }
-
-        /* 顶部菜单按钮强制正圆 */
-        .expand {
-            width: 48px !important;
-            height: 48px !important;
-            min-width: 48px !important;
-            min-height: 48px !important;
-            padding: 0 !important;
-            border-radius: 50% !important;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* ---------- 修复：资源介绍专用动画（只触发一次） ---------- */
-        .readme-content-wrapper {
-            transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-                        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-        .readme-content-wrapper.entering {
-            animation: readmeEnter 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-        .readme-content-wrapper.exiting {
-            opacity: 0;
-            transform: translateY(-10px) scale(0.97);
-            pointer-events: none;
-        }
-        @keyframes readmeEnter {
-            0% {
-                opacity: 0;
-                transform: translateY(18px) scale(0.95);
-            }
-            60% {
-                opacity: 1;
-                transform: translateY(-3px) scale(1.005);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        /* 修复切换时闪白 */
-        #fileList,
-        #specialPageContainer,
-        #introContainer,
-        #readmeContainer {
-            will-change: opacity, transform;
-            backface-visibility: hidden;
-        }
-        /* ----- 转圈圈加载样式 ----- */
-        .spinner-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 60px 20px;
-            gap: 20px;
-        }
-        .spinner {
-            width: 48px;
-            height: 48px;
-            border: 4px solid #e0e0e0;
-            border-top-color: #0078d4;
-            border-radius: 50%;
-            animation: spin 0.9s linear infinite;
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        .spinner-text {
+        .search-bar::placeholder {
             color: #999;
-            font-size: 15px;
-            letter-spacing: 0.3px;
         }
-    </style>
-    <style>
+
+        /* ===== 视图切换按钮 ===== */
+        .view-toggle-btn {
+            padding: 4px 10px;
+            border: none;
+            border-radius: 6px;
+            background: rgba(0,0,0,0.05);
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.2s;
+            color: #666;
+            flex-shrink: 0;
+        }
+        .view-toggle-btn:hover {
+            background: rgba(0,0,0,0.1);
+        }
+        .view-toggle-btn.active {
+            background: rgba(0,120,212,0.15);
+            color: #0078d4;
+        }
+        body.dark-mode .view-toggle-btn {
+            background: rgba(255,255,255,0.05);
+            color: #aaa;
+        }
+        body.dark-mode .view-toggle-btn:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* ===== 网格视图 ===== */
+        #fileItems.grid-view {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 8px;
+            padding: 8px 16px;
+        }
+        #fileItems.grid-view .main-items {
+            flex-direction: column;
+            padding: 16px;
+            border-radius: 10px;
+            border: 1px solid #eee;
+            background: rgba(255,255,255,0.4);
+            min-height: 120px;
+            justify-content: center;
+            text-align: center;
+        }
+        #fileItems.grid-view .main-items .main-items-icon {
+            font-size: 32px;
+            height: auto;
+            min-height: 40px;
+        }
+        #fileItems.grid-view .main-items .main-items-fileName {
+            flex-direction: column;
+            padding: 8px 0;
+            align-items: center;
+        }
+        #fileItems.grid-view .main-items .main-items-fileName .desc-text {
+            margin-left: 0;
+        }
+        #fileItems.grid-view .main-items .main-items-fileSize {
+            justify-content: center;
+            padding: 4px 0;
+        }
+        #fileItems.grid-view .main-items .file-actions {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        #fileItems.grid-view .main-items .main-items-fileName a {
+            max-width: 100%;
+        }
+        body.dark-mode #fileItems.grid-view .main-items {
+            border-color: #444;
+            background: rgba(255,255,255,0.03);
+        }
+        @media screen and (max-width: 500px) {
+            #fileItems.grid-view {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+
+        /* ===== 返回按钮 ===== */
+        .back-btn {
+            padding: 4px 14px;
+            border-radius: 6px;
+            background: rgba(0,0,0,0.05);
+            cursor: pointer;
+            font-size: 13px;
+            transition: 0.2s;
+            color: #666;
+            border: none;
+        }
+        .back-btn:hover {
+            background: rgba(0,0,0,0.1);
+        }
+        body.dark-mode .back-btn {
+            color: #aaa;
+            background: rgba(255,255,255,0.05);
+        }
+        body.dark-mode .back-btn:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* ===== 键盘快捷键提示 ===== */
+        .kbd-hint {
+            font-size: 11px;
+            color: #aaa;
+            background: rgba(0,0,0,0.05);
+            padding: 1px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            flex-shrink: 0;
+        }
+        body.dark-mode .kbd-hint {
+            background: rgba(255,255,255,0.05);
+        }
+
         @font-face {
             font-family: 'iconfont';
             src: url('//at.alicdn.com/t/font_1634400_9yg8f5s278.eot');
@@ -1478,9 +1636,93 @@
             -webkit-text-stroke-width: 0.2px;
             -moz-osx-font-smoothing: grayscale;
         }
+
+        /* ===== 触摸返回提示 ===== */
+        .swipe-hint {
+            position: fixed;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%) scale(0);
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            z-index: 5;
+            transition: 0.3s;
+            pointer-events: none;
+            backdrop-filter: blur(10px);
+        }
+        .swipe-hint.show {
+            transform: translateY(-50%) scale(1);
+        }
+
+        /* ===== 竖屏：只保留菜单按钮 + 搜索框 ===== */
+        @media screen and (max-width: 600px) {
+            /* 隐藏右侧多余元素 */
+            header nav .pull-right #statsDisplay {
+                display: none !important;
+            }
+            header nav .pull-right .view-toggle-btn {
+                display: none !important;
+            }
+            header nav .pull-right .kbd-hint {
+                display: none !important;
+            }
+            /* 左侧菜单按钮保留 */
+            header nav .pull-left {
+                display: flex !important;
+            }
+            header nav .pull-left .expand {
+                display: flex !important;
+            }
+            header nav .pull-left a {
+                display: none !important;
+            }
+            /* 右侧只保留搜索框 */
+            header nav .pull-right {
+                gap: 0;
+                flex: 1;
+                justify-content: flex-end;
+            }
+            header nav .pull-right .search-bar {
+                width: 180px !important;
+                flex-shrink: 0;
+            }
+            header nav .pull-right .search-bar:focus {
+                width: 180px !important;
+            }
+            /* 导航栏保持左右布局 */
+            header nav {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 8px;
+            }
+        }
+
+        /* 平板中间状态 - 隐藏部分元素 */
+        @media screen and (min-width: 601px) and (max-width: 900px) {
+            header nav .pull-left a {
+                display: none !important;
+            }
+            header nav .pull-right #statsDisplay {
+                display: none !important;
+            }
+            header nav .pull-right .kbd-hint {
+                display: none !important;
+            }
+            .search-bar {
+                width: 140px;
+            }
+            .search-bar:focus {
+                width: 180px;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="swipe-hint" id="swipeHint">⬅ 滑动返回</div>
     <div id="sidebarOverlay" onclick="closeSidebar()"></div>
     <div id="sidebar">
         <div class="multidisk curr-disk" onclick="navigateTo(null)">
@@ -1505,17 +1747,21 @@
         </div>
     </div>
     <header>
-        <nav class="header_container">
-            <div class="pull-left expand" id="expand" onclick="toggleSidebar()">
-                <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 17a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM5 17a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm7-7a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM5 10a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm7-7a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM5 3a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z" fill="#040303" />
-                </svg>
-            </div>
+        <nav>
             <div class="pull-left">
+                <div class="expand" id="expand" onclick="toggleSidebar()">
+                    <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 17a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM5 17a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm7-7a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM5 10a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm7-7a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM5 3a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z" fill="#040303" />
+                    </svg>
+                </div>
                 <a onclick="navigateTo(null)">资源列表</a>
             </div>
-            <div class="pull-right" id="statsDisplay" style="padding:0 20px;font-size:13px;color:#888;">
-                <span class="spinner-text">加载中…</span>
+            <div class="pull-right" style="gap:6px;">
+                <span id="statsDisplay">加载中...</span>
+                <input class="search-bar" id="searchInput" placeholder="🔍 搜索资源..." oninput="filterItems(this.value)">
+                <button class="view-toggle-btn" id="viewToggle" onclick="toggleView()" title="切换视图 (Ctrl+V)">☰</button>
+                <button class="view-toggle-btn" id="darkToggle" onclick="toggleDarkMode()" title="暗色模式 (Ctrl+D)">🌙</button>
+                <span class="kbd-hint">Ctrl+K</span>
             </div>
         </nav>
     </header>
@@ -1554,7 +1800,7 @@
         <div class="scroll" id="mainScroll">
             <div class="container">
                 <div class="main-title">
-                    <h1 class="main-title-path" id="breadcrumbDisplay">
+                    <h1 id="breadcrumbDisplay">
                         <a onclick="navigateTo(null)">📂 根目录</a>
                     </h1>
                 </div>
@@ -1569,7 +1815,6 @@
                         </div>
                     </div>
                     <div id="fileItems">
-                        <!-- 转圈圈加载 -->
                         <div class="spinner-wrapper">
                             <div class="spinner"></div>
                             <div class="spinner-text">正在加载资源列表…</div>
@@ -1579,7 +1824,6 @@
                 <div class="main-item-list special-page" id="specialPageContainer" style="display:none;padding:0;overflow:hidden;">
                     <div id="specialPageContent" class="page-content"></div>
                 </div>
-                <!-- 资源介绍容器 -->
                 <div class="main-item-list" id="introContainer">
                     <div class="readme markdown-body readme-content-wrapper" id="introReadme"></div>
                 </div>
@@ -1593,6 +1837,22 @@
         </div>
     </main>
     <script>
+        // ============================================================
+        // 完整修复版资源站
+        // ============================================================
+
+        // ===== 配置 =====
+        const CONFIG = {
+            cacheEnabled: true,
+            maxCacheSize: 50,
+            retryCount: 2,
+            retryDelay: 1000,
+            darkModeKey: 'baldgrid-darkmode',
+            viewModeKey: 'baldgrid-viewmode',
+            musicKey: 'baldgrid-music',
+        };
+
+        // ===== 全局状态 =====
         let allData = null;
         let currentPath = [];
         let currentCategory = null;
@@ -1600,7 +1860,7 @@
         let sidebarOpen = false;
         let currentDetailItem = null;
         let detailLink = '';
-        let musicEnabled = false;
+        let musicEnabled = localStorage.getItem(CONFIG.musicKey) === 'true';
         let musicList = [];
         let audioPlayer = null;
         let musicPlaying = false;
@@ -1609,77 +1869,209 @@
         let isPageAnimating = false;
         let toastTimer = null;
         let introLoaded = false;
-        let readmeTimer = null;
-
-        // ===== Android 返回键 / 浏览器历史记录 =====
         let bgHistoryReady = false;
         let bgRestoring = false;
+        let searchQuery = '';
+        let currentView = localStorage.getItem(CONFIG.viewModeKey) || 'list';
+        let isDarkMode = localStorage.getItem(CONFIG.darkModeKey) === 'true';
 
-        function bgMakeState(path, special, depth) {
-            return {
-                __baldgrid: true,
-                depth: depth,
-                path: Array.isArray(path) ? path.slice() : [],
-                special: special || null
-            };
-        }
+        // ===== 缓存系统 =====
+        const cache = new Map();
+        const cacheOrder = [];
 
-        function bgPushCurrent() {
-            if (!bgHistoryReady || bgRestoring) return;
-            const old = history.state;
-            const depth = old && old.__baldgrid ? (Number(old.depth) || 0) + 1 : 1;
-            history.pushState(
-                bgMakeState(currentPath, currentSpecialPage, depth),
-                '',
-                window.location.href
-            );
-        }
-
-        function bgGoRoot() {
-            if (!bgHistoryReady || bgRestoring) return;
-            const state = history.state;
-            if (!state || !state.__baldgrid || Number(state.depth) <= 0) return;
-            history.go(-Number(state.depth));
-        }
-
-        function bgRestore(state) {
-            if (!state || !state.__baldgrid || !allData) return;
-            bgRestoring = true;
-
-            if (state.special) {
-                showSpecialPage(state.special, true);
-            } else if (Array.isArray(state.path) && state.path.length) {
-                navigateToByPath(state.path, true);
-            } else {
-                navigateTo(null, true);
+        function setCache(key, data) {
+            if (!CONFIG.cacheEnabled) return;
+            if (cacheOrder.length >= CONFIG.maxCacheSize) {
+                const oldest = cacheOrder.shift();
+                cache.delete(oldest);
             }
-
-            setTimeout(() => { bgRestoring = false; }, 800);
+            cache.set(key, data);
+            cacheOrder.push(key);
         }
 
-        window.addEventListener('popstate', function(event) {
-            if (!bgHistoryReady) return;
-            if (event.state && event.state.__baldgrid) {
-                bgRestore(event.state);
+        function getCache(key) {
+            if (!CONFIG.cacheEnabled) return null;
+            return cache.get(key) || null;
+        }
+
+        function clearCache() {
+            cache.clear();
+            cacheOrder.length = 0;
+            showToast('✅ 缓存已清除');
+        }
+
+        // ===== 暗色模式 =====
+        function applyDarkMode(enabled) {
+            isDarkMode = enabled;
+            localStorage.setItem(CONFIG.darkModeKey, String(enabled));
+            document.body.classList.toggle('dark-mode', enabled);
+            const btn = document.getElementById('darkToggle');
+            if (btn) btn.textContent = enabled ? '☀️' : '🌙';
+        }
+
+        function toggleDarkMode() {
+            applyDarkMode(!isDarkMode);
+            showToast(isDarkMode ? '🌙 暗色模式' : '☀️ 亮色模式');
+            if (currentSpecialPage === 'settings') {
+                renderSettings(document.getElementById('specialPageContent'));
+            }
+        }
+
+        // ===== 视图切换 =====
+        function toggleView() {
+            currentView = currentView === 'list' ? 'grid' : 'list';
+            localStorage.setItem(CONFIG.viewModeKey, currentView);
+            const btn = document.getElementById('viewToggle');
+            btn.textContent = currentView === 'list' ? '☰' : '▦';
+            applyViewMode();
+            showToast(currentView === 'list' ? '📋 列表视图' : '▦ 网格视图');
+            if (currentSpecialPage === 'settings') {
+                renderSettings(document.getElementById('specialPageContent'));
+            }
+        }
+
+        function applyViewMode() {
+            const container = document.getElementById('fileItems');
+            if (container) {
+                container.classList.toggle('grid-view', currentView === 'grid');
+            }
+        }
+
+        // ===== 搜索功能 =====
+        function filterItems(query) {
+            searchQuery = query.toLowerCase().trim();
+            const items = document.querySelectorAll('#fileItems .main-items:not(.main-item-title)');
+            let visibleCount = 0;
+            items.forEach(item => {
+                const nameEl = item.querySelector('.name-text');
+                const name = nameEl ? nameEl.textContent.toLowerCase() : '';
+                const show = !searchQuery || name.includes(searchQuery);
+                item.style.display = show ? '' : 'none';
+                if (show) visibleCount++;
+            });
+            const emptyState = document.querySelector('#fileItems .empty-state');
+            if (visibleCount === 0 && searchQuery) {
+                if (!emptyState) {
+                    const wrapper = document.getElementById('fileItems');
+                    const empty = document.createElement('div');
+                    empty.className = 'empty-state';
+                    empty.innerHTML = `<div class="icon">🔍</div><p>没有找到 "${searchQuery}" 相关的资源</p>`;
+                    wrapper.appendChild(empty);
+                }
+            } else if (emptyState && (visibleCount > 0 || !searchQuery)) {
+                emptyState.remove();
+            }
+        }
+
+        // ===== 键盘快捷键 =====
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'k') {
+                e.preventDefault();
+                document.getElementById('searchInput').focus();
+                document.getElementById('searchInput').select();
+            }
+            if (e.key === 'Escape') {
+                closeDetail();
+                closeImgPreview();
+                if (sidebarOpen) closeSidebar();
+                document.getElementById('searchInput').blur();
+            }
+            if (e.altKey && e.key === 'ArrowLeft' && currentPath.length > 0) {
+                e.preventDefault();
+                const parentPath = currentPath.slice(0, -1);
+                if (parentPath.length) navigateToByPath(parentPath.join('|'));
+                else navigateTo(null);
+            }
+            if (e.ctrlKey && e.key === 'd') {
+                e.preventDefault();
+                toggleDarkMode();
+            }
+            if (e.ctrlKey && e.key === 'v') {
+                e.preventDefault();
+                toggleView();
             }
         });
 
+        // ===== 触摸滑动返回 =====
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let isSwiping = false;
+        let swipeHintTimer = null;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            isSwiping = false;
+        }, { passive: true });
+
+        document.addEventListener('touchmove', (e) => {
+            if (e.touches.length !== 1) return;
+            const deltaX = e.touches[0].clientX - touchStartX;
+            const deltaY = e.touches[0].clientY - touchStartY;
+            if (Math.abs(deltaX) > 20 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
+                isSwiping = true;
+                if (deltaX > 0 && currentPath.length > 0) {
+                    const hint = document.getElementById('swipeHint');
+                    hint.classList.add('show');
+                    clearTimeout(swipeHintTimer);
+                    swipeHintTimer = setTimeout(() => hint.classList.remove('show'), 2000);
+                }
+            }
+        }, { passive: true });
+
+        document.addEventListener('touchend', (e) => {
+            const deltaX = e.changedTouches[0].clientX - touchStartX;
+            const deltaY = e.changedTouches[0].clientY - touchStartY;
+            if (isSwiping && deltaX > 60 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
+                if (currentPath.length > 0) {
+                    const parentPath = currentPath.slice(0, -1);
+                    if (parentPath.length) navigateToByPath(parentPath.join('|'));
+                    else navigateTo(null);
+                    showToast('⬅ 返回上一级');
+                }
+            }
+            document.getElementById('swipeHint').classList.remove('show');
+            isSwiping = false;
+        }, { passive: true });
+
+        // ===== 重试机制 =====
+        async function fetchWithRetry(url, retries = CONFIG.retryCount) {
+            let lastError;
+            for (let i = 0; i <= retries; i++) {
+                try {
+                    const res = await fetch(url);
+                    if (res.ok) return res;
+                    if (res.status === 404) throw new Error('文件不存在');
+                    throw new Error(`HTTP ${res.status}`);
+                } catch (e) {
+                    lastError = e;
+                    if (i < retries) {
+                        await new Promise(r => setTimeout(r, CONFIG.retryDelay * (i + 1)));
+                    }
+                }
+            }
+            throw lastError;
+        }
+
+        // ===== 加载数据 =====
         async function loadData() {
             try {
-                const response = await fetch('resources.json');
-                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                // ★★★ 在加载数据之前就应用暗色模式 ★★★
+                applyDarkMode(isDarkMode);
+
+                const statsEl = document.getElementById('statsDisplay');
+                if (statsEl) statsEl.textContent = '⏳ 加载中...';
+
+                const response = await fetchWithRetry('resources.json');
                 allData = await response.json();
-                // 递归加载所有 loader
                 await loadAllLoaders(allData.categories);
-                // 建立扁平索引
                 flatItems = [];
                 buildFlatIndex(allData.categories, []);
                 const count = flatItems.filter(i => i.type === 'loader' || i.type === 'file' || i.type === 'folder').length;
-                document.getElementById('statsDisplay').innerHTML = `📦 ${count} 个资源`;
+                if (statsEl) statsEl.textContent = `📦 ${count} 个资源`;
                 await loadMusicList();
                 await loadIntro();
 
-                // 当前网页入口固定为唯一的 root History entry。
                 currentPath = [];
                 currentSpecialPage = null;
                 currentCategory = {
@@ -1688,8 +2080,12 @@
                     children: allData.categories
                 };
 
+                applyViewMode();
+                const btn = document.getElementById('viewToggle');
+                if (btn) btn.textContent = currentView === 'list' ? '☰' : '▦';
+
                 history.replaceState(
-                    bgMakeState([], null, 0),
+                    { __baldgrid: true, depth: 0, path: [], special: null },
                     '',
                     window.location.href
                 );
@@ -1701,34 +2097,31 @@
                     <div class="empty-state">
                         <div class="icon">❌</div>
                         <p>加载失败: ${error.message}</p>
-                        <p style="font-size:13px;color:#bbb;margin-top:8px;">请确保 resources.json 文件存在</p>
+                        <p style="font-size:13px;color:#bbb;margin-top:8px;">请确保 resources.json 文件存在且格式正确</p>
+                        <p style="font-size:12px;color:#bbb;margin-top:4px;">当前路径: ${window.location.href}</p>
                     </div>
                 `;
-                document.getElementById('statsDisplay').innerHTML = '⚠️ 加载失败';
+                const statsEl = document.getElementById('statsDisplay');
+                if (statsEl) statsEl.textContent = '⚠️ 加载失败';
                 console.error('加载失败:', error);
             }
         }
 
-        // ===== 加载资源介绍 (data/main.md) =====
+        // ===== 加载资源介绍 =====
         async function loadIntro() {
             try {
-                const res = await fetch('data/main.md');
-                if (res.ok) {
-                    const text = await res.text();
-                    const html = renderMarkdown(text);
-                    const wrapper = document.querySelector('#introContainer .readme-content-wrapper');
-                    if (wrapper) {
-                        wrapper.innerHTML = html;
-                        wrapper.style.opacity = '0';
-                        wrapper.style.transform = 'translateY(18px) scale(0.95)';
-                    }
-                    introLoaded = true;
-                    // 如果当前在根目录，显示介绍
-                    if (currentCategory && currentCategory.name === '根目录') {
-                        showReadmeContainer('introContainer');
-                    }
-                } else {
-                    introLoaded = false;
+                const res = await fetchWithRetry('data/main.md');
+                const text = await res.text();
+                const html = renderMarkdown(text);
+                const wrapper = document.querySelector('#introContainer .readme-content-wrapper');
+                if (wrapper) {
+                    wrapper.innerHTML = html;
+                    wrapper.style.opacity = '0';
+                    wrapper.style.transform = 'translateY(18px) scale(0.95)';
+                }
+                introLoaded = true;
+                if (currentCategory && currentCategory.name === '根目录') {
+                    showReadmeContainer('introContainer');
                 }
             } catch (e) {
                 introLoaded = false;
@@ -1736,11 +2129,10 @@
             }
         }
 
-        // ========== 核心：递归加载 loader ==========
+        // ===== 加载所有 loader =====
         async function loadAllLoaders(categories) {
             if (!categories || !Array.isArray(categories)) return;
             for (const cat of categories) {
-                // 如果当前节点是 loader，加载它
                 if (cat.type === 'loader' && cat.src) {
                     try {
                         let src = cat.src;
@@ -1751,14 +2143,9 @@
                             anchor = parts[1];
                         }
                         console.log('📥 加载:', src, anchor ? `→ ${anchor}` : '');
-                        const res = await fetch(src);
-                        if (!res.ok) {
-                            console.warn('❌ HTTP', res.status, ':', src);
-                            continue;
-                        }
+                        const res = await fetchWithRetry(src);
                         let data = await res.json();
 
-                        // 如果指定了锚点，取锚点内容
                         if (anchor) {
                             if (data[anchor]) {
                                 data = data[anchor];
@@ -1768,47 +2155,37 @@
                             }
                         }
 
-                        // 转换 loader 为 folder
                         cat.type = 'folder';
-                        
-                        // 处理数据：可能是 { children: [...] } 或数组或单个对象
                         if (data.children && Array.isArray(data.children)) {
                             cat.children = data.children;
-                            // 如果 data 本身有 desc/readme，继承到 cat
                             if (data.desc && !cat.desc) cat.desc = data.desc;
                             if (data.readme) cat.readme = data.readme;
                         } else if (Array.isArray(data)) {
                             cat.children = data;
                         } else {
-                            // 单个资源对象
                             cat.children = [];
                             cat._loadedData = data;
                             if (data.desc && !cat.desc) cat.desc = data.desc;
                             if (data.url) cat._url = data.url;
-                            // 加载 readme（如果有）
                             if (data.readme) {
                                 try {
-                                    const rmRes = await fetch(data.readme);
-                                    if (rmRes.ok) {
-                                        cat._loadedReadme = await rmRes.text();
-                                    } else {
-                                        console.warn('📄 README 404:', data.readme);
-                                    }
+                                    const rmRes = await fetchWithRetry(data.readme);
+                                    cat._loadedReadme = await rmRes.text();
                                 } catch (e) {
                                     console.warn('📄 README 加载失败:', data.readme);
                                 }
                             }
                         }
 
-                        // 递归加载 children 中的 loader
                         if (cat.children && Array.isArray(cat.children)) {
                             await loadAllLoaders(cat.children);
                         }
                     } catch (e) {
                         console.warn('❌ 加载失败:', cat.src, e);
+                        cat.type = 'folder';
+                        cat.children = [];
                     }
                 } else if (cat.children && Array.isArray(cat.children)) {
-                    // 普通 folder，递归处理子项
                     await loadAllLoaders(cat.children);
                 }
             }
@@ -1826,17 +2203,16 @@
             });
         }
 
+        // ===== 音乐功能 =====
         async function loadMusicList() {
             try {
-                const response = await fetch('data/music.json');
-                if (response.ok) {
-                    musicList = await response.json();
-                } else {
-                    console.warn('音乐列表加载失败');
-                    musicList = [];
+                const response = await fetchWithRetry('data/music.json');
+                musicList = await response.json();
+                if (musicEnabled && musicList.length > 0) {
+                    setTimeout(() => playRandomMusic(), 500);
                 }
             } catch (e) {
-                console.warn('音乐列表加载异常:', e);
+                console.warn('音乐列表加载失败:', e);
                 musicList = [];
             }
         }
@@ -1849,6 +2225,10 @@
                 }
                 musicPlaying = false;
                 showToast('🔇 音乐已关闭');
+                localStorage.setItem(CONFIG.musicKey, 'false');
+                if (currentSpecialPage === 'settings') {
+                    renderSettings(document.getElementById('specialPageContent'));
+                }
                 return;
             }
             if (musicList.length === 0) {
@@ -1939,6 +2319,54 @@
             musicPlayedIndices = [];
         }
 
+        // ===== 导航 =====
+        function bgMakeState(path, special, depth) {
+            return {
+                __baldgrid: true,
+                depth: depth,
+                path: Array.isArray(path) ? path.slice() : [],
+                special: special || null
+            };
+        }
+
+        function bgPushCurrent() {
+            if (!bgHistoryReady || bgRestoring) return;
+            const old = history.state;
+            const depth = old && old.__baldgrid ? (Number(old.depth) || 0) + 1 : 1;
+            history.pushState(
+                bgMakeState(currentPath, currentSpecialPage, depth),
+                '',
+                window.location.href
+            );
+        }
+
+        function bgGoRoot() {
+            if (!bgHistoryReady || bgRestoring) return;
+            const state = history.state;
+            if (!state || !state.__baldgrid || Number(state.depth) <= 0) return;
+            history.go(-Number(state.depth));
+        }
+
+        function bgRestore(state) {
+            if (!state || !state.__baldgrid || !allData) return;
+            bgRestoring = true;
+            if (state.special) {
+                showSpecialPage(state.special, true);
+            } else if (Array.isArray(state.path) && state.path.length) {
+                navigateToByPath(state.path, true);
+            } else {
+                navigateTo(null, true);
+            }
+            setTimeout(() => { bgRestoring = false; }, 800);
+        }
+
+        window.addEventListener('popstate', function(event) {
+            if (!bgHistoryReady) return;
+            if (event.state && event.state.__baldgrid) {
+                bgRestore(event.state);
+            }
+        });
+
         function navigateToByPath(pathInput, fromHistory = false) {
             hideSpecialPage(true);
             if (!pathInput) {
@@ -1984,7 +2412,10 @@
             const fileList = document.getElementById('fileList');
             const specialContainer = document.getElementById('specialPageContainer');
             specialContainer.style.display = 'none';
-            
+
+            document.getElementById('searchInput').value = '';
+            searchQuery = '';
+
             if (fileList.style.display !== 'none') {
                 fileList.classList.add('list-exit');
                 setTimeout(() => {
@@ -1995,7 +2426,7 @@
                     }, 400);
                 }, 300);
             }
-            
+
             setTimeout(() => {
                 if (category === null) {
                     currentPath = [];
@@ -2004,21 +2435,17 @@
                         type: 'root',
                         children: allData.categories
                     };
-                    
-                    // 显示资源介绍
                     if (introLoaded) {
                         const wrapper = document.querySelector('#introContainer .readme-content-wrapper');
                         if (wrapper && wrapper.innerHTML && wrapper.innerHTML.trim() !== '' && wrapper.innerHTML !== '<br>') {
                             showReadmeContainer('introContainer');
                         }
                     } else {
-                        // 尝试加载
                         loadIntro();
                     }
                 } else {
                     currentPath = category._path || [category.name];
                     currentCategory = category;
-                    // 显示文件夹的 readme
                     renderReadme(currentCategory);
                 }
                 renderBreadcrumb();
@@ -2031,12 +2458,13 @@
                 });
                 document.querySelector('#sidebar .multidisk:first-child')?.classList.add('curr-disk');
                 document.getElementById('mainScroll').scrollTo({ top: 0, behavior: 'smooth' });
+                filterItems('');
             }, 150);
         }
 
+        // ===== 特殊页面 =====
         function showSpecialPage(type, fromHistory = false) {
             if (isPageAnimating) return;
-
             currentSpecialPage = type;
 
             if (!fromHistory && bgHistoryReady && !bgRestoring) {
@@ -2047,6 +2475,10 @@
             const content = document.getElementById('specialPageContent');
             const breadcrumb = document.getElementById('breadcrumbDisplay');
             hideAllReadme();
+
+            document.getElementById('searchInput').value = '';
+            searchQuery = '';
+
             const labels = {
                 'links': '🔗 友情链接',
                 'author': '👤 联系作者',
@@ -2110,7 +2542,7 @@
             fileList.classList.remove('list-exit', 'list-enter');
             currentSpecialPage = null;
             isPageAnimating = false;
-            
+
             if (!keepReadme) {
                 if (currentCategory && currentCategory.name === '根目录') {
                     if (introLoaded) {
@@ -2128,11 +2560,11 @@
             }
         }
 
+        // ===== 渲染链接 =====
         async function renderLinks(container) {
             container.innerHTML = `<div class="empty-state"><div class="icon">⏳</div><p>加载中...</p></div>`;
             try {
-                const response = await fetch('data/links.json');
-                if (!response.ok) throw new Error('文件不存在');
+                const response = await fetchWithRetry('data/links.json');
                 const data = await response.json();
                 if (!Array.isArray(data) || data.length === 0) {
                     container.innerHTML = `<div class="empty-state"><div class="icon">🔗</div><p>暂无友情链接</p></div>`;
@@ -2163,18 +2595,18 @@
             }
         }
 
+        // ===== 渲染作者 =====
         async function renderAuthor(container) {
             container.innerHTML = `<div class="empty-state"><div class="icon">⏳</div><p>加载中...</p></div>`;
             try {
-                const response = await fetch('data/zuozhe.json');
-                if (!response.ok) throw new Error('文件不存在');
+                const response = await fetchWithRetry('data/zuozhe.json');
                 const data = await response.json();
                 if (!Array.isArray(data) || data.length === 0) {
                     container.innerHTML = `<div class="empty-state"><div class="icon">👤</div><p>暂无作者信息</p></div>`;
                     return;
                 }
                 let html = `<div class="main-items main-item-title"><div class="inner-container"><div class="main-items-displayName">作者</div><div class="main-items-size" style="text-align:right;">联系</div></div></div>`;
-                data.forEach((item, idx) => {
+                data.forEach((item) => {
                     const hasImage = item.image && item.image.trim() !== '';
                     html += `
                         <div class="link-card">
@@ -2204,6 +2636,7 @@
             }
         }
 
+        // ===== 渲染感谢 =====
         async function renderThanks(container) {
             container.innerHTML = `
                 <div class="thanks-container">
@@ -2216,8 +2649,7 @@
                 </div>
             `;
             try {
-                const response = await fetch('data/thanks.json');
-                if (!response.ok) throw new Error('文件不存在');
+                const response = await fetchWithRetry('data/thanks.json');
                 const data = await response.json();
                 const listContainer = document.getElementById('thanksList');
                 if (!Array.isArray(data) || data.length === 0) {
@@ -2239,7 +2671,7 @@
                     html += `
                         <div class="thanks-item">
                             <div class="thanks-avatar">
-                                ${avatarSrc ? `<img src="${avatarSrc}" alt="${name}" onerror="this.parentElement.innerHTML='<div class=\\'avatar-placeholder\\'>👤</div>'">` : `<div class="avatar-placeholder">👤</div>`}
+                                ${avatarSrc ? `<img loading="lazy" src="${avatarSrc}" alt="${name}" onerror="this.parentElement.innerHTML='<div class=\\'avatar-placeholder\\'>👤</div>'">` : `<div class="avatar-placeholder">👤</div>`}
                             </div>
                             <div class="thanks-name">
                                 ${name}
@@ -2264,26 +2696,7 @@
             }
         }
 
-        function openImgPreview(src, name) {
-            const overlay = document.getElementById('imgPreviewOverlay');
-            const body = document.getElementById('imgPreviewBody');
-            const title = document.getElementById('imgPreviewTitle');
-            title.textContent = `📷 ${name || '图片预览'}`;
-            body.innerHTML = `<img src="${src}" alt="${name || '图片'}" onerror="this.parentElement.innerHTML='<div class=\\'no-img\\'>❌ 图片加载失败</div>'">`;
-            overlay.classList.remove('closing', 'active');
-            void overlay.offsetWidth;
-            overlay.classList.add('active');
-        }
-
-        function closeImgPreview() {
-            const overlay = document.getElementById('imgPreviewOverlay');
-            overlay.classList.remove('active');
-            overlay.classList.add('closing');
-            setTimeout(() => {
-                overlay.classList.remove('closing');
-            }, 250);
-        }
-
+        // ===== 渲染设置 =====
         function renderSettings(container) {
             const isMusicOn = musicEnabled;
             let currentSongName = '';
@@ -2315,14 +2728,55 @@
                         ⏸️ 已暂停
                     </div>
                 ` : ''}
-                <div style="padding:14px 20px;font-size:12px;color:#bbb;text-align:center;">
-                    中国大陆地区可能无法播放音乐...
+                <div class="settings-item">
+                    <div>
+                        <div class="settings-label">🌓 暗色模式</div>
+                        <div class="settings-desc">切换亮色/暗色主题 (Ctrl+D)</div>
+                    </div>
+                    <div class="settings-control">
+                        <div class="toggle-switch ${isDarkMode ? 'active' : ''}" onclick="toggleDarkMode()">
+                            <div class="toggle-knob"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="settings-item">
+                    <div>
+                        <div class="settings-label">📋 视图模式</div>
+                        <div class="settings-desc">列表/网格视图切换 (Ctrl+V)</div>
+                    </div>
+                    <div class="settings-control">
+                        <button onclick="toggleView()" style="padding:6px 16px;border-radius:6px;border:1px solid #ddd;background:transparent;cursor:pointer;font-size:14px;">
+                            ${currentView === 'list' ? '📋 列表' : '▦ 网格'}
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-item">
+                    <div>
+                        <div class="settings-label">🗑️ 清除缓存</div>
+                        <div class="settings-desc">清除所有已缓存的资源数据</div>
+                    </div>
+                    <div class="settings-control">
+                        <button onclick="clearCache()" style="padding:6px 16px;border-radius:6px;border:1px solid #dc2626;background:transparent;color:#dc2626;cursor:pointer;font-size:14px;">
+                            清除
+                        </button>
+                    </div>
+                </div>
+                <div style="padding:14px 20px;font-size:12px;color:#bbb;text-align:center;border-top:1px solid #f0f0f0;">
+                    <div>📖 键盘快捷键</div>
+                    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px;font-size:12px;">
+                        <span><kbd style="background:#f0f0f0;padding:2px 8px;border-radius:4px;">Ctrl+K</kbd> 搜索</span>
+                        <span><kbd style="background:#f0f0f0;padding:2px 8px;border-radius:4px;">Esc</kbd> 关闭</span>
+                        <span><kbd style="background:#f0f0f0;padding:2px 8px;border-radius:4px;">Alt+←</kbd> 返回</span>
+                        <span><kbd style="background:#f0f0f0;padding:2px 8px;border-radius:4px;">Ctrl+D</kbd> 暗色</span>
+                        <span><kbd style="background:#f0f0f0;padding:2px 8px;border-radius:4px;">Ctrl+V</kbd> 视图</span>
+                    </div>
                 </div>
             `;
         }
 
         function toggleMusicSetting(el) {
             musicEnabled = !musicEnabled;
+            localStorage.setItem(CONFIG.musicKey, String(musicEnabled));
             el.classList.toggle('active', musicEnabled);
             if (musicEnabled) {
                 if (musicList.length > 0) {
@@ -2344,20 +2798,28 @@
             }
         }
 
+        // ===== 渲染面包屑 =====
         function renderBreadcrumb() {
             const container = document.getElementById('breadcrumbDisplay');
             let html = `<a onclick="navigateTo(null)">📂 根目录</a>`;
             if (currentPath.length > 0) {
+                const parentPath = currentPath.slice(0, -1);
+                if (parentPath.length) {
+                    html += ` <button class="back-btn" onclick="navigateToByPath('${parentPath.join('|')}')" title="返回上一级 (Alt+←)">← 返回</button> `;
+                } else {
+                    html += ` <button class="back-btn" onclick="navigateTo(null)" title="返回根目录">← 返回</button> `;
+                }
+
                 let categories = allData.categories;
                 currentPath.forEach((name, index) => {
                     const found = categories.find(c => c.name === name);
                     if (found) {
                         html += ` > `;
                         if (index === currentPath.length - 1) {
-                            html += `<a style="font-weight:600;color:#333;">${name}</a>`;
+                            html += `<a style="font-weight:600;color:#333;">${escapeHtml(name)}</a>`;
                         } else {
                             const pathStr = currentPath.slice(0, index + 1).join('|');
-                            html += `<a onclick="navigateToByPath('${pathStr}')">${name}</a>`;
+                            html += `<a onclick="navigateToByPath('${pathStr}')">${escapeHtml(name)}</a>`;
                         }
                         categories = found.children || [];
                     }
@@ -2366,52 +2828,239 @@
             container.innerHTML = html;
         }
 
-        function copyLink(src, name) {
-            if (!src) {
-                showToast('❌ 没有链接可复制');
+        // ===== 渲染列表 =====
+        function renderList(category) {
+            const container = document.getElementById('fileItems');
+            const cacheKey = category._path ? category._path.join('/') : 'root';
+
+            const cached = getCache(cacheKey);
+            if (cached) {
+                container.innerHTML = cached;
+                applyViewMode();
+                if (searchQuery) filterItems(searchQuery);
                 return;
             }
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(src).then(() => {
-                    showToast(`✅ 已复制: ${name || '链接'}`);
-                }).catch(() => {
-                    fallbackCopy(src);
-                });
+
+            const items = category.children || [];
+            if (items.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="icon">📭</div>
+                        <p>啥都目有</p>
+                    </div>
+                `;
+                applyViewMode();
+                return;
+            }
+
+            const sorted = [...items].sort((a, b) => {
+                if (a.type === 'folder' && b.type !== 'folder') return -1;
+                if (a.type !== 'folder' && b.type === 'folder') return 1;
+                return 0;
+            });
+
+            let html = '';
+            sorted.forEach(item => {
+                if (item.type === 'folder') {
+                    const pathArr = item._path || [...currentPath, item.name];
+                    const pathStr = pathArr.join('|');
+                    html += `
+                        <div class="main-items folder-item" onclick="navigateToByPath('${pathStr}')" data-path="${pathStr}">
+                            <div class="main-items-icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 4.5C2 3.67157 2.67157 3 3.5 3H7.5C8.32843 3 9 3.67157 9 4.5V5H16.5C17.3284 5 18 5.67157 18 6.5V15.5C18 16.3284 17.3284 17 16.5 17H3.5C2.67157 17 2 16.3284 2 15.5V4.5Z" fill="#FFCE5C" stroke="#E6A800" stroke-width="1.2"/>
+                                    <path d="M9 5V4.5C9 4.22386 8.77614 4 8.5 4H3.5C3.22386 4 3 4.22386 3 4.5V15.5C3 15.7761 3.22386 16 3.5 16H16.5C16.7761 16 17 15.7761 17 15.5V6.5C17 6.22386 16.7761 6 16.5 6H9V5Z" fill="#FFE08A" stroke="#E6A800" stroke-width="0.8"/>
+                                </svg>
+                            </div>
+                            <div class="main-items-fileName" style="flex:1;">
+                                <a onclick="event.stopPropagation();navigateToByPath('${pathStr}')" style="font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escapeHtml(item.name)}</a>
+                                ${item.desc ? `<span class="desc-text">${escapeHtml(item.desc)}</span>` : ''}
+                            </div>
+                            <div class="main-items-fileSize">
+                                <span class="folder-info">📁 ${item.children ? item.children.length : 0} 项</span>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    const icon = getFileIcon(item.src || item.url);
+                    const itemName = escapeHtml(item.name);
+                    const itemDesc = escapeHtml(item.desc || '');
+                    const itemSrc = escapeHtml(item.src || item.url || '');
+                    const loadedDesc = item._loadedData?.desc ? escapeHtml(item._loadedData.desc) : '';
+                    html += `
+                        <div class="main-items">
+                            <div class="main-items-icon">
+                                <span style="font-size:20px;line-height:1;">${icon}</span>
+                            </div>
+                            <div class="main-items-fileName" style="flex:1;min-width:0;">
+                                <span class="name-text">${itemName}</span>
+                                ${itemDesc ? `<span class="desc-text">${itemDesc}</span>` : ''}
+                                ${loadedDesc ? `<span class="desc-text" style="color:#666;">${loadedDesc}</span>` : ''}
+                            </div>
+                            <div class="main-items-fileSize">
+                                <div class="file-actions">
+                                    <a class="btn-detail" onclick="event.stopPropagation();openDetail({ name: '${itemName}', desc: '${itemDesc}', src: '${itemSrc}', url: '${itemSrc}', readme: '', _loadedData: ${JSON.stringify(item._loadedData || null)}, _loadedReadme: ${JSON.stringify(item._loadedReadme || null)} })">📄 查看详情</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            container.innerHTML = html;
+            applyViewMode();
+            setCache(cacheKey, html);
+
+            if (searchQuery) filterItems(searchQuery);
+        }
+
+        // ===== 渲染 README =====
+        function renderReadme(category) {
+            if (category._loadedReadme) {
+                const html = renderMarkdown(category._loadedReadme);
+                renderReadmeContent('readmeContainer', html);
+                return;
+            }
+
+            let readmePath = category.readme || null;
+            if (readmePath) {
+                fetchWithRetry(readmePath)
+                    .then(res => res.text())
+                    .then(text => {
+                        const html = renderMarkdown(text);
+                        renderReadmeContent('readmeContainer', html);
+                        category._loadedReadme = text;
+                    })
+                    .catch(() => {
+                        const html = `<p style="color:#999;">📖 暂无说明文档</p>`;
+                        renderReadmeContent('readmeContainer', html);
+                    });
             } else {
-                fallbackCopy(src);
+                hideAllReadme();
             }
         }
 
-        function fallbackCopy(text) {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            textarea.style.position = 'fixed';
-            textarea.style.opacity = '0';
-            document.body.appendChild(textarea);
-            textarea.select();
-            try {
-                document.execCommand('copy');
-                showToast('✅ 已复制链接');
-            } catch (e) {
-                showToast('❌ 复制失败，请手动复制');
+        function renderMarkdown(text) {
+            if (!text) return '<span style="color:#999;">暂无内容</span>';
+
+            const lines = text.split('\n');
+            let html = '';
+            let i = 0;
+
+            while (i < lines.length) {
+                let line = lines[i];
+                let trimmed = line.trim();
+
+                if (!trimmed) {
+                    html += '<br>';
+                    i++;
+                    continue;
+                }
+
+                if (trimmed.startsWith('# ')) {
+                    html += `<h1>${trimmed.replace('# ', '').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</h1>`;
+                    i++;
+                    continue;
+                }
+                if (trimmed.startsWith('## ')) {
+                    html += `<h2>${trimmed.replace('## ', '').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</h2>`;
+                    i++;
+                    continue;
+                }
+                if (trimmed.startsWith('### ')) {
+                    html += `<h3>${trimmed.replace('### ', '').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</h3>`;
+                    i++;
+                    continue;
+                }
+
+                if (trimmed.startsWith('- ')) {
+                    let items = [];
+                    while (i < lines.length && lines[i].trim().startsWith('- ')) {
+                        let item = lines[i].trim().replace('- ', '');
+                        item = item.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                        item = item.replace(/`([^`]+)`/g, '<code>$1</code>');
+                        items.push(`<li>${item}</li>`);
+                        i++;
+                    }
+                    html += `<ul>${items.join('')}</ul>`;
+                    continue;
+                }
+
+                let escaped = trimmed.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                escaped = escaped.replace(/`([^`]+)`/g, '<code>$1</code>');
+                html += `<p>${escaped}</p>`;
+                i++;
             }
-            document.body.removeChild(textarea);
+
+            return html;
         }
 
-        function downloadFile(src, name) {
-            if (!src) {
-                showToast('❌ 没有下载链接');
-                return;
-            }
-            const a = document.createElement('a');
-            a.href = src;
-            a.download = name || src.split('/').pop() || 'download';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            showToast(`⬇ 开始下载: ${name || '文件'}`);
+        function escapeHtml(text) {
+            if (text === null || text === undefined) return '';
+            const div = document.createElement('div');
+            div.textContent = String(text);
+            return div.innerHTML;
         }
 
+        function getFileIcon(src) {
+            if (!src) return '📄';
+            const ext = src.split('.').pop().toLowerCase();
+            const icons = {
+                'json': '📋', 'md': '📝', 'txt': '📄', 'pdf': '📕',
+                'zip': '📦', '7z': '📦', 'rar': '📦', 'apk': '📱',
+                'exe': '⚙️', 'png': '🖼️', 'jpg': '🖼️', 'jpeg': '🖼️',
+                'gif': '🖼️', 'svg': '🖼️', 'mp3': '🎵', 'mp4': '🎬',
+                'avi': '🎬', 'mkv': '🎬', 'html': '🌐', 'css': '🎨',
+                'js': '⚡', 'py': '🐍'
+            };
+            return icons[ext] || '📄';
+        }
+
+        // ===== 辅助函数 =====
+        function showReadmeContainer(id) {
+            const container = document.getElementById(id);
+            if (!container) return;
+            const otherId = id === 'introContainer' ? 'readmeContainer' : 'introContainer';
+            const other = document.getElementById(otherId);
+            if (other) {
+                other.classList.remove('visible');
+                other.classList.add('hidden');
+            }
+            container.classList.remove('hidden');
+            container.classList.add('visible');
+
+            const wrapper = container.querySelector('.readme-content-wrapper');
+            if (wrapper) {
+                wrapper.classList.remove('entering');
+                void wrapper.offsetWidth;
+                wrapper.classList.add('entering');
+            }
+        }
+
+        function hideAllReadme() {
+            ['introContainer', 'readmeContainer'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.classList.remove('visible');
+                    el.classList.add('hidden');
+                    const wrapper = el.querySelector('.readme-content-wrapper');
+                    if (wrapper) {
+                        wrapper.classList.remove('entering');
+                    }
+                }
+            });
+        }
+
+        function renderReadmeContent(containerId, html) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            const wrapper = container.querySelector('.readme-content-wrapper');
+            if (!wrapper) return;
+            wrapper.innerHTML = html;
+            showReadmeContainer(containerId);
+        }
+
+        // ===== 详情弹窗 =====
         function openDetail(item) {
             currentDetailItem = item;
             const overlay = document.getElementById('detailOverlay');
@@ -2463,11 +3112,8 @@
                     <div class="detail-readme" id="detailReadmeLoading">⏳ 加载中...</div>
                 </div>`;
                 body.innerHTML = html;
-                fetch(readmePath)
-                    .then(res => {
-                        if (!res.ok) throw new Error('文件不存在');
-                        return res.text();
-                    })
+                fetchWithRetry(readmePath)
+                    .then(res => res.text())
                     .then(text => {
                         const readmeDiv = document.getElementById('detailReadmeLoading');
                         if (readmeDiv) {
@@ -2506,242 +3152,74 @@
             }
         }
 
-        function renderList(category) {
-            const container = document.getElementById('fileItems');
-            const items = category.children || [];
-            if (items.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <div class="icon">📭</div>
-                        <p>啥都目有</p>
-                    </div>
-                `;
+        function copyLink(src, name) {
+            if (!src) {
+                showToast('❌ 没有链接可复制');
                 return;
             }
-            const sorted = [...items].sort((a, b) => {
-                if (a.type === 'folder' && b.type !== 'folder') return -1;
-                if (a.type !== 'folder' && b.type === 'folder') return 1;
-                return 0;
-            });
-            let html = '';
-            sorted.forEach(item => {
-                if (item.type === 'folder') {
-                    const pathArr = item._path || [...currentPath, item.name];
-                    const pathStr = pathArr.join('|');
-                    html += `
-                        <div class="main-items folder-item" onclick="navigateToByPath('${pathStr}')" data-path="${pathStr}">
-                            <div class="main-items-icon">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M2 4.5C2 3.67157 2.67157 3 3.5 3H7.5C8.32843 3 9 3.67157 9 4.5V5H16.5C17.3284 5 18 5.67157 18 6.5V15.5C18 16.3284 17.3284 17 16.5 17H3.5C2.67157 17 2 16.3284 2 15.5V4.5Z" fill="#FFCE5C" stroke="#E6A800" stroke-width="1.2"/>
-                                    <path d="M9 5V4.5C9 4.22386 8.77614 4 8.5 4H3.5C3.22386 4 3 4.22386 3 4.5V15.5C3 15.7761 3.22386 16 3.5 16H16.5C16.7761 16 17 15.7761 17 15.5V6.5C17 6.22386 16.7761 6 16.5 6H9V5Z" fill="#FFE08A" stroke="#E6A800" stroke-width="0.8"/>
-                                </svg>
-                            </div>
-                            <div class="main-items-fileName" style="flex:1;">
-                                <a onclick="event.stopPropagation();navigateToByPath('${pathStr}')" style="font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${item.name}</a>
-                                ${item.desc ? `<span class="desc-text">${item.desc}</span>` : ''}
-                            </div>
-                            <div class="main-items-fileSize">
-                                <span class="folder-info">📁 ${item.children ? item.children.length : 0} 项</span>
-                            </div>
-                        </div>
-                    `;
-                } else {
-                    const icon = getFileIcon(item.src || item.url);
-                    html += `
-                        <div class="main-items">
-                            <div class="main-items-icon">
-                                <span style="font-size:20px;line-height:1;">${icon}</span>
-                            </div>
-                            <div class="main-items-fileName" style="flex:1;min-width:0;">
-                                <span class="name-text">${item.name}</span>
-                                ${item.desc ? `<span class="desc-text">${item.desc}</span>` : ''}
-                                ${item._loadedData?.desc ? `<span class="desc-text" style="color:#666;">${item._loadedData.desc}</span>` : ''}
-                            </div>
-                            <div class="main-items-fileSize">
-                                <div class="file-actions">
-                                    <a class="btn-detail" onclick="event.stopPropagation();openDetail({ name: '${escapeHtml(item.name)}', desc: '${escapeHtml(item.desc || '')}', src: '${item.src || ''}', url: '${item.url || ''}', readme: '${item.readme || ''}', _loadedData: ${JSON.stringify(item._loadedData || null)}, _loadedReadme: ${JSON.stringify(item._loadedReadme || null)} })">📄 查看详情</a>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                }
-            });
-            container.innerHTML = html;
-        }
-
-        // ===== 渲染文件夹 README =====
-        function renderReadme(category) {
-            // 优先使用已加载的 _loadedReadme
-            if (category._loadedReadme) {
-                const html = renderMarkdown(category._loadedReadme);
-                renderReadmeContent('readmeContainer', html);
-                return;
-            }
-
-            // 其次使用 readme 路径
-            let readmePath = category.readme || null;
-            if (readmePath) {
-                fetch(readmePath)
-                    .then(res => {
-                        if (!res.ok) throw new Error('文件不存在');
-                        return res.text();
-                    })
-                    .then(text => {
-                        const html = renderMarkdown(text);
-                        renderReadmeContent('readmeContainer', html);
-                        // 缓存起来
-                        category._loadedReadme = text;
-                    })
-                    .catch(() => {
-                        const html = `<p style="color:#999;">📖 暂无说明文档</p>`;
-                        renderReadmeContent('readmeContainer', html);
-                    });
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(src).then(() => {
+                    showToast(`✅ 已复制: ${name || '链接'}`);
+                }).catch(() => {
+                    fallbackCopy(src);
+                });
             } else {
-                // 没有 readme，隐藏容器
-                hideAllReadme();
+                fallbackCopy(src);
             }
         }
 
-        function renderMarkdown(text) {
-            if (!text) return '<span style="color:#999;">暂无内容</span>';
-            
-            const lines = text.split('\n');
-            let html = '';
-            let i = 0;
-            
-            while (i < lines.length) {
-                let line = lines[i];
-                let trimmed = line.trim();
-                
-                if (!trimmed) {
-                    html += '<br>';
-                    i++;
-                    continue;
-                }
-                
-                if (trimmed.startsWith('# ')) {
-                    html += `<h1>${trimmed.replace('# ', '').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</h1>`;
-                    i++;
-                    continue;
-                }
-                if (trimmed.startsWith('## ')) {
-                    html += `<h2>${trimmed.replace('## ', '').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</h2>`;
-                    i++;
-                    continue;
-                }
-                if (trimmed.startsWith('### ')) {
-                    html += `<h3>${trimmed.replace('### ', '').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</h3>`;
-                    i++;
-                    continue;
-                }
-                
-                if (trimmed.startsWith('- ')) {
-                    let items = [];
-                    while (i < lines.length && lines[i].trim().startsWith('- ')) {
-                        let item = lines[i].trim().replace('- ', '');
-                        item = item.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-                        item = item.replace(/`([^`]+)`/g, '<code>$1</code>');
-                        items.push(`<li>${item}</li>`);
-                        i++;
-                    }
-                    html += `<ul>${items.join('')}</ul>`;
-                    continue;
-                }
-                
-                let escaped = trimmed.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-                escaped = escaped.replace(/`([^`]+)`/g, '<code>$1</code>');
-                html += `<p>${escaped}</p>`;
-                i++;
+        function fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast('✅ 已复制链接');
+            } catch (e) {
+                showToast('❌ 复制失败，请手动复制');
             }
-            
-            return html;
+            document.body.removeChild(textarea);
         }
 
-        function escapeHtml(text) {
-            if (text === null || text === undefined) return '';
-            const div = document.createElement('div');
-            div.textContent = String(text);
-            return div.innerHTML;
-        }
-
-        function getFileIcon(src) {
-            if (!src) return '📄';
-            const ext = src.split('.').pop().toLowerCase();
-            const icons = {
-                'json': '📋',
-                'md': '📝',
-                'txt': '📄',
-                'pdf': '📕',
-                'zip': '📦',
-                '7z': '📦',
-                'rar': '📦',
-                'apk': '📱',
-                'exe': '⚙️',
-                'png': '🖼️',
-                'jpg': '🖼️',
-                'jpeg': '🖼️',
-                'gif': '🖼️',
-                'svg': '🖼️',
-                'mp3': '🎵',
-                'mp4': '🎬',
-                'avi': '🎬',
-                'mkv': '🎬',
-                'html': '🌐',
-                'css': '🎨',
-                'js': '⚡',
-                'py': '🐍'
-            };
-            return icons[ext] || '📄';
-        }
-
-        // ========== 辅助函数 ==========
-        function showReadmeContainer(id) {
-            const container = document.getElementById(id);
-            if (!container) return;
-            // 隐藏另一个容器
-            const otherId = id === 'introContainer' ? 'readmeContainer' : 'introContainer';
-            const other = document.getElementById(otherId);
-            if (other) {
-                other.classList.remove('visible');
-                other.classList.add('hidden');
+        function downloadFile(src, name) {
+            if (!src) {
+                showToast('❌ 没有下载链接');
+                return;
             }
-            container.classList.remove('hidden');
-            container.classList.add('visible');
-            
-            // 触发进入动画
-            const wrapper = container.querySelector('.readme-content-wrapper');
-            if (wrapper) {
-                wrapper.classList.remove('entering');
-                // 强制重排
-                void wrapper.offsetWidth;
-                wrapper.classList.add('entering');
-            }
+            const a = document.createElement('a');
+            a.href = src;
+            a.download = name || src.split('/').pop() || 'download';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            showToast(`⬇ 开始下载: ${name || '文件'}`);
         }
 
-        function hideAllReadme() {
-            ['introContainer', 'readmeContainer'].forEach(id => {
-                const el = document.getElementById(id);
-                if (el) {
-                    el.classList.remove('visible');
-                    el.classList.add('hidden');
-                    const wrapper = el.querySelector('.readme-content-wrapper');
-                    if (wrapper) {
-                        wrapper.classList.remove('entering');
-                    }
-                }
-            });
+        // ===== 图片预览 =====
+        function openImgPreview(src, name) {
+            const overlay = document.getElementById('imgPreviewOverlay');
+            const body = document.getElementById('imgPreviewBody');
+            const title = document.getElementById('imgPreviewTitle');
+            title.textContent = `📷 ${name || '图片预览'}`;
+            body.innerHTML = `<img loading="lazy" src="${src}" alt="${name || '图片'}" onerror="this.parentElement.innerHTML='<div class=\\'no-img\\'>❌ 图片加载失败</div>'">`;
+            overlay.classList.remove('closing', 'active');
+            void overlay.offsetWidth;
+            overlay.classList.add('active');
         }
 
-        function renderReadmeContent(containerId, html) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
-            const wrapper = container.querySelector('.readme-content-wrapper');
-            if (!wrapper) return;
-            wrapper.innerHTML = html;
-            // 显示容器
-            showReadmeContainer(containerId);
+        function closeImgPreview() {
+            const overlay = document.getElementById('imgPreviewOverlay');
+            overlay.classList.remove('active');
+            overlay.classList.add('closing');
+            setTimeout(() => {
+                overlay.classList.remove('closing');
+            }, 250);
         }
 
+        // ===== 侧边栏 =====
         function toggleSidebar() {
             sidebarOpen = !sidebarOpen;
             const sidebar = document.getElementById('sidebar');
@@ -2763,6 +3241,7 @@
             if (sidebarOpen) toggleSidebar();
         }
 
+        // ===== Toast =====
         function showToast(msg) {
             const el = document.getElementById('toast');
             if (!el) return;
@@ -2774,20 +3253,17 @@
             }, 3000);
         }
 
+        // ===== 初始化 =====
         document.getElementById('foot_info').innerHTML =
             `Copyright © ${new Date().getFullYear()} | 白叶114514の资源站 | 主题来自于 雪中明月 大佬`;
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeDetail();
-                closeImgPreview();
-                if (sidebarOpen) closeSidebar();
-            }
-        });
-
-        // 初始隐藏
         document.getElementById('introContainer').classList.add('hidden');
         document.getElementById('readmeContainer').classList.add('hidden');
+
+        // 页面加载时立即应用暗色模式（根据 localStorage）
+        if (localStorage.getItem(CONFIG.darkModeKey) === 'true') {
+            document.body.classList.add('dark-mode');
+        }
 
         loadData();
     </script>
