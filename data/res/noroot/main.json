@@ -1,0 +1,83 @@
+{
+  "name": "安卓免root通用工具",
+  "type": "folder",
+  "desc": "",
+  "readme": "data/rm/file/noroot/main.md",
+  "children": [
+    {
+      "name": "OPPO软件商店（国际版）",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "软件商店",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ2NreUhEQk0tR1JMSDlMWEl4TFVMTEFYM0JmRU1yT0hYLTdXek1ncDVnQUFr"
+        }
+      ]
+    },
+    {
+      "name": "Shizuku软件商店",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "ShizukuCoreFetch",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRREgxZE4wUmNZc1M0Yl9yNGlLVFY1ZEFRb3lxeERrOE50MWVrSHNwRzRGblhJ"
+        }
+      ]
+    },
+    {
+      "name": "安卓Windows互传软件",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "Nearby Sharink",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ294cjZXZ3pjOFRKcV9rTUdFMjhQdkFZLXY3MEI0dDFIb2p3Z3hibEhVVVhn"
+        }
+      ]
+    },
+    {
+      "name": "性能检测工具",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "Metric",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQUVLc2dsaThxSVJJTmhKNGt3bHQzZEFmNThWMjRld1VtZEc2UVg3NmxSZl93"
+        }
+      ]
+    },
+    {
+      "name": "桌面",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "Niagara Launcher",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQUI2bE1XajktN1I2WDRkTTIwS0lZc0FZd0hWcUdMNDJ5OGN5LURWMjNLbE1V"
+        }
+      ]
+    }
+  ]
+}

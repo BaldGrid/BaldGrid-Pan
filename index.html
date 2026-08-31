@@ -648,6 +648,16 @@
                 transform: translateY(0) scale(1);
             }
         }
+        /* ===== README / 页面容器显隐 ===== */
+        /* JS 使用 hidden / visible 切换 README；这里必须真正控制 display，
+           否则“根目录介绍”和“当前目录 README”会同时留在页面中。 */
+        .main-item-list.hidden {
+            display: none !important;
+        }
+        .main-item-list.visible {
+            display: flex !important;
+        }
+
         #fileList,
         #specialPageContainer,
         #introContainer,
@@ -1842,10 +1852,9 @@
     </main>
     <script>
         // ============================================================
-        // 完整修复版资源站 - 修复3个bug
-        // 1. README加载修复：正确加载json里的readme路径
-        // 2. 去掉根目录右边的返回按钮
-        // 3. 资源加载时切换选项卡，加载完毕不会强行跳回
+        // 完整修复版资源站 - 修复 README 预加载问题
+        // 1. 在 loadAllLoaders 中，针对有 children 的 loader，也预加载 readme
+        // 2. renderReadme 增强错误处理
         // ============================================================
 
         // ===== 配置 =====
@@ -1881,7 +1890,6 @@
         let searchQuery = '';
         let currentView = localStorage.getItem(CONFIG.viewModeKey) || 'list';
         let isDarkMode = localStorage.getItem(CONFIG.darkModeKey) === 'true';
-        // 修复bug3：标记是否正在加载资源，防止加载完成后跳转
         let isLoadingResources = true;
         let pendingNavigate = null;
 
@@ -2073,7 +2081,8 @@
 
                 const response = await fetchWithRetry('resources.json');
                 allData = await response.json();
-                await loadAllLoaders(allData.categories);
+                setResourceBase(allData.categories, window.location.href);
+                await loadAllLoaders(allData.categories, window.location.href);
                 flatItems = [];
                 buildFlatIndex(allData.categories, []);
                 const count = flatItems.filter(i => i.type === 'loader' || i.type === 'file' || i.type === 'folder').length;
@@ -2102,7 +2111,6 @@
                 bgHistoryReady = true;
                 isLoadingResources = false;
 
-                // 如果有待处理的导航，执行它
                 if (pendingNavigate) {
                     const nav = pendingNavigate;
                     pendingNavigate = null;
@@ -2152,9 +2160,70 @@
             }
         }
 
-        // ===== 加载所有 loader =====
-        async function loadAllLoaders(categories) {
+        // ===== README / Loader 路径解析 =====
+        // resources.json 中的路径通常相对于网站根目录；
+        // loader 子 JSON 中的 ./README.md、../README.md 则相对于该 JSON 所在目录。
+        // 这里统一记录 _baseUrl，并在加载失败时兼容两种写法，避免子目录 README 只显示根目录说明。
+        function isAbsoluteResourcePath(path) {
+            return /^(?:[a-z][a-z0-9+.-]*:)?\/\//i.test(path) || path.startsWith('/');
+        }
+
+        function resolveResourcePath(path, baseUrl = window.location.href) {
+            if (!path) return null;
+            try {
+                if (isAbsoluteResourcePath(path)) return new URL(path, window.location.href).href;
+                // ./ 和 ../ 明确表示“相对于当前 JSON”
+                if (path.startsWith('./') || path.startsWith('../')) {
+                    return new URL(path, baseUrl).href;
+                }
+                // 普通 data/... 路径保持原有“网站根目录相对”行为
+                return new URL(path, window.location.href).href;
+            } catch (e) {
+                return path;
+            }
+        }
+
+        async function fetchReadme(path, baseUrl = window.location.href) {
+            if (!path) throw new Error('README 路径为空');
+
+            const rootUrl = resolveResourcePath(path, window.location.href);
+            const relativeUrl = new URL(path, baseUrl).href;
+            const candidates = [];
+            // 对 ./ ../ 优先使用 loader 所在目录；普通路径优先保持旧行为。
+            if (path.startsWith('./') || path.startsWith('../')) {
+                candidates.push(relativeUrl);
+                if (rootUrl !== relativeUrl) candidates.push(rootUrl);
+            } else {
+                candidates.push(rootUrl);
+                if (rootUrl !== relativeUrl) candidates.push(relativeUrl);
+            }
+
+            let lastError = null;
+            for (const url of candidates) {
+                try {
+                    const res = await fetchWithRetry(url);
+                    return { res, url };
+                } catch (e) {
+                    lastError = e;
+                }
+            }
+            throw lastError || new Error('README 加载失败');
+        }
+
+        // 给 loader 返回的子节点补上来源 JSON 的基准目录。
+        function setResourceBase(categories, baseUrl) {
+            if (!Array.isArray(categories)) return;
+            categories.forEach(item => {
+                if (!item._baseUrl) item._baseUrl = baseUrl;
+                if (Array.isArray(item.children)) setResourceBase(item.children, baseUrl);
+            });
+        }
+
+        // ===== 加载所有 loader（修复版） =====
+        async function loadAllLoaders(categories, baseUrl = window.location.href) {
             if (!categories || !Array.isArray(categories)) return;
+            setResourceBase(categories, baseUrl);
+
             for (const cat of categories) {
                 if (cat.type === 'loader' && cat.src) {
                     try {
@@ -2163,10 +2232,12 @@
                         if (src.includes('#')) {
                             const parts = src.split('#');
                             src = parts[0];
-                            anchor = parts[1];
+                            anchor = parts.slice(1).join('#');
                         }
-                        console.log('📥 加载:', src, anchor ? `→ ${anchor}` : '');
-                        const res = await fetchWithRetry(src);
+                        const resolvedSrc = resolveResourcePath(src, baseUrl);
+                        console.log('📥 加载:', resolvedSrc, anchor ? `→ ${anchor}` : '');
+                        const res = await fetchWithRetry(resolvedSrc);
+                        const loaderBaseUrl = new URL('.', resolvedSrc).href;
                         let data = await res.json();
 
                         if (anchor) {
@@ -2179,13 +2250,24 @@
                         }
 
                         cat.type = 'folder';
+                        cat._baseUrl = loaderBaseUrl;
                         if (data.children && Array.isArray(data.children)) {
                             cat.children = data.children;
+                            setResourceBase(cat.children, loaderBaseUrl);
                             if (data.desc && !cat.desc) cat.desc = data.desc;
-                            // 修复bug1：正确加载readme路径
-                            if (data.readme) cat.readme = data.readme;
-                            // 如果有子loader，递归加载
-                            await loadAllLoaders(cat.children);
+                            // ★★★ 修复：README 按当前 loader JSON 的来源解析，并兼容网站根目录写法 ★★★
+                            if (data.readme) {
+                                cat.readme = data.readme;
+                                try {
+                                    const result = await fetchReadme(data.readme, loaderBaseUrl);
+                                    cat._readmeUrl = result.url;
+                                    cat._loadedReadme = await result.res.text();
+                                    console.log('✅ README 预加载成功:', result.url);
+                                } catch (e) {
+                                    console.warn('📄 README 预加载失败:', data.readme, e);
+                                }
+                            }
+                            await loadAllLoaders(cat.children, loaderBaseUrl);
                         } else if (Array.isArray(data)) {
                             cat.children = data;
                         } else {
@@ -2193,21 +2275,21 @@
                             cat._loadedData = data;
                             if (data.desc && !cat.desc) cat.desc = data.desc;
                             if (data.url) cat._url = data.url;
-                            // 修复bug1：正确加载readme
                             if (data.readme) {
                                 cat.readme = data.readme;
                                 try {
-                                    const rmRes = await fetchWithRetry(data.readme);
-                                    cat._loadedReadme = await rmRes.text();
+                                    const result = await fetchReadme(data.readme, loaderBaseUrl);
+                                    cat._readmeUrl = result.url;
+                                    cat._loadedReadme = await result.res.text();
                                 } catch (e) {
-                                    console.warn('📄 README 加载失败:', data.readme);
+                                    console.warn('📄 README 加载失败:', data.readme, e);
                                 }
                             }
                         }
 
-                        // 如果cat有children，确保递归加载它们的loader
                         if (cat.children && Array.isArray(cat.children)) {
-                            await loadAllLoaders(cat.children);
+                            setResourceBase(cat.children, loaderBaseUrl);
+                            await loadAllLoaders(cat.children, loaderBaseUrl);
                         }
                     } catch (e) {
                         console.warn('❌ 加载失败:', cat.src, e);
@@ -2432,7 +2514,6 @@
         }
 
         function navigateTo(category, fromHistory = false) {
-            // 修复bug3：如果还在加载资源，记录待处理的导航
             if (isLoadingResources && !fromHistory) {
                 pendingNavigate = { type: 'category', category: category };
                 return;
@@ -2471,6 +2552,8 @@
                         children: allData.categories
                     };
                     if (introLoaded) {
+                        const intro = document.getElementById('introContainer');
+                        if (intro) intro.style.display = 'flex';
                         const wrapper = document.querySelector('#introContainer .readme-content-wrapper');
                         if (wrapper && wrapper.innerHTML && wrapper.innerHTML.trim() !== '' && wrapper.innerHTML !== '<br>') {
                             showReadmeContainer('introContainer');
@@ -2478,9 +2561,20 @@
                     } else {
                         loadIntro();
                     }
+                    // 隐藏 readmeContainer
+                    const rc = document.getElementById('readmeContainer');
+                    if (rc) { rc.classList.remove('visible'); rc.classList.add('hidden'); }
                 } else {
                     currentPath = category._path || [category.name];
                     currentCategory = category;
+                    // 非根目录：彻底隐藏根目录介绍，再显示当前目录 README
+                    const intro = document.getElementById('introContainer');
+                    if (intro) {
+                        intro.classList.remove('visible');
+                        intro.classList.add('hidden');
+                        intro.style.display = 'none';
+                    }
+                    // 进入文件夹时渲染 README
                     renderReadme(currentCategory);
                 }
                 renderBreadcrumb();
@@ -2499,7 +2593,6 @@
 
         // ===== 特殊页面 =====
         function showSpecialPage(type, fromHistory = false) {
-            // 修复bug3：如果还在加载资源，记录待处理的导航
             if (isLoadingResources && !fromHistory) {
                 pendingNavigate = { type: 'special', page: type };
                 return;
@@ -2595,6 +2688,8 @@
                         }
                         showReadmeContainer('introContainer');
                     }
+                    const rc = document.getElementById('readmeContainer');
+                    if (rc) { rc.classList.remove('visible'); rc.classList.add('hidden'); }
                 } else if (currentCategory) {
                     renderReadme(currentCategory);
                 }
@@ -2844,8 +2939,6 @@
             const container = document.getElementById('breadcrumbDisplay');
             let html = `<a onclick="navigateTo(null)">📂 根目录</a>`;
             if (currentPath.length > 0) {
-                // 修复bug2：去掉根目录右边的返回按钮
-                // 只有在非根目录时才显示返回按钮
                 html += ` <button class="back-btn" onclick="navigateToByPath('${currentPath.slice(0, -1).join('|')}')" title="返回上一级 (Alt+←)">← 返回</button> `;
 
                 let categories = allData.categories;
@@ -2925,9 +3018,11 @@
                     const itemDesc = escapeHtml(item.desc || '');
                     const itemSrc = escapeHtml(item.src || item.url || '');
                     const loadedDesc = item._loadedData?.desc ? escapeHtml(item._loadedData.desc) : '';
-                    // 修复bug1：确保readme路径正确传递
-                    const readmePath = item.readme ? escapeHtml(item.readme) : '';
-                    const loadedReadme = item._loadedReadme ? item._loadedReadme : '';
+                    let readmePath = item.readme || '';
+                    if (!readmePath && item._loadedData && item._loadedData.readme) {
+                        readmePath = item._loadedData.readme;
+                    }
+                    const loadedReadme = item._loadedReadme ? escapeHtml(JSON.stringify(item._loadedReadme).replace(/'/g, "\\'")) : '';
                     html += `
                         <div class="main-items">
                             <div class="main-items-icon">
@@ -2940,7 +3035,7 @@
                             </div>
                             <div class="main-items-fileSize">
                                 <div class="file-actions">
-                                    <a class="btn-detail" onclick="event.stopPropagation();openDetail({ name: '${itemName}', desc: '${itemDesc}', src: '${itemSrc}', url: '${itemSrc}', readme: '${readmePath}', _loadedData: ${JSON.stringify(item._loadedData || null)}, _loadedReadme: ${JSON.stringify(loadedReadme)} })">📄 查看详情</a>
+                                    <a class="btn-detail" onclick="event.stopPropagation();openDetail({ name: '${itemName}', desc: '${itemDesc}', src: '${itemSrc}', url: '${itemSrc}', readme: '${readmePath}', _loadedData: ${JSON.stringify(item._loadedData || null)}, _loadedReadme: '${loadedReadme}' })">📄 查看详情</a>
                                 </div>
                             </div>
                         </div>
@@ -2955,9 +3050,17 @@
             if (searchQuery) filterItems(searchQuery);
         }
 
-        // ===== 渲染 README =====
+        // ===== 渲染 README（增强版） =====
         function renderReadme(category) {
-            // 修复bug1：优先使用_loadedReadme，其次使用readme路径
+            const rc = document.getElementById('readmeContainer');
+            const ic = document.getElementById('introContainer');
+            if (!rc || !ic) return;
+
+            // 隐藏 introContainer
+            ic.classList.remove('visible');
+            ic.classList.add('hidden');
+
+            // 1️⃣ 如果已经有预加载的内容，直接渲染
             if (category._loadedReadme) {
                 const html = renderMarkdown(category._loadedReadme);
                 renderReadmeContent('readmeContainer', html);
@@ -2966,19 +3069,41 @@
 
             let readmePath = category.readme || null;
             if (readmePath) {
-                fetchWithRetry(readmePath)
-                    .then(res => res.text())
+                // 显示加载状态
+                const wrapper = rc.querySelector('.readme-content-wrapper');
+                if (wrapper) {
+                    wrapper.innerHTML = '<p style="color:#999;">⏳ 加载说明文档...</p>';
+                }
+                showReadmeContainer('readmeContainer');
+
+                // 2️⃣ 动态加载，并缓存结果
+                fetchReadme(readmePath, category._baseUrl || window.location.href)
+                    .then(result => {
+                        category._readmeUrl = result.url;
+                        return result.res.text();
+                    })
                     .then(text => {
                         const html = renderMarkdown(text);
                         renderReadmeContent('readmeContainer', html);
-                        category._loadedReadme = text;
+                        category._loadedReadme = text; // 缓存
                     })
-                    .catch(() => {
-                        const html = `<p style="color:#999;">📖 暂无说明文档</p>`;
+                    .catch(err => {
+                        console.warn('❌ README 加载失败:', readmePath, err);
+                        const html = `
+                            <p style="color:#dc2626;">❌ 加载失败: ${err.message}</p>
+                            <p style="color:#999;font-size:13px;margin-top:6px;">
+                                请检查路径: <code style="background:#f0f0f0;padding:2px 6px;border-radius:4px;">${readmePath}</code>
+                            </p>
+                        `;
                         renderReadmeContent('readmeContainer', html);
                     });
             } else {
-                hideAllReadme();
+                // 3️⃣ 没有 readme 字段
+                const wrapper = rc.querySelector('.readme-content-wrapper');
+                if (wrapper) {
+                    wrapper.innerHTML = '<p style="color:#999;">📖 该文件夹暂无说明文档</p>';
+                }
+                showReadmeContainer('readmeContainer');
             }
         }
 
@@ -3070,6 +3195,7 @@
             }
             container.classList.remove('hidden');
             container.classList.add('visible');
+            container.style.display = 'flex';
 
             const wrapper = container.querySelector('.readme-content-wrapper');
             if (wrapper) {
@@ -3085,6 +3211,7 @@
                 if (el) {
                     el.classList.remove('visible');
                     el.classList.add('hidden');
+                    el.style.display = 'none';
                     const wrapper = el.querySelector('.readme-content-wrapper');
                     if (wrapper) {
                         wrapper.classList.remove('entering');
@@ -3140,9 +3267,11 @@
                     <div class="detail-value"><a href="${escapeHtml(linkUrl)}" target="_blank">${escapeHtml(linkUrl)}</a></div>
                 </div>`;
             }
-            // 修复bug1：优先使用_loadedReadme，其次使用readme路径
             const readmeContent = item._loadedReadme || null;
-            const readmePath = item.readme || (item._loadedData ? item._loadedData.readme : null) || null;
+            let readmePath = item.readme || null;
+            if (!readmePath && item._loadedData && item._loadedData.readme) {
+                readmePath = item._loadedData.readme;
+            }
             if (readmeContent) {
                 html += `<div class="detail-item">
                     <span class="detail-label">📖 说明</span>
@@ -3155,8 +3284,8 @@
                     <div class="detail-readme" id="detailReadmeLoading">⏳ 加载中...</div>
                 </div>`;
                 body.innerHTML = html;
-                fetchWithRetry(readmePath)
-                    .then(res => res.text())
+                fetchReadme(readmePath, item._baseUrl || window.location.href)
+                    .then(result => result.res.text())
                     .then(text => {
                         const readmeDiv = document.getElementById('detailReadmeLoading');
                         if (readmeDiv) {
@@ -3303,7 +3432,6 @@
         document.getElementById('introContainer').classList.add('hidden');
         document.getElementById('readmeContainer').classList.add('hidden');
 
-        // 页面加载时立即应用暗色模式（根据 localStorage）
         if (localStorage.getItem(CONFIG.darkModeKey) === 'true') {
             document.body.classList.add('dark-mode');
         }

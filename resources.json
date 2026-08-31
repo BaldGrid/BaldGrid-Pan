@@ -132,9 +132,14 @@
       ]
     },
     {
-      "name": "工具",
+      "name": "Windows端工具",
       "type": "loader",
       "src": "data/res/tool/main.json"
+    },
+    {
+      "name": "免root通用工具",
+      "type": "loader",
+      "src": "data/res/noroot/main.json"
     }
   ]
 }
