@@ -137,7 +137,7 @@
       "src": "data/res/tool/main.json"
     },
     {
-      "name": "免root通用工具",
+      "name": "安卓实用工具",
       "type": "loader",
       "src": "data/res/noroot/main.json"
     }

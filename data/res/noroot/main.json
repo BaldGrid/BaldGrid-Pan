@@ -78,6 +78,223 @@
           "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQUI2bE1XajktN1I2WDRkTTIwS0lZc0FZd0hWcUdMNDJ5OGN5LURWMjNLbE1V"
         }
       ]
+    },
+    {
+      "name": "Google套件容器",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "Gbox",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQjNVdDQycDBVelNhQzBlZEpIaUYzb0FaWU5QeklPTHhnYmhxMS1WM3k5MVRn"
+        }
+      ]
+    },
+    {
+      "name": "NFC读写工具",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "NFC Tools Pro",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ29zYkJUOEM4eVRLUk1SZ1k5Sm5DUEFkeUN1LUlMSEwxN0JTSmVvc1BYclhF"
+        }
+      ]
+    },
+    {
+      "name": "root环境检测软件",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "momo",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ1ZJSW9vWUllRlI0U0wxUzJzdzBVeEFSOXN0eWItbnNyb01vSXJUcHNuc25N"
+        }
+      ]
+    },
+    {
+      "name": "临时root工具",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "月虹提权助手 v1.3",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRREdUQURhUllyeFFKYzBmNUp4YmowbUFadDlUT2dMVFEyYnFJQ3FrYXZSVEsw"
+        }
+      ]
+    },
+    {
+      "name": "仿Windows11桌面",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "超级机器人",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ1psRU1ZSWQ4RlJLZkIzUDAxZGZkZ0FlNUhyZlc0OTVUMWRmWkJ2NXIzbmVn"
+        }
+      ]
+    },
+    {
+      "name": "冻结应用",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "小黑屋",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRFBINXZEMFFnZlJhQnh3MmxRbnZacEFTRTlfMnF2WWJ0WWRxdnlQT2VycURJ"
+        }
+      ]
+    },
+    {
+      "name": "创建快捷方式",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "创建快捷方式",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQjRtX1loWmJhTFNZZUFQZDQ1RzMwR0FiWGl3RTFBbWNHTnNlcWhUR0U3bjRz"
+        }
+      ]
+    },
+    {
+      "name": "夜间浏览",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "夜览",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRGZFMnVLanNSMlJxb3ZNODcxM1BKZUFkemRKR2VEVjNKbUxVUU5vcjRNOTRJ"
+        }
+      ]
+    },
+    {
+      "name": "局域网传输文件工具",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "localseed",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQV9fdFM4R0NZYVJiYWxDd1lKa1luakFkTDVoQWlsWEZKRUNvaVJQNFNoai1J"
+        }
+      ]
+    },
+    {
+      "name": "手机配置检测软件",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "DevCheck",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ19fTEZZaHZrN1Q2QTd4U0FrNjlWcEFmaURmM0dEcDJZVVRjenlyNFVuX2o0"
+        },
+        {
+          "name": "Device Info HW+",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQVdvbGFCcU9ZTVJyb3paT0JHTDV6VEFmUXhhVW9qNEEyTTZCNUVqRUh1Z1JR"
+        }
+      ]
+    },
+    {
+      "name": "第三方熄屏显示",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "Muviz Edge",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQ2d0ejhMN1dIUFJiY2hMbkJ2OGotSEFaTURhNHRJSVUyQzZBNWZmUG94M01B"
+        }
+      ]
+    },
+    {
+      "name": "账户管理程序",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "Accounts",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQlY4TnNWQzNzMFE1ejVEQm5aUXN1c0FaOWFLMGIwTlJkanpqNEVjTmtIeXc4"
+        }
+      ]
+    },
+    {
+      "name": "软件安装器",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "App Manager",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQXdxN0tVeHJPUFNZbkk0UXd4X1JSeEFRMVlhMWlHOUxEb0Npejl4d2RKSDU4"
+        }
+      ]
+    },
+    {
+      "name": "天气软件",
+      "type": "folder",
+      "desc": "",
+      "readme": "",
+      "children": [
+        {
+          "name": "枳生天气",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQmd5cWFNQnhMWFRyd2NmZllMaDFaNUFRTmhsNFlGSmdTdG1maFVKRlU3OWpF"
+        }
+      ]
     }
   ]
 }
