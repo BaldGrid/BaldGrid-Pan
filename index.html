@@ -1733,6 +1733,22 @@
                 width: 180px;
             }
         }
+
+        .sort-select {
+            height: 34px; padding: 0 8px; border: 1px solid rgba(0,0,0,.1);
+            border-radius: 10px; background: rgba(255,255,255,.72); color: inherit;
+            outline: none; font-size: 13px; backdrop-filter: blur(12px);
+        }
+        body.dark-mode .sort-select { background: rgba(35,35,38,.75); border-color: rgba(255,255,255,.1); color: #eee; }
+        .search-result-head { display:flex; justify-content:space-between; align-items:center; gap:12px; margin:0 0 10px; padding:10px 14px; border-radius:12px; background:rgba(127,127,127,.08); font-size:13px; }
+        .search-result-head button { border:0; background:transparent; color:#777; cursor:pointer; }
+        .global-search-item { cursor:pointer; }
+        .search-path { display:block; margin-top:5px; color:#999; font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .detail-meta-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:8px; }
+        .detail-meta-cell { padding:9px 10px; border-radius:10px; background:rgba(127,127,127,.08); min-width:0; }
+        .detail-meta-cell span { display:block; color:#999; font-size:11px; margin-bottom:3px; }
+        .detail-meta-cell strong { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:13px; }
+        @media (max-width: 700px) { .sort-select { display:none; } .search-result-head { align-items:flex-start; } }
     </style>
 </head>
 <body>
@@ -1772,7 +1788,13 @@
             </div>
             <div class="pull-right" style="gap:6px;">
                 <span id="statsDisplay">加载中...</span>
-                <input class="search-bar" id="searchInput" placeholder="🔍 搜索资源..." oninput="filterItems(this.value)">
+                <input class="search-bar" id="searchInput" placeholder="🔍 搜索全站资源..." oninput="filterItems(this.value)">
+                <select id="sortSelect" class="sort-select" onchange="changeSort(this.value)" title="排序方式">
+                    <option value="folder">📁 文件夹优先</option>
+                    <option value="name-asc">A-Z 名称</option>
+                    <option value="name-desc">Z-A 名称</option>
+                    <option value="type">类型</option>
+                </select>
                 <button class="view-toggle-btn" id="viewToggle" onclick="toggleView()" title="切换视图 (Ctrl+V)">☰</button>
                 <button class="view-toggle-btn" id="darkToggle" onclick="toggleDarkMode()" title="暗色模式 (Ctrl+D)">🌙</button>
                 <span class="kbd-hint">Ctrl+K</span>
@@ -1892,6 +1914,8 @@
         let isDarkMode = localStorage.getItem(CONFIG.darkModeKey) === 'true';
         let isLoadingResources = true;
         let pendingNavigate = null;
+        let sortMode = localStorage.getItem('baldgrid-sort') || 'folder';
+        let searchMode = false;
 
         // ===== 缓存系统 =====
         const cache = new Map();
@@ -1955,30 +1979,104 @@
             }
         }
 
-        // ===== 搜索功能 =====
-        function filterItems(query) {
-            searchQuery = query.toLowerCase().trim();
-            const items = document.querySelectorAll('#fileItems .main-items:not(.main-item-title)');
-            let visibleCount = 0;
-            items.forEach(item => {
-                const nameEl = item.querySelector('.name-text');
-                const name = nameEl ? nameEl.textContent.toLowerCase() : '';
-                const show = !searchQuery || name.includes(searchQuery);
-                item.style.display = show ? '' : 'none';
-                if (show) visibleCount++;
-            });
-            const emptyState = document.querySelector('#fileItems .empty-state');
-            if (visibleCount === 0 && searchQuery) {
-                if (!emptyState) {
-                    const wrapper = document.getElementById('fileItems');
-                    const empty = document.createElement('div');
-                    empty.className = 'empty-state';
-                    empty.innerHTML = `<div class="icon">🔍</div><p>没有找到 "${searchQuery}" 相关的资源</p>`;
-                    wrapper.appendChild(empty);
+        // ===== 全站搜索 + 排序 =====
+        function changeSort(mode) {
+            sortMode = mode || 'folder';
+            localStorage.setItem('baldgrid-sort', sortMode);
+            const select = document.getElementById('sortSelect');
+            if (select) select.value = sortMode;
+            if (searchQuery) renderGlobalSearch(searchQuery);
+            else if (currentCategory) renderList(currentCategory, true);
+        }
+
+        function getItemTypeLabel(item) {
+            if (item.type === 'folder') return '文件夹';
+            if (item.type === 'loader') return '资源';
+            return '文件';
+        }
+
+        function sortResourceItems(items) {
+            return [...items].sort((a, b) => {
+                if (sortMode === 'folder') {
+                    const af = a.type === 'folder', bf = b.type === 'folder';
+                    if (af !== bf) return af ? -1 : 1;
                 }
-            } else if (emptyState && (visibleCount > 0 || !searchQuery)) {
-                emptyState.remove();
+                if (sortMode === 'type') {
+                    const t = getItemTypeLabel(a).localeCompare(getItemTypeLabel(b), 'zh-CN');
+                    if (t) return t;
+                }
+                const an = String(a.name || '').toLocaleLowerCase();
+                const bn = String(b.name || '').toLocaleLowerCase();
+                const n = an.localeCompare(bn, 'zh-CN', { numeric: true, sensitivity: 'base' });
+                return sortMode === 'name-desc' ? -n : n;
+            });
+        }
+
+        function filterItems(query) {
+            searchQuery = String(query || '').toLowerCase().trim();
+            if (searchQuery) {
+                renderGlobalSearch(searchQuery);
+                return;
             }
+            searchMode = false;
+            if (currentCategory) renderList(currentCategory, true);
+        }
+
+        function renderGlobalSearch(query) {
+            if (!allData) return;
+            searchMode = true;
+            const container = document.getElementById('fileItems');
+            if (!container) return;
+            const q = String(query || '').toLowerCase().trim();
+            const results = flatItems.filter(item => {
+                const haystack = [item.name, item.desc, item._pathStr, item.src, item.url, item._loadedData?.desc]
+                    .filter(Boolean).join(' ').toLowerCase();
+                return haystack.includes(q);
+            }).slice(0, 200);
+
+            if (!results.length) {
+                container.innerHTML = `<div class="empty-state"><div class="icon">🔍</div><p>没有找到“${escapeHtml(query)}”相关资源</p><p style="font-size:13px;color:#999;margin-top:8px;">可尝试搜索名称、描述或目录路径</p></div>`;
+                return;
+            }
+
+            let html = `<div class="search-result-head"><span>🔎 找到 ${results.length}${results.length >= 200 ? '+' : ''} 个结果</span><button onclick="clearSearch()">✕ 清除搜索</button></div>`;
+            results.forEach(item => {
+                const pathStr = item._pathStr || '';
+                const isFolder = item.type === 'folder';
+                const icon = isFolder ? '📁' : getFileIcon(item.src || item.url);
+                const desc = item.desc || item._loadedData?.desc || '';
+                const idx = flatItems.indexOf(item);
+                html += `<div class="main-items global-search-item" onclick="${isFolder ? `navigateToSearchIndex(${idx})` : `openSearchResultIndex(${idx})`}" title="${escapeHtml(pathStr)}">
+                    <div class="main-items-icon"><span style="font-size:20px;">${icon}</span></div>
+                    <div class="main-items-fileName" style="flex:1;min-width:0;">
+                        <span class="name-text">${escapeHtml(item.name || '')}</span>
+                        ${desc ? `<span class="desc-text">${escapeHtml(desc)}</span>` : ''}
+                        <span class="search-path">📂 ${escapeHtml(pathStr || '根目录')}</span>
+                    </div>
+                    <div class="main-items-fileSize"><span class="folder-info">${isFolder ? '进入目录' : '查看详情'}</span></div>
+                </div>`;
+            });
+            container.innerHTML = html;
+            applyViewMode();
+        }
+
+        function clearSearch() {
+            const input = document.getElementById('searchInput');
+            if (input) input.value = '';
+            searchQuery = '';
+            searchMode = false;
+            if (currentCategory) renderList(currentCategory, true);
+        }
+
+        function navigateToSearchIndex(index) {
+            const item = flatItems[Number(index)];
+            if (item && item._path) navigateToByPath(item._path);
+        }
+
+        function openSearchResultIndex(index) {
+            const item = flatItems[Number(index)];
+            if (!item) return;
+            openDetail(item);
         }
 
         // ===== 键盘快捷键 =====
@@ -1997,7 +2095,7 @@
             if (e.altKey && e.key === 'ArrowLeft' && currentPath.length > 0) {
                 e.preventDefault();
                 const parentPath = currentPath.slice(0, -1);
-                if (parentPath.length) navigateToByPath(parentPath.join('|'));
+                if (parentPath.length) navigateToByPath(parentPath);
                 else navigateTo(null);
             }
             if (e.ctrlKey && e.key === 'd') {
@@ -2043,7 +2141,7 @@
             if (isSwiping && deltaX > 60 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
                 if (currentPath.length > 0) {
                     const parentPath = currentPath.slice(0, -1);
-                    if (parentPath.length) navigateToByPath(parentPath.join('|'));
+                    if (parentPath.length) navigateToByPath(parentPath);
                     else navigateTo(null);
                     showToast('⬅ 返回上一级');
                 }
@@ -2102,10 +2200,11 @@
                 const btn = document.getElementById('viewToggle');
                 if (btn) btn.textContent = currentView === 'list' ? '☰' : '▦';
 
+                const initialRoute = bgStateFromUrl();
                 history.replaceState(
-                    { __baldgrid: true, depth: 0, path: [], special: null },
+                    { __baldgrid: true, depth: 0, path: initialRoute.path, special: initialRoute.special },
                     '',
-                    window.location.href
+                    bgUrl(initialRoute.path, initialRoute.special)
                 );
 
                 bgHistoryReady = true;
@@ -2120,7 +2219,10 @@
                         navigateTo(nav.category, true);
                     }
                 } else {
-                    navigateTo(null, true);
+                    const route = bgStateFromUrl();
+                    if (route.special) showSpecialPage(route.special, true);
+                    else if (route.path.length) navigateToByPath(route.path, true);
+                    else navigateTo(null, true);
                 }
             } catch (error) {
                 isLoadingResources = false;
@@ -2256,17 +2358,7 @@
                             setResourceBase(cat.children, loaderBaseUrl);
                             if (data.desc && !cat.desc) cat.desc = data.desc;
                             // ★★★ 修复：README 按当前 loader JSON 的来源解析，并兼容网站根目录写法 ★★★
-                            if (data.readme) {
-                                cat.readme = data.readme;
-                                try {
-                                    const result = await fetchReadme(data.readme, loaderBaseUrl);
-                                    cat._readmeUrl = result.url;
-                                    cat._loadedReadme = await result.res.text();
-                                    console.log('✅ README 预加载成功:', result.url);
-                                } catch (e) {
-                                    console.warn('📄 README 预加载失败:', data.readme, e);
-                                }
-                            }
+                            if (data.readme) cat.readme = data.readme;
                             await loadAllLoaders(cat.children, loaderBaseUrl);
                         } else if (Array.isArray(data)) {
                             cat.children = data;
@@ -2275,16 +2367,7 @@
                             cat._loadedData = data;
                             if (data.desc && !cat.desc) cat.desc = data.desc;
                             if (data.url) cat._url = data.url;
-                            if (data.readme) {
-                                cat.readme = data.readme;
-                                try {
-                                    const result = await fetchReadme(data.readme, loaderBaseUrl);
-                                    cat._readmeUrl = result.url;
-                                    cat._loadedReadme = await result.res.text();
-                                } catch (e) {
-                                    console.warn('📄 README 加载失败:', data.readme, e);
-                                }
-                            }
+                            if (data.readme) cat.readme = data.readme;
                         }
 
                         if (cat.children && Array.isArray(cat.children)) {
@@ -2440,6 +2523,53 @@
             };
         }
 
+        // URL 统一格式：#/目录/子目录
+        // 每一级单独编码，避免资源名称中出现“/”时破坏路径结构。
+        function bgUrl(path, special) {
+            const url = new URL(window.location.href);
+            const safePath = Array.isArray(path) ? path.filter(Boolean) : [];
+            if (special) {
+                url.hash = `@page/${encodeURIComponent(special)}`;
+            } else if (safePath.length) {
+                url.hash = '/' + safePath.map(part => encodeURIComponent(String(part))).join('/');
+            } else {
+                url.hash = '/';
+            }
+            return url.href;
+        }
+
+        function bgDecodePart(part) {
+            try { return decodeURIComponent(part); } catch (e) { return part; }
+        }
+
+        function bgStateFromUrl() {
+            const raw = (window.location.hash || '').replace(/^#/, '');
+            if (!raw || raw === '/') return { path: [], special: null };
+
+            // 新格式：#/一级/二级/三级
+            if (raw.startsWith('/')) {
+                const parts = raw.slice(1).split('/').filter(Boolean).map(bgDecodePart);
+                return { path: parts, special: null };
+            }
+
+            // 特殊页面统一使用 #/@page/页面名
+            if (raw.startsWith('@page/')) {
+                return { path: [], special: bgDecodePart(raw.slice(6)) };
+            }
+
+            // 兼容旧版 #path=xxx / #page=xxx，访问旧链接时自动恢复。
+            const eq = raw.indexOf('=');
+            if (eq >= 0) {
+                const key = raw.slice(0, eq);
+                const value = bgDecodePart(raw.slice(eq + 1));
+                if (key === 'page') return { path: [], special: value };
+                if (key === 'path') return { path: value.split('/').filter(Boolean), special: null };
+            }
+
+            // 兼容最早的纯 #目录/目录 格式
+            return { path: raw.split('/').filter(Boolean).map(bgDecodePart), special: null };
+        }
+
         function bgPushCurrent() {
             if (!bgHistoryReady || bgRestoring) return;
             const old = history.state;
@@ -2447,7 +2577,7 @@
             history.pushState(
                 bgMakeState(currentPath, currentSpecialPage, depth),
                 '',
-                window.location.href
+                bgUrl(currentPath, currentSpecialPage)
             );
         }
 
@@ -2488,28 +2618,45 @@
             if (Array.isArray(pathInput)) {
                 names = pathInput;
             } else {
-                names = pathInput.split('|').filter(Boolean);
+                // 内部旧调用仍可能传入“|”分隔路径，继续兼容。
+                names = String(pathInput).split('|').filter(Boolean);
             }
             if (names.length === 0) {
                 navigateTo(null, fromHistory);
                 return;
             }
-            let current = {
-                name: '根目录',
-                type: 'root',
-                children: allData.categories
-            };
-            let path = [];
-            for (const name of names) {
-                const next = (current.children || []).find(item => item.name === name);
-                if (!next) {
-                    console.warn('未找到路径:', name);
-                    return;
-                }
-                path.push(name);
-                current = next;
+            // 优先从全站索引按“完整路径”解析，而不是逐级依赖当前 loader 的 children。
+            // 这样无论路径来自面包屑、搜索、URL、安卓返回键还是文件夹卡片，
+            // 都使用同一套路径解析逻辑。
+            const path = names.map(String);
+            const exactPath = path.join('/');
+            let current = null;
+
+            if (Array.isArray(flatItems) && flatItems.length) {
+                current = flatItems.find(item =>
+                    Array.isArray(item._path) && item._path.join('/') === exactPath
+                ) || null;
             }
-            current._path = path;
+
+            // 兼容索引尚未建立或旧数据结构：再使用传统的逐级 children 查找。
+            if (!current) {
+                let cursor = {
+                    name: '根目录',
+                    type: 'root',
+                    children: allData.categories
+                };
+                for (const name of path) {
+                    const next = (cursor.children || []).find(item => item.name === name);
+                    if (!next) {
+                        console.warn('未找到路径:', exactPath);
+                        return;
+                    }
+                    cursor = next;
+                }
+                current = cursor;
+            }
+
+            current._path = path.slice();
             navigateTo(current, fromHistory);
         }
 
@@ -2531,6 +2678,7 @@
 
             document.getElementById('searchInput').value = '';
             searchQuery = '';
+            searchMode = false;
 
             if (fileList.style.display !== 'none') {
                 fileList.classList.add('list-exit');
@@ -2587,7 +2735,7 @@
                 });
                 document.querySelector('#sidebar .multidisk:first-child')?.classList.add('curr-disk');
                 document.getElementById('mainScroll').scrollTo({ top: 0, behavior: 'smooth' });
-                filterItems('');
+                renderBreadcrumb();
             }, 150);
         }
 
@@ -2612,6 +2760,7 @@
 
             document.getElementById('searchInput').value = '';
             searchQuery = '';
+            searchMode = false;
 
             const labels = {
                 'links': '🔗 友情链接',
@@ -2937,35 +3086,63 @@
         // ===== 渲染面包屑 =====
         function renderBreadcrumb() {
             const container = document.getElementById('breadcrumbDisplay');
+            if (!container) return;
+
+            if (searchMode && searchQuery) {
+                container.innerHTML = `<a onclick="navigateTo(null)">📂 根目录</a> <span style="opacity:.55;">/</span> <a style="font-weight:600;color:#333;">🔍 搜索：${escapeHtml(searchQuery)}</a>`;
+                return;
+            }
+
             let html = `<a onclick="navigateTo(null)">📂 根目录</a>`;
             if (currentPath.length > 0) {
-                html += ` <button class="back-btn" onclick="navigateToByPath('${currentPath.slice(0, -1).join('|')}')" title="返回上一级 (Alt+←)">← 返回</button> `;
+                html += ` <button class="back-btn" onclick="navigateBack()" title="返回上一级 (Alt+←)">← 返回</button> `;
 
                 let categories = allData.categories;
                 currentPath.forEach((name, index) => {
                     const found = categories.find(c => c.name === name);
-                    if (found) {
-                        html += ` > `;
-                        if (index === currentPath.length - 1) {
-                            html += `<a style="font-weight:600;color:#333;">${escapeHtml(name)}</a>`;
-                        } else {
-                            const pathStr = currentPath.slice(0, index + 1).join('|');
-                            html += `<a onclick="navigateToByPath('${pathStr}')">${escapeHtml(name)}</a>`;
-                        }
-                        categories = found.children || [];
+                    if (!found) return;
+                    html += ` <span style="opacity:.55;">/</span> `;
+                    if (index === currentPath.length - 1) {
+                        html += `<a style="font-weight:600;color:#333;">${escapeHtml(name)}</a>`;
+                    } else {
+                        const breadcrumbPath = currentPath.slice(0, index + 1);
+                        const breadcrumbArg = encodeURIComponent(JSON.stringify(breadcrumbPath));
+                        html += `<a onclick="navigateToByPath(JSON.parse(decodeURIComponent('${breadcrumbArg}')))">${escapeHtml(name)}</a>`;
                     }
+                    categories = found.children || [];
                 });
             }
+
+            html += ` <button class="back-btn" style="margin-left:6px;" onclick="copyCurrentDirectoryLink()" title="复制当前目录链接">🔗 复制链接</button>`;
             container.innerHTML = html;
         }
 
+        // 统一的“返回上一级”：优先使用浏览器历史，保证安卓返回键、网页返回按钮行为一致。
+        function navigateBack() {
+            if (currentSpecialPage) {
+                navigateTo(null);
+                return;
+            }
+            if (!currentPath.length) return;
+            if (bgHistoryReady && history.state && history.state.__baldgrid) {
+                history.back();
+            } else {
+                navigateToByPath(currentPath.slice(0, -1));
+            }
+        }
+
+        function copyCurrentDirectoryLink() {
+            const link = bgUrl(currentPath, currentSpecialPage);
+            copyLink(link, '当前目录链接');
+        }
+
         // ===== 渲染列表 =====
-        function renderList(category) {
+        function renderList(category, forceRefresh = false) {
             const container = document.getElementById('fileItems');
             const cacheKey = category._path ? category._path.join('/') : 'root';
 
-            const cached = getCache(cacheKey);
-            if (cached) {
+            const cached = forceRefresh ? null : getCache(cacheKey);
+            if (cached && !searchQuery) {
                 container.innerHTML = cached;
                 applyViewMode();
                 if (searchQuery) filterItems(searchQuery);
@@ -2984,19 +3161,16 @@
                 return;
             }
 
-            const sorted = [...items].sort((a, b) => {
-                if (a.type === 'folder' && b.type !== 'folder') return -1;
-                if (a.type !== 'folder' && b.type === 'folder') return 1;
-                return 0;
-            });
+            const sorted = sortResourceItems(items);
 
             let html = '';
             sorted.forEach(item => {
                 if (item.type === 'folder') {
                     const pathArr = item._path || [...currentPath, item.name];
-                    const pathStr = pathArr.join('|');
+                    const pathStr = pathArr.join('/');
+                    const pathArg = encodeURIComponent(JSON.stringify(pathArr));
                     html += `
-                        <div class="main-items folder-item" onclick="navigateToByPath('${pathStr}')" data-path="${pathStr}">
+                        <div class="main-items folder-item" onclick="navigateToByPath(JSON.parse(decodeURIComponent('${pathArg}')))" data-path="${escapeHtml(pathStr)}">
                             <div class="main-items-icon">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M2 4.5C2 3.67157 2.67157 3 3.5 3H7.5C8.32843 3 9 3.67157 9 4.5V5H16.5C17.3284 5 18 5.67157 18 6.5V15.5C18 16.3284 17.3284 17 16.5 17H3.5C2.67157 17 2 16.3284 2 15.5V4.5Z" fill="#FFCE5C" stroke="#E6A800" stroke-width="1.2"/>
@@ -3004,7 +3178,7 @@
                                 </svg>
                             </div>
                             <div class="main-items-fileName" style="flex:1;">
-                                <a onclick="event.stopPropagation();navigateToByPath('${pathStr}')" style="font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escapeHtml(item.name)}</a>
+                                <a onclick="event.stopPropagation();navigateToByPath(${pathArg})" style="font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escapeHtml(item.name)}</a>
                                 ${item.desc ? `<span class="desc-text">${escapeHtml(item.desc)}</span>` : ''}
                             </div>
                             <div class="main-items-fileSize">
@@ -3169,6 +3343,13 @@
             return div.innerHTML;
         }
 
+        function isSafeExternalUrl(url) {
+            try {
+                const u = new URL(url, window.location.href);
+                return u.protocol === 'http:' || u.protocol === 'https:';
+            } catch (_) { return false; }
+        }
+
         function getFileIcon(src) {
             if (!src) return '📄';
             const ext = src.split('.').pop().toLowerCase();
@@ -3261,11 +3442,27 @@
                     <div class="detail-value">${escapeHtml(desc)}</div>
                 </div>`;
             }
-            if (linkUrl) {
+            if (linkUrl && isSafeExternalUrl(linkUrl)) {
                 html += `<div class="detail-item">
                     <span class="detail-label">🔗 下载链接</span>
-                    <div class="detail-value"><a href="${escapeHtml(linkUrl)}" target="_blank">${escapeHtml(linkUrl)}</a></div>
+                    <div class="detail-value"><a href="${escapeHtml(linkUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(linkUrl)}</a></div>
                 </div>`;
+            }
+            const meta = item._loadedData || item;
+            const metadata = [
+                ['版本', meta.version || meta.ver],
+                ['作者', meta.author || meta.developer],
+                ['平台', meta.platform || meta.os],
+                ['更新时间', meta.updated || meta.update || meta.date || meta.time],
+                ['大小', meta.size || meta.filesize],
+                ['类型', getItemTypeLabel(item)],
+                ['目录', item._pathStr]
+            ].filter(x => x[1] !== undefined && x[1] !== null && String(x[1]).trim() !== '');
+            if (Array.isArray(meta.tags) && meta.tags.length) {
+                metadata.push(['标签', meta.tags.join(' · ')]);
+            }
+            if (metadata.length) {
+                html += `<div class="detail-item"><span class="detail-label">ℹ️ 信息</span><div class="detail-meta-grid">${metadata.map(([k,v]) => `<div class="detail-meta-cell"><span>${escapeHtml(k)}</span><strong>${escapeHtml(v)}</strong></div>`).join('')}</div></div>`;
             }
             const readmeContent = item._loadedReadme || null;
             let readmePath = item.readme || null;
@@ -3434,6 +3631,23 @@
 
         if (localStorage.getItem(CONFIG.darkModeKey) === 'true') {
             document.body.classList.add('dark-mode');
+        }
+
+        const sortSelect = document.getElementById('sortSelect');
+        if (sortSelect) sortSelect.value = sortMode;
+
+        window.addEventListener('hashchange', () => {
+            if (!bgHistoryReady || !allData) return;
+            const route = bgStateFromUrl();
+            if (route.special) showSpecialPage(route.special, true);
+            else if (route.path.length) navigateToByPath(route.path, true);
+            else navigateTo(null, true);
+        });
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').catch(err => console.warn('PWA 缓存注册失败:', err));
+            });
         }
 
         loadData();

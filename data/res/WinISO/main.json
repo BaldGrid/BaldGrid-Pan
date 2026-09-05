@@ -1,0 +1,97 @@
+{
+  "name": "Windows镜像合集",
+  "type": "folder",
+  "desc": "Windows 系统镜像资源汇总",
+  "readme": "data/rm/file/WinISO/main.md",
+  "children": [
+    {
+      "name": "Windows10",
+      "type": "folder",
+      "desc": "官方镜像",
+      "readme": "data/rm/file/WinISO/win10.md",
+      "children": [
+        {
+          "name": "x86",
+          "type": "folder",
+          "desc": "32位版本",
+          "readme": "",
+          "children": []
+        },
+        {
+          "name": "arm64",
+          "type": "folder",
+          "desc": "ARM64架构版本",
+          "readme": "",
+          "children": []
+        },
+        {
+          "name": "x64",
+          "type": "folder",
+          "desc": "64位版本",
+          "readme": "",
+          "children": [
+            {
+              "name": "22h2_简体中文_x64",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQnk4MldHbl9fRFRZdmZ4U1FLRWsyUkFWNkMwNURvcW1Gd3J3QWRYZFJXV2l3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Windows11",
+      "type": "folder",
+      "desc": "官方镜像",
+      "readme": "data/rm/file/WinISO/win11.md",
+      "children": [
+        {
+          "name": "x86",
+          "type": "folder",
+          "desc": "32位版本",
+          "readme": "",
+          "children": []
+        },
+        {
+          "name": "arm64",
+          "type": "folder",
+          "desc": "ARM64架构版本",
+          "readme": "",
+          "children": [
+            {
+              "name": "25h2_简体中文_arm64",
+              "type": "file",
+              "desc": "",
+              "readme": "",
+              "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRRDYycms5R0JfY1Nvd180T0hsZVd2MUFVOUVKQlE2eFA2alQyb1JKWFNJeUhz"
+            }
+          ]
+        },
+        {
+          "name": "x64",
+          "type": "folder",
+          "desc": "64位版本",
+          "readme": "",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Rectify 10X",
+      "type": "folder",
+      "desc": "11仿10",
+      "readme": "data/rm/file/WinISO/rectify10x.md",
+      "children": [
+        {
+          "name": "V1.3_x64",
+          "type": "file",
+          "desc": "",
+          "readme": "",
+          "url": "https://dlink.host/1drv/aHR0cHM6Ly8xZHJ2Lm1zL3UvYy82ZWQxYzIzMzY4YTdlYjNhL0lRQnVJc2o4QldmTVFJRnBzRzU4VG5RQUFiMURSS1hscFZXeHBKdjFHWTM1b3Nr"
+        }
+      ]
+    }
+  ]
+}

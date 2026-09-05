@@ -140,6 +140,11 @@
       "name": "安卓实用工具",
       "type": "loader",
       "src": "data/res/noroot/main.json"
+    },
+    {
+      "name": "Windows镜像",
+      "type": "loader",
+      "src": "data/res/WinISO/main.json"
     }
   ]
 }
